@@ -1,0 +1,26 @@
+{
+  "name": "Vue-components",
+  "version": "1.0.0",
+  "description": "UI components for Vue",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/loliconer/Vue-components.git",
+    "type": "git"
+  },
+  "author": "loliconer",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.16.0",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.1.0",
+    "vue": "^2.0.3",
+    "vue-loader": "^9.7.0",
+    "vue-router": "^2.0.1",
+    "vuex": "^2.0.0",
+    "webpack": "^1.13.2"
+  }
+}

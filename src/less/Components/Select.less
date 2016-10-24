@@ -1,0 +1,127 @@
+@import "../Bootstrapping/Variables";
+
+.select{
+    border: 1px solid @borderColor;
+    padding: 4px;
+}
+.select-custom {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.pure-select {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+    position: relative;
+    cursor: default;
+}
+
+.pure-select dt {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+    line-height: 22px;
+    border: 1px solid #E6E6E6;
+    border-radius: 3px;
+    padding: 4px 20px 4px 6px;
+    vertical-align: middle;
+}
+
+.pure-select dt:after {
+    content: '▲';
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    display: inline-block;
+    opacity: .6;
+    font-size: 12px;
+    color: #000;
+    transition: transform .2s ease;
+}
+
+.pure-select dd {
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 0;
+    margin: 0;
+    width: auto;
+    box-sizing: border-box;
+    border: 1px solid #E6E6E6;
+    border-radius: 3px;
+    background: #f7f7f7;
+    visibility: hidden;
+    transform: translateY(-1em);
+    opacity: 0;
+    transition: visibility 200ms ease, opacity 200ms ease, transform 200ms ease;
+    z-index: 10;
+}
+
+.pure-select label {
+    cursor: pointer;
+    display: block;
+    padding: 4px 8px;
+    white-space: nowrap;
+}
+
+.pure-select label:hover {
+    color: #333;
+    background-color: #f0f0f2;
+}
+
+.pure-select input {
+    display: none;
+}
+
+.pure-select input + span {
+    display: none;
+}
+
+.pure-select input:checked + span {
+    display: inline-block;
+}
+
+.pure-select:hover dt:after {
+    transform: rotate(180deg);
+}
+
+.pure-select:hover dd {
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+}
+
+.select-svg {
+    position: relative;
+    width: 100px;
+    height: 45px;
+    > select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ccc;
+        padding-left: 10px;
+        color: @firstLevelColor;
+        background: transparent;
+        z-index: 20;
+        cursor: pointer;
+    }
+    svg {
+        position: absolute;
+        top: 20px;
+        right: 10px;
+        width: 14px;
+        height: 9px;
+        use {
+            color: #333;
+        }
+    }
+}
