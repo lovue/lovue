@@ -1,0 +1,362 @@
+@import "../Bootstrapping/Variables";
+
+.vue-date-picker {
+    .input {
+        cursor: pointer;
+    }
+    .picker-container {
+        position: absolute;
+        z-index: 100;
+        padding: 20px;
+        background-color: @whiteColor;
+        border: 1px solid @lineColor;
+        margin-top: -1px;
+        -webkit-user-select: none;
+        box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.506);
+        .date-picker {
+            float: left;
+            width: 200px;
+            .month-picker {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                height: 40px;
+                .arrow {
+                    line-height: 40px;
+                }
+                .custom-select {
+                    width: 60px;
+                    text-align: center;
+                    .selected {
+                        height: 40px;
+                        line-height: 40px;
+                        cursor: pointer;
+                        span {
+                            margin-right: 10px;
+                        }
+                    }
+                    .list {
+                        position: absolute;
+                        height: 210px;
+                        overflow-y: scroll;
+                        width: 60px;
+                        background-color: @bgColor;
+                        box-shadow: 0 2px 7px 2px rgba(0, 0, 0, .15);
+                        z-index: 1000;
+                        li {
+                            line-height: 24px;
+                            padding: 0 5px;
+                            cursor: pointer;
+                        }
+                        li.focus {
+                            background-color: @blueColor;
+                        }
+                        li:hover {
+                            background-color: @whiteColor;
+                        }
+                    }
+                }
+            }
+            .calendar {
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    table-layout: fixed;
+                    text-align: center;
+                    tbody {
+                        tr {
+                            td {
+                                height: 28px;
+                                cursor: pointer;
+                            }
+                            td.focus {
+                                background-color: @blueColor;
+                            }
+                            td.calendar-last-month,
+                            td.calendar-next-month {
+                                background-color: @bgColor;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .time-picker {
+            float: left;
+            margin-left: 20px;
+            margin-top: 10px;
+            height: 219px;
+            line-height: 24px;
+            background-color: @bgColor;
+            border: 1px solid @lineColor;
+            overflow-y: scroll;
+            .list {
+                li {
+                    padding: 0 5px;
+                    cursor: pointer;
+                }
+                li:hover {
+                    background-color: @whiteColor;
+                }
+                li.focus {
+                    background-color: @blueColor;
+                }
+            }
+        }
+    }
+}
+
+.vue-beauty-alert {
+    z-index: 1010;
+    .box {
+        padding: 40px;
+        text-align: center;
+        .text {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .input {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: @smallFont;
+        }
+        .btn {
+            width: 120px;
+        }
+        .btn + .btn {
+            margin-left: 40px;
+        }
+    }
+}
+
+.vue-select-city {
+    .select {
+        margin-right: 20px;
+        cursor: pointer;
+    }
+}
+
+.vue-input-tag {
+    .selected-tags {
+        display: inline-block;
+    }
+    .searched-tags {
+        width: 165px;
+        border-radius: 3px;
+        border: #A9A9A9 solid;
+        border-width: 0 1px 1px 1px;
+        a {
+            display: block;
+            color: @firstLevelColor;
+            padding: 10px 0 10px 10px;
+        }
+        a:hover {
+            background-color: #A9A9A9;
+        }
+    }
+    .candidate-tags {
+        position: absolute;
+        width: 650px;
+        background-color: @whiteColor;
+        border: 1px solid #A9A9A9;
+        border-radius: @border-radius-small;
+        margin-top: -1px;
+    }
+
+}
+
+.vue-crop {
+    -webkit-user-select: none;
+    .block-crop {
+        position: relative;
+        width: 800px;
+        margin: 100px auto 0;
+        text-align: center;
+        .box-crop {
+            position: relative;
+        }
+        .crop-shades {
+            .shade {
+                position: absolute;
+                background-color: rgba(0, 0, 0, .5);
+            }
+            .shade-top {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100px;
+            }
+            .shade-left {
+                top: 100px;
+                left: 0;
+                width: 200px;
+                height: 300px;
+            }
+            .shade-right {
+                top: 100px;
+                right: 0;
+                width: 200px;
+                height: 300px;
+            }
+            .shade-bottom {
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: calc(100% - 400px);
+            }
+        }
+        .crop-selection {
+            position: absolute;
+            left: 200px;
+            top: 100px;
+            width: 400px;
+            height: 300px;
+            border: 1px dashed @whiteColor;
+            cursor: all-scroll;
+            .crop-drag-point {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border: 1px solid #eee;
+                background-color: rgba(49, 28, 28, .58);
+            }
+            .ord-nw {
+                left: -5px;
+                top: -5px;
+                cursor: nwse-resize;
+            }
+            .ord-ne {
+                right: -5px;
+                top: -5px;
+                cursor: nesw-resize;
+            }
+            .ord-sw {
+                left: -5px;
+                bottom: -5px;
+                cursor: nesw-resize;
+            }
+            .ord-se {
+                right: -5px;
+                bottom: -5px;
+                cursor: nwse-resize;
+            }
+        }
+        .btn-login {
+            margin-top: 20px;
+            width: 80px;
+            font-size: @normalFont;
+        }
+    }
+}
+
+.vue-html-editor {
+    font-size: 14px;
+    border: 1px solid @borderColor;
+    text-align: left;
+    background-color: @whiteColor;
+    border-radius: @border-radius-small;
+    overflow: hidden;
+    .window {
+        margin-top: 100px;
+        .article {
+            height: 600px;
+            overflow-y: scroll;
+            .content-text {
+                width: 680px;
+                margin: 0 auto;
+                padding: 10px;
+            }
+        }
+    }
+    .e-toolbar {
+        line-height: 36px;
+        position: relative;
+        ul {
+            border-bottom: 1px solid @borderColor;
+            overflow: hidden;
+            li {
+                float: left;
+                width: 32px;
+                text-align: center;
+                cursor: pointer;
+                .btn {
+                    width: 100%;
+                    height: 32px;
+                    background-color: transparent;
+                    border-radius: 0;
+                    svg {
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
+                .btn.active {
+                    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+                    background-color: #ebebeb;
+                }
+                .select {
+                    height: 24px;
+                    line-height: 14px;
+                    padding: 0 0 0 5px;
+                    text-align: center;
+                    min-width: 60px;
+                    border-radius: 0;
+                    border-color: @borderColor;
+                    margin-right: 10px;
+                }
+            }
+            li.item-width {
+                width: auto;
+            }
+        }
+    }
+    .e-content {
+        min-height: 500px;
+        padding: 10px;
+        p {
+            text-indent: 0;
+        }
+        a {
+            color: @blueColor;
+            text-decoration: underline;
+        }
+    }
+    .e-source {
+        background-color: @firstLevelColor;
+        color: @whiteColor;
+        min-height: 500px;
+        padding: 10px;
+        overflow-x: scroll;
+    }
+}
+
+@media (max-width: 768px) {
+    .vue-beauty-alert {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        .box {
+            width: 85%;
+            padding: 2rem 0 0;
+            margin-bottom: 0;
+            border-radius: 3px;
+            text-align: center;
+            .text {
+                font-size: 1.5rem;
+                color: #888;
+            }
+            .btn {
+                font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+                width: 100%;
+                border-radius: 0;
+                background-color: transparent;
+                color: #0bb20c;
+                font-size: 1.7rem;
+                border-top: 1px solid #d5d5d6;
+                height: 4.2rem;
+                padding: 0;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            }
+        }
+    }
+}

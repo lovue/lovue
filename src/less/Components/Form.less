@@ -1,0 +1,17 @@
+@import "../Bootstrapping/Variables";
+
+.input {
+    height: 42px;
+    line-height: 42px;
+    border: 1px solid @borderColor;
+    // border-radius: @border-radius;
+    font-size: @tinyFont;
+    color: @firstLevelColor;
+    letter-spacing: 1px;
+    padding-left: @border-radius;
+    background-color: transparent;
+}
+.input:focus {
+    border-color: @firstLevelColor;
+    color: @firstLevelColor;
+}

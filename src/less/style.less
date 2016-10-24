@@ -1,0 +1,22 @@
+@import "Bootstrapping/Variables";
+
+.container {
+    .list{
+        .cell{
+            float: left;
+            width: 50%;
+            height: 480px;
+            border-bottom: 1px solid @borderColor;
+            text-align: center;
+            >div {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                display: inline-block;
+            }
+        }
+        .cell:nth-child(odd) {
+            border-right: 1px solid @borderColor;
+        }
+    }
+}
