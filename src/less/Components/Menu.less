@@ -1,0 +1,22 @@
+@import "../Bootstrapping/Variables";
+
+.menu-dropdown {
+    min-width: 208px;
+    border: 1px solid @borderColor;
+    font-size: @smallFont;
+    .list {
+        padding: 12px 0;
+        .menu-item {
+            height: 32px;
+            line-height: 32px;
+            .link {
+                display: block;
+                height:100%;
+                padding: 0 15px;
+            }
+        }
+        .menu-item:hover {
+            background-color: @bgColor;
+        }
+    }
+}

@@ -1,0 +1,59 @@
+@import "../Bootstrapping/Variables";
+
+.btn {
+    display: inline-block;
+    background-color: @blueColor;
+    border: none;
+    border-radius: @border-radius;
+    color: @whiteColor;
+    font-size: 13px;
+    text-align: center;
+    padding: 0 12px;
+    height: 30px;
+    line-height: 30px;
+    min-width: 72px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #05D7F7;
+}
+
+.btn:active {
+    background-color: #04B1CC;
+}
+
+.btn-ghost {
+    background-color: transparent;
+    border: 1px solid @blueColor;
+    color: @blueColor;
+}
+
+.btn-ghost:hover {
+    background-color: transparent;
+    border-color: #05D7F7;
+    color: #05D7F7;
+}
+
+.btn-ghost:active {
+    border-color: #04B1CC;
+    color: #04B1CC;
+}
+
+.btn[disabled] {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.btn-file {
+    position: relative;
+    input {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+}
