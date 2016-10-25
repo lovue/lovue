@@ -10,15 +10,16 @@
     </head>
     <body>
         <div id="app">
+            <vue-beauty-alert ref="alert"></vue-beauty-alert>
             <div class="container">
                 <div class="panel panel-left"></div>
                 <div class="panel panel-right">
                     <div class="cell">
                         <div class="title">按钮</div>
                         <div class="content">
-                            <button class="btn">按钮</button>
-                            <button class="btn btn-ghost">按钮</button>
-                            <button class="btn" disabled>禁用按钮</button>
+                            <button class="btn" type="button">按钮</button>
+                            <button class="btn btn-ghost" type="button">按钮</button>
+                            <button class="btn" type="button" disabled>禁用按钮</button>
                         </div>
                     </div>
                     <div class="cell">
@@ -38,23 +39,36 @@
                         <div class="title">文本输入框</div>
                         <div class="content">
                             <input class="input" type="text" placeholder="输入文字">
-
                         </div>
                     </div>
                     <div class="cell">
                         <div class="title">文件上传按钮</div>
                         <div class="content">
                             <div class="btn-file">
-                                <button class="btn">上传</button>
+                                <button class="btn" type="button">上传</button>
                                 <input type="file" name="poster">
                             </div>
                         </div>
                     </div>
                     <div class="cell">
-                        <vue-select-city></vue-select-city>
+                        <div class="title">弹出提示框</div>
+                        <div class="content">
+                            <button class="btn" type="button" @click="alertOne">普通提示框</button>
+                            <button class="btn" type="button" @click="alertTwo">确认取消提示框</button>
+                        </div>
                     </div>
                     <div class="cell">
-                        <vue-date-picker></vue-date-picker>
+                        <div class="title">省市选择器</div>
+                        <div class="content">
+                            <vue-select-city></vue-select-city>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="title">日期选择器</div>
+                        <div class="content">
+                            <vue-date-picker></vue-date-picker>
+                            <vue-date-picker timepicker></vue-date-picker>
+                        </div>
                     </div>
                 </div>
             </div>

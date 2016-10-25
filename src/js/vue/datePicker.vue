@@ -208,6 +208,7 @@
         created () {
             var t = this.current ? new Date( this.current ) : today;
 
+            this.interval = this.interval || 1;
             this.year = t.getFullYear();
             this.month = t.getMonth() + 1;
             this.day = t.getDate();

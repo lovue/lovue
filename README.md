@@ -1,5 +1,6 @@
 # Vue-components
-.vue单文件形式的组件，可直接导入使用
+.vue单文件形式的组件，可直接导入使用；
+也包含一些纯CSS控件
 
 ###已完成：
 - 日期选择器：datePicker.vue

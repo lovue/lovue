@@ -111,11 +111,15 @@
 .vue-beauty-alert {
     z-index: 1010;
     .box {
+        position: relative;
+        min-width: 420px;
+        height: 200px;
         padding: 40px;
         text-align: center;
+        background-color: @whiteColor;
+        box-shadow: 0 2px 20px 0 rgba(0, 0, 0, .15);
         .text {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            //font-size: @smallFont;
         }
         .input {
             display: block;
@@ -123,11 +127,12 @@
             margin-bottom: 20px;
             font-size: @smallFont;
         }
-        .btn {
-            width: 120px;
-        }
-        .btn + .btn {
-            margin-left: 40px;
+        .bottom {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 16px 12px;
         }
     }
 }
