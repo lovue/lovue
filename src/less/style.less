@@ -1,21 +1,30 @@
 @import "Bootstrapping/Variables";
 
 .container {
-    .list{
-        .cell{
+    display: flex;
+    justify-content: flex-start;
+    .panel-left {
+        width: 30%;
+        background-color: @bgColor;
+    }
+    .panel-right {
+        width: 70%;
+        padding: 30px;
+    }
+    .cell{
+        .title {
+            font-size: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid @borderColor;
+        }
+        .content {
             display: flex;
             align-items: center;
             justify-content: center;
-            float: left;
-            width: 50%;
             height: 480px;
-            border-bottom: 1px solid @borderColor;
-            >div {
-                display: inline-block;
+            > * {
+                margin-right: 20px;
             }
-        }
-        .cell:nth-child(odd) {
-            border-right: 1px solid @borderColor;
         }
     }
 }

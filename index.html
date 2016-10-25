@@ -11,7 +11,45 @@
     <body>
         <div id="app">
             <div class="container">
-                <div class="list">
+                <div class="panel panel-left"></div>
+                <div class="panel panel-right">
+                    <div class="cell">
+                        <div class="title">按钮</div>
+                        <div class="content">
+                            <button class="btn">按钮</button>
+                            <button class="btn btn-ghost">按钮</button>
+                            <button class="btn" disabled>禁用按钮</button>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="title">下拉菜单</div>
+                        <div class="content">
+                            <div class="menu-dropdown">
+                                <ul class="list">
+                                    <li class="menu-item"><a class="link">菜单一</a></li>
+                                    <li class="menu-item"><a class="link">菜单一</a></li>
+                                    <li class="menu-item"><a class="link">菜单一</a></li>
+                                    <li class="menu-item"><a class="link">菜单一</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="title">文本输入框</div>
+                        <div class="content">
+                            <input class="input" type="text" placeholder="输入文字">
+
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="title">文件上传按钮</div>
+                        <div class="content">
+                            <div class="btn-file">
+                                <button class="btn">上传</button>
+                                <input type="file" name="poster">
+                            </div>
+                        </div>
+                    </div>
                     <div class="cell">
                         <vue-select-city></vue-select-city>
                     </div>
