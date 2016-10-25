@@ -1,11 +1,13 @@
 <template>
     <transition name="fade">
         <div class="overlay vue-beauty-alert" v-show="bShowOverlay">
-            <div class="box box-normal hvcenter">
+            <div class="box">
                 <div class="text">{{text}}</div>
                 <input class="input" type="text" v-if="bShowInput" v-model="inputs">
-                <button class="btn btn-hover" type="button" @click.stop="confirm">确认</button>
-                <button class="btn" v-if="type === 'confirm'" type="button" @click.stop="cancel">取消</button>
+                <div class="bottom">
+                    <button class="btn" type="button" @click.stop="confirm">确认</button>
+                    <button class="btn btn-ghost" v-if="type === 'confirm'" type="button" @click.stop="cancel">取消</button>
+                </div>
             </div>
         </div>
     </transition>
@@ -29,6 +31,7 @@
         },
         methods: {
             show ( option, callback ) {
+                this.reset();
                 this.bShowOverlay = true;
                 this.callback = callback;
 
@@ -42,13 +45,19 @@
                 this.inputs = option.inputs;
             },
             confirm () {
-                this.bShowOverlay = false;
                 if ( this.callback ) {
                     this.callback( this.inputs );
                 }
+                this.bShowOverlay = false;
             },
             cancel () {
                 this.bShowOverlay = false;
+            },
+            reset () {
+                this.text = null;
+                this.callback = null;
+                this.type = null;
+                this.inputs = null;
             }
         }
     }
