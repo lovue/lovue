@@ -1,5 +1,10 @@
 <template>
     <div class="vue-crop">
+        <div class="btn-file">
+            <button class="btn" type="button">上传</button>
+            <input type="file" accept="image/gif,image/jpeg,image/x-png,image/tiff,image/x-ms-bmp" @change="selectImage">
+        </div>
+        <div class="preview" ref="preview"></div>
         <div class="overlay" v-show="bShowOverlay" @mousemove="dragging" @mouseup="endDrag">
             <div class="block-crop">
                 <div class="box-crop">
@@ -17,7 +22,7 @@
                         <div class="crop-drag-point ord-se" @mousedown.stop="startDrag('se',$event)"></div>-->
                     </div>
                 </div>
-                <button class="btn btn-login" type="button" @click="crop">确定</button>
+                <button class="btn" type="button" @click="crop">确定</button>
             </div>
         </div>
     </div>
@@ -51,6 +56,29 @@
             }
         },
         methods: {
+            selectImage ( ev ) {
+                const self = this;
+                const bal = this.$root.$refs.alert;
+                var input = ev.target;
+
+                if ( input.files && input.files[ 0 ] ) {
+                    let reader = new FileReader();
+                    reader.onload = function ( ev ) {
+                        let img = new Image;
+                        img.src = ev.target.result;
+
+                        if ( img.naturalWidth < 1080 || img.naturalHeight < 764 ) {
+                            self.canSubmit = false;
+                            input.value = "";
+                            bal.show( '图片尺寸小于1080*764' );
+                            return;
+                        }
+
+                        self.setImage( ev.target.result ).show();
+                    };
+                    reader.readAsDataURL( input.files[ 0 ] );
+                }
+            },
             setImage ( src ) {
                 if ( this.src === src ) {
                     return this;
