@@ -20,49 +20,49 @@
                     </button>
                 </li>-->
                 <li>
-                    <button class="btn" type="button" @click="formatDoc('undo')" title="撤销">
+                    <button class="btn-text" type="button" @click="formatDoc('undo')" title="撤销">
                         <svg>
-                            <use xlink:href="/img/icons.svg#icon-fa-undo"></use>
+                            <use xlink:href="/public/img/icons.svg#icon-fa-undo"></use>
                         </svg>
                     </button>
                 </li>
                 <li>
-                    <button class="btn" type="button" @click="formatDoc('redo')" title="重做">
+                    <button class="btn-text" type="button" @click="formatDoc('redo')" title="重做">
                         <svg>
-                            <use xlink:href="/img/icons.svg#icon-fa-redo"></use>
+                            <use xlink:href="/public/img/icons.svg#icon-fa-redo"></use>
                         </svg>
                     </button>
                 </li>
                 <li>
-                    <button class="btn" type="button" @click="removeFormat" title="清除格式">
+                    <button class="btn-text" type="button" @click="removeFormat" title="清除格式">
                         <svg>
-                            <use xlink:href="/img/icons.svg#icon-fa-eraser"></use>
+                            <use xlink:href="/public/img/icons.svg#icon-fa-eraser"></use>
                         </svg>
                     </button>
                 </li>
                 <li>
-                    <button class="btn" type="button" ref="bold" @click="formatDoc('bold')" title="加粗">
+                    <button class="btn-text" type="button" ref="bold" @click="formatDoc('bold')" title="加粗">
                         <svg>
-                            <use xlink:href="/img/icons.svg#icon-fa-bold"></use>
+                            <use xlink:href="/public/img/icons.svg#icon-fa-bold"></use>
                         </svg>
                     </button>
                 </li>
                 <li>
-                    <button class="btn" type="button" ref="italic" @click="formatDoc('italic')" title="斜体">
+                    <button class="btn-text" type="button" ref="italic" @click="formatDoc('italic')" title="斜体">
                         <svg>
-                            <use xlink:href="/img/icons.svg#icon-fa-italic"></use>
+                            <use xlink:href="/public/img/icons.svg#icon-fa-italic"></use>
                         </svg>
                     </button>
                 </li>
                 <li>
-                    <button class="btn" type="button" ref="underline" @click="formatDoc('underline')" title="下划线">
+                    <button class="btn-text" type="button" ref="underline" @click="formatDoc('underline')" title="下划线">
                         <svg>
-                            <use xlink:href="/img/icons.svg#icon-fa-underline"></use>
+                            <use xlink:href="/public/img/icons.svg#icon-fa-underline"></use>
                         </svg>
                     </button>
                 </li>
                 <li>
-                    <button class="btn" type="button" ref="strikeThrough" @click="formatDoc('strikeThrough')" title="删除线">
+                    <button class="btn-text" type="button" ref="strikeThrough" @click="formatDoc('strikeThrough')" title="删除线">
                         <del>abc</del>
                     </button>
                 </li>
@@ -102,28 +102,28 @@
                     </button>
                 </li>-->
                 <li>
-                    <button class="btn" type="button" @click="formatDoc('outdent')" title="缩退">
+                    <button class="btn-text" type="button" @click="formatDoc('outdent')" title="缩退">
                         <svg>
-                            <use xlink:href="/img/icons.svg#icon-fa-outdent"></use>
+                            <use xlink:href="/public/img/icons.svg#icon-fa-outdent"></use>
                         </svg>
                     </button>
                 </li>
                 <li>
-                    <button class="btn" type="button" @click="formatDoc('indent')" title="缩进">
+                    <button class="btn-text" type="button" @click="formatDoc('indent')" title="缩进">
                         <svg>
-                            <use xlink:href="/img/icons.svg#icon-fa-indent"></use>
+                            <use xlink:href="/public/img/icons.svg#icon-fa-indent"></use>
                         </svg>
                     </button>
                 </li>
                 <li>
-                    <button class="btn" type="button" @click="insertLink" title="超链接">
+                    <button class="btn-text" type="button" @click="insertLink" title="超链接">
                         <svg>
-                            <use xlink:href="/img/icons.svg#icon-fa-link"></use>
+                            <use xlink:href="/public/img/icons.svg#icon-fa-link"></use>
                         </svg>
                     </button>
                 </li>
                 <li>
-                    <button class="btn" type="button" @click="formatDoc('insertHorizontalRule')" title="分隔线">—</button>
+                    <button class="btn-text" type="button" @click="formatDoc('insertHorizontalRule')" title="分隔线">—</button>
                 </li>
                 <!--<li>
                     <button class="btn" type="button" ref="cut" @click="formatDoc('cut')">
@@ -147,9 +147,9 @@
                     </button>
                 </li>-->
                 <li>
-                    <button class="btn" type="button" title="图片" @click="insertImage">
+                    <button class="btn-text" type="button" title="图片" @click="insertImage">
                         <svg>
-                            <use xlink:href="/img/icons.svg#icon-fa-picture"></use>
+                            <use xlink:href="/public/img/icons.svg#icon-fa-picture"></use>
                         </svg>
                     </button>
                 </li>
@@ -166,10 +166,10 @@
                     </select>
                 </li>
                 <li class="item-width">
-                    <button class="btn" type="button" title="源码" @click="toggleSource">HTML</button>
+                    <button class="btn-text" type="button" title="源码" @click="toggleSource">HTML</button>
                 </li>
                 <li class="item-width">
-                    <button class="btn" type="button" title="预览" @click="preview">预览</button>
+                    <button class="btn-text" type="button" title="预览" @click="preview">预览</button>
                 </li>
                 <!--<li class="item-width">
                     <select class="select" @change="formatDoc('backcolor',$event.target.value)">
@@ -182,7 +182,7 @@
                 </li>-->
             </ul>
         </div>
-        <div v-show="!sourceMode" class="e-content" id="editor" contenteditable ref="content" @click="checkStatus"
+        <div v-show="!sourceMode" class="e-content" id="editor" contenteditable @click="checkStatus" @paste="removeFormat"
              @keyup.up="checkStatus" @keyup.down="checkStatus" @keyup.left="checkStatus" @keyup.right="checkStatus" @keyup.enter="checkStatus"></div>
         <div v-show="sourceMode" class="e-source" id="source">
             <pre><code>{{sourceCode}}</code></pre>
@@ -219,19 +219,20 @@
                     this.$refs[ cmd ].classList.toggle( 'active' );
                 }
                 document.execCommand( cmd, false, value );
-                this.$refs.content.focus();
+                editor.focus();
             },
             removeFormat () {
-                document.execCommand( "removeFormat", false, null );
+                setTimeout( () => {
+                    document.execCommand( "removeFormat", false, null );
 
-                let content = this.$refs.content;
-                let elems = content.querySelectorAll( "*" );
-                [].forEach.call( elems, elem => {
-                    elem.removeAttribute( 'style' );
-                    elem.removeAttribute( 'class' );
-                } );
+                    let elems = editor.querySelectorAll( "*" );
+                    [].forEach.call( elems, elem => {
+                        elem.removeAttribute( 'style' );
+                        elem.removeAttribute( 'class' );
+                    } );
 
-                content.focus();
+                    editor.focus();
+                }, 0 );
             },
             insertLink () {
                 /*var link = prompt( "输入链接地址", "http://" );
