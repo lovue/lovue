@@ -12,6 +12,7 @@
     height: 30px;
     line-height: 30px;
     min-width: 72px;
+    transition: background-color .3s, border-color .3s, color .3s;
     cursor: pointer;
 }
 
@@ -47,6 +48,7 @@
 
 .btn-file {
     position: relative;
+    display: inline-block;
     input {
         position: absolute;
         top: 0;
@@ -55,5 +57,17 @@
         font-size: 0;
         opacity: 0;
         cursor: pointer;
+    }
+}
+
+.btn-file:hover {
+    .btn {
+        background-color: #05D7F7;
+    }
+}
+
+.btn-file:active {
+    .btn {
+        background-color: #04B1CC;
     }
 }
