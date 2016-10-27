@@ -1,4 +1,5 @@
 @import "Bootstrapping/Variables";
+@import "Bootstrapping/Mixins";
 
 .container {
     display: flex;
@@ -18,9 +19,7 @@
             border-bottom: 1px solid @borderColor;
         }
         .content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            .hvcenter;
             height: 480px;
             > * {
                 margin-right: 20px;

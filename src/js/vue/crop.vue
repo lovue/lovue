@@ -7,8 +7,8 @@
         <div class="preview" ref="preview"></div>
         <div class="overlay" v-show="bShowOverlay" @mousemove="dragging" @mouseup="endDrag">
             <div class="block-crop">
-                <div class="box-crop">
-                    <img :src="src" @load="initPosition">
+                <div ref="boxCrop" class="box-crop">
+                    <img id="cropImage" @load="initPosition">
                     <div class="crop-shades">
                         <div class="shade shade-top" :style="`height: ${posY}px;`"></div>
                         <div class="shade shade-left" :style="`top: ${posY}px; width: ${posX}px; height: ${selectionHeight}px;`"></div>
@@ -30,16 +30,13 @@
 
 <script>
     var startX, startY, distanceX, distanceY;
-    var domSelection, domBoxCrop;
-    var boxWidth = 0, boxHeight = 0;
-    var boxRect;
+    var boxRect = {};
     var isDragging = false;
     var nw, nh;
 
     export default {
         data () {
             return {
-                src: "",
                 bShowOverlay: false,
                 shadeRightWidth: null,
                 shadeBottomHeight: null,
@@ -50,10 +47,11 @@
                 type: null,
                 minWidth: 400,
                 minHeight: 300,
-                posterWidth: 1080,
-                posterHeight: 764,
-                img: null
             }
+        },
+        props: {
+            cropWidth: Number,
+            cropHeight: Number
         },
         methods: {
             selectImage ( ev ) {
@@ -67,33 +65,22 @@
                         let img = new Image;
                         img.src = ev.target.result;
 
-                        if ( img.naturalWidth < 1080 || img.naturalHeight < 764 ) {
+                        if ( img.naturalWidth < self.cropWidth || img.naturalHeight < self.cropHeight ) {
                             self.canSubmit = false;
                             input.value = "";
-                            bal.show( '图片尺寸小于1080*764' );
+                            bal.show( `图片尺寸小于${self.cropWidth}*${self.cropHeight}` );
                             return;
                         }
 
-                        self.setImage( ev.target.result ).show();
+                        self.setImage( ev.target.result );
                     };
                     reader.readAsDataURL( input.files[ 0 ] );
                 }
             },
             setImage ( src ) {
-                if ( this.src === src ) {
-                    return this;
-                }
-
-                this.src = src;
-                this.posX = null;
-                this.posY = null;
-                this.shadeRightWidth = null;
-                this.shadeBottomHeight = null;
-                this.selectionWidth = null;
-                this.selectionHeight = null;
-                this.type = null;
-                this.img = null;
-                return this;
+                cropImage.src = src;
+                this.bShowOverlay = true;
+                document.body.classList.add( 'overhidden' );
             },
             show () {
                 this.bShowOverlay = true;
@@ -108,7 +95,6 @@
             dragging ( ev ) {
                 if ( !isDragging ) return;
 
-                var rect = domSelection.getBoundingClientRect();
                 var canMoveX = true,
                     canMoveY = true,
                     canScaleX = true,
@@ -119,31 +105,33 @@
 
                 switch ( this.type ) {
                     case "pan":
+                        //水平方向的移动处理
                         if ( this.posX === 0 && (ev.clientX < boxRect.left + 100) ) {
                             canMoveX = false;
                         }
-                        if ( this.shadeRightWidth === 0 && (ev.clientX > boxRect.left + boxWidth - 100) ) {
+                        if ( this.shadeRightWidth === 0 && (ev.clientX > boxRect.left + boxRect.width - 100) ) {
                             canMoveX = false;
                         }
                         canMoveX && (this.posX += distanceX);
                         if ( this.posX < 0 ) {
                             this.posX = 0;
-                        } else if ( this.posX + rect.width > boxWidth ) {
-                            this.posX = boxWidth - rect.width;
+                        } else if ( this.posX + this.selectionWidth > boxRect.width ) {
+                            this.posX = boxRect.width - this.selectionWidth;
                         }
 
+                        //垂直方向的移动处理
                         if ( this.posY === 0 && (ev.clientY < boxRect.top + 100) ) {
                             canMoveY = false;
                         }
-                        if ( this.shadeBottomHeight === 0 && (ev.clientY > boxRect.top + boxHeight - 100) ) {
+                        if ( this.shadeBottomHeight === 0 && (ev.clientY > boxRect.top + boxRect.height - 100) ) {
                             canMoveY = false;
                         }
                         canMoveY && (this.posY += distanceY);
                         if ( this.posY < 0 ) {
                             this.posY = 0;
                         }
-                        if ( this.posY + rect.height > boxHeight ) {
-                            this.posY = boxHeight - rect.height;
+                        if ( this.posY + this.selectionHeight > boxRect.height ) {
+                            this.posY = boxRect.height - this.selectionHeight;
                         }
                         break;
                     case "nw":
@@ -162,7 +150,7 @@
                         if ( this.posY === 0 && (ev.clientY < boxRect.top) ) {
                             canScaleY = false;
                         }
-                        if ( this.shadeBottomHeight === 0 && (ev.clientY > boxRect.top + rect.height) ) {
+                        if ( this.shadeBottomHeight === 0 && (ev.clientY > boxRect.top + this.selectionHeight) ) {
                             canScaleY = false;
                         }
                         if ( canScaleY ) {
@@ -174,14 +162,14 @@
                         }
                         break;
                     case "ne":
-                        if ( this.shadeRightWidth === 0 && (ev.clientX > boxRect.left + boxWidth) ) {
+                        if ( this.shadeRightWidth === 0 && (ev.clientX > boxRect.left + boxRect.width) ) {
                             canScaleX = false;
                         }
                         if ( canScaleX ) {
                             this.selectionWidth += distanceX;
                         }
-                        if ( this.posX + this.selectionWidth > boxWidth ) {
-                            this.selectionWidth = boxWidth - this.posX;
+                        if ( this.posX + this.selectionWidth > boxRect.width ) {
+                            this.selectionWidth = boxRect.width - this.posX;
                         }
 
                         if ( this.posY === 0 && (ev.clientY < boxRect.top) ) {
@@ -210,44 +198,44 @@
                             this.posX = 0;
                         }
 
-                        if ( this.shadeBottomHeight === 0 && (ev.clientY > boxRect.top + boxHeight) ) {
+                        if ( this.shadeBottomHeight === 0 && (ev.clientY > boxRect.top + boxRect.height) ) {
                             canScaleY = false;
                         }
                         if ( canScaleY ) {
                             this.selectionHeight += distanceY;
                         }
-                        if ( this.posY + this.selectionHeight > boxHeight ) {
-                            this.selectionHeight = boxHeight - this.posY;
+                        if ( this.posY + this.selectionHeight > boxRect.height ) {
+                            this.selectionHeight = boxRect.height - this.posY;
                         }
                         break;
                     case "se":
-                        if ( this.shadeRightWidth === 0 && (ev.clientX > boxRect.left + boxWidth) ) {
+                        if ( this.shadeRightWidth === 0 && (ev.clientX > boxRect.left + boxRect.width) ) {
                             canScaleX = false;
                         }
-                        if ( rect.width < this.minWidth ) {
+                        if ( this.selectionWidth < this.minWidth ) {
                             canScaleX = false;
                         }
                         if ( canScaleX ) {
                             this.selectionWidth += distanceX;
                         }
-                        if ( this.posX + this.selectionWidth > boxWidth ) {
-                            this.selectionWidth = boxWidth - this.posX;
+                        if ( this.posX + this.selectionWidth > boxRect.width ) {
+                            this.selectionWidth = boxRect.width - this.posX;
                         }
                         if ( this.selectionWidth < this.minWidth ) {
                             this.selectionWidth = this.minWidth;
                         }
 
-                        if ( this.shadeBottomHeight === 0 && (ev.clientY > boxRect.top + boxHeight) ) {
+                        if ( this.shadeBottomHeight === 0 && (ev.clientY > boxRect.top + boxRect.height) ) {
                             canScaleY = false;
                         }
-                        if ( rect.height < this.minHeight ) {
+                        if ( this.selectionHeight < this.minHeight ) {
                             canScaleY = false;
                         }
                         if ( canScaleY ) {
                             this.selectionHeight += distanceY;
                         }
-                        if ( this.posY + this.selectionHeight > boxHeight ) {
-                            this.selectionHeight = boxHeight - this.posY;
+                        if ( this.posY + this.selectionHeight > boxRect.height ) {
+                            this.selectionHeight = boxRect.height - this.posY;
                         }
                         if ( this.selectionHeight < this.minHeight ) {
                             this.selectionHeight = this.minHeight;
@@ -266,42 +254,40 @@
                 isDragging = false;
             },
             refreshShades () {
-                this.shadeRightWidth = boxWidth - this.selectionWidth - this.posX;
+                this.shadeRightWidth = boxRect.width - this.selectionWidth - this.posX;
                 this.shadeRightWidth = this.shadeRightWidth < 0 ? 0 : this.shadeRightWidth;
-                this.shadeBottomHeight = boxHeight - this.selectionHeight - this.posY;
+                this.shadeBottomHeight = boxRect.height - this.selectionHeight - this.posY;
                 this.shadeBottomHeight = this.shadeBottomHeight < 0 ? 0 : this.shadeBottomHeight;
             },
             crop () {
                 var canvas = document.createElement( 'canvas' ),
                     ctx = canvas.getContext( '2d' );
-                canvas.width = this.posterWidth;
-                canvas.height = this.posterHeight;
+                canvas.width = this.cropWidth;
+                canvas.height = this.cropHeight;
 
-                ctx.drawImage( this.img,
-                    this.posX * nw / boxWidth, this.posY * nh / boxHeight,
+                ctx.drawImage( cropImage,
+                    this.posX * nw / cropImage.offsetWidth, this.posY * nh / cropImage.offsetHeight,
 //                    0,0,
-                    this.posterWidth, this.posterHeight,
+                    this.cropWidth, this.cropHeight,
                     0, 0,
-                    this.posterWidth, this.posterHeight );
-                this.$emit( 'crop', canvas );
+                    this.cropWidth, this.cropHeight );
+
+                this.$refs.preview.innerHTML = "";
+                this.$refs.preview.appendChild( canvas );
                 this.bShowOverlay = false;
                 document.body.classList.remove( 'overhidden' );
             },
-            initPosition ( ev ) {
-                domBoxCrop = this.$el.querySelector( '.box-crop' );
-                domSelection = this.$el.querySelector( '.crop-selection' );
+            initPosition () {
+                nw = cropImage.naturalWidth;
+                nh = cropImage.naturalHeight;
+                cropImage.className = nw / nh > 800 / 480 ? "img-w" : "img-h";
 
-                boxRect = domBoxCrop.getBoundingClientRect();
-                boxWidth = domBoxCrop.offsetWidth;
-                boxHeight = domBoxCrop.offsetHeight;
+                boxRect = this.$refs.boxCrop.getBoundingClientRect();
 
                 this.posX = 0;
                 this.posY = 0;
-                this.img = ev.target;
-                nw = this.img.naturalWidth;
-                nh = this.img.naturalHeight;
-                this.selectionWidth = this.posterWidth * boxWidth / nw;
-                this.selectionHeight = this.posterHeight * boxHeight / nh;
+                this.selectionWidth = Math.ceil( this.cropWidth * cropImage.offsetWidth / nw );
+                this.selectionHeight = Math.ceil( this.cropHeight * cropImage.offsetHeight / nh );
                 this.refreshShades();
             }
         }
