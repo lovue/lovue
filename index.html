@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="public/css/global.css">
         <link rel="stylesheet" href="public/css/style.css">
         <script src="public/js/vue.js" charset="utf-8"></script>
+        <script src="//cdn.bootcss.com/js-beautify/1.6.4/beautify-html.min.js"></script>
         <script src="public/js/index.bundle.js" charset="utf-8" defer></script>
     </head>
     <body>
@@ -74,6 +75,12 @@
                         <div class="title">图片裁剪</div>
                         <div class="content">
                             <vue-crop :crop-width="400" :crop-height="300"></vue-crop>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="title">富文本编辑器</div>
+                        <div class="content">
+                            <vue-html-editor></vue-html-editor>
                         </div>
                     </div>
                 </div>
