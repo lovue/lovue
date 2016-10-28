@@ -1,0 +1,29 @@
+@import "../Bootstrapping/Variables";
+
+.title {
+    padding: 12px 16px;
+    line-height: 1.25;
+    background-color: @bgColor;
+    letter-spacing: 1px;
+}
+
+.left-right {
+    display: flex;
+    align-items: flex-start;
+    .left {
+        flex-shrink: 0;
+        margin-right: 1.2rem;
+    }
+    .right {
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .left-right {
+        .left {
+            margin: 0 0 1.2rem;
+        }
+    }
+}
