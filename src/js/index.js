@@ -4,6 +4,7 @@ import VueBeautyAlert from "./vue/beautyAlert.vue"
 import VueCrop from "./vue/crop.vue"
 import VueHtmlEditor from "./vue/htmlEditor.vue"
 import VuePureSelect from "./vue/pureSelect.vue"
+import VueSearch from "./vue/search.vue"
 
 new Vue( {
     el: "#app",
@@ -16,7 +17,8 @@ new Vue( {
             boshi: "博士"
         }
     },
-    components: { VueSelectCity, VueDatePicker, VueBeautyAlert, VueCrop, VueHtmlEditor, VuePureSelect },
+    components: { VueSelectCity, VueDatePicker, VueBeautyAlert,
+        VueCrop, VueHtmlEditor, VuePureSelect, VueSearch },
     methods: {
         alertOne () {
             this.$refs.alert.show('这是提示内容')
