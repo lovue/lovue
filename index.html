@@ -13,9 +13,24 @@
         <div id="app">
             <vue-beauty-alert ref="alert"></vue-beauty-alert>
             <div class="container">
-                <div class="panel panel-left"></div>
+                <div class="panel panel-left">
+                    <ul class="list">
+                        <li><a href="#toButton">按钮</a></li>
+                        <li><a href="#toDropdown">下拉菜单</a></li>
+                        <li><a href="#toInput">文本输入框</a></li>
+                        <li><a href="#toSearch">搜索框</a></li>
+                        <li><a href="#toUpload">文件上传按钮</a></li>
+                        <li><a href="#toPopup">弹出提示框</a></li>
+                        <li><a href="#toCitySelector">省市选择器</a></li>
+                        <li><a href="#toDatePicker">日期选择器</a></li>
+                        <li><a href="#toCrop">图片裁剪</a></li>
+                        <li><a href="#toEditor">富文本编辑器</a></li>
+                        <li><a href="#toPureSelect">纯CSS实现的Select</a></li>
+                        <li><a href="#toReflex">图片倒影</a></li>
+                    </ul>
+                </div>
                 <div class="panel panel-right">
-                    <div class="cell">
+                    <div class="cell" id="toButton">
                         <div class="title">按钮</div>
                         <div class="content">
                             <button class="btn" type="button">按钮</button>
@@ -23,7 +38,7 @@
                             <button class="btn" type="button" disabled>禁用按钮</button>
                         </div>
                     </div>
-                    <div class="cell">
+                    <div class="cell" id="toDropdown">
                         <div class="title">下拉菜单</div>
                         <div class="content">
                             <div class="menu-dropdown">
@@ -36,19 +51,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="cell">
+                    <div class="cell" id="toInput">
                         <div class="title">文本输入框</div>
                         <div class="content">
                             <input class="input" type="text" placeholder="输入文字">
                         </div>
                     </div>
-                    <div class="cell">
+                    <div class="cell" id="toSearch">
                         <div class="title">搜索框</div>
                         <div class="content">
                             <vue-search></vue-search>
                         </div>
                     </div>
-                    <div class="cell">
+                    <div class="cell" id="toUpload">
                         <div class="title">文件上传按钮</div>
                         <div class="content">
                             <div class="btn-file">
@@ -57,42 +72,54 @@
                             </div>
                         </div>
                     </div>
-                    <div class="cell">
+                    <div class="cell" id="toPopup">
                         <div class="title">弹出提示框</div>
                         <div class="content">
                             <button class="btn" type="button" @click="alertOne">普通提示框</button>
                             <button class="btn" type="button" @click="alertTwo">确认取消提示框</button>
                         </div>
                     </div>
-                    <div class="cell">
+                    <div class="cell" id="toCitySelector">
                         <div class="title">省市选择器</div>
                         <div class="content">
                             <vue-select-city></vue-select-city>
                         </div>
                     </div>
-                    <div class="cell">
+                    <div class="cell" id="toDatePicker">
                         <div class="title">日期选择器</div>
                         <div class="content">
                             <vue-date-picker></vue-date-picker>
                             <vue-date-picker :interval="1" timepicker></vue-date-picker>
                         </div>
                     </div>
-                    <div class="cell">
+                    <div class="cell" id="toCrop">
                         <div class="title">图片裁剪</div>
                         <div class="content">
                             <vue-crop :crop-width="400" :crop-height="300"></vue-crop>
                         </div>
                     </div>
-                    <div class="cell">
+                    <div class="cell" id="toEditor">
                         <div class="title">富文本编辑器</div>
                         <div class="content">
                             <vue-html-editor></vue-html-editor>
                         </div>
                     </div>
-                    <div class="cell">
+                    <div class="cell" id="toPureSelect">
                         <div class="title">纯CSS实现的Select</div>
                         <div class="content">
                             <vue-pure-select name="diploma" :elems="diploma"></vue-pure-select>
+                        </div>
+                    </div>
+                    <div class="cell" id="toReflex">
+                        <div class="title">图片倒影</div>
+                        <div class="content">
+                            <div class="image-reflex">
+                                <div class="image"><img src="/public/img/loli.jpg" alt=""></div>
+                                <div class="reflex-wrap">
+                                    <div class="reflex"></div>
+                                    <div class="reflex-gradient"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
