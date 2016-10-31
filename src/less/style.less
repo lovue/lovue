@@ -5,18 +5,31 @@
     display: flex;
     justify-content: flex-start;
     .panel-left {
-        width: 30%;
+        width: 20%;
+        min-width: 360px;
         background-color: @bgColor;
+        .list {
+            position: fixed;
+            margin-top: 20px;
+            margin-left: 40px;
+            li {
+                line-height: 36px;
+                border-bottom: 1px solid @borderColor;
+                a {
+                    display: block;
+                    height: 100%;
+                }
+            }
+        }
     }
     .panel-right {
-        width: 70%;
-        padding: 30px;
+        flex-grow: 1;
     }
-    .cell{
+    .cell {
+        border-bottom: 1px solid @borderColor;
         .title {
             font-size: 18px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid @borderColor;
+            background-color: transparent;
         }
         .content {
             .hvcenter;
