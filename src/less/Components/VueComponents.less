@@ -1,104 +1,97 @@
 @import "../Bootstrapping/Variables";
+@import "../Bootstrapping/Mixins";
 
 .vue-date-picker {
+    color: #54698d;
+    font-size: 14px;
+
     .input {
         cursor: pointer;
     }
+    .input.expand {
+        border-color: @borderColor;
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .16);
+    }
     .picker-container {
         position: absolute;
-        z-index: 100;
-        padding: 20px;
         background-color: @whiteColor;
         border: 1px solid @lineColor;
         margin-top: -1px;
         -webkit-user-select: none;
-        box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.506);
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .16);
+        display: flex;
+        z-index: 100;
         .date-picker {
-            float: left;
-            width: 200px;
-            .month-picker {
+            width: 280px;
+            .picker-filter {
                 display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                height: 40px;
-                .arrow {
-                    line-height: 40px;
-                }
-                .custom-select {
-                    width: 60px;
-                    text-align: center;
-                    .selected {
-                        height: 40px;
-                        line-height: 40px;
+                padding: 4px;
+                .month-picker {
+                    flex-grow: 1;
+                    padding-right: 4px;
+                    display: flex;
+                    justify-content: space-between;
+                    height: 32px;
+                    .btn-text {
+                        background-color: transparent;
+                        border: none;
+                        color: #54698d;
+                        font-size: 12px;
+                        min-width: 32px;
+                        padding: 0;
                         cursor: pointer;
-                        span {
-                            margin-right: 10px;
-                        }
                     }
-                    .list {
-                        position: absolute;
-                        height: 210px;
-                        overflow-y: scroll;
-                        width: 60px;
-                        background-color: @bgColor;
-                        box-shadow: 0 2px 7px 2px rgba(0, 0, 0, .15);
-                        z-index: 1000;
-                        li {
-                            line-height: 24px;
-                            padding: 0 5px;
-                            cursor: pointer;
-                        }
-                        li.focus {
-                            background-color: @blueColor;
-                        }
-                        li:hover {
-                            background-color: @whiteColor;
-                        }
+                    div {
+                        line-height: 32px;
+                    }
+                }
+                .year-picker {
+                    .select {
+                        height: 32px;
+                        color: #54698d;
                     }
                 }
             }
+
             .calendar {
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    border-spacing: 0;
-                    table-layout: fixed;
-                    text-align: center;
-                    tbody {
-                        tr {
-                            td {
-                                height: 28px;
-                                cursor: pointer;
-                            }
-                            td.focus {
+                .table {
+                    .row-head {
+                        height: 34px;
+                        th {
+                            font-weight: 400;
+                        }
+                    }
+                    .row-body {
+                        height: 40px;
+                        td {
+                            cursor: pointer;
+                            line-height: 32px;
+                            padding: 4px;
+                        }
+                        td.focus {
+                            div {
                                 background-color: @blueColor;
+                                border-radius: 50%;
                             }
-                            td.calendar-last-month,
-                            td.calendar-next-month {
-                                background-color: @bgColor;
-                            }
+                        }
+                        td.calendar-last-month,
+                        td.calendar-next-month {
+                            color: #d8dde6;
                         }
                     }
                 }
             }
         }
         .time-picker {
-            float: left;
             margin-left: 20px;
-            margin-top: 10px;
-            height: 219px;
+            height: 314px;
             line-height: 24px;
-            background-color: @bgColor;
-            border: 1px solid @lineColor;
-            overflow-y: scroll;
+            border-left: 1px solid @borderColor;
+            overflow-y: auto;
             .list {
                 li {
                     padding: 0 5px;
                     cursor: pointer;
-                }
-                li:hover {
-                    background-color: @whiteColor;
                 }
                 li.focus {
                     background-color: @blueColor;
@@ -406,6 +399,26 @@
         transform: translateY(0);
         visibility: visible;
         opacity: 1;
+    }
+}
+
+.vue-search {
+    position: relative;
+    .icon {
+        position: absolute;
+        right: 0;
+        width: 42px;
+        height:42px;
+        cursor: pointer;
+        .hvcenter;
+        svg {
+            width: 20px;
+            height: 20px;
+            color: #54698d;
+        }
+    }
+    .input {
+        padding-right: 42px;
     }
 }
 

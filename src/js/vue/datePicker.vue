@@ -1,34 +1,34 @@
 <template>
-    <div class="vue-date-picker">
-        <input class="input" type="text" :name="name" v-model="date" @mousedown="init" readonly>
-        <div class="picker-container" v-show="bShowPicker">
+    <div class="vue-date-picker" @click.stop>
+        <input class="input" type="text" ref="input" :name="name" v-model="date" @mousedown="init" readonly>
+        <div class="picker-container" ref="container" v-show="bShowPicker">
             <div class="date-picker">
-                <div class="month-picker">
-                    <a class="arrow" @click="prevMonth">◀</a>
-                    <div class="custom-select">
-                        <div class="selected" @click="bShowYears = !bShowYears"><span>{{year}}</span>▼</div>
-                        <ul class="list" v-show="bShowYears">
-                            <li v-for="y of years" :class="y === year ? 'focus' : ''" @click="selectYear(y)">{{y}}</li>
-                        </ul>
+                <div class="picker-filter">
+                    <div class="month-picker">
+                        <button class="btn-text" type="button" @click="prevMonth">◀</button>
+
+                        <div>{{month}}月</div>
+
+                        <button class="btn-text" type="button" @click="nextMonth">▶</button>
                     </div>
-                    <div class="custom-select">
-                        <div class="selected" @click="bShowMonths = !bShowMonths"><span>{{month}}</span>▼</div>
-                        <ul class="list" v-show="bShowMonths">
-                            <li v-for="m of months" :class="m === month ? 'focus' : ''" @click="selectMonth(m)">{{m}}</li>
-                        </ul>
+                    <div class="year-picker">
+                        <select class="select" v-model="year">
+                            <option v-for="y of years">{{y}}</option>
+                        </select>
                     </div>
-                    <a class="arrow" @click="nextMonth">▶</a>
                 </div>
                 <div class="calendar">
-                    <table>
+                    <table class="table">
                         <thead>
-                        <tr>
+                        <tr class="row-head">
                             <th v-for="week of weeks">{{week}}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="i of 6">
-                            <td v-for="j of 7" :class="days[(i-1)*7+(j-1)].status" @click="selectDay(i,j)">{{days[(i-1)*7+(j-1)].text}}</td>
+                        <tr class="row-body" v-for="i of 6">
+                            <td v-for="j of 7" :class="days[(i-1)*7+(j-1)].status" @click="selectDay(i,j)">
+                                <div>{{days[(i-1)*7+(j-1)].text}}</div>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -44,34 +44,8 @@
 </template>
 
 <script>
-    function getArray( min, max ) {
-        var obj = [];
-        for ( var i = min; i <= max; i++ ) {
-            obj.push( i );
-        }
-        return obj;
-    }
-
-    function getTimeArray( interval ) {
-        interval = interval < 1 ? 0.5 : Math.floor( interval );
-        var num = 24 / interval;
-        var hour = 0, minute = 0;
-        var arr = [];
-
-        for ( var i = 0; i < num; i++ ) {
-            arr.push( (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute) );
-
-            minute += 60 * interval;
-            if ( minute >= 60 ) {
-                minute = 0;
-                hour++;
-            }
-        }
-        return arr;
-    }
-
-    var today = new Date;
-    var minYear = 1950, maxYear = 2050;
+    const today = new Date;
+    const minYear = 1950, maxYear = 2050;
 
     export default {
         data () {
@@ -102,13 +76,13 @@
                     : this.year + "-" + this.month + "-" + this.day;
             },
             days () {
-                var i, firstDay, lastDay, arr = [];
-                var time = new Date( this.year, this.month - 1, 1 );
+                let firstDay, lastDay, arr = [];
+                let time = new Date( this.year, this.month - 1, 1 );
 
                 firstDay = time.getDay();
                 time.setDate( 0 );
                 lastDay = time.getDate();
-                for ( i = firstDay; i > 0; i-- ) {
+                for ( let i = firstDay; i > 0; i-- ) {
                     arr.push( {
                         text: lastDay - i + 1,
                         status: "calendar-last-month",
@@ -121,7 +95,7 @@
 
                 if ( this.day > lastDay ) this.day = lastDay;
 
-                for ( i = 1; i <= lastDay; i++ ) {
+                for ( let i = 1; i <= lastDay; i++ ) {
                     arr.push( {
                         text: i,
                         status: i === this.day ? "focus" : "",
@@ -129,8 +103,8 @@
                     } );
                 }
 
-                var left = 42 - arr.length;
-                for ( i = 1; i <= left; i++ ) {
+                let left = 42 - arr.length;
+                for ( let i = 1; i <= left; i++ ) {
                     arr.push( {
                         text: i,
                         status: "calendar-next-month",
@@ -148,33 +122,34 @@
                 this.day = t.getDate();
 
                 if ( this.timepicker ) {
-                    var hour = t.getHours();
-                    var minute = t.getMinutes();
+                    let hour = t.getHours();
+                    let minute = t.getMinutes();
                     this.hour = (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute);
                 }
+            },
+            bShowPicker ( val ) {
+                let input = this.$refs.input;
+                input.classList.toggle( 'expand', val );
+                this.$nextTick( () => {
+                    //必须执行两遍，否则input的宽度会小于container的宽度
+                    input.style.width = val ? (this.$refs.container.offsetWidth + "px") : "auto";
+                    input.style.width = val ? (this.$refs.container.offsetWidth + "px") : "auto";
+                } );
             }
         },
         methods: {
             init () {
                 this.bShowPicker = true;
             },
-            selectYear ( y ) {
-                this.year = y;
-                this.bShowYears = false;
-            },
-            selectMonth ( m ){
-                this.month = m;
-                this.bShowMonths = false;
-            },
             selectDay ( i, j ) {
-                for ( var m = 0; m < 42; m++ ) {
-                    var day = this.days[ m ];
+                for ( let m = 0; m < 42; m++ ) {
+                    let day = this.days[ m ];
                     if ( day.month === 0 && day.text === this.day ) {
                         day.status = "";
                     }
                 }
 
-                var d = this.days[ (i - 1) * 7 + (j - 1) ];
+                let d = this.days[ (i - 1) * 7 + (j - 1) ];
                 d.status = "focus";
                 this.day = d.text;
                 if ( d.month === -1 ) this.prevMonth();
@@ -206,7 +181,7 @@
             }
         },
         created () {
-            var t = this.current ? new Date( this.current ) : today;
+            let t = this.current ? new Date( this.current ) : today;
 
             this.year = t.getFullYear();
             this.month = t.getMonth() + 1;
@@ -214,12 +189,43 @@
 
             if ( this.timepicker ) {
                 if ( this.current ) {
-                    var hour = t.getHours();
-                    var minute = t.getMinutes();
+                    let hour = t.getHours();
+                    let minute = t.getMinutes();
                     this.hour = (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute);
                 }
                 this.times = getTimeArray( this.interval );
             }
+        },
+        mounted () {
+            window.addEventListener( 'click', () => {
+                this.bShowPicker = false;
+            } );
         }
+    }
+
+    function getArray( min, max ) {
+        let obj = [];
+        for ( let i = min; i <= max; i++ ) {
+            obj.push( i );
+        }
+        return obj;
+    }
+
+    function getTimeArray( interval ) {
+        interval = interval < 1 ? 0.5 : Math.floor( interval );
+        let num = 24 / interval;
+        let hour = 0, minute = 0;
+        let arr = [];
+
+        for ( let i = 0; i < num; i++ ) {
+            arr.push( (hour < 10 ? "0" + hour : hour) + ":" + (minute < 10 ? "0" + minute : minute) );
+
+            minute += 60 * interval;
+            if ( minute >= 60 ) {
+                minute = 0;
+                hour++;
+            }
+        }
+        return arr;
     }
 </script>
