@@ -1,4 +1,5 @@
 @import "../Bootstrapping/Variables";
+@import "../Bootstrapping/Mixins";
 
 .btn {
     display: inline-block;
@@ -39,6 +40,11 @@
 .btn-ghost:active {
     border-color: #04B1CC;
     color: #04B1CC;
+}
+
+.btn-raised {
+    border: none;
+    .shadow;
 }
 
 .btn[disabled] {
