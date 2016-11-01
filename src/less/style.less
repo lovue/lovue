@@ -5,19 +5,25 @@
     display: flex;
     justify-content: flex-start;
     .panel-left {
-        width: 20%;
-        min-width: 360px;
+        width: 300px;
         background-color: @bgColor;
+        .shadow;
         .list {
             position: fixed;
-            margin-top: 20px;
-            margin-left: 40px;
+            width: 300px;
+            margin-top: 80px;
+            overflow-y: auto;
             li {
-                line-height: 36px;
+                line-height: 42px;
                 border-bottom: 1px solid @borderColor;
                 a {
                     display: block;
                     height: 100%;
+                    padding-left: 40px;
+                    transition: color .25s;
+                }
+                a:hover {
+                    color: @mainColor;
                 }
             }
         }
@@ -32,6 +38,7 @@
             background-color: transparent;
         }
         .content {
+            flex-wrap: wrap;
             .hvcenter;
             min-height: 480px;
             > * {
@@ -40,6 +47,14 @@
             .vue-html-editor {
                 margin: 20px 0;
                 width: 80%;
+            }
+            .input-radio {
+                width: 100%;
+                padding-left: 40%;
+                margin-bottom: 20px;
+            }
+            .vue-tab {
+                margin-right: 0;
             }
         }
     }

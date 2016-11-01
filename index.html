@@ -18,6 +18,8 @@
                         <li><a href="#toButton">按钮</a></li>
                         <li><a href="#toDropdown">下拉菜单</a></li>
                         <li><a href="#toInput">文本输入框</a></li>
+                        <li><a href="#toRadio">单选框</a></li>
+                        <li><a href="#toSwitch">开关</a></li>
                         <li><a href="#toSearch">搜索框</a></li>
                         <li><a href="#toUpload">文件上传按钮</a></li>
                         <li><a href="#toPopup">弹出提示框</a></li>
@@ -27,6 +29,8 @@
                         <li><a href="#toEditor">富文本编辑器</a></li>
                         <li><a href="#toPureSelect">纯CSS实现的Select</a></li>
                         <li><a href="#toReflex">图片倒影</a></li>
+                        <li><a href="#toTable">表格</a></li>
+                        <li><a href="#toPreloader">加载动画</a></li>
                     </ul>
                 </div>
                 <div class="panel panel-right">
@@ -55,6 +59,37 @@
                         <div class="title">文本输入框</div>
                         <div class="content">
                             <input class="input" type="text" placeholder="输入文字">
+                            <div class="input-text">
+                                <input id="I_S91j8km0" type="email">
+                                <label for="I_S91j8km0">Email</label>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell" id="toRadio">
+                        <div class="title">单选框</div>
+                        <div class="content">
+                            <div class="input-radio">
+                                <input type="radio" name="radio" id="I_S91j8km1">
+                                <label for="I_S91j8km1">Red</label>
+                            </div>
+                            <div class="input-radio">
+                                <input type="radio" name="radio" id="I_S91j8km2">
+                                <label for="I_S91j8km2">Yellow</label>
+                            </div>
+                            <div class="input-radio">
+                                <input type="radio" name="radio" id="I_S91j8km3">
+                                <label for="I_S91j8km3">Green</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell" id="toSwitch">
+                        <div class="title">开关</div>
+                        <div class="content">
+                            <div class="input-switch">
+                                <input type="checkbox" name="checkbox" id="I_S91j8km4">
+                                <label for="I_S91j8km4">Off <span class="lever"></span> On</label>
+                            </div>
                         </div>
                     </div>
                     <div class="cell" id="toSearch">
@@ -120,6 +155,52 @@
                                     <div class="reflex-gradient"></div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="cell" id="toTable">
+                        <div class="title">表格</div>
+                        <div class="content">
+                            <table class="table bordered">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Item Name</th>
+                                    <th>Item Price</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td>Alvin</td>
+                                    <td>Eclair</td>
+                                    <td>$0.87</td>
+                                </tr>
+                                <tr>
+                                    <td>Alan</td>
+                                    <td>Jellybean</td>
+                                    <td>$3.76</td>
+                                </tr>
+                                <tr>
+                                    <td>Jonathan</td>
+                                    <td>Lollipop</td>
+                                    <td>$7.00</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="cell" id="toPreloader">
+                        <div class="title">加载动画</div>
+                        <div class="content">
+                            <div class="progress">
+                                <div class="indeterminate"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cell" id="toTab">
+                        <div class="title">Tab页</div>
+                        <div class="content">
+                            <vue-tab></vue-tab>
                         </div>
                     </div>
                 </div>

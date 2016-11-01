@@ -18,14 +18,14 @@
                     </div>
                 </div>
                 <div class="calendar">
-                    <table class="table">
+                    <table>
                         <thead>
-                        <tr class="row-head">
+                        <tr>
                             <th v-for="week of weeks">{{week}}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="row-body" v-for="i of 6">
+                        <tr v-for="i of 6">
                             <td v-for="j of 7" :class="days[(i-1)*7+(j-1)].status" @click="selectDay(i,j)">
                                 <div>{{days[(i-1)*7+(j-1)].text}}</div>
                             </td>

@@ -1,14 +1,17 @@
 @import "../Bootstrapping/Variables";
+@import "../Bootstrapping/Mixins";
 
 .menu-dropdown {
     min-width: 208px;
-    border: 1px solid @borderColor;
+    //border: 1px solid @borderColor;
     font-size: @smallFont;
+    .shadow;
     ul {
         padding: 12px 0;
         li {
             height: 32px;
             line-height: 32px;
+            transition: background .2s;
             a {
                 display: block;
                 height:100%;

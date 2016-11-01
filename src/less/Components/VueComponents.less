@@ -54,29 +54,34 @@
             }
 
             .calendar {
-                .table {
-                    .row-head {
-                        height: 34px;
-                        th {
-                            font-weight: 400;
-                        }
-                    }
-                    .row-body {
-                        height: 40px;
-                        td {
-                            cursor: pointer;
-                            line-height: 32px;
-                            padding: 4px;
-                        }
-                        td.focus {
-                            div {
-                                background-color: @blueColor;
-                                border-radius: 50%;
+                table {
+                    text-align: center;
+                    thead {
+                        tr {
+                            height: 34px;
+                            th {
+                                font-weight: 400;
                             }
                         }
-                        td.calendar-last-month,
-                        td.calendar-next-month {
-                            color: #d8dde6;
+                    }
+                    tbody {
+                        tr {
+                            height: 40px;
+                            td {
+                                cursor: pointer;
+                                line-height: 32px;
+                                padding: 4px;
+                            }
+                            td.focus {
+                                div {
+                                    background-color: @blueColor;
+                                    border-radius: 50%;
+                                }
+                            }
+                            td.calendar-last-month,
+                            td.calendar-next-month {
+                                color: #d8dde6;
+                            }
                         }
                     }
                 }
@@ -110,7 +115,7 @@
         padding: 40px;
         text-align: center;
         background-color: @whiteColor;
-        box-shadow: 0 2px 20px 0 rgba(0, 0, 0, .15);
+        .shadow-4;
         .text {
             //font-size: @smallFont;
         }
@@ -253,11 +258,13 @@
 
 .vue-html-editor {
     font-size: 14px;
-    border: 1px solid @borderColor;
+    //border: 1px solid @borderColor;
     text-align: left;
     background-color: @whiteColor;
-    border-radius: @border-radius-small;
+    //border-radius: @border-radius-small;
     overflow: hidden;
+    .shadow;
+    .hoverable;
     .window {
         margin-top: 100px;
         .article {
@@ -391,6 +398,7 @@
         display: inline-block;
     }
 }
+
 .vue-pure-select:hover {
     dt:after {
         transform: rotate(180deg);
@@ -408,17 +416,48 @@
         position: absolute;
         right: 0;
         width: 42px;
-        height:42px;
+        height: 42px;
         cursor: pointer;
         .hvcenter;
         svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             color: #54698d;
         }
     }
     .input {
         padding-right: 42px;
+        border: none;
+        .shadow;
+    }
+}
+
+.vue-tab {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    .tabs {
+        display: flex;
+        background-color: @blueColor;
+        .tab {
+            line-height: 48px;
+            height: 48px;
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        .tab.focus {
+            //border-bottom: 2px solid @pinkColor;
+        }
+    }
+    .focus-line {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: #FF4081;
+        will-change: left, right;
+        transition: left 1s, right .5s;
     }
 }
 
