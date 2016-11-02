@@ -5,7 +5,7 @@
             <div class="tab" @click="setTab(1)">Tab2</div>
             <div class="tab" @click="setTab(2)">Tab3</div>
         </div>
-        <div class="focus-line" :style="`left:${lineLeft}px;right:${lineRight}px`"></div>
+        <div class="focus-line" :style="lineStyle"></div>
     </div>
 </template>
 
@@ -16,22 +16,31 @@
         data () {
             return {
                 tabs: [],
-                lineLeft: 0,
-                lineRight: 0,
+                lineStyle: "",
                 index: 0
             }
         },
         methods: {
             setTab ( i ) {
+                if (this.index === i) return;
+
+                this.lineStyle = {
+                    left: tabWidth * i + "px",
+                    right: (totalWidth - tabWidth * (i + 1)) + "px",
+                    transition: this.index < i
+                        ? "left .3s ease-out .09s, right .3s ease-out"
+                        : "left .3s ease-out, right .3s ease-out .09s"
+                };
                 this.index = i;
-                this.lineLeft = tabWidth * i;
-                this.lineRight = totalWidth - tabWidth * (i + 1);
             }
         },
         mounted () {
             totalWidth = this.$refs.tabs.offsetWidth;
             tabWidth = this.$refs.tab.offsetWidth;
-            this.lineRight = totalWidth - tabWidth;
+            this.lineStyle = {
+                left: 0,
+                right: (totalWidth - tabWidth) + "px"
+            };
         }
     }
 </script>

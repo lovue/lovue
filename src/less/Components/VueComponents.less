@@ -267,6 +267,7 @@
     .hoverable;
     .window {
         margin-top: 100px;
+        .shadow-4;
         .article {
             height: 600px;
             overflow-y: scroll;
@@ -434,11 +435,11 @@
 
 .vue-tab {
     position: relative;
-    width: 100%;
+    width: 50%;
     text-align: center;
+    .shadow;
     .tabs {
         display: flex;
-        background-color: @blueColor;
         .tab {
             line-height: 48px;
             height: 48px;
@@ -452,12 +453,9 @@
     .focus-line {
         position: absolute;
         bottom: 0;
-        left: 0;
-        right: 0;
         height: 2px;
         background-color: #FF4081;
         will-change: left, right;
-        transition: left 1s, right .5s;
     }
 }
 
