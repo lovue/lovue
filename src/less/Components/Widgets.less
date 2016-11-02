@@ -1,4 +1,5 @@
 @import "../Bootstrapping/Variables";
+@import "../Bootstrapping/Mixins";
 
 .image-reflex {
     position: relative;
@@ -30,7 +31,7 @@
 .progress {
     width: 80%;
     position: relative;
-    height:4px;
+    height: 4px;
     background-color: #acece6;
     border-radius: 3px;
     overflow: hidden;
@@ -77,7 +78,7 @@
         transition: .2s ease-out;
         transform-origin: left top 0;
     }
-    input:focus+label {
+    input:focus + label {
         color: @blueColor;
         transform: scale(0.75) translateY(-150%);
     }
@@ -93,16 +94,14 @@
         transition: all .45s cubic-bezier(0.23, 1, 0.32, 1);
         transform: scaleX(0);
     }
-    input:focus+label+hr {
+    input:focus + label + hr {
         transform: scaleX(1);
     }
 }
 
 .input-radio {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    .non-select;
+
     input {
         display: none;
     }
@@ -122,20 +121,110 @@
         width: 16px;
         height: 16px;
         border-radius: 50%;
-        transition: .2s ease;
     }
     label:before {
+        animation: toggle-scale .2s cubic-bezier(0.250, 0.460, 0.450, 0.940);
         border: 2px solid @assistFontColor;
     }
     label:after {
         background-color: @blueColor;
         transform: scale(0);
+        transition: transform .2s cubic-bezier(0.250, 0.460, 0.450, 0.940);
     }
-    input:checked+label:before {
+    input:checked + label:before {
+        animation: wave-ripple .8s cubic-bezier(0.250, 0.460, 0.450, 0.940);
         border-color: @blueColor;
     }
-    input:checked+label:after {
+    input:checked + label:after {
         transform: scale(0.5);
+    }
+}
+
+.input-checkbox {
+    .non-select;
+
+    input {
+        display: none;
+    }
+    label {
+        position: relative;
+        padding-left: 25px;
+        height: 25px;
+        line-height: 25px;
+        cursor: pointer;
+    }
+    label:before,
+    label:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    label:before {
+        width: 7px;
+        height: 12px;
+        border: 2px solid @whiteColor;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        transform-origin: 100% 100%;
+        transform: scale(0) rotateZ(37deg);
+        z-index: 1;
+        transition: transform .25s cubic-bezier(0.250, 0.460, 0.450, 0.940);;
+    }
+    input:checked + label:before {
+        transform: scale(1) rotateZ(37deg);
+    }
+
+    label:after {
+        width: 16px;
+        height: 16px;
+        border: 2px solid @assistFontColor;
+        animation: toggle-check .45s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+    }
+    input:checked + label:after {
+        border-color: transparent;
+        background-color: @blueColor;
+        animation: none;
+    }
+}
+
+@keyframes toggle-scale {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes toggle-check {
+    0% {
+        border-color: transparent;
+        background-color: @blueColor;
+    }
+    50% {
+        border-color: transparent;
+        background-color: transparent;
+    }
+    100% {
+        border-color: @assistFontColor;
+        background-color: transparent;
+    }
+}
+
+@keyframes wave-ripple {
+    0% {
+        transform: scale(0);
+    }
+    25% {
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(38, 166, 154, 0.1);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 15px rgba(38, 166, 154, 0);
     }
 }
 
@@ -168,13 +257,13 @@
             left: -5px;
             top: -3px;;
             will-change: left;
-            transition: left .3s ease, background .3s ease, box-shadow .1s;
+            transition: left .3s ease, background .3s ease, box-shadow .1s cubic-bezier(0.250, 0.460, 0.450, 0.940);
         }
         .lever:active:after {
             box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4), 0 0 0 15px rgba(0, 0, 0, 0.08);
         }
     }
-    input:checked+label {
+    input:checked + label {
         .lever {
             background-color: @blueColor;
         }
