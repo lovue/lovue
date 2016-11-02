@@ -17,10 +17,11 @@
         background-color: @whiteColor;
         border: 1px solid @lineColor;
         margin-top: -1px;
-        -webkit-user-select: none;
         box-shadow: 0 2px 3px 0 rgba(0, 0, 0, .16);
         display: flex;
         z-index: 100;
+        .non-select;
+
         .date-picker {
             width: 280px;
             .picker-filter {
@@ -172,7 +173,8 @@
 }
 
 .vue-crop {
-    -webkit-user-select: none;
+    .non-select;
+
     .preview {
         font-size: 0;
         margin-top: 10px;
@@ -456,6 +458,124 @@
         height: 2px;
         background-color: #FF4081;
         will-change: left, right;
+    }
+}
+
+.vue-carousel {
+    position: relative;
+    height: 400px;
+    .list {
+        height: 100%;
+        perspective: 500px;
+        transform-style: preserve-3d;
+        transform-origin: 0 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .item:nth-of-type(1) {
+            z-index: -2;
+            opacity: 0.2;
+            transform: translateZ(-400px);
+        }
+        .item:nth-of-type(2) {
+            z-index: -1;
+            opacity: 0.6;
+            transform: translateZ(-200px);
+        }
+        .item:nth-of-type(3) {
+            z-index: 0;
+            opacity: 1;
+        }
+        .item:nth-of-type(4) {
+            z-index: -1;
+            opacity: 0.6;
+            transform: translateZ(-200px);
+        }
+        .item:nth-of-type(5) {
+            z-index: -2;
+            opacity: 0.2;
+            transform: translateZ(-400px);
+        }
+        /*.item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .item:nth-of-type(1){
+            z-index: -2;
+            opacity: 0.2;
+            transform: translateX( calc( -400px - 50%) ) translateY( -50% ) translateZ(-400px);
+        }
+        .item:nth-of-type(2){
+            z-index:-1;
+            opacity: 0.6;
+            transform: translateX(calc(-200px - 50%)) translateY(-50%) translateZ(-200px);
+        }
+        .item:nth-of-type(3){
+            z-index: 0;
+            opacity: 1;
+        }
+        .item:nth-of-type(4){
+            z-index: -1;
+            opacity: 0.6;
+            transform: translateX(calc(200px - 50%)) translateY(-50%) translateZ(-200px);
+        }
+        .item:nth-of-type(5){
+            z-index: -2;
+            opacity: 0.2;
+            transform: translateX(calc(400px - 50%)) translateY(-50%) translateZ(-400px);
+        }*/
+    }
+}
+
+.vue-collapse {
+    .shadow;
+    .list {
+        height: 100%;
+        .clp-header {
+            padding: 0 15px;
+            height: 42px;
+            line-height: 42px;
+            cursor: pointer;
+            .non-select;
+        }
+        .clp-body {
+            padding: 30px;
+            background-color: #FCFCFC;
+            display: none;
+            p {
+                text-indent: 0;
+                font-size: 14px;
+                line-height: 1.5;
+                margin: 0;
+            }
+        }
+        li.focus{
+            .clp-body {
+                display: block;
+                border-top: 1px solid @borderColor;
+                animation: slide-show .25s ease-out;
+            }
+        }
+        li+li {
+            .clp-header {
+                border-top: 1px solid @borderColor;
+            }
+        }
+    }
+}
+
+@keyframes slide-show {
+    0% {
+        display: none;
+        opacity: 0;
+        transform: translateY(-2em);
+    }
+    100% {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 

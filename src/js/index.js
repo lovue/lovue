@@ -6,6 +6,8 @@ import VueHtmlEditor from "./vue/htmlEditor.vue"
 import VuePureSelect from "./vue/pureSelect.vue"
 import VueSearch from "./vue/search.vue"
 import VueTab from "./vue/tab.vue"
+import VueCarousel from "./vue/carousel.vue"
+import VueCollapse from "./vue/collapse.vue"
 
 new Vue( {
     el: "#app",
@@ -19,7 +21,8 @@ new Vue( {
         }
     },
     components: { VueSelectCity, VueDatePicker, VueBeautyAlert,
-        VueCrop, VueHtmlEditor, VuePureSelect, VueSearch, VueTab },
+        VueCrop, VueHtmlEditor, VuePureSelect, VueSearch, VueTab,
+        VueCarousel, VueCollapse },
     methods: {
         alertOne () {
             this.$refs.alert.show('这是提示内容')

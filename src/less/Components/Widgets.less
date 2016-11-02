@@ -1,4 +1,5 @@
 @import "../Bootstrapping/Variables";
+@import "../Bootstrapping/Mixins";
 
 .image-reflex {
     position: relative;
@@ -99,10 +100,8 @@
 }
 
 .input-radio {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    .non-select;
+
     input {
         display: none;
     }
@@ -142,10 +141,8 @@
 }
 
 .input-checkbox {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    .non-select;
+
     input {
         display: none;
     }
