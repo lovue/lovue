@@ -20,10 +20,36 @@
     }
 }
 
+.mui-container {
+    width: 1170px;
+    padding: 15px;
+}
+
+@media (max-width: 1200px) {
+    .mui-container {
+        width: 960px;
+    }
+}
+
+@media (max-width: 992px) {
+    .mui-container {
+        width: 740px;
+    }
+}
+
 @media (max-width: 768px) {
+    .mui-container {
+        width: 570px;
+    }
     .left-right {
         .left {
             margin: 0 0 1.2rem;
         }
+    }
+}
+
+@media (max-width: 544px) {
+    .mui-container {
+        width: 100%;
     }
 }

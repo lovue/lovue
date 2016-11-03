@@ -531,6 +531,7 @@
 
 .vue-collapse {
     .shadow;
+
     .list {
         height: 100%;
         .clp-header {
@@ -541,21 +542,23 @@
             .non-select;
         }
         .clp-body {
-            padding: 30px;
             background-color: #FCFCFC;
             display: none;
-            p {
-                text-indent: 0;
-                font-size: 14px;
-                line-height: 1.5;
-                margin: 0;
+            .clp-content {
+                padding: 30px;
+                p {
+                    text-indent: 0;
+                    font-size: 14px;
+                    line-height: 1.5;
+                    margin: 0;
+                }
             }
         }
         li.focus{
             .clp-body {
                 display: block;
                 border-top: 1px solid @borderColor;
-                animation: slide-show .25s ease-out;
+                animation: slide-show .25s cubic-bezier(0.55, 0, 0.01, 1);
             }
         }
         li+li {
@@ -568,12 +571,10 @@
 
 @keyframes slide-show {
     0% {
-        display: none;
         opacity: 0;
         transform: translateY(-2em);
     }
     100% {
-        display: block;
         opacity: 1;
         transform: translateY(0);
     }
