@@ -14,6 +14,13 @@ html {
     text-rendering: optimizeLegibility;
     /*user-select: none;*/
     scroll-behavior: smooth;
+    scrollbar-arrow-color: transparent;
+    scrollbar-face-color: @blueColor;
+    scrollbar-3dlight-color: @mainColor;
+    scrollbar-shadow-color: @bgColor;
+    //scrollbar-track-color: @whiteColor;
+    -ms-scrollbar-track-color: @whiteColor;
+    scrollbar-base-color: @blueColor;
 }
 
 html.small {
@@ -158,3 +165,17 @@ svg {
         font-size: 125%;
     }
 }*/
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background: @whiteColor;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: @blueColor;
+}

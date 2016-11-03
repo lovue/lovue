@@ -1,6 +1,7 @@
 # Vue-components
-.vue单文件形式的组件，可直接导入使用；
-也包含一些纯CSS控件
+.vue单文件形式的组件，可直接导入使用；也包含一些纯CSS控件
+
+Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/ui)
 
 ###已完成：
 - 日期选择器：datePicker.vue
@@ -9,12 +10,12 @@
 - 图片裁剪并上传（简版）：crop.vue
 - HTML5富文本编辑器：htmlEditor.vue
 - Tab页：tab.vue
+- 收缩菜单：collapse.vue
 
 
 ###开发中：
 - 搜索框：search.vue
 - 走马灯：carousel.vue
-- 收缩菜单：collapse.vue
 
 ###CSS控件：
 - 按钮

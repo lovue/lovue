@@ -2,17 +2,16 @@
 @import "Bootstrapping/Mixins";
 
 .container {
-    display: flex;
-    justify-content: flex-start;
     .panel-left {
+        position: fixed;
         width: 300px;
+        height: 100%;
         background-color: @bgColor;
+        overflow: auto;
         .shadow;
+
         .list {
-            position: fixed;
-            width: 300px;
             margin-top: 80px;
-            overflow-y: auto;
             li {
                 line-height: 42px;
                 border-bottom: 1px solid @borderColor;
@@ -29,8 +28,7 @@
         }
     }
     .panel-right {
-        flex-grow: 1;
-        width: 0;
+        margin-left: 300px;
     }
     .cell {
         border-bottom: 1px solid @borderColor;
