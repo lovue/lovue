@@ -2,78 +2,60 @@
 @import "../Bootstrapping/Mixins";
 
 .btn {
-    display: inline-block;
-    background-color: @blueColor;
-    border: none;
-    border-radius: @border-radius;
-    color: @whiteColor;
-    font-size: 13px;
-    text-align: center;
-    padding: 0 12px;
-    height: 30px;
-    line-height: 30px;
-    min-width: 72px;
-    transition: background-color .3s, border-color .3s, color .3s;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #05D7F7;
-}
-
-.btn:active {
-    background-color: #04B1CC;
+  .mixin-base-button;
+  .mixin-button-solid;
 }
 
 .btn-ghost {
-    background-color: transparent;
-    border: 1px solid @blueColor;
-    color: @blueColor;
+  .mixin-base-button;
+  .mixin-button-ghost;
 }
 
-.btn-ghost:hover {
-    background-color: transparent;
-    border-color: #05D7F7;
-    color: #05D7F7;
-}
-
-.btn-ghost:active {
-    border-color: #04B1CC;
-    color: #04B1CC;
-}
-
-.btn-raised {
-    border: none;
-    .shadow;
-}
-
-.btn[disabled] {
-    opacity: .5;
-    cursor: not-allowed;
+button[disabled] {
+  opacity: .5;
+  cursor: not-allowed;
 }
 
 .btn-file {
-    position: relative;
-    display: inline-block;
-    input {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        font-size: 0;
-        opacity: 0;
-        cursor: pointer;
+  display: inline-block;
+  position: relative;
+
+  input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  &:hover {
+    .btn {
+      background-color: @hover-blue-color;
     }
+  }
+  &:active {
+    .btn {
+      background-color: @active-blue-color;
+    }
+  }
 }
 
-.btn-file:hover {
-    .btn {
-        background-color: #05D7F7;
-    }
+.btn-text {
+  .mixin-base-button;
+  min-width: inherit;
+
+  &:hover {
+    color: @hover-blue-color;
+  }
 }
 
-.btn-file:active {
-    .btn {
-        background-color: #04B1CC;
-    }
+.btn-submit-wrap {
+  display: flex;
+  align-items: center;
+
+  .vue-loading {
+    margin-left: 12px;
+  }
 }

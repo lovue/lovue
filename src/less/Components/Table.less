@@ -1,46 +1,6 @@
 @import "../Bootstrapping/Variables";
-
-table {
-    width: 100%;
-}
+@import "../Bootstrapping/Mixins";
 
 .table {
-    text-align: left;
-    thead {
-        border-bottom: 1px solid @borderColor;
-        tr {
-            height: 52px;
-            th {
-                padding: 0 15px;
-            }
-        }
-    }
-    tbody {
-        tr {
-            height: 52px;
-            transition: background-color .25s ease;
-            td {
-                padding: 0 15px;
-            }
-        }
-        tr:hover {
-            background-color: @bgColor;
-        }
-    }
-}
-
-.table.bordered {
-    tbody {
-        tr {
-            border-bottom: 1px solid @borderColor;
-        }
-    }
-}
-
-.table.striped {
-    tbody {
-        tr:nth-child(odd) {
-            background-color: @bgColor;
-        }
-    }
+  .mixin-table();
 }
