@@ -1,0 +1,250 @@
+@import "Bootstrapping/Variables";
+@import "Bootstrapping/Mixins";
+
+.view-login {
+  min-height: 100vh;
+  background: url(/static/platform/img/login-body.jpg) no-repeat fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    color: @white-color;
+    font-size: @title-font;
+    margin-top: 10vh;
+    margin-bottom: 18vh;
+    letter-spacing: .2em;
+  }
+
+  .input-effect {
+    position: relative;
+
+    .input {
+      position: relative;
+      border: none;
+      border-bottom: 1px solid @assist-font-color;
+      width: 300px;
+      height: 42px;
+      transition: all .3s;
+      color: @white-color;
+    }
+
+    hr {
+      position: absolute;
+      bottom: 0;
+      margin: 0 auto;
+      width: 100%;
+      height: 2px;
+      border: none;
+      display: block;
+      background-color: rgb(32, 150, 255);
+      will-change: transform;
+      transition: transform .45s cubic-bezier(0.23, 1, 0.32, 1);
+      transform: scaleX(0);
+    }
+    .input:focus + hr {
+      transform: scaleX(1);
+    }
+  }
+
+  .form {
+    .row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+
+      .btn {
+        display: block;
+        font-size: @normal-font;
+        letter-spacing: 1px;
+        width: 100%;
+        height: 42px;
+        border-radius: 20px;
+        background-color: rgba(32, 150, 255, .75);
+
+        &:hover {
+          background-color: rgb(32, 150, 255);
+        }
+      }
+    }
+  }
+}
+
+.view-main {
+  .navbar {
+    padding: 0 10px;
+  }
+
+  .left-right {
+    .left {
+      width: 180px;
+      height: calc(100vh - 50px);
+      margin-right: 0;
+    }
+    .right {
+      padding: 10px;
+      max-height: calc(100vh - 50px);
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+  }
+  .admin-sidebar {
+    width: 180px;
+    height: 100%;
+    top: 50px;
+    background-color: #293038;
+    overflow-y: auto;
+    color: @white-color;
+    font-size: @small-font;
+  }
+
+  .sidebar-folder {
+    .non-select;
+    height: 30px;
+    line-height: 30px;
+    background-color: #4A5064;
+    color: #aeb9c2;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    will-change: color;
+    transition: color .2s;
+
+    &:hover {
+      color: @white-color;
+    }
+  }
+
+  .sidebar-title {
+    .non-select;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    background-color: #42485B;
+    color: @white-color;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    padding-left: 20px;
+    will-change: background-color;
+    transition: background-color .2s;
+
+    &:hover {
+      background-color: #00C1DE;
+    }
+
+    span:first-of-type {
+      padding: 0 10px;
+    }
+  }
+
+  .sidebar-items {
+    .nav-item {
+      .nav-link {
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 50px;
+        will-change: background-color;
+        transition: background-color .2s;
+
+        &:hover {
+          background-color: #42485B;
+        }
+
+        &.focus {
+          background-color: #00C1DE;
+        }
+      }
+    }
+  }
+}
+
+.view-users, .view-groups {
+  .panel {
+    padding: 10px;
+    margin-bottom: 20px;
+
+    .form {
+      margin-top: 20px;
+    }
+  }
+
+  .table {
+
+    .btn {
+      margin-right: 10px;
+    }
+  }
+
+  .window-lv2 {
+    min-width: 40vw;
+  }
+}
+
+.view-groups {
+  .menu-selector {
+    .cell:first-of-type {
+      margin-right: 10px;
+    }
+    .cell:last-of-type {
+      margin-left: 10px;
+    }
+  }
+
+  .menu-filter {
+    display: flex;
+    justify-content: space-between;
+
+    .f-list {
+      width: 49%;
+    }
+
+    .f-title {
+      line-height: 30px;
+      background-color: @bg-color;
+      text-align: center;
+      font-size: @normal-font;
+    }
+
+    .f-content {
+      border: 1px solid @border-color;
+      border-top: none;
+      height: 480px;
+      overflow-y: auto;
+
+      .list {
+        .item {
+          line-height: 30px;
+          padding: 0 10px;
+
+          .item-text {
+            .non-select;
+            .mixin-transition(@property: 'color', @time: .1s, @function: 'linear');
+            cursor: pointer;
+
+            &:hover {
+              color: @blue-color;
+            }
+          }
+
+          .sub-item {
+            padding-left: 40px;
+          }
+        }
+      }
+    }
+  }
+
+  .panel {
+    .table {
+      .btn-text {
+        color: @blue-color;
+
+        &:hover {
+          color: @pink-color;
+        }
+      }
+    }
+  }
+}

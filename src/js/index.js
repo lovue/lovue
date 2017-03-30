@@ -1,13 +1,13 @@
-import VueSelectCity from "./vue/selectCity.vue"
-import VueDatePicker from "./vue/datePicker.vue"
-import VueBeautyAlert from "./vue/beautyAlert.vue"
-import VueCrop from "./vue/crop.vue"
-import VueHtmlEditor from "./vue/htmlEditor.vue"
-import VuePureSelect from "./vue/pureSelect.vue"
-import VueSearch from "./vue/search.vue"
-import VueTab from "./vue/tab.vue"
-import VueCarousel from "./vue/carousel.vue"
-import VueCollapse from "./vue/collapse.vue"
+import VueSelectCity from "./vue/SelectCity.vue"
+import VueDatePicker from "./vue/DatePicker.vue"
+import VueBeautyAlert from "./vue/BeautyAlert.vue"
+import VueCrop from "./vue/Crop.vue"
+import VueHtmlEditor from "./vue/HtmlEditor.vue"
+import VuePureSelect from "./vue/PureSelect.vue"
+import VueSearch from "./vue/Search.vue"
+import VueTab from "./vue/Tab.vue"
+import VueCarousel from "./vue/Carousel.vue"
+import VueCollapse from "./vue/Collapse.vue"
 
 new Vue( {
     el: "#app",

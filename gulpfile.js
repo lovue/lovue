@@ -7,7 +7,7 @@ const clean = require('gulp-dest-clean')
 const replace = require('gulp-replace')
 
 gulp.task('less', () => {
-  gulp.src('src/less/@(global|style).less')
+  gulp.src('src/less/@(global|style|admin).less')
     .pipe(less({
       strictMath: "on"
     }))
