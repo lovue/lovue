@@ -20,8 +20,6 @@ module.exports = {
               })
             }
           })
-          urls.push('/analysis-tool.html')
-          urls.push('/components-doc.html')
 
           allow = urls.includes(path)
         }
@@ -41,7 +39,7 @@ module.exports = {
       })
     })
   },
-  asyncFetch(option) {
+  fetch(option) {
     if(typeof option === 'string') {
       option = {
         type: 'get',
@@ -137,81 +135,6 @@ module.exports = {
         }
         reject(msg)
       })
-    })
-  },
-  fetch(option, success, error) {
-    let allOptions = {
-      get: {
-        headers: {
-          'Accept': 'application/json'
-        },
-        credentials: 'same-origin'
-      },
-      post: {
-        method: 'post',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'X-CSRFToken': sessionStorage.csrf
-        },
-        credentials: 'same-origin',
-        body: JSON.stringify(option.data)
-      },
-      form: {
-        method: 'post',
-        headers: {
-          'Accept': 'application/json',
-          'X-CSRFToken': sessionStorage.csrf
-        },
-        credentials: 'same-origin',
-        body: option.data
-      },
-      put: {
-        method: 'put',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'X-CSRFToken': sessionStorage.csrf
-        },
-        credentials: 'same-origin',
-        body: JSON.stringify(option.data)
-      },
-      putForm: {
-        method: 'put',
-        headers: {
-          'Accept': 'application/json',
-          'X-CSRFToken': sessionStorage.csrf
-        },
-        credentials: 'same-origin',
-        body: option.data
-      },
-      delete: {
-        method: 'delete',
-        headers: {
-          'Accept': 'application/json',
-          'X-CSRFToken': sessionStorage.csrf
-        },
-        credentials: 'same-origin',
-      }
-    }
-
-    let requestOption = allOptions[option.type || 'get']
-    let request = new Request(`/api/v1/${option.url}`, requestOption)
-
-    fetch(request).then(res => {
-      if (res.ok) return res.json()
-    }).then(body => {
-      if (body.code === 0) {
-        success(body.data)
-      } else if (body.code === 401) {
-        location.href = '/login.html'
-      } else {
-        console.log(body.code, body.error)
-        if (typeof error !== 'undefined') return error(body)
-      }
-    }).catch(err => {
-      if (typeof error !== 'undefined') error({error: 'Network Error'})
-      else console.error(err)
     })
   },
   formatDate(date) {
