@@ -120,24 +120,24 @@
 
 .vue-beauty-alert {
   z-index: 1010;
-  .box {
+
+  >.box {
+    .shadow;
     position: relative;
     min-width: 480px;
     height: 200px;
     padding: 40px;
     text-align: center;
     background-color: @white-color;
-    .shadow-4;
-    .text {
-      //font-size: @smallFont;
-    }
+
     .input {
       display: block;
       width: 100%;
       margin-bottom: 20px;
       font-size: @small-font;
     }
-    .bottom {
+
+    >.bottom {
       position: absolute;
       left: 0;
       bottom: 0;
@@ -953,11 +953,50 @@
 }
 
 .vue-table {
+  >.vue-popup-window {
+    .win-content {
+      .list {
+        >.item {
+          height: 50px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          &:first-of-type {
+            border-bottom: 1px solid @border-color;
+          }
+
+          >label {
+            min-width: 200px;
+          }
+        }
+      }
+
+      .bottom {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+    }
+  }
+
   >.t-tools {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+
+    >.t-left {
+      .icon-nav-list {
+        color: @assist-font-color;
+        width: 20px;
+        height: 30px;
+
+        &:hover {
+          color: @first-level-color;
+        }
+      }
+    }
   }
 
   >.table {

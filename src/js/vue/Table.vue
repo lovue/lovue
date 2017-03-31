@@ -1,7 +1,36 @@
 <template>
   <div class="vue-table">
+    <vue-popup-window title="设置显示或隐藏列" :show="bShowWindow" @close="closeWindow">
+      <div slot="content">
+        <ul class="list">
+          <li class="item">
+            <label>全部</label>
+            <div class="input-switch">
+              <input type="checkbox" id="I_Column_Switch_0" v-model="showedAllColumns" @click="toggleAllColumns">
+              <label for="I_Column_Switch_0">Off <span class="lever"></span> On</label>
+            </div>
+          </li>
+          <li class="item" v-for="col of columns">
+            <label>{{col.title}}</label>
+            <div class="input-switch">
+              <input type="checkbox" name="checkbox" :value="col.prop" v-model="showedColumns" :id="`I_Column_Switch_${col.prop}`">
+              <label :for="`I_Column_Switch_${col.prop}`">Off <span class="lever"></span> On</label>
+            </div>
+          </li>
+        </ul>
+        <div class="bottom">
+          <button class="btn" type="button" @click="saveShowedColumns">保存</button>
+        </div>
+      </div>
+    </vue-popup-window>
     <header class="t-tools">
-      <div class="t-left"></div>
+      <div class="t-left">
+        <button class="btn-text" type="button" @click="bShowWindow = true">
+          <svg class="icon-nav-list">
+            <use xlink:href="/static/platform/img/icons.svg#icon-nav-list"></use>
+          </svg>
+        </button>
+      </div>
       <div class="t-middle"></div>
       <div class="t-right">
         <vue-search @input="filter"></vue-search>
@@ -16,7 +45,7 @@
             <label for="vue-table-I_checkbox0">全选</label>
           </div>
         </th>
-        <th v-for="(column, i) of columns">{{column.title}}<span class="sort-arrows" v-if="column.sortable" @click="handleSortClick(i)">
+        <th v-for="(column, i) of columns" v-if="showedColumns.includes(column.prop)">{{column.title}}<span class="sort-arrows" v-if="column.sortable" @click="handleSortClick(i)">
           <svg class="icon-arrow-down dir-up" :class="{focus: sortType[i] === 1}"><use xlink:href="/static/platform/img/icons.svg#icon-arrow-down"></use></svg>
           <svg class="icon-arrow-down" :class="{focus: sortType[i] === -1}"><use xlink:href="/static/platform/img/icons.svg#icon-arrow-down"></use></svg>
         </span></th>
@@ -31,7 +60,7 @@
             <label :for="`vue-table-I_checkbox${i+1}`"></label>
           </div>
         </td>
-        <td v-for="column of columns">
+        <td v-for="column of columns" v-if="showedColumns.includes(column.prop)">
           <slot :name="column.prop" :value="row" v-if="column.custom"></slot>
           <slot :name="column.prop" :value="row" v-else>{{row[column.prop]}}</slot>
         </td>
@@ -46,6 +75,7 @@
 <script>
   import VueSearch from './Search.vue'
   import VuePagination from './Pagination.vue'
+  import VuePopupWindow from './PopupWindow.vue'
 
   export default {
     data() {
@@ -57,7 +87,11 @@
         selected: [],
         selectAll: false,
         sortType: [],
-        sortIndex: 0
+        sortIndex: 0,
+        bShowWindow: false,
+        showedAllColumns: false,
+        showedColumns: [],
+        showedColumnsTmp: []
       }
     },
     props: {
@@ -78,7 +112,7 @@
         this.filter(this.filterText)
       },
       filtered() {
-        if(this.checkbox) {
+        if (this.checkbox) {
           this.selectAll = false
           this.selected = []
         }
@@ -101,9 +135,12 @@
       },
       selected(val) {
         this.$emit('check', this.filtered.filter((row, index) => val.includes(index)))
+      },
+      showedColumns(val) {
+        this.showedAllColumns = val.length === this.columns.length
       }
     },
-    components: { VueSearch, VuePagination },
+    components: { VueSearch, VuePagination, VuePopupWindow },
     methods: {
       filter(words) {
         let result = []
@@ -143,7 +180,7 @@
 
           if (sortType === 1) {
             this.showed = this.filtered.slice().sort((a, b) => {
-              if(typeof a[sortColumn] === 'number') {
+              if (typeof a[sortColumn] === 'number') {
                 return b[sortColumn] - a[sortColumn]
               } else {
                 return new Intl.Collator(/*'zh-Hans-CN', */{
@@ -157,9 +194,22 @@
         } else {
           this.showed = this.filtered
         }
+      },
+      toggleAllColumns(ev) {
+        this.showedColumns = ev.target.checked ? this.columns.map(column => column.prop) : []
+      },
+      saveShowedColumns() {
+        this.showedColumnsTmp = this.showedColumns
+        this.bShowWindow = false
+      },
+      closeWindow() {
+        this.showedColumns = this.showedColumnsTmp
+        this.bShowWindow = false
       }
     },
     created() {
+      this.showedColumns = this.columns.map(column => column.prop)
+      this.showedColumnsTmp = this.showedColumns
       this.filter(this.filterText)
     }
   }
