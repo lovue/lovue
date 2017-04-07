@@ -37,6 +37,10 @@
       </div>
     </header>
     <table class="table">
+      <colgroup>
+        <col v-if="checkbox">
+        <col v-for="col of columns" v-if="showedColumns.includes(col.prop)" :class="`col-${col.prop}`">
+      </colgroup>
       <thead>
       <tr>
         <th v-if="checkbox">
@@ -57,7 +61,7 @@
         <td v-if="checkbox">
           <div class="input-checkbox">
             <input type="checkbox" :id="`vue-table-I_checkbox${i+1}`" :value="i" v-model="selected">
-            <label :for="`vue-table-I_checkbox${i+1}`"></label>
+            <label :for="`vue-table-I_checkbox${i+1}`">{{i}}</label>
           </div>
         </td>
         <td v-for="column of columns" v-if="showedColumns.includes(column.prop)">
@@ -95,10 +99,23 @@
       }
     },
     props: {
-      source: Array,
-      columns: Array,
+      source: {
+        type: Array,
+        default() {
+          return []
+        }
+      },
+      columns: {
+        type: Array,
+        default() {
+          return []
+        }
+      },
       checkbox: Boolean,
-      countOfPage: Number
+      countOfPage: {
+        type: Number,
+        default: 10
+      }
     },
     computed: {
       columnProps() {

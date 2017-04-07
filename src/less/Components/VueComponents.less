@@ -454,6 +454,36 @@
   }
 }
 
+.vue-progress-bar {
+  position: relative;
+  text-align: center;
+  font-size: @small-font;
+  width: 200px;
+  height: 24px;
+  line-height: 24px;
+
+  .layer-1 {
+    background-color: @bg-color;
+    width: 100%;
+    height: 100%;
+  }
+
+  .layer-2 {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: @blue-color;
+    transition: width .2s ease-out;
+  }
+
+  .layer-3 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
 .vue-search {
   .shadow;
   position: relative;
@@ -1090,6 +1120,56 @@
       &::-webkit-inner-spin-button {
         -webkit-appearance: none;
       }
+    }
+  }
+}
+
+.vue-no-captcha {
+  position: relative;
+  height: 30px;
+  display: flex;
+  background-color: @disabled-color;
+
+  >.fore-bg {
+    background-color: @blue-color;
+    height: 100%;
+
+    &.success {
+      background-color: @success-color;
+    }
+
+    &.transition {
+      transition: width .4s ease-out;
+    }
+  }
+
+  >.btn-text {
+    padding: 0;
+    width: 40px;
+    line-height: 18px;
+    border: 1px solid @border-color;
+    background-color: @white-color;
+    cursor: all-scroll;
+    z-index: 1;
+
+    .icon-arrow-down {
+      width: 20px;
+      height: 20px;
+      transform: rotateZ(-90deg);
+    }
+  }
+
+  >.text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 30px;
+    text-align: center;
+    font-size: @tiny-font;
+    color: @first-level-color;
+
+    &.success {
+      color: @white-color;
     }
   }
 }
