@@ -7,6 +7,7 @@ Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/ui)
 - 第一种（推荐）：引入已编译得到js文件，这样可以使用所有的组件
 ```
 <head>
+<link href="path/to/global.css" rel="stylesheet">
 <script src="path/to/vue.min.js">
 <script src="path/to/yikeyong.min.js" defer>
 </head>
