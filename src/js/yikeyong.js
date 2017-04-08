@@ -1,5 +1,5 @@
 import Message from './lib/message-vue'
-import BeautyAlert from './vue/BeautyAlert.vue'
+import VueBeautyAlert from './vue/BeautyAlert.vue'
 import VueDatePicker from './vue/DatePicker.vue'
 import VueLoading from './vue/Loading.vue'
 import VueNoCaptcha from './vue/NoCaptcha.vue'
@@ -13,7 +13,7 @@ import VueTable from './vue/Table.vue'
 import VueUploadButton from './vue/UploadButton.vue'
 
 const components = [
-  ['beauty-alert', BeautyAlert],
+  ['vue-beauty-alert', VueBeautyAlert],
   ['vue-date-picker', VueDatePicker],
   ['vue-loading', VueLoading],
   ['vue-no-captcha', VueNoCaptcha],
