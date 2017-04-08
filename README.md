@@ -3,6 +3,27 @@
 
 Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/ui)
 
+###使用方法
+- 第一种（推荐）：引入已编译得到js文件，这样可以使用所有的组件
+```
+<script src="path/to/vue.min.js">
+<script src="path/to/yikeyong.min.js">
+<script>
+  new Vue({
+    el: '#app'
+  })
+</script>
+```
+- 第二种：在js文件中导入单个vue文件，可以按需引用
+```
+import VueTable from './vue/Table.vue'
+
+new Vue({
+  el: '#app',
+  components: { VueTable }
+})
+```
+
 ###已完成：
 - 日期选择器：DatePicker.vue
 - 中国省市选择器：SelectCity.vue
@@ -17,10 +38,13 @@ Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/ui)
 - 弹出窗口：PopupWindow.vue
 - 进度条：ProgressBar.vue
 - 选择文件按钮：UploadButton.vue
+- 高级下拉列表：Select.vue
+- 拖动滑块验证：NoCaptcha.vue
+- 加载：Loading.vue
+- 搜索框：Search.vue
 
 
 ###开发中：
-- 搜索框：Search.vue
 - 走马灯：Carousel.vue
 
 ###CSS控件：
@@ -33,5 +57,3 @@ Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/ui)
 - 文件上传按钮
 - 下拉列表
 - 图片倒影
-- 表格
-- 加载动画

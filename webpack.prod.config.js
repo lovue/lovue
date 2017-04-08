@@ -1,30 +1,15 @@
 const path = require('path')
 const fs = require('fs')
 const webpack = require('webpack')
-const projectRoot = path.resolve(__dirname, 'src')
-
-function entries() {
-  let basePath = './src/js',
-    obj = {},
-    files = fs.readdirSync(basePath)
-
-  files.forEach(file => {
-    let stat = fs.statSync(basePath + '/' + file)
-    if (stat.isFile()) {
-      let name = file.slice(0, -3)
-      obj[name] = basePath + '/' + file
-    }
-  })
-
-  return obj
-}
 
 module.exports = {
-  entry: entries(),
+  entry: {
+    yikeyong: './src/js/yikeyong.js'
+  },
   output: {
-    path: __dirname + '/public/js',
+    path: __dirname + '/dist',
     publicPath: '/',
-    filename: '[name].bundle.js'
+    filename: '[name].min.js'
   },
   resolve: {
     extensions: ['', '.js', '.json'],
@@ -58,9 +43,5 @@ module.exports = {
         NODE_ENV: JSON.stringify('production')
       }
     })
-  ],
-  babel: {
-    presets: ['es2015', 'stage-2'],
-    plugins: ['transform-runtime']
-  }
+  ]
 }
