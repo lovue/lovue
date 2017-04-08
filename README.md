@@ -3,16 +3,23 @@
 
 Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/ui)
 
-###使用方法
+### 使用方法
 - 第一种（推荐）：引入已编译得到js文件，这样可以使用所有的组件
 ```
+<head>
 <script src="path/to/vue.min.js">
-<script src="path/to/yikeyong.min.js">
+<script src="path/to/yikeyong.min.js" defer>
+</head>
+<body>
+<div id="app">
+  <vue-table></vue-table>
+</div>
 <script>
   new Vue({
     el: '#app'
   })
 </script>
+</body>
 ```
 - 第二种：在js文件中导入单个vue文件，可以按需引用
 ```
@@ -24,7 +31,7 @@ new Vue({
 })
 ```
 
-###已完成：
+### 已完成：
 - 日期选择器：DatePicker.vue
 - 中国省市选择器：SelectCity.vue
 - 弹出提示框：BeautyAlert.vue
@@ -44,7 +51,7 @@ new Vue({
 - 搜索框：Search.vue
 
 
-###开发中：
+### 开发中：
 - 走马灯：Carousel.vue
 
 ###CSS控件：
