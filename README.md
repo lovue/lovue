@@ -1,5 +1,6 @@
 # Vue-components
 .vue单文件形式的组件，可直接导入使用；也包含一些纯CSS控件
+优点：几乎每个组件都是一个.vue格式的单文件，并且尽量减少代码量，方便阅读和理解以及自行修改源码
 
 Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/ui)
 
