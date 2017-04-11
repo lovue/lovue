@@ -2,7 +2,7 @@
   <transition name="slide-fade">
     <div class="vue-message" v-show="visible">
       <div class="message-icon" :class="`message-${type}`">
-        <svg><use :xlink:href="`/static/platform/img/icons.svg#icon-${iconType}`"></use></svg>
+        <svg><use :xlink:href="`/img/icons.svg#icon-${iconType}`"></use></svg>
       </div>
       <p>{{message}}</p>
       <span class="message-close" v-if="showClose">×</span>
