@@ -1,9 +1,40 @@
 # Vue-components
-.vue单文件形式的组件，可直接导入使用；也包含一些纯CSS控件
+- .vue单文件形式的组件，可直接导入使用
+- 包含一些纯CSS控件
+- 优点：几乎每个组件都是一个.vue格式的单文件，并且尽量减少代码量，方便阅读和理解以及自行修改源码
 
 Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/ui)
 
-###已完成：
+### 使用方法
+- 第一种（推荐）：引入已编译得到js文件，这样可以使用所有的组件
+```
+<head>
+<link href="path/to/global.css" rel="stylesheet">
+<script src="path/to/vue.min.js">
+<script src="path/to/yikeyong.min.js" defer>
+</head>
+<body>
+<div id="app">
+  <vue-table></vue-table>
+</div>
+<script>
+  new Vue({
+    el: '#app'
+  })
+</script>
+</body>
+```
+- 第二种：在js文件中导入单个vue文件，可以按需引用
+```
+import VueTable from './vue/Table.vue'
+
+new Vue({
+  el: '#app',
+  components: { VueTable }
+})
+```
+
+### 已完成：
 - 日期选择器：DatePicker.vue
 - 中国省市选择器：SelectCity.vue
 - 弹出提示框：BeautyAlert.vue
@@ -17,13 +48,16 @@ Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/ui)
 - 弹出窗口：PopupWindow.vue
 - 进度条：ProgressBar.vue
 - 选择文件按钮：UploadButton.vue
-
-
-###开发中：
+- 高级下拉列表：Select.vue
+- 拖动滑块验证：NoCaptcha.vue
+- 加载：Loading.vue
 - 搜索框：Search.vue
+
+
+### 开发中：
 - 走马灯：Carousel.vue
 
-###CSS控件：
+### CSS控件：
 - 按钮
 - 下拉菜单
 - 文本输入框
@@ -33,5 +67,3 @@ Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/ui)
 - 文件上传按钮
 - 下拉列表
 - 图片倒影
-- 表格
-- 加载动画

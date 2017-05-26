@@ -1,4 +1,4 @@
-import VueMessage from '../../components/Message.vue'
+import VueMessage from '../vue/Message.vue'
 const MessageConstructor = Vue.extend(VueMessage)
 
 const Message = function (option) {

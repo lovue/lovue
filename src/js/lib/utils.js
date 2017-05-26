@@ -87,7 +87,13 @@ module.exports = {
       requestOption.headers['X-CSRFToken'] = sessionStorage.csrf
     }
 
-    let request = new Request(`/api/v1/${option.url}`, requestOption)
+    let url
+    if(option.url.startsWith('/')) {
+      url = option.url
+    } else {
+      url = `/api/${option.url}`
+    }
+    let request = new Request(url, requestOption)
 
     return new Promise((resolve, reject) => {
       fetch(request).then(res => {
