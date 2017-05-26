@@ -26,23 +26,22 @@ module.exports = {
         filename: "[name].bundle.js"
     },
     resolve: {
-      extensions: ['', '.js', '.json'],
-      fallback: [path.join(__dirname, './node_modules')],
-      alias: {
-        'components': path.resolve(__dirname, './src/js/vue')
-      }
+      modules: [
+        path.join(__dirname, 'src'),
+        'node_modules'
+      ]
     },
     module: {
-        loaders: [
-            {
-                test: /\.vue$/,
-                loader: "vue"
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: "babel"
-            }
-        ]
+      rules: [
+        {
+          test: /\.vue$/,
+          use: [{ loader: 'vue-loader' }]
+        },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: [{ loader: 'babel-loader' }]
+        }
+      ]
     }
 }

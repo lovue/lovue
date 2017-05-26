@@ -27,22 +27,21 @@ module.exports = {
     filename: '[name].bundle.js'
   },
   resolve: {
-    extensions: ['', '.js', '.json'],
-    fallback: [path.join(__dirname, './node_modules')],
-    alias: {
-      'components': path.resolve(__dirname, './src/components')
-    }
+    modules: [
+      path.join(__dirname, 'src'),
+      'node_modules'
+    ],
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.vue$/,
-        loader: "vue"
+        use: [{ loader: 'vue-loader' }]
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel"
+        use: [{ loader: 'babel-loader' }]
       }
     ]
   },
@@ -51,16 +50,6 @@ module.exports = {
       compress: {
         warnings: false
       }
-    }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify('production')
-      }
     })
-  ],
-  babel: {
-    presets: ['es2015', 'stage-2'],
-    plugins: ['transform-runtime']
-  }
+  ]
 }
