@@ -52,6 +52,8 @@ new Vue({
 - 拖动滑块验证：NoCaptcha.vue
 - 加载：Loading.vue
 - 搜索框：Search.vue
+- 密码强度验证：PwdStrength.vue
+- 带树形结构的表格:TableTree.vue
 
 
 ### 开发中：
