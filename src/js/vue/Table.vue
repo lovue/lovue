@@ -6,15 +6,15 @@
           <li class="item">
             <label>全部</label>
             <div class="input-switch">
-              <input type="checkbox" id="I_Column_Switch_0" v-model="showedAllColumns" @click="toggleAllColumns">
-              <label for="I_Column_Switch_0">Off <span class="lever"></span> On</label>
+              <input type="checkbox" :id="`${_uid}_Column_Switch_All`" v-model="showedAllColumns" @click="toggleAllColumns">
+              <label :for="`${_uid}_Column_Switch_All`">Off <span class="lever"></span> On</label>
             </div>
           </li>
           <li class="item" v-for="col of columns">
             <label>{{col.title}}</label>
             <div class="input-switch">
-              <input type="checkbox" name="checkbox" :value="col.prop" v-model="showedColumns" :id="`I_Column_Switch_${col.prop}`">
-              <label :for="`I_Column_Switch_${col.prop}`">Off <span class="lever"></span> On</label>
+              <input type="checkbox" name="checkbox" :value="col.prop" v-model="showedColumns" :id="`${_uid}_Column_Switch_${col.prop}`">
+              <label :for="`${_uid}_Column_Switch_${col.prop}`">Off <span class="lever"></span> On</label>
             </div>
           </li>
         </ul>
@@ -23,11 +23,12 @@
         </div>
       </div>
     </vue-popup-window>
-    <header class="t-tools">
+
+    <header class="t-tools" v-show="!simple">
       <div class="t-left">
         <button class="btn-text" type="button" @click="bShowWindow = true">
           <svg class="icon-nav-list">
-            <use xlink:href="/static/platform/img/icons.svg#icon-nav-list"></use>
+            <use xlink:href="/img/icons.svg#icon-nav-list"></use>
           </svg>
         </button>
       </div>
@@ -36,42 +37,47 @@
         <vue-search @input="filter"></vue-search>
       </div>
     </header>
-    <table class="table">
-      <colgroup>
-        <col v-if="checkbox">
-        <col v-for="col of columns" v-if="showedColumns.includes(col.prop)" :class="`col-${col.prop}`">
-      </colgroup>
-      <thead>
-      <tr>
-        <th v-if="checkbox">
-          <div class="input-checkbox">
-            <input type="checkbox" value="1" id="vue-table-I_checkbox0" v-model="selectAll">
-            <label for="vue-table-I_checkbox0">全选</label>
-          </div>
-        </th>
-        <th v-for="(column, i) of columns" v-if="showedColumns.includes(column.prop)">{{column.title}}<span class="sort-arrows" v-if="column.sortable" @click="handleSortClick(i)">
-          <svg class="icon-arrow-down dir-up" :class="{focus: sortType[i] === 1}"><use xlink:href="/static/platform/img/icons.svg#icon-arrow-down"></use></svg>
-          <svg class="icon-arrow-down" :class="{focus: sortType[i] === -1}"><use xlink:href="/static/platform/img/icons.svg#icon-arrow-down"></use></svg>
-        </span></th>
-      </tr>
-      </thead>
 
-      <tbody>
-      <tr v-for="(row, i) of showed" v-if="i >= slice[0] && i < slice[1]">
-        <td v-if="checkbox">
-          <div class="input-checkbox">
-            <input type="checkbox" :id="`vue-table-I_checkbox${i+1}`" :value="i" v-model="selected">
-            <label :for="`vue-table-I_checkbox${i+1}`">{{i}}</label>
-          </div>
-        </td>
-        <td v-for="column of columns" v-if="showedColumns.includes(column.prop)">
-          <slot :name="column.prop" :value="row" v-if="column.custom"></slot>
-          <slot :name="column.prop" :value="row" v-else>{{row[column.prop]}}</slot>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <div class="t-footer">
+    <div class="t-table">
+      <table class="table">
+        <colgroup>
+          <col v-if="checkbox">
+          <col v-for="col of columns" v-if="showedColumns.includes(col.prop)" :class="`col-${col.prop}`">
+        </colgroup>
+        <thead>
+        <tr>
+          <th v-if="checkbox">
+            <div class="input-checkbox">
+              <input type="checkbox" value="1" :id="`${_uid}_Select_Row0`" v-model="selectAll">
+              <label :for="`${_uid}_Select_Row0`">全选</label>
+            </div>
+          </th>
+          <th v-for="(column, i) of columns" v-if="showedColumns.includes(column.prop)">{{column.title}}<span class="sort-arrows" v-if="column.sortable"
+                                                                                                              @click="handleSortClick(i)">
+          <svg class="icon-arrow-down dir-up" :class="{focus: sortType[i] === 1}"><use xlink:href="/img/icons.svg#icon-arrow-down"></use></svg>
+          <svg class="icon-arrow-down" :class="{focus: sortType[i] === -1}"><use xlink:href="/img/icons.svg#icon-arrow-down"></use></svg>
+        </span></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr v-for="(row, i) of showed" v-if="i >= slice[0] && i < slice[1]">
+          <td v-if="checkbox">
+            <div class="input-checkbox">
+              <input type="checkbox" :id="`${_uid}_Select_Row${i+1}`" :value="i" v-model="selected">
+              <label :for="`${_uid}_Select_Row${i+1}`">{{i+1}}</label>
+            </div>
+          </td>
+          <td v-for="column of columns" v-if="showedColumns.includes(column.prop)">
+            <slot :name="column.prop" :value="row" v-if="column.custom"></slot>
+            <slot :name="column.prop" :value="row" v-else>{{row[column.prop]}}</slot>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="t-footer" v-show="!simple">
       <vue-pagination :total="showed.length" :count-of-page="countOfPage" @update="updateTable"></vue-pagination>
     </div>
   </div>
@@ -85,7 +91,9 @@
     data() {
       return {
         filterText: '',
+//        过滤后的结果
         filtered: [],
+//        显示在页面上的结果
         showed: [],
         slice: [0, 0],
         selected: [],
@@ -94,6 +102,7 @@
         sortIndex: 0,
         bShowWindow: false,
         showedAllColumns: false,
+//        显示在页面上的列
         showedColumns: [],
         showedColumnsTmp: []
       }
@@ -111,7 +120,11 @@
           return []
         }
       },
+      defaultColumns: {
+        type: Array
+      },
       checkbox: Boolean,
+      simple: Boolean,
       countOfPage: {
         type: Number,
         default: 10
@@ -127,6 +140,7 @@
     watch: {
       source() {
         this.filter(this.filterText)
+        this.sortType = []
       },
       filtered() {
         if (this.checkbox) {
@@ -166,7 +180,12 @@
         } else {
           result = this.source.filter(row => {
             return this.columnProps.some(prop => {
-              return row[prop].toString().toLowerCase().includes(words.toLowerCase())
+              let value = row[prop]
+              if(typeof value === 'object') {
+                value = value.name || ''
+              }
+
+              return value.toString().toLowerCase().includes(words.toLowerCase())
             })
           })
         }
@@ -196,15 +215,7 @@
             sortType = this.sortType[this.sortIndex]
 
           if (sortType === 1) {
-            this.showed = this.filtered.slice().sort((a, b) => {
-              if (typeof a[sortColumn] === 'number') {
-                return b[sortColumn] - a[sortColumn]
-              } else {
-                return new Intl.Collator(/*'zh-Hans-CN', */{
-                  sensitivity: 'base'
-                }).compare(b, a)
-              }
-            })
+            this.showed = utils.sortDesc(this.filtered.slice(), sortColumn)
           } else if (sortType === -1) {
             this.showed.reverse()
           }
@@ -225,7 +236,7 @@
       }
     },
     created() {
-      this.showedColumns = this.columns.map(column => column.prop)
+      this.showedColumns = this.defaultColumns ? this.defaultColumns.slice() : this.columns.map(column => column.prop)
       this.showedColumnsTmp = this.showedColumns
       this.filter(this.filterText)
     }

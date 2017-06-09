@@ -198,5 +198,51 @@ module.exports = {
       }
     }
     return true
+  },
+  /*
+  * 将表格数据转换为csv格式的字符串
+  * 表头：data.headers, head: {title: 'title', prop: 'prop'}
+  * 数据：data.rows
+  * */
+  convertTableDataToString(data) {
+    let str = '', body = []
+
+    data.headers.forEach(head => {
+      body.push(head.title)
+    })
+    str += body.join(',') + '\n'
+    body = []
+
+    data.rows.forEach(row => {
+      data.headers.forEach(head => {
+        let x = '' + row[head.prop]
+        body.push(x.includes(',') ? `\"${x}\"` : x)
+      })
+      str += body.join(',') + '\n'
+      body = []
+    })
+    return str
+  },
+  saveDataToFile(data, filename, ext) {
+    let blob = new Blob(['\ufeff' + data], { type: `text/${ext};charset=utf-8` }),
+      url = URL.createObjectURL(blob)
+
+    let link = document.createElement('a')
+    link.setAttribute('href', url)
+    link.setAttribute('download', `filename.${ext}`)
+
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  },
+  sortDesc(arr, column) {
+    arr.sort((a, b) => {
+      if (typeof a[column] === 'number') return b[column] - a[column]
+
+      return new Intl.Collator(/*'zh-Hans-CN', */{
+        sensitivity: 'base'
+      }).compare(b[column], a[column])
+    })
+    return arr
   }
 }

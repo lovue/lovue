@@ -1180,3 +1180,55 @@
     justify-content: space-between;
   }
 }
+
+.vue-pwd-strength {
+  min-width: 230px;
+  display: flex;
+  font-size: @tiny-font;
+
+  .info-text {
+
+  }
+  .pwd-weak-text {
+    color: @error-color;
+  }
+
+  .pwd-medium-text {
+    color: @warn-color;
+  }
+
+  .pwd-strong-text {
+    color: @success-color;
+  }
+
+  > .pwd-col {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+
+    > .pwd-base {
+      background: @disabled-color;
+      width: 30px;
+      height: 15px;
+      margin-right: 4px;
+    }
+
+    > .pwd-weak {
+      background: @error-color;
+    }
+    > .pwd-medium {
+      background: @warn-color;
+    }
+    > .pwd-strong {
+      background: @success-color;
+    }
+
+    > .pwd-base:last-child {
+      margin-right: 0;
+    }
+
+    > .pwd-strong:last-child {
+      margin-right: 0;
+    }
+  }
+}
