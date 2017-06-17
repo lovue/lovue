@@ -82,7 +82,7 @@
     },
     computed: {
       cities () {
-        if (this.province == -1) {
+        if (Number(this.province) === -1) {
           return ['先选择省'];
         } else {
           for (let i = 0; i < this.provinces.length; i++) {

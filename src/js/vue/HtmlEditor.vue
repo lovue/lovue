@@ -22,42 +22,42 @@
         <li>
           <button class="btn-text" type="button" @click="formatDoc('undo')" title="撤销">
             <svg>
-              <use xlink:href="/public/img/icons.svg#icon-fa-undo"></use>
+              <use xlink:href="/img/icons.svg#icon-fa-undo"></use>
             </svg>
           </button>
         </li>
         <li>
           <button class="btn-text" type="button" @click="formatDoc('redo')" title="重做">
             <svg>
-              <use xlink:href="/public/img/icons.svg#icon-fa-redo"></use>
+              <use xlink:href="/img/icons.svg#icon-fa-redo"></use>
             </svg>
           </button>
         </li>
         <li>
           <button class="btn-text" type="button" @click="removeFormat" title="清除格式">
             <svg>
-              <use xlink:href="/public/img/icons.svg#icon-fa-eraser"></use>
+              <use xlink:href="/img/icons.svg#icon-fa-eraser"></use>
             </svg>
           </button>
         </li>
         <li>
           <button class="btn-text" type="button" ref="bold" @click="formatDoc('bold')" title="加粗">
             <svg>
-              <use xlink:href="/public/img/icons.svg#icon-fa-bold"></use>
+              <use xlink:href="/img/icons.svg#icon-fa-bold"></use>
             </svg>
           </button>
         </li>
         <li>
           <button class="btn-text" type="button" ref="italic" @click="formatDoc('italic')" title="斜体">
             <svg>
-              <use xlink:href="/public/img/icons.svg#icon-fa-italic"></use>
+              <use xlink:href="/img/icons.svg#icon-fa-italic"></use>
             </svg>
           </button>
         </li>
         <li>
           <button class="btn-text" type="button" ref="underline" @click="formatDoc('underline')" title="下划线">
             <svg>
-              <use xlink:href="/public/img/icons.svg#icon-fa-underline"></use>
+              <use xlink:href="/img/icons.svg#icon-fa-underline"></use>
             </svg>
           </button>
         </li>
@@ -104,21 +104,21 @@
         <li>
           <button class="btn-text" type="button" @click="formatDoc('outdent')" title="缩退">
             <svg>
-              <use xlink:href="/public/img/icons.svg#icon-fa-outdent"></use>
+              <use xlink:href="/img/icons.svg#icon-fa-outdent"></use>
             </svg>
           </button>
         </li>
         <li>
           <button class="btn-text" type="button" @click="formatDoc('indent')" title="缩进">
             <svg>
-              <use xlink:href="/public/img/icons.svg#icon-fa-indent"></use>
+              <use xlink:href="/img/icons.svg#icon-fa-indent"></use>
             </svg>
           </button>
         </li>
         <li>
           <button class="btn-text" type="button" @click="insertLink" title="超链接">
             <svg>
-              <use xlink:href="/public/img/icons.svg#icon-fa-link"></use>
+              <use xlink:href="/img/icons.svg#icon-fa-link"></use>
             </svg>
           </button>
         </li>
@@ -149,7 +149,7 @@
         <li>
           <button class="btn-text" type="button" title="图片" @click="insertImage">
             <svg>
-              <use xlink:href="/public/img/icons.svg#icon-fa-picture"></use>
+              <use xlink:href="/img/icons.svg#icon-fa-picture"></use>
             </svg>
           </button>
         </li>
