@@ -1,6 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const webpack = require('webpack')
+const UglifyEsPlugin = require('uglify-es-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -31,10 +32,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
+    new UglifyEsPlugin({ compress: { warnings: false } }),
   ]
 }
