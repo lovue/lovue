@@ -6,7 +6,7 @@
         <input class="input" type="text" v-if="bShowInput" v-model="inputs">
         <div class="bottom">
           <button class="btn" type="button" @click.stop="confirm">确认</button>
-          <button class="btn btn-ghost" v-if="type === 'confirm'" type="button" @click.stop="cancel">取消</button>
+          <button class="btn-ghost" v-if="type === 'confirm'" type="button" @click.stop="cancel">取消</button>
         </div>
       </div>
     </div>
