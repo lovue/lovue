@@ -3,20 +3,20 @@
     <div class="selected left-right">
       <div class="layer-disabled" v-if="disabled" @click.stop></div>
       <div class="left">
-        <span class="s-tag" :class="{'s-tag-custom': customizable && s.custom}" v-if="multiple" v-for="(s,i) of selected"><span class="tag-name">{{s.name}}</span><svg class="icon-close" @click="remove(s,i)"><use xlink:href="/static/platform/img/icons.svg#icon-close"></use></svg></span>
+        <span class="s-tag" :class="{'s-tag-custom': customizable && s.custom}" v-if="multiple" v-for="(s,i) of selected"><span class="tag-name">{{s.name}}</span><svg class="icon-close" @click="remove(s,i)"><use xlink:href="/img/icons.svg#icon-close"></use></svg></span>
         <input ref="input" class="input" type="text" :size="customText.length*2 || 1" v-if="multiple && customizable" v-model="customText" @keypress.enter.prevent="custom">
         <input class="input" type="text" v-if="!multiple" :value="selected.name" placeholder="请选择" readonly>
       </div>
       <div class="right">
         <svg class="icon-arrow-down" :class="{reverse: !bShowCandidates}">
-          <use xlink:href="/static/platform/img/icons.svg#icon-arrow-down"></use>
+          <use xlink:href="/img/icons.svg#icon-arrow-down"></use>
         </svg>
       </div>
     </div>
     <div class="candidates" v-show="bShowCandidates">
       <div class="item-search" v-if="searchable"><input class="input" type="text" placeholder="搜索" v-model="filterText"></div>
       <ul class="list">
-        <li :class="{focus: i.selected}" v-for="i of filteredItems" @click.stop="toggle(i)"><span class="item-name">{{i.name}}</span><svg class="icon-check" v-show="i.selected"><use xlink:href="/static/platform/img/icons.svg#icon-check"></use></svg></li>
+        <li :class="{focus: i.selected}" v-for="i of filteredItems" @click.stop="toggle(i)"><span class="item-name">{{i.name}}</span><svg class="icon-check" v-show="i.selected"><use xlink:href="/img/icons.svg#icon-check"></use></svg></li>
       </ul>
     </div>
   </div>

@@ -5,7 +5,7 @@
         <div class="title-name">{{title}}</div>
         <button class="btn-text btn-close" type="button" @click="close">
           <svg class="icon-close">
-            <use xlink:href="/static/platform/img/icons.svg#icon-close"></use>
+            <use xlink:href="/img/icons.svg#icon-close"></use>
           </svg>
         </button>
       </div>

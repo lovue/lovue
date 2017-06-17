@@ -75,7 +75,6 @@
     data () {
       return {
         provinces: data,
-        cities: [],
         province: this.currentProvince,
         city: this.currentCity
       }

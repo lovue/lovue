@@ -4,7 +4,7 @@
     <span class="text" :class="{success: success}">{{text}}</span>
     <button class="btn-text" type="button" @mousedown="dragStart">
       <svg class="icon-arrow-down">
-        <use xlink:href="/static/platform/img/icons.svg#icon-arrow-down"></use>
+        <use xlink:href="/img/icons.svg#icon-arrow-down"></use>
       </svg>
     </button>
   </div>
