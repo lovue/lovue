@@ -82,13 +82,15 @@ module.exports = {
 
     requestOption.credentials = 'same-origin'
     requestOption.headers = requestOption.headers || {}
-    requestOption.headers['Accept'] = 'application/json'
+    Object.assign(requestOption.headers, option.headers, {
+      Accept: 'application/json'
+    })
     if (option.type !== 'get') {
       requestOption.headers['X-CSRFToken'] = sessionStorage.csrf
     }
 
     let url
-    if(option.url.startsWith('/')) {
+    if(option.url.startsWith('/') || option.url.startsWith('http')) {
       url = option.url
     } else {
       url = `/api/${option.url}`
@@ -102,6 +104,8 @@ module.exports = {
       }).then(body => {
         if (body.code === 0) {
           resolve(body.data)
+        } else if (body.status === '0') {
+          resolve(body.result)
         } else {
           throw body
         }
