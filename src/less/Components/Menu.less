@@ -23,3 +23,26 @@
         }
     }
 }
+
+.dropdown {
+  .shadow-light;
+  position: absolute;
+  background-color: @white-color;
+  padding: 10px 0;
+  display: none;
+  z-index: 10;
+
+  .btn-text {
+    display: block;
+    width: 100%;
+    min-width: 160px;
+    text-align: left;
+    white-space: nowrap;
+    padding: 0 20px;
+
+    &:hover {
+      color: @first-level-color;
+      background: @bg-color;
+    }
+  }
+}

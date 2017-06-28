@@ -35,52 +35,38 @@
 .form {
   font-size: @small-font;
 
-  >.row {
+  .input-readonly,
+  .input,
+  .select {
+    width: 165px;
+  }
+
+  .input.auto-width {
+    width: auto;
+    min-width: 165px;
+  }
+
+  .btn-submit-wrap {
     display: flex;
-    margin-bottom: 20px;
+    align-items: center;
 
-    .input-readonly,
-    .input,
-    .select {
-      width: 165px;
+    .vue-loading {
+      margin-left: 12px;
     }
+  }
 
-    .input.auto-width {
-      width: auto;
-      min-width: 165px;
-    }
-
-    >.cell {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-
+  > .row,
+  > .row-inline {
+    > .cell {
       label {
         margin-bottom: 5px;
       }
     }
 
-    >.cell-h {
-      flex-direction: row;
-      align-items: center;
-
+    > .cell-h {
       label {
-        margin-bottom: 0;
         margin-right: 5px;
       }
-
-      .vue-loading {
-        margin-left: 12px;
-      }
-    }
-  }
-
-  >.row-inline {
-    .cell+.cell {
-      margin-left: 80px;
-    }
-    .cell {
-      flex: none;
     }
   }
 

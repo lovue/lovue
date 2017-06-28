@@ -46,32 +46,46 @@
 }
 
 .grid {
-  >.row {
-    display: flex;
-    margin-bottom: 20px;
-
-    >.cell {
-      flex: 1;
-    }
-
-    >.cell-h {
-      flex: 1;
-      display: flex;
-    }
-  }
-
-  >.row-inline {
+  > .row,
+  > .row-inline {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+  }
 
-    >.cell {
-      margin-right: 20px;
+  > .row {
+    > .cell,
+    > .cell-h {
+      flex: 1;
+      display: flex;
     }
 
-    >.cell-h {
-      margin-right: 20px;
+    > .cell {
+      flex-direction: column;
+    }
+
+    > .cell-h {
+      align-items: center;
+    }
+  }
+
+  > .row-inline {
+    > .cell,
+    > .cell-h {
       display: flex;
+    }
+
+    > .cell {
+      flex-direction: column;
+    }
+
+    > .cell-h {
+      align-items: center;
+    }
+
+    > .cell+.cell,
+    > .cell-h+.cell-h {
+      margin-left: 20px;
     }
   }
 }

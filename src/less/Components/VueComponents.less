@@ -1182,53 +1182,37 @@
 }
 
 .vue-pwd-strength {
-  min-width: 230px;
   display: flex;
+  align-items: center;
+  height: 20px;
   font-size: @tiny-font;
 
-  .info-text {
-
-  }
-  .pwd-weak-text {
-    color: @error-color;
-  }
-
-  .pwd-medium-text {
-    color: @warn-color;
-  }
-
-  .pwd-strong-text {
-    color: @success-color;
-  }
-
-  > .pwd-col {
+  >.str-lines {
     display: flex;
-    align-items: center;
-    margin-right: 10px;
 
-    > .pwd-base {
-      background: @disabled-color;
-      width: 30px;
-      height: 15px;
+
+    >span {
+      width: 40px;
+      height: 2px;
+      background-color: @disabled-color;
       margin-right: 4px;
-    }
+      border-radius: 30px;
 
-    > .pwd-weak {
-      background: @error-color;
-    }
-    > .pwd-medium {
-      background: @warn-color;
-    }
-    > .pwd-strong {
-      background: @success-color;
-    }
-
-    > .pwd-base:last-child {
-      margin-right: 0;
-    }
-
-    > .pwd-strong:last-child {
-      margin-right: 0;
+      &.str-0 {
+        background-color: @red-10;
+      }
+      &.str-1 {
+        background-color: @error-color;
+      }
+      &.str-2 {
+        background-color: @warn-color;
+      }
+      &.str-3 {
+        background-color: @cyan-5;
+      }
+      &.str-4 {
+        background-color: @success-color;
+      }
     }
   }
 }
