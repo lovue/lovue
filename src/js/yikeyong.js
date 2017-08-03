@@ -20,6 +20,7 @@ import VueCarousel from './vue/Carousel.vue'
 import VueCollapse from './vue/Collapse.vue'
 import VuePwdStrength from './vue/PwdStrength.vue'
 import VueTableTree from './vue/TableTree.vue'
+import VueExcel from './vue/Excel.vue'
 
 const components = [
   ['vue-beauty-alert', VueBeautyAlert],
@@ -41,7 +42,8 @@ const components = [
   ['vue-carousel', VueCarousel],
   ['vue-collapse', VueCollapse],
   ['vue-pwd-strength', VuePwdStrength],
-  ['vue-table-tree', VueTableTree]
+  ['vue-table-tree', VueTableTree],
+  ['vue-excel', VueExcel]
 ]
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -52,4 +54,38 @@ if (typeof window !== 'undefined' && window.Vue) {
   })
 
   Vue.prototype.$msg = Message
+  Vue.prototype.success = msg => Message(msg)
+  Vue.prototype.info = msg => {
+    Message({
+      type: 'info',
+      message: msg
+    })
+  }
+  Vue.prototype.warn = msg => {
+    Message({
+      type: 'warn',
+      message: msg
+    })
+  }
+  Vue.prototype.error = (msg, close) => {
+    if (close === undefined) close = true
+
+    if (utils.getype(msg) === 'error') {
+      msg = msg.message
+    }
+
+    Message({
+      type: 'error',
+      message: msg,
+      showClose: close
+    })
+  }
+
+  Vue.config.errorHandler = (error, vm) => {
+    vm.error(error)
+  }
+
+  Vue.config.warnHandler = (warn, vm) => {
+    vm.error(warn)
+  }
 }

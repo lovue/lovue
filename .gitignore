@@ -6,3 +6,4 @@ node_modules
 public/css
 public/js
 .idea
+test/unit/coverage

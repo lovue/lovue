@@ -5,7 +5,7 @@
         <svg><use :xlink:href="`/img/icons.svg#icon-${iconType}`"></use></svg>
       </div>
       <p>{{message}}</p>
-      <span class="message-close" v-if="showClose">×</span>
+      <svg class="icon-close" v-if="showClose" @click="visible = false"><use xlink:href="/img/icons.svg#icon-close"></use></svg>
     </div>
   </transition>
 </template>
@@ -15,7 +15,7 @@
       return {
         visible: false,
         message: '',
-        showClose: false,
+        showClose: document.visibilityState === 'hidden',
         type: 'success',
         duration: 2000,
         timer: null
@@ -36,15 +36,17 @@
       destroy() {
         this.$el.removeEventListener('transitionend', this.destroy)
         this.$destroy()
-        this.$el.parentNode.removeChild(this.$el)
+        document.body.removeChild(this.$el)
         clearTimeout(this.timer)
       }
     },
     mounted() {
-      this.timer = setTimeout(() => {
-        this.visible = false
-        this.$el.addEventListener('transitionend', this.destroy)
-      }, this.duration)
+      if (!this.showClose) {
+        this.timer = setTimeout(() => {
+          this.visible = false
+          this.$el.addEventListener('transitionend', this.destroy)
+        }, this.duration)
+      }
     }
   }
 </script>

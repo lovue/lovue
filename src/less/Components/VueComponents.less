@@ -8,7 +8,7 @@
 
   .input {
     .mixin-transition(@property: width);
-    width: 182px;
+    background-color: @white-color;
     cursor: pointer;
   }
 
@@ -983,10 +983,12 @@
 }
 
 .vue-table {
-  >.vue-popup-window {
+  overflow-x: hidden;
+
+  > .vue-popup-window {
     .win-content {
       .list {
-        >.item {
+        > .item {
           height: 50px;
           display: flex;
           justify-content: space-between;
@@ -996,7 +998,7 @@
             border-bottom: 1px solid @border-color;
           }
 
-          >label {
+          > label {
             min-width: 200px;
           }
         }
@@ -1010,13 +1012,13 @@
     }
   }
 
-  >.t-tools {
+  > .t-tools {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 
-    >.t-left {
+    > .t-left {
       .icon-nav-list {
         color: @assist-font-color;
         width: 20px;
@@ -1029,11 +1031,16 @@
     }
   }
 
-  >.table {
-    >thead {
+  > .t-table {
+    overflow-x: auto;
+  }
+
+  .table {
+    > thead {
       th {
         line-height: 28px;
       }
+
       .sort-arrows {
         .non-select;
         display: inline-block;
@@ -1053,7 +1060,48 @@
     }
   }
 
-  >.t-footer {
+  .fixed-head {
+    position: relative;
+    padding-top: 40px;
+    background-color: @bg-color;
+    border: 1px solid @border-color;
+
+    .table-wrap {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .table {
+      background-color: @white-color;
+      border: none;
+      border-top: 1px solid @border-color;
+
+      > thead {
+        border: none;
+        tr {
+          height: 0;
+        }
+        th {
+          height: 0;
+          line-height: 0;
+          padding: 0;
+        }
+
+        .t-title {
+          position: absolute;
+          top: 0;
+          line-height: 40px;
+          padding: 0 15px;
+        }
+
+        .sort-arrows {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  > .t-footer {
     margin-top: 10px;
   }
 }
@@ -1212,6 +1260,71 @@
       }
       &.str-4 {
         background-color: @success-color;
+      }
+    }
+  }
+}
+
+.vue-excel {
+  overflow-x: auto;
+
+  .ve-head,
+  .ve-row {
+    display: flex;
+    height: 20px;
+
+    .col-0 {
+      width: 35px;
+      line-height: 20px;
+      flex-shrink: 0;
+      text-align: center;
+      background-color: @bg-color;
+      color: @assist-font-color;
+      border-right: 1px solid @border-color;
+      border-bottom: 1px solid @border-color;
+    }
+  }
+
+  .ve-head {
+    flex-shrink: 0;
+
+    .col-head {
+      flex-shrink: 0;
+      width: 75px;
+      line-height: 20px;
+      text-align: center;
+      background-color: @bg-color;
+      border-right: 1px solid @border-color;
+      border-bottom: 1px solid @border-color;
+      color: @assist-font-color;
+
+      &.focus {
+        background-color: @hover-blue-color;
+        color: @white-color;
+      }
+    }
+  }
+
+  .ve-row {
+    .col-0.focus {
+      background-color: @hover-blue-color;
+      color: @white-color;
+    }
+
+    .col-cell {
+      height: 20px;
+      border-right: 1px solid @border-color;
+      border-bottom: 1px solid @border-color;
+
+      .input {
+        width: 74px;
+        height: 20px;
+        padding-left: 0;
+        border: none;
+
+        &:focus {
+          border: 1px solid @blue-color;
+        }
       }
     }
   }

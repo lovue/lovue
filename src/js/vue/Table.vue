@@ -24,7 +24,7 @@
       </div>
     </vue-popup-window>
 
-    <header class="t-tools" v-show="!simple">
+    <header class="t-tools" v-if="!simple">
       <div class="t-left">
         <button class="btn-text" type="button" @click="bShowWindow = true">
           <svg class="icon-nav-list">
@@ -38,46 +38,57 @@
       </div>
     </header>
 
-    <div class="t-table">
-      <table class="table">
-        <colgroup>
-          <col v-if="checkbox">
-          <col v-for="col of columns" v-if="showedColumns.includes(col.prop)" :class="`col-${col.prop}`">
-        </colgroup>
-        <thead>
-        <tr>
-          <th v-if="checkbox">
-            <div class="input-checkbox">
-              <input type="checkbox" value="1" :id="`${_uid}_Select_Row0`" v-model="selectAll">
-              <label :for="`${_uid}_Select_Row0`">全选</label>
-            </div>
-          </th>
-          <th v-for="(column, i) of columns" v-if="showedColumns.includes(column.prop)">{{column.title}}<span class="sort-arrows" v-if="column.sortable"
-                                                                                                              @click="handleSortClick(i)">
-          <svg class="icon-arrow-down dir-up" :class="{focus: sortType[i] === 1}"><use xlink:href="/img/icons.svg#icon-arrow-down"></use></svg>
-          <svg class="icon-arrow-down" :class="{focus: sortType[i] === -1}"><use xlink:href="/img/icons.svg#icon-arrow-down"></use></svg>
-        </span></th>
-        </tr>
-        </thead>
+    <div class="t-table" :class="{'fixed-head': fixedHead && simple}">
+      <div class="table-wrap">
+        <table class="table">
+          <colgroup>
+            <col v-if="checkbox">
+            <col v-for="col of columns" v-if="showedColumns.includes(col.prop)" :class="`col-${col.prop}`">
+          </colgroup>
+          <thead>
+          <tr>
+            <th v-if="checkbox">
+              <div class="t-title">
+                <div class="input-checkbox">
+                  <input type="checkbox" value="1" :id="`${_uid}_Select_Row0`" v-model="selectAll">
+                  <label :for="`${_uid}_Select_Row0`">全选</label>
+                </div>
+              </div>
+            </th>
+            <th v-for="(column, i) of columns" v-if="showedColumns.includes(column.prop)">
+              <div class="t-title">
+                {{column.title}}
+                <span class="sort-arrows" v-if="column.sortable" @click="handleSortClick(i)">
+                  <svg class="icon-arrow-down dir-up" :class="{focus: sortType[i] === 1}"><use xlink:href="/img/icons.svg#icon-arrow-down"></use></svg>
+                  <svg class="icon-arrow-down" :class="{focus: sortType[i] === -1}"><use xlink:href="/img/icons.svg#icon-arrow-down"></use></svg>
+                </span>
+              </div>
+            </th>
+          </tr>
+          </thead>
 
-        <tbody>
-        <tr v-for="(row, i) of showed" v-if="i >= slice[0] && i < slice[1]">
-          <td v-if="checkbox">
-            <div class="input-checkbox">
-              <input type="checkbox" :id="`${_uid}_Select_Row${i+1}`" :value="i" v-model="selected">
-              <label :for="`${_uid}_Select_Row${i+1}`">{{i+1}}</label>
-            </div>
-          </td>
-          <td v-for="column of columns" v-if="showedColumns.includes(column.prop)">
-            <slot :name="column.prop" :value="row" v-if="column.custom"></slot>
-            <slot :name="column.prop" :value="row" v-else>{{row[column.prop]}}</slot>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+          <tbody>
+          <tr style="text-align: center" v-if="!source.length">
+            <td :colspan="showedColumns.length">暂无数据</td>
+          </tr>
+          <tr v-for="(row, i) of showed" v-if="simple || (i >= slice[0] && i < slice[1])" @click="clickRow(row)">
+            <td v-if="checkbox" @click.stop>
+              <div class="input-checkbox">
+                <input type="checkbox" :id="`${_uid}_Select_Row${i+1}`" :value="i" v-model="selected">
+                <label :for="`${_uid}_Select_Row${i+1}`">{{i+1}}</label>
+              </div>
+            </td>
+            <td v-for="column of columns" v-if="showedColumns.includes(column.prop)">
+              <slot :name="column.prop" :value="row" v-if="column.custom"></slot>
+              <slot :name="column.prop" :value="row" v-else>{{row[column.prop]}}</slot>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div class="t-footer" v-show="!simple">
+    <div class="t-footer" v-if="!simple">
       <vue-pagination :total="showed.length" :count-of-page="countOfPage" @update="updateTable"></vue-pagination>
     </div>
   </div>
@@ -125,9 +136,10 @@
       },
       checkbox: Boolean,
       simple: Boolean,
+      fixedHead: Boolean,
       countOfPage: {
         type: Number,
-        default: 10
+        'default': 10
       }
     },
     computed: {
@@ -139,8 +151,7 @@
     },
     watch: {
       source() {
-        this.filter(this.filterText)
-        this.sortType = []
+        this.initTable()
       },
       filtered() {
         if (this.checkbox) {
@@ -173,6 +184,12 @@
     },
     components: { VueSearch, VuePagination, VuePopupWindow },
     methods: {
+      initTable() {
+        this.showedColumns = this.defaultColumns ? this.defaultColumns.slice() : this.columns.map(column => column.prop)
+        this.showedColumnsTmp = this.showedColumns
+        this.sortType = []
+        this.filter(this.filterText)
+      },
       filter(words) {
         let result = []
         if (words === '') {
@@ -180,8 +197,8 @@
         } else {
           result = this.source.filter(row => {
             return this.columnProps.some(prop => {
-              let value = row[prop]
-              if(typeof value === 'object') {
+              let value = row[prop] || ''
+              if(utils.getype(value) === 'object') {
                 value = value.name || ''
               }
 
@@ -233,12 +250,13 @@
       closeWindow() {
         this.showedColumns = this.showedColumnsTmp
         this.bShowWindow = false
+      },
+      clickRow(row) {
+        this.$emit('click-row', row)
       }
     },
     created() {
-      this.showedColumns = this.defaultColumns ? this.defaultColumns.slice() : this.columns.map(column => column.prop)
-      this.showedColumnsTmp = this.showedColumns
-      this.filter(this.filterText)
+      this.initTable()
     }
   }
 </script>
