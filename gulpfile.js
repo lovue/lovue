@@ -2,8 +2,6 @@ const gulp = require('gulp')
 const less = require('gulp-less')
 const cleanCSS = require('gulp-clean-css')
 const cached = require('gulp-cached')
-const changed = require('gulp-changed')
-const clean = require('gulp-dest-clean')
 
 gulp.task('less', () => {
   gulp.src('src/less/@(global|style|admin).less')
