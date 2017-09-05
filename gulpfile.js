@@ -6,7 +6,7 @@ const cached = require('gulp-cached')
 gulp.task('less', () => {
   gulp.src('src/less/@(global|style|admin).less')
     .pipe(less({
-      strictMath: "on"
+      strictMath: 'on'
     }))
     .pipe(cached('less'))
     .pipe(cleanCSS())

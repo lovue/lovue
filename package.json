@@ -16,7 +16,8 @@
   "author": "loliconer",
   "license": "Apache-2.0",
   "dependencies": {
-    "vue": "^2.4.2"
+    "vue": "^2.4.2",
+    "yikeyong-utils": "^0.0.6"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

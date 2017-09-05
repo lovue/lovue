@@ -1,4 +1,3 @@
-import utils from './lib/utils'
 import Message from './lib/message-vue'
 import VueBeautyAlert from './vue/BeautyAlert.vue'
 import VueDatePicker from './vue/DatePicker.vue'
@@ -47,8 +46,6 @@ const components = [
 ]
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.utils = utils
-
   components.forEach(c => {
     Vue.component(c[0], c[1])
   })

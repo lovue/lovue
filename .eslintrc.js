@@ -14,7 +14,6 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    'for-direction': 'error',
     'no-await-in-loop': 'warn',
     'no-extra-parens': 'warn',
     'accessor-pairs': 'error',
