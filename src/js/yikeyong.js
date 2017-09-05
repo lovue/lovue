@@ -1,3 +1,4 @@
+import utils from 'yikeyong-utils'
 import Message from './lib/message-vue'
 import VueBeautyAlert from './vue/BeautyAlert.vue'
 import VueDatePicker from './vue/DatePicker.vue'
