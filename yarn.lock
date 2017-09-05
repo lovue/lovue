@@ -6010,6 +6010,6 @@ yeast@0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
 
-yikeyong-utils@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/yikeyong-utils/-/yikeyong-utils-0.0.6.tgz#2a9a36057c53f41c14fbf558248489325cd87ff3"
+yikeyong-utils@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/yikeyong-utils/-/yikeyong-utils-1.0.3.tgz#69b9c5d7e7da579f3f0a52b8e866e7e9a0863ba0"
