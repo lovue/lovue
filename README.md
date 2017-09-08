@@ -3,7 +3,7 @@
 - 包含一些纯CSS控件
 - 优点：几乎每个组件都是一个.vue格式的单文件，并且尽量减少代码量，方便阅读和理解以及自行修改源码
 
-Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/ui)
+Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/spa/vue-components.html)
 
 ### 使用方法
 - 第一种（推荐）：引入已编译的js文件，这样可以使用所有的组件
@@ -11,7 +11,7 @@ Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/ui)
 <head>
 <link href="path/to/global.css" rel="stylesheet">
 <script src="path/to/vue.min.js">
-<script src="path/to/yikeyong.min.js" defer>
+<script src="path/to/lovue.min.js" defer>
 </head>
 <body>
 <div id="app">

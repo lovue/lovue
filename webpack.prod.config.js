@@ -5,7 +5,7 @@ const UglifyEsPlugin = require('uglify-es-webpack-plugin')
 
 module.exports = {
   entry: {
-    yikeyong: './src/js/yikeyong.js'
+    lovue: './src/js/lovue.js'
   },
   output: {
     path: __dirname + '/dist',
@@ -16,7 +16,7 @@ module.exports = {
     modules: [
       path.join(__dirname, 'src'),
       'node_modules'
-    ],
+    ]
   },
   module: {
     rules: [
@@ -32,6 +32,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new UglifyEsPlugin({ compress: { warnings: false } }),
+    new UglifyEsPlugin({ compress: { warnings: false } })
   ]
 }

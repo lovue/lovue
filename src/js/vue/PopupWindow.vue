@@ -1,6 +1,6 @@
 <template>
   <div class="vue-popup-window overlay" v-if="show">
-    <div class="window-lv2">
+    <div class="window">
       <div class="title-bar">
         <div class="title-name">{{title}}</div>
         <button class="btn-text btn-close" type="button" @click="close">

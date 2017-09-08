@@ -1,24 +1,18 @@
 {
-  "name": "Vue-components",
+  "name": "lovue",
   "version": "1.0.0",
-  "description": "UI components for Vue",
+  "description": "Love Vue: UI components for Vue",
   "main": "index.js",
   "repository": {
     "url": "https://github.com/loliconer/Vue-components.git",
     "type": "git"
   },
   "scripts": {
-    "build": "webpack --config webpack.prod.config.js",
-    "deploy": "gulp build",
-    "webpack": "webpack --watch",
-    "gulp": "gulp watch"
+    "build": "gulp less && webpack && webpack --config webpack.prod.config.js",
+    "deploy": "gulp build"
   },
   "author": "loliconer",
   "license": "Apache-2.0",
-  "dependencies": {
-    "vue": "^2.4.2",
-    "yikeyong-utils": "^1.0.3"
-  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
@@ -55,11 +49,11 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "mocha": "^3.5.0",
-    "nprogress": "^0.2.0",
     "sinon": "^2.4.1",
     "sinon-chai": "^2.12.0",
     "uglify-es": "^3.0.28",
     "uglify-es-webpack-plugin": "^0.10.0",
+    "vue": "^2.4.2",
     "vue-loader": "^13.0.4",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.4.2",
@@ -68,5 +62,6 @@
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
-  }
+  },
+  "dependencies": {}
 }
