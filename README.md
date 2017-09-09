@@ -9,7 +9,7 @@ Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/spa/vue-components.
 - 第一种（推荐）：引入已编译的js文件，这样可以使用所有的组件
 ```
 <head>
-<link href="path/to/global.css" rel="stylesheet">
+<link href="path/to/lovue.css" rel="stylesheet">
 <script src="path/to/vue.min.js">
 <script src="path/to/lovue.min.js" defer>
 </head>
