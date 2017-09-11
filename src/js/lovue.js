@@ -24,6 +24,7 @@ import VueExcel from './vue/Excel.vue'
 import VuePwdValidity from './vue/PwdValidity.vue'
 import VueSubmitButton from './vue/SubmitButton.vue'
 import VueTreeList from './vue/TreeList.vue'
+import VueImgReflex from './vue/ImgReflex.vue'
 
 const components = [
   ['vue-beauty-alert', VueBeautyAlert],
@@ -49,7 +50,8 @@ const components = [
   ['vue-excel', VueExcel],
   ['vue-pwd-validity', VuePwdValidity],
   ['vue-submit-button', VueSubmitButton],
-  ['vue-tree-list', VueTreeList]
+  ['vue-tree-list', VueTreeList],
+  ['vue-img-reflex', VueImgReflex]
 ]
 
 if (typeof window !== 'undefined' && window.Vue) {
