@@ -1,4 +1,4 @@
-import utils from 'yikeyong-utils'
+import { getype } from 'lovue-utils'
 import VueMessage from '../vue/Message.vue'
 const MessageConstructor = Vue.extend(VueMessage)
 
@@ -6,7 +6,7 @@ const Message = function (option) {
   let instance
   option = option || {}
 
-  if (utils.getype(option) === 'string') {
+  if (getype(option) === 'string') {
     option = {
       message: option
     }

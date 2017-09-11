@@ -189,3 +189,27 @@
     color: @active-blue-color;
   }
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-start {
+  .flex;
+  align-items: center;
+}
+
+.flex-between {
+  .flex-start;
+  justify-content: space-between;
+}
+
+.flex-center {
+  .flex-start;
+  justify-content: center;
+}
+
+.flex-around {
+  .flex-start;
+  justify-content: space-around;
+}

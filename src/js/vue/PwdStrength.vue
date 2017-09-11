@@ -26,8 +26,9 @@
       }
     },
     watch: {
-      password() {
-        this.score = zxcvbn(this.password).score
+      password(val) {
+        if (val === '') return
+        this.score = zxcvbn(val).score
       }
     },
     computed: {
@@ -47,6 +48,7 @@
       }
     },
     created() {
+      if (this.password === '') return
       this.score = zxcvbn(this.password).score
     }
   }

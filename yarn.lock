@@ -3753,6 +3753,10 @@ loud-rejection@^1.0.0:
     currently-unhandled "^0.4.1"
     signal-exit "^3.0.0"
 
+lovue-utils@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/lovue-utils/-/lovue-utils-1.0.0.tgz#cf482628fd87ceeb342df1d30ef5977a6d33a844"
+
 lru-cache@2:
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-2.7.3.tgz#6d4524e8b955f95d4f5b58851ce21dd72fb4e952"

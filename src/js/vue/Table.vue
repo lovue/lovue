@@ -94,7 +94,7 @@
   </div>
 </template>
 <script>
-  import utils from 'yikeyong-utils'
+  import { getype, sortObjectArray } from 'lovue-utils'
   import VueSearch from './Search.vue'
   import VuePagination from './Pagination.vue'
   import VuePopupWindow from './PopupWindow.vue'
@@ -199,7 +199,7 @@
           result = this.source.filter(row => {
             return this.columnProps.some(prop => {
               let value = row[prop] || ''
-              if(utils.getype(value) === 'object') {
+              if(getype(value) === 'object') {
                 value = value.name || ''
               }
 
@@ -233,7 +233,7 @@
             sortType = this.sortType[this.sortIndex]
 
           if (sortType === 1) {
-            this.showed = utils.sortObjectArray(this.filtered.slice(), sortColumn, -1)
+            this.showed = sortObjectArray(this.filtered.slice(), sortColumn, -1)
           } else if (sortType === -1) {
             this.showed.reverse()
           }

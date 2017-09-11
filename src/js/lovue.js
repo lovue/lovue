@@ -1,4 +1,4 @@
-import utils from 'yikeyong-utils'
+import { getype } from 'lovue-utils'
 import Message from './lib/message-vue'
 import VueBeautyAlert from './vue/BeautyAlert.vue'
 import VueDatePicker from './vue/DatePicker.vue'
@@ -21,6 +21,9 @@ import VueCollapse from './vue/Collapse.vue'
 import VuePwdStrength from './vue/PwdStrength.vue'
 import VueTableTree from './vue/TableTree.vue'
 import VueExcel from './vue/Excel.vue'
+import VuePwdValidity from './vue/PwdValidity.vue'
+import VueSubmitButton from './vue/SubmitButton.vue'
+import VueTreeList from './vue/TreeList.vue'
 
 const components = [
   ['vue-beauty-alert', VueBeautyAlert],
@@ -43,7 +46,10 @@ const components = [
   ['vue-collapse', VueCollapse],
   ['vue-pwd-strength', VuePwdStrength],
   ['vue-table-tree', VueTableTree],
-  ['vue-excel', VueExcel]
+  ['vue-excel', VueExcel],
+  ['vue-pwd-validity', VuePwdValidity],
+  ['vue-submit-button', VueSubmitButton],
+  ['vue-tree-list', VueTreeList]
 ]
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -68,7 +74,7 @@ if (typeof window !== 'undefined' && window.Vue) {
   Vue.prototype.error = (msg, close) => {
     if (close === undefined) close = true
 
-    if (utils.getype(msg) === 'error') {
+    if (getype(msg) === 'error') {
       msg = msg.message
     }
 

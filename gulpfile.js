@@ -28,7 +28,7 @@ gulp.task('build', () => {
     'package.json',
     'README.md'
   ])
-    .pipe(clean('../lovue/', [], {force: true}))
-    .pipe(changed('../lovue', {hasChanged: changed.compareContents}))
-    .pipe(gulp.dest('../lovue'))
+    .pipe(clean('../lovue-release/', [], {force: true}))
+    .pipe(changed('../lovue-release', {hasChanged: changed.compareContents}))
+    .pipe(gulp.dest('../lovue-release'))
 })
