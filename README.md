@@ -35,31 +35,37 @@ new Vue({
 ```
 
 ### 已完成：
-- 日期选择器：DatePicker.vue
-- 中国省市选择器：SelectCity.vue
+- 搜索框：Search.vue
+- 选择文件按钮：UploadButton.vue
+- Tab页：Tab.vue
 - 弹出提示框：BeautyAlert.vue
+- 中国省市选择器：SelectCity.vue
+- 日期选择器：DatePicker.vue
 - 图片裁剪并上传（简版）：Crop.vue
 - HTML5富文本编辑器：HtmlEditor.vue
-- Tab页：Tab.vue
-- 收缩菜单：Collapse.vue
-- 表格：Table.vue
-- 拖拽：DragDrop.vue
+- 图片倒影：ImgReflex.vue
 - 分页：Pagination.vue
-- 弹出窗口：PopupWindow.vue
-- 进度条：ProgressBar.vue
-- 选择文件按钮：UploadButton.vue
-- 高级下拉列表：Select.vue
-- 拖动滑块验证：NoCaptcha.vue
+- 表格：Table.vue
 - 加载：Loading.vue
-- 搜索框：Search.vue
+- 进度条：ProgressBar.vue
+- 弹出窗口：PopupWindow.vue
+- 高级下拉列表：Select.vue
 - 密码强度验证：PwdStrength.vue
+- 树形列表：TreeList.vue
+- 提交按钮：SubmitButton.vue
+- 密码验证：PwdValidity.vue
+- 拖拽：DragDrop.vue
+- 拖动滑块验证：NoCaptcha.vue
 - 带树形结构的表格:TableTree.vue
+- 收缩菜单：Collapse.vue
 
 
 ### 开发中：
 - 走马灯：Carousel.vue
 
 ### CSS控件：
+- 左右布局
+- 网格布局
 - 按钮
 - 下拉菜单
 - 文本输入框
@@ -68,4 +74,3 @@ new Vue({
 - 开关
 - 文件上传按钮
 - 下拉列表
-- 图片倒影
