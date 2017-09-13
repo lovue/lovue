@@ -1,6 +1,4 @@
 const path = require('path')
-const fs = require('fs')
-const webpack = require('webpack')
 const UglifyEsPlugin = require('uglify-es-webpack-plugin')
 
 module.exports = {
