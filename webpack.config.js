@@ -1,13 +1,33 @@
 const path = require('path')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const argv = require('yargs').argv
+
+const isProd = argv.mode === 'production'
+
+let plugins = [
+  new VueLoaderPlugin()
+]
+
+if (isProd) {
+  plugins = [
+    new VueLoaderPlugin(),
+    new UglifyJSPlugin({ sourceMap: true })
+  ]
+}
 
 module.exports = {
   entry: {
-    lovue: './src/js/lovue.js'
+    lovue: './src/js/lovue.js',
+    'lovue-ant': './src/js/lovue-ant.js'
   },
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
-    filename: '[name].js'
+    filename: isProd ? '[name].min.js' : '[name].js'
+  },
+  stats: {
+    entrypoints: false
   },
   resolve: {
     modules: [
@@ -19,13 +39,14 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        use: [{ loader: 'vue-loader' }]
+        use: { loader: 'vue-loader' }
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader' }]
+        use: { loader: 'babel-loader' }
       }
     ]
-  }
+  },
+  plugins
 }

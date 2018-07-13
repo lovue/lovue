@@ -1,0 +1,103 @@
+@import "Bootstrapping/Variables";
+@import (reference) "Bootstrapping/Mixins";
+
+@import "Components/VueAnt";
+
+@keyframes rotate-reverse {
+  100% {
+    transform: rotate(-360deg)
+  }
+}
+
+@keyframes toggle-scale {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes toggle-check {
+  0% {
+    border-color: transparent;
+    background-color: @blue-color;
+  }
+  50% {
+    border-color: transparent;
+    background-color: transparent;
+  }
+  100% {
+    border-color: @assist-font-color;
+    background-color: transparent;
+  }
+}
+
+@keyframes wave-ripple {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(38, 166, 154, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 2px rgba(38, 166, 154, 0);
+  }
+}
+
+//slideDown
+.slideDown-enter-active, .slideDown-leave-active {
+  transition: transform .4s;
+}
+
+.slideDown-enter {
+  transform: translateY(-100%);
+}
+
+.slideDown-leave-active {
+  top: -600px;
+  transform: translateY(200%);
+}
+
+//fade
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .4s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+
+//flip
+.flip-enter-active, .flip-leave-active {
+  transition: transform .5s;
+}
+
+.flip-enter-active {
+  transition-delay: .5s;
+}
+
+.flip-enter {
+  transform: rotateY(-90deg);
+}
+
+.flip-leave-active {
+  transform: rotateY(90deg);
+}
+
+//router
+.router-enter-active, .router-leave-active {
+  transition: all .2s cubic-bezier(0, 0, 0, 1)
+}
+.router-enter, .router-leave-active {
+  opacity: 0
+}
+
+//slide-fade
+.slide-fade-enter, .slide-fade-leave-active {
+  opacity: 0;
+  transform: translate(-50%, -100%)
+}
