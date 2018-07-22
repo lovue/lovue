@@ -8,6 +8,8 @@
     "type": "git"
   },
   "scripts": {
+    "gulp": "gulp",
+    "webpack": "webpack --mode=development --watch",
     "build": "gulp less && npx webpack --mode=development && webpack --mode=production",
     "deploy": "gulp build"
   },

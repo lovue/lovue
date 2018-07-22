@@ -1,6 +1,6 @@
 <template>
-  <label class="ant-switch">
-    <input type="checkbox" class="ant-switch-input" :name="name" :disabled="disabled">
+  <label class="ant-switch" :class="{disabled: disabled}">
+    <input type="checkbox" :name="name" :disabled="disabled">
     <span></span>
   </label>
 </template>

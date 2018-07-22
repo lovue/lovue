@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const argv = require('yargs').argv
@@ -40,6 +41,14 @@ module.exports = {
       {
         test: /\.vue$/,
         use: { loader: 'vue-loader' }
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'less-loader'
+        ]
       },
       {
         test: /\.js$/,

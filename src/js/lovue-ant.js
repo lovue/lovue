@@ -38,6 +38,10 @@ import Menu from './vue-ant/Menu.vue'
 import Radio from './vue-ant/Radio.vue'
 import Checkbox from './vue-ant/Checkbox.vue'
 import Switch from './vue-ant/Switch.vue'
+import Search from './vue-ant/Search.vue'
+import Upload from './vue-ant/Upload.vue'
+import Tab from './vue-ant/Tab.vue'
+import Steps from './vue-ant/Steps.vue'
 
 const components = [
   ['vue-beauty-alert', VueBeautyAlert],
@@ -76,7 +80,11 @@ const Ants = [
   Menu,
   Radio,
   Checkbox,
-  Switch
+  Switch,
+  Search,
+  Upload,
+  Tab,
+  Steps
 ]
 
 if (typeof window !== 'undefined' && window.Vue) {
