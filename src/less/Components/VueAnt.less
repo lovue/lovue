@@ -1,10 +1,32 @@
 @import "../Bootstrapping/Variables";
 @import "VueComponents";
 
+svg {
+  color: inherit;
+  vertical-align: middle;
+  /* 通过设置 color 来改变 SVG 的颜色/fill */
+  fill: currentColor;
+  /* path 和 stroke 溢出 viewBox 部分在 IE 下会显示
+     normalize.css 中也包含这行 */
+  overflow: hidden;
+}
+
 .ant-row {
   display: flex;
 
   .ant-col {
+    &.col-1 {
+      width: calc(100% / 24);
+    }
+
+    &.col-2 {
+      width: calc(100% / 12);
+    }
+
+    &.col-4 {
+      width: calc(100% / 6);
+    }
+
     &.col-6 {
       width: 25%;
     }
@@ -16,6 +38,21 @@
     &.col-12 {
       width: 50%;
     }
+  }
+}
+
+.ant-layout-lr {
+  display: flex;
+  align-items: flex-start;
+
+  > .l {
+    flex-shrink: 0;
+    margin-right: 1.2rem;
+  }
+
+  > .r {
+    flex: 1;
+    min-width: 0;
   }
 }
 

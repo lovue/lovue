@@ -1,0 +1,186 @@
+.container > .l {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  background-color: #f5f5f5;
+  overflow: auto;
+}
+.container > .r {
+  margin-left: 300px;
+}
+.aside .list {
+  margin-top: 80px;
+}
+.aside .list li {
+  border-bottom: 1px solid #e9e9e9;
+}
+.aside .list li a {
+  display: block;
+  line-height: 42px;
+  padding-left: 40px;
+  transition: color 0.25s;
+}
+.aside .list li a:hover {
+  color: #4AD3E8;
+}
+.aside .list li a.focus {
+  color: #00C1DE;
+}
+.content .grid-demo {
+  width: 100%;
+}
+.content .grid-demo > .row,
+.content .grid-demo > .row-inline {
+  min-height: 40px;
+  padding: 4px;
+  border: 1px solid red;
+}
+.content .grid-demo > .row > .cell,
+.content .grid-demo > .row-inline > .cell,
+.content .grid-demo > .row > .cell-h,
+.content .grid-demo > .row-inline > .cell-h {
+  min-height: 30px;
+  padding: 4px;
+  border: 1px solid blue;
+}
+.content .grid-demo > .row > .cell .seg,
+.content .grid-demo > .row-inline > .cell .seg,
+.content .grid-demo > .row > .cell-h .seg,
+.content .grid-demo > .row-inline > .cell-h .seg {
+  min-height: 60px;
+  height: 20px;
+  border: 1px solid green;
+}
+.content .grid-demo > .row > .cell .seg,
+.content .grid-demo > .row-inline > .cell .seg {
+  min-width: 60px;
+}
+.content .grid-demo > .row > .cell-h .seg,
+.content .grid-demo > .row-inline > .cell-h .seg {
+  flex: 1;
+}
+.content .left-right-demo {
+  width: 100%;
+}
+.content .left-right-demo > .left {
+  background-color: red;
+  width: 300px;
+  height: 60px;
+}
+.content .left-right-demo > .right {
+  background-color: blue;
+  height: 60px;
+}
+.content .pwd-validity-demo {
+  position: relative;
+  padding-bottom: 30px;
+  width: 50%;
+}
+.panel {
+  border-bottom: 1px solid #e9e9e9;
+}
+.panel .title {
+  font-size: 1.8rem;
+  padding: 12px 16px;
+  line-height: 1.25;
+  letter-spacing: 1px;
+}
+.panel .content {
+  padding: 10px 10px 80px;
+}
+.panel .content-cell {
+  margin-bottom: 20px;
+  border: 1px solid #e9e9e9;
+}
+.panel .controls {
+  display: flex;
+  align-items: center;
+  padding: 20px 10px;
+  border-bottom: 1px solid #e9e9e9;
+}
+.panel .controls > * {
+  margin-right: 20px;
+}
+.panel .controls > .ant-dropdown-wrap {
+  margin-right: 100px;
+}
+.panel .source-code pre {
+  margin: 0;
+}
+.panel .source-code pre .hljs {
+  font-family: Monaco, Consolas, monospace;
+  line-height: 1.5;
+  padding: 20px 10px;
+  background-color: #000;
+}
+.container .cell .title {
+  font-size: 18px;
+  background-color: transparent;
+  padding: 12px 16px;
+}
+.container .cell .content {
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  margin: auto;
+  min-height: 480px;
+}
+.container .cell .content > * {
+  margin-right: 20px;
+}
+.container .cell .content .vue-html-editor {
+  margin: 20px 0;
+  width: 80%;
+}
+.container .cell .content .table {
+  width: 80%;
+}
+.container .cell .content .input-radio {
+  width: 100%;
+  padding-left: 40%;
+  margin-bottom: 20px;
+}
+.container .cell .content .vue-tab {
+  margin-right: 0;
+}
+.container .cell .content .vue-carousel {
+  flex-grow: 1;
+  margin-right: 0;
+}
+.container .cell .content .vue-collapse {
+  margin-right: 0;
+  width: 80%;
+}
+.ant-row {
+  height: auto;
+  margin-bottom: 16px;
+}
+.ant-row .ant-col {
+  padding: 16px 0;
+  text-align: center;
+  color: #fff;
+  font-size: 1.4rem;
+}
+.ant-row .ant-col:nth-child(odd) {
+  background-color: #00C1DE;
+}
+.ant-row .ant-col:nth-child(even) {
+  background-color: #00a854;
+}
+.ant-layout-lr {
+  width: 100%;
+}
+.ant-layout-lr > .l {
+  background-color: red;
+  width: 300px;
+  height: 60px;
+}
+.ant-layout-lr > .r {
+  background-color: blue;
+  height: 60px;
+}
+/*# sourceMappingURL=ant.css.map */
