@@ -185,6 +185,9 @@
       ]
     },
     methods: {
+      sleep(delay = 1000) {
+        return new Promise(resolve => setTimeout(() => resolve(), delay))
+      },
       previousStep() {
         if (this.currentStep === 0) return
         this.currentStep--
@@ -229,6 +232,32 @@
       },
       msgError() {
         this.error('错误')
+      },
+      showModal() {
+        this.$modal({
+          title: '标题',
+          content: '内容'
+        })
+      },
+      showSimpleModal() {
+        this.$modal('内容')
+      },
+      showFixedModal() {
+        this.$modal({
+          content: '内容',
+          fixed: true
+        })
+      },
+      showAsyncModal() {
+        this.$modal({
+          title: '标题',
+          content: '内容',
+          async: true,
+          confirm: async () => {
+            await this.sleep()
+            return true
+          }
+        })
       },
       getCars(cars) {
         console.log(cars)

@@ -415,6 +415,23 @@
           <v-date-picker></v-date-picker>
         </div>
       </div>
+
+      <div class="panel" id="toPwdStrength">
+        <div class="title">密码强度</div>
+        <div class="content">
+          <v-pwd-strength password="hello"></v-pwd-strength>
+        </div>
+      </div>
+
+      <div class="panel" id="toModal">
+        <div class="title">模态框</div>
+        <div class="content">
+          <v-button @click="showModal">显示</v-button>
+          <v-button @click="showSimpleModal">简单模式</v-button>
+          <v-button @click="showFixedModal">顶部固定模式</v-button>
+          <v-button @click="showAsyncModal">异步模式</v-button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

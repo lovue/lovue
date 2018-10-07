@@ -11,6 +11,89 @@ svg {
   overflow: hidden;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.fixed {
+    align-items: flex-start;
+  }
+}
+
+.ant-window {
+  @title-height: 50px;
+
+  .shadow;
+  background-color: @white-color;
+  border-radius: @border-radius;
+
+  .title-bar {
+    position: relative;
+    line-height: @title-height;
+    border-bottom: 1px solid @border-color;
+    padding-left: @3unit;
+    display: flex;
+    justify-content: space-between;
+    border-radius: @border-radius @border-radius 0 0;
+
+    .btn-close {
+      font-family: "PingFang SC Light", sans-serif;
+      font-size: 2rem;
+      padding: 0 @2unit;
+      height: @title-height;
+      line-height: @title-height;
+      color: @assist-font-color;
+      cursor: pointer;
+
+      span {
+        display: block;
+      }
+
+      &:hover {
+        color: @pink-color;
+      }
+    }
+  }
+
+  .win-content {
+    max-height: calc(85vh - @title-height);
+    max-width: 80vw;
+    min-width: 520px;
+    padding: @unit @2unit;
+    overflow-y: auto;
+
+    @media (max-height: 800px) {
+      max-height: calc(95vh - @title-height);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+  }
+
+  .win-footer {
+    padding: @unit @2unit;
+    display: flex;
+    border-top: 1px solid @border-color;
+
+    .right {
+      margin-left: auto;
+
+      .ant-btn-ghost {
+        margin-right: @unit;
+      }
+    }
+  }
+}
+
 .ant-row {
   display: flex;
 
@@ -65,7 +148,7 @@ svg {
   border-radius: @border-radius;
   height: 32px;
   user-select: none;
-  transition: all .3s cubic-bezier(.645,.045,.355,1);
+  transition: all .3s cubic-bezier(.645, .045, .355, 1);
   color: @light-black-color;
   background-color: @white-color;
   cursor: pointer;
@@ -159,17 +242,16 @@ svg {
       border-radius: 0;
     }
 
-    &.ant-btn-primary+.ant-btn-primary {
+    &.ant-btn-primary + .ant-btn-primary {
       border-left-color: @blue-3;
     }
 
     &.ant-btn-ghost:hover {
       z-index: 2;
 
-
     }
 
-    &.ant-btn-ghost+.ant-btn-ghost {
+    &.ant-btn-ghost + .ant-btn-ghost {
       margin-left: -1px;
     }
   }
@@ -179,7 +261,7 @@ svg {
   font-size: @small-font;
   line-height: 1.5;
   color: @light-black-color;
-  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
   background-clip: padding-box;
   border-radius: @border-radius;
   padding: 4px 0;
@@ -264,7 +346,7 @@ svg {
       font-size: @small-font;
       padding: 0 20px;
       border-bottom: 2px solid transparent;
-      transition: all .3s cubic-bezier(.645,.045,.355,1);
+      transition: all .3s cubic-bezier(.645, .045, .355, 1);
 
       &:hover {
         border-color: @blue-color;
@@ -272,8 +354,6 @@ svg {
       }
     }
   }
-
-
 
   .ant-dropdown {
     left: 0;
@@ -549,7 +629,7 @@ svg {
         display: none;
         justify-content: center;
         align-items: center;
-        background-color: rgba(0,0,0,.65);
+        background-color: rgba(0, 0, 0, .65);
         cursor: pointer;
 
         .icon-delete {
@@ -1303,6 +1383,94 @@ svg {
           background-color: @blue-color;
         }
       }
+    }
+  }
+}
+
+.ant-pwd-strength {
+  .flex-start;
+  height: 20px;
+  font-size: @tiny-font;
+
+  .str-lines {
+    display: flex;
+
+    > span {
+      width: 40px;
+      height: 2px;
+      background-color: @disabled-color;
+      margin-right: 4px;
+      border-radius: 30px;
+
+      &.str-0 {
+        background-color: @red-10;
+      }
+      &.str-1 {
+        background-color: @error-color;
+      }
+      &.str-2 {
+        background-color: @warn-color;
+      }
+      &.str-3 {
+        background-color: @cyan-5;
+      }
+      &.str-4 {
+        background-color: @success-color;
+      }
+    }
+  }
+}
+
+.ant-modal {
+  .ant-window {
+    transition: opacity .2s, transform .3s;
+  }
+
+  .win-content {
+    padding: @3unit;
+  }
+
+  &.simple {
+    .title-bar {
+      display: none;
+    }
+
+    .win-content {
+      padding: @4unit @3unit;
+    }
+
+    .win-footer {
+      border-top: none;
+
+      .ant-btn-ghost {
+        display: none;
+      }
+    }
+  }
+
+  &.fixed {
+    .ant-window {
+      margin-top: 100px;
+    }
+  }
+}
+
+.ant-popup {
+  .title-bar {
+    .non-select;
+    cursor: move;
+    font-size: @normal-font;
+
+    .btn-close {
+      font-size: 0;
+      border-radius: 0;
+      color: black;
+    }
+  }
+
+  &.fixed {
+    .ant-window {
+      margin-top: 100px;
     }
   }
 }

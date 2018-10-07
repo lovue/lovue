@@ -1,24 +1,7 @@
 import './lib/iconfont'
 import { getype } from 'lovue-utils'
-
-
-import VueNoCaptcha from './vue/NoCaptcha.vue'
-import VuePopupWindow from './vue/PopupWindow.vue'
-import VueTable from './vue/Table.vue'
-import VueSelectCity from './vue/SelectCity.vue'
-import VueCrop from './vue/Crop.vue'
-import VueHtmlEditor from './vue/HtmlEditor.vue'
-import VuePureSelect from './vue/PureSelect.vue'
-import VueCarousel from './vue/Carousel.vue'
-import VueCollapse from './vue/Collapse.vue'
-import VuePwdStrength from './vue/PwdStrength.vue'
-import VueTableTree from './vue/TableTree.vue'
-import VueExcel from './vue/Excel.vue'
-import VuePwdValidity from './vue/PwdValidity.vue'
-import VueTreeList from './vue/TreeList.vue'
-import VueImgReflex from './vue/ImgReflex.vue'
-
 import Message from './vue-ant/Message.vue'
+import Modal from './vue-ant/Modal.vue'
 import Row from './vue-ant/Row.vue'
 import Col from './vue-ant/Col.vue'
 import Icon from './vue-ant/Icon.vue'
@@ -37,24 +20,8 @@ import PureSelect from './vue-ant/PureSelect.vue'
 import Progress from './vue-ant/Progress.vue'
 import Pagination from './vue-ant/Pagination.vue'
 import DatePicker from './vue-ant/DatePicker.vue'
-
-const components = [
-  ['vue-no-captcha', VueNoCaptcha],
-  ['vue-popup-window', VuePopupWindow],
-  ['vue-table', VueTable],
-  ['vue-select-city', VueSelectCity],
-  ['vue-crop', VueCrop],
-  ['vue-html-editor', VueHtmlEditor],
-  ['vue-pure-select', VuePureSelect],
-  ['vue-carousel', VueCarousel],
-  ['vue-collapse', VueCollapse],
-  ['vue-pwd-strength', VuePwdStrength],
-  ['vue-table-tree', VueTableTree],
-  ['vue-excel', VueExcel],
-  ['vue-pwd-validity', VuePwdValidity],
-  ['vue-tree-list', VueTreeList],
-  ['vue-img-reflex', VueImgReflex]
-]
+import PwdStrength from './vue-ant/PwdStrength.vue'
+import Popup from './vue-ant/Popup.vue'
 
 const Ants = [
   Row,
@@ -74,14 +41,12 @@ const Ants = [
   PureSelect,
   Progress,
   Pagination,
-  DatePicker
+  DatePicker,
+  PwdStrength,
+  Popup
 ]
 
 if (typeof window !== 'undefined' && window.Vue) {
-  components.forEach(c => {
-    Vue.component(c[0], c[1])
-  })
-
   Ants.forEach(a => {
     Vue.component(a.name, a)
   })
@@ -106,33 +71,66 @@ if (typeof window !== 'undefined' && window.Vue) {
     instance.vm.visible = true
   }
 
-  Vue.prototype.$msg = Msg
-  Vue.prototype.success = msg => Msg(msg)
-  Vue.prototype.info = msg => {
-    Msg({
-      type: 'info',
-      message: msg
-    })
-  }
-  Vue.prototype.warn = msg => {
-    Msg({
-      type: 'warn',
-      message: msg
-    })
-  }
-  Vue.prototype.error = (msg, close) => {
-    if (close === undefined) close = true
+  Object.defineProperties(Vue.prototype, {
+    $msg: {
+      value: Msg
+    },
+    success: {
+      value: msg => Msg(msg)
+    },
+    info: {
+      value: msg => {
+        Msg({
+          type: 'info',
+          message: msg
+        })
+      }
+    },
+    warn: {
+      value: msg => {
+        Msg({
+          type: 'warn',
+          message: msg
+        })
+      }
+    },
+    error: {
+      value: (msg, close) => {
+        if (close === undefined) close = true
 
-    if (getype(msg) === 'error') {
-      msg = msg.message
+        if (getype(msg) === 'error') {
+          console.error(msg)
+          return
+        }
+
+        if (getype(msg) === 'string') {
+          Msg({
+            type: 'error',
+            message: msg,
+            showClose: close
+          })
+        }
+      }
+    },
+    $modal: {
+      value: function (option = {}) {
+        let instance
+        if (typeof option === 'string') {
+          option = {
+            content: option
+          }
+        }
+
+        const Constructor = Vue.extend(Modal)
+        instance = new Constructor({
+          data: option
+        })
+        instance.vm = instance.$mount()
+        document.body.appendChild(instance.vm.$el)
+        instance.vm.visible = true
+      }
     }
-
-    Msg({
-      type: 'error',
-      message: msg,
-      showClose: close
-    })
-  }
+  })
 
   Vue.config.errorHandler = (error, vm) => {
     vm.error(error)
