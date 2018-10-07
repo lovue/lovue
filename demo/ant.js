@@ -40,13 +40,7 @@
   new Vue({
     el: '#app',
     data: {
-      diploma: {
-        chuzhong: '初中',
-        gaozhong: '高中',
-        benke: '本科',
-        shuoshi: '硕士',
-        boshi: '博士'
-      },
+      diploma: ['初中', '高中', '本科', '硕士', '博士'],
       buildings: [
         {
           name: '一公寓',

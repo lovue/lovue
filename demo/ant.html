@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="//guomy.oss-cn-shenzhen.aliyuncs.com/css/global.css">
   <link rel="stylesheet" href="/dist/lovue-ant.css">
   <link rel="stylesheet" href="./ant.css">
-  <script src="./vue.min.js"></script>
+  <script src="./vue.js"></script>
   <script src="./beautify-html.min.js"></script>
   <script src="./prism.js" defer></script>
   <script src="/dist/lovue-ant.js"></script>
@@ -16,15 +16,9 @@
 </head>
 <body>
 <div id="app">
-  <vue-beauty-alert ref="alert"></vue-beauty-alert>
-
-  <vue-popup-window title="这是标题" :show="bShowWindow" @close="bShowWindow = false">
-    <form class="form" slot="content">这是内容</form>
-  </vue-popup-window>
-
   <div class="container">
     <aside class="l aside"></aside>
-    <div class="r content">
+    <div class="r main">
       <div class="panel" id="toRowCol">
         <div class="title">栅格布局</div>
         <div class="content">
@@ -52,7 +46,7 @@
         <div class="content">
           <div class="content-cell">
             <div class="controls">
-              <div class="ant-layout-lr">
+              <div class="ant-layout-lr ant-layout-lr-demo">
                 <div class="l"></div>
                 <div class="r"></div>
               </div>
@@ -375,6 +369,50 @@
               <v-button @click="nextStep">下一步</v-button>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="panel" id="toMessage">
+        <div class="title">消息提示</div>
+        <div class="content">
+          <v-button @click="msgSuccess">成功</v-button>
+          <v-button @click="msgWarn">警告</v-button>
+          <v-button @click="msgInfo">提示</v-button>
+          <v-button pattern="danger" @click="msgError">错误</v-button>
+        </div>
+      </div>
+
+      <div class="panel" id="toSelect">
+        <div class="title">下拉列表</div>
+        <div class="content">
+          <v-select :source="cars"></v-select>
+          <v-select :source="cars" multiple></v-select>
+          <v-select :source="cars" searchable></v-select>
+          <v-select :source="cars" disabled></v-select>
+          <v-pure-select :source="diploma"></v-pure-select>
+        </div>
+      </div>
+
+      <div class="panel" id="toProgress">
+        <div class="title">进度条</div>
+        <div class="content">
+          <v-progress :value="0.12"></v-progress>
+          <v-progress :value="0.6434" decimal :width="300" :height="40" color="#f46e65"></v-progress>
+        </div>
+      </div>
+
+      <div class="panel" id="toPagination">
+        <div class="title">分页</div>
+        <div class="content">
+          <v-pagination :total="100"></v-pagination>
+          <v-pagination :total="100" simple></v-pagination>
+        </div>
+      </div>
+
+      <div class="panel" id="toDatePicker">
+        <div class="title">日期选择器</div>
+        <div class="content">
+          <v-date-picker></v-date-picker>
         </div>
       </div>
     </div>

@@ -28,52 +28,52 @@
 .aside .list li a.focus {
   color: #00C1DE;
 }
-.content .grid-demo {
+.main .grid-demo {
   width: 100%;
 }
-.content .grid-demo > .row,
-.content .grid-demo > .row-inline {
+.main .grid-demo > .row,
+.main .grid-demo > .row-inline {
   min-height: 40px;
   padding: 4px;
   border: 1px solid red;
 }
-.content .grid-demo > .row > .cell,
-.content .grid-demo > .row-inline > .cell,
-.content .grid-demo > .row > .cell-h,
-.content .grid-demo > .row-inline > .cell-h {
+.main .grid-demo > .row > .cell,
+.main .grid-demo > .row-inline > .cell,
+.main .grid-demo > .row > .cell-h,
+.main .grid-demo > .row-inline > .cell-h {
   min-height: 30px;
   padding: 4px;
   border: 1px solid blue;
 }
-.content .grid-demo > .row > .cell .seg,
-.content .grid-demo > .row-inline > .cell .seg,
-.content .grid-demo > .row > .cell-h .seg,
-.content .grid-demo > .row-inline > .cell-h .seg {
+.main .grid-demo > .row > .cell .seg,
+.main .grid-demo > .row-inline > .cell .seg,
+.main .grid-demo > .row > .cell-h .seg,
+.main .grid-demo > .row-inline > .cell-h .seg {
   min-height: 60px;
   height: 20px;
   border: 1px solid green;
 }
-.content .grid-demo > .row > .cell .seg,
-.content .grid-demo > .row-inline > .cell .seg {
+.main .grid-demo > .row > .cell .seg,
+.main .grid-demo > .row-inline > .cell .seg {
   min-width: 60px;
 }
-.content .grid-demo > .row > .cell-h .seg,
-.content .grid-demo > .row-inline > .cell-h .seg {
+.main .grid-demo > .row > .cell-h .seg,
+.main .grid-demo > .row-inline > .cell-h .seg {
   flex: 1;
 }
-.content .left-right-demo {
+.main .left-right-demo {
   width: 100%;
 }
-.content .left-right-demo > .left {
+.main .left-right-demo > .left {
   background-color: red;
   width: 300px;
   height: 60px;
 }
-.content .left-right-demo > .right {
+.main .left-right-demo > .right {
   background-color: blue;
   height: 60px;
 }
-.content .pwd-validity-demo {
+.main .pwd-validity-demo {
   position: relative;
   padding-bottom: 30px;
   width: 50%;
@@ -171,16 +171,26 @@
 .ant-row .ant-col:nth-child(even) {
   background-color: #00a854;
 }
-.ant-layout-lr {
+.ant-layout-lr-demo {
   width: 100%;
 }
-.ant-layout-lr > .l {
+.ant-layout-lr-demo > .l {
   background-color: red;
   width: 300px;
   height: 60px;
 }
-.ant-layout-lr > .r {
+.ant-layout-lr-demo > .r {
   background-color: blue;
   height: 60px;
+}
+.ant-select {
+  vertical-align: top;
+}
+.ant-progress {
+  display: inline-block;
+  margin-right: 8px;
+}
+.ant-pagination {
+  margin-bottom: 16px;
 }
 /*# sourceMappingURL=ant.css.map */
