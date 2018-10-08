@@ -2,10 +2,15 @@
   "name": "lovue",
   "version": "2.0.0",
   "description": "Love Vue: UI components for Vue",
-  "main": "index.js",
+  "main": "dist/lovue.js",
+  "unpkg": "dist/lovue.min.js",
+  "jsdelivr": "dist/lovue.min.js",
   "repository": {
     "url": "https://github.com/loliconer/lovue.git",
     "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/loliconer/lovue/issues"
   },
   "scripts": {
     "gulp": "gulp",
@@ -53,7 +58,6 @@
     "mocha": "^3.5.0",
     "sinon": "^2.4.1",
     "sinon-chai": "^2.14.0",
-    "uglify-es-webpack-plugin": "^0.10.0",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "vue": "^2.5.16",
     "vue-loader": "^15.2.4",
