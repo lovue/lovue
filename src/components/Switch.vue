@@ -1,5 +1,5 @@
 <template>
-  <label class="ant-switch" :class="{disabled: disabled}">
+  <label class="v-switch" :class="{disabled: disabled}">
     <input type="checkbox" :name="name" :disabled="disabled">
     <span></span>
   </label>

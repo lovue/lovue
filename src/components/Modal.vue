@@ -1,7 +1,7 @@
 <template>
-  <div class="ant-modal overlay" :class="customCls" v-show="visible">
+  <div class="v-modal overlay" :class="customCls" v-show="visible">
     <transition name="slide-fade">
-      <div class="ant-window" v-show="visible">
+      <div class="v-window" v-show="visible">
         <div class="title-bar">
           <div class="title-name">{{title}}</div>
           <button class="btn-text btn-close" type="button" @click="close">

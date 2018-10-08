@@ -1,5 +1,5 @@
 <template>
-  <div class="ant-row">
+  <div class="v-row">
     <slot></slot>
   </div>
 </template>

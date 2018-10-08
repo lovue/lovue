@@ -1,6 +1,6 @@
 <template>
-  <label class="ant-radio">
-    <input type="radio" class="ant-radio-input" :value="option.value" :name="name" :disabled="disabled">
+  <label class="v-radio">
+    <input type="radio" class="v-radio-input" :value="option.value" :name="name" :disabled="disabled">
     <span>{{option.label}}</span>
   </label>
 </template>

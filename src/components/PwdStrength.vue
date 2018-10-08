@@ -1,5 +1,5 @@
 <template>
-  <div class="ant-pwd-strength" v-show="password.length">
+  <div class="v-pwd-strength" v-show="password.length">
     <div class="str-lines">
       <span :class="n" v-for="n of levelClasses"></span>
     </div>

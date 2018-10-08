@@ -1,5 +1,5 @@
 <template>
-  <div class="ant-btn-group">
+  <div class="v-btn-group">
     <slot></slot>
   </div>
 </template>

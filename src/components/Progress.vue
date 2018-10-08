@@ -1,5 +1,5 @@
 <template>
-  <div class="ant-progress" :style="style">
+  <div class="v-progress" :style="style">
     <div class="layer-1"></div>
     <div class="layer-2" :style="`width:${progress}%; background-color: ${color}`"></div>
     <div class="layer-3">{{progress}}%</div>

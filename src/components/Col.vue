@@ -1,5 +1,5 @@
 <template>
-  <div class="ant-col" :class="`col-${span}`">
+  <div class="v-col" :class="`col-${span}`">
     <slot></slot>
   </div>
 </template>

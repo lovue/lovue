@@ -1,5 +1,5 @@
 <template>
-  <div class="ant-tab">
+  <div class="v-tab">
     <div class="tabs" ref="tabs">
       <div class="tab" v-for="(title,i) of titles" @click="setTab(i)"><v-icon :icon="title.icon" size="16" v-if="title.icon"></v-icon>{{title.name}}</div>
     </div>

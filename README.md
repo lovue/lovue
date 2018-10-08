@@ -35,42 +35,38 @@ new Vue({
 ```
 
 ### 已完成：
-- 搜索框：Search.vue
-- 选择文件按钮：UploadButton.vue
-- Tab页：Tab.vue
-- 弹出提示框：BeautyAlert.vue
-- 中国省市选择器：SelectCity.vue
+- 左右布局
+- 网格布局
+- 按钮：Button.vue
+- 复选框：Checkbox.vue
 - 日期选择器：DatePicker.vue
+- 图标：Icon.vue
+- 菜单：Menu.vue
+- 提示：Message.vue
+- 模态框：Modal.vue
+- 分页：Pagination.vue
+- 弹出窗口：Popup.vue
+- 进度条：Progress.vue
+- 密码强度验证：PwdStrength.vue
+- 单选框：Radio.vue
+- 搜索框：Search.vue
+- 高级下拉列表：Select.vue
+- 步骤：Steps.vue
+- 开关：Switch.vue
+- Tab页：Tab.vue
+- 选择文件按钮：Upload.vue
+
+
+### 开发中：
+- 中国省市选择器：SelectCity.vue
 - 图片裁剪并上传（简版）：Crop.vue
 - HTML5富文本编辑器：HtmlEditor.vue
+- 走马灯：Carousel.vue
 - 图片倒影：ImgReflex.vue
-- 分页：Pagination.vue
 - 表格：Table.vue
-- 加载：Loading.vue
-- 进度条：ProgressBar.vue
-- 弹出窗口：PopupWindow.vue
-- 高级下拉列表：Select.vue
-- 密码强度验证：PwdStrength.vue
 - 树形列表：TreeList.vue
-- 提交按钮：SubmitButton.vue
 - 密码验证：PwdValidity.vue
 - 拖拽：DragDrop.vue
 - 拖动滑块验证：NoCaptcha.vue
 - 带树形结构的表格:TableTree.vue
 - 收缩菜单：Collapse.vue
-
-
-### 开发中：
-- 走马灯：Carousel.vue
-
-### CSS控件：
-- 左右布局
-- 网格布局
-- 按钮
-- 下拉菜单
-- 文本输入框
-- 单选框
-- 复选框
-- 开关
-- 文件上传按钮
-- 下拉列表

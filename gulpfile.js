@@ -6,7 +6,7 @@ const clean = require('gulp-dest-clean')
 const changed = require('gulp-changed')
 
 gulp.task('less', () => {
-  gulp.src(['src/less/lovue.less', 'src/less/lovue-ant.less'])
+  gulp.src(['src/less/lovue.less'])
     .pipe(less({
       strictMath: 'on'
     }))

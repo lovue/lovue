@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" :class="`ant-btn ${patternClass} ${sizeClass}`" :disabled="disabled" @click="click">
+  <button :type="type" :class="`v-btn ${patternClass} ${sizeClass}`" :disabled="disabled" @click="click">
     <v-icon :icon="icon" v-if="!!icon && !loading"></v-icon>
     <v-icon icon="refresh" :class="{loading: loading}" v-if="loading"></v-icon>
     <slot></slot>
@@ -13,13 +13,13 @@
       let patternClass = '', sizeClass = ''
 
       if (this.pattern === undefined) {
-        patternClass = 'ant-btn-primary'
+        patternClass = 'v-btn-primary'
       } else {
-        patternClass = `ant-btn-${this.pattern}`
+        patternClass = `v-btn-${this.pattern}`
       }
 
-      if (this.size === 'small') sizeClass = 'ant-btn-sm'
-      if (this.size === 'large') sizeClass = 'ant-btn-lg'
+      if (this.size === 'small') sizeClass = 'v-btn-sm'
+      if (this.size === 'large') sizeClass = 'v-btn-lg'
 
       return {
         patternClass,

@@ -1,6 +1,6 @@
 <template>
-  <div class="ant-select" @click.stop="showCandidates">
-    <div class="selected ant-layout-lr">
+  <div class="v-select" @click.stop="showCandidates">
+    <div class="selected v-layout-lr">
       <div class="layer-disabled" v-if="disabled"></div>
       <div class="l">
         <template v-if="multiple">

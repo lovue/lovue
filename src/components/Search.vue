@@ -1,6 +1,6 @@
 <template>
-  <div class="ant-search">
-    <input class="ant-input" autocomplete="off" :placeholder="placeholder" @input="inputHandler" v-model.trim="keywords">
+  <div class="v-search">
+    <input class="v-input" autocomplete="off" :placeholder="placeholder" @input="inputHandler" v-model.trim="keywords">
     <v-icon icon="search" @click.native="$emit('input', keywords)"></v-icon>
   </div>
 </template>

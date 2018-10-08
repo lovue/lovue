@@ -1,5 +1,5 @@
 <template>
-  <dl class="ant-pure-select" :class="open" @click.stop="showDd">
+  <dl class="v-pure-select" :class="open" @click.stop="showDd">
     <dt>
       <span class="placeholder" v-if="current === undefined">请选择</span>
       <template v-for="(elem, index) of source">

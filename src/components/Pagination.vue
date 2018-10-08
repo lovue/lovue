@@ -1,5 +1,5 @@
 <template>
-  <div class="ant-pagination">
+  <div class="v-pagination">
     <template v-if="simple">
       <span>{{index}}/{{pages}}页</span>
       <ul class="p-pages">
@@ -23,7 +23,7 @@
       </ul>
       <div class="p-jump">
         <span>前往</span>
-        <input class="ant-input" type="number" min="1" :max="pages" required v-model="jumpPage" @change="jump">
+        <input class="v-input" type="number" min="1" :max="pages" required v-model="jumpPage" @change="jump">
         <span>页</span>
       </div>
     </template>

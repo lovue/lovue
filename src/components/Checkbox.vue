@@ -1,6 +1,6 @@
 <template>
-  <label class="ant-checkbox">
-    <input type="checkbox" class="ant-checkbox-input" :value="option.value" :name="name" :disabled="disabled">
+  <label class="v-checkbox">
+    <input type="checkbox" class="v-checkbox-input" :value="option.value" :name="name" :disabled="disabled">
     <span>{{option.label}}</span>
   </label>
 </template>

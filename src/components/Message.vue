@@ -1,6 +1,6 @@
 <template>
   <transition name="slide-fade">
-    <div class="ant-message" v-show="visible">
+    <div class="v-message" v-show="visible">
       <div class="m-icon" :class="`m-${type}`">
         <v-icon :icon="iconType"></v-icon>
       </div>

@@ -1,6 +1,6 @@
 <template>
-  <div class="ant-upload">
-    <div class="au-thumbs" v-if="shape === 'square'">
+  <div class="v-upload">
+    <div class="u-thumbs" v-if="shape === 'square'">
       <div class="thumb-wrap" :style="`width: ${thumbSize}px;height: ${thumbSize}px;`" v-for="(thumb, i) of fileThumbs">
         <img :src="thumb">
         <div class="del-mask" @click="deleteFile(i)"><v-icon icon="delete"></v-icon></div>
@@ -11,18 +11,18 @@
       </div>
     </div>
     <template v-else>
-      <div class="au-above">
+      <div class="u-above">
         <div class="btn-wrap">
           <v-button icon="upload">{{text}}</v-button>
           <input type="file" :name="name" @change="selectFile" :multiple="multi" :required="required">
         </div>
-        <div class="au-file-names" v-if="!upload && !thumbnail && fileNames.length">
+        <div class="u-file-names" v-if="!upload && !thumbnail && fileNames.length">
           <span v-for="name of fileNames">{{name}}</span>
         </div>
       </div>
 
-      <div class="au-below">
-        <div class="au-thumbs" v-if="thumbnail">
+      <div class="u-below">
+        <div class="u-thumbs" v-if="thumbnail">
           <div class="thumb-wrap" :style="`width: ${thumbSize}px;height: ${thumbSize}px;`" v-for="thumb of fileThumbs">
             <img :src="thumb">
           </div>

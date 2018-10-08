@@ -18,13 +18,12 @@ if (isProd) {
 
 module.exports = {
   entry: {
-    lovue: './src/js/lovue.js',
-    'lovue-ant': './src/js/lovue-ant.js'
+    lovue: './src/index.js'
   },
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
-    filename: isProd ? '[name].min.js' : '[name].js'
+    filename: isProd ? 'lovue.min.js' : 'lovue.js'
   },
   stats: {
     entrypoints: false
