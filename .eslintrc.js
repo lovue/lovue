@@ -7,7 +7,10 @@ module.exports = {
     sourceType: 'module'
   },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: 'eslint:recommended',
+  extends: [
+    'eslint:recommended',
+    'plugin:vue/essential'
+  ],
   // required to lint *.vue files
   plugins: [
     'html'
@@ -78,6 +81,7 @@ module.exports = {
     'no-var': 'off',
     'object-shorthand': 'warn',
     'prefer-template': 'off',
+    'vue/require-v-for-key': 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }
 }

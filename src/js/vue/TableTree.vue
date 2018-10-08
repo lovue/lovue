@@ -30,17 +30,19 @@
           <td :colspan="columns.props.length"></td>
         </tr>
 
-        <tr v-if="group.expand" v-for="(child, j) of group.children" @click="toggleRow(child, group)">
-          <td></td>
-          <td></td>
-          <td v-for="(prop, k) of columns.props">
-            <div class="input-checkbox" v-if="k === 0 && selectable">
-              <input type="checkbox" :id="`${_uid}_Select_Row_${i}_${j}`" :value="i" v-model="child.selected">
-              <label :for="`${_uid}_Select_Row_${i}_${j}`">{{child[prop]}}</label>
-            </div>
-            <span v-else>{{child[prop]}}</span>
-          </td>
-        </tr>
+        <template v-if="group.expand">
+          <tr v-for="(child, j) of group.children" @click="toggleRow(child, group)">
+            <td></td>
+            <td></td>
+            <td v-for="(prop, k) of columns.props">
+              <div class="input-checkbox" v-if="k === 0 && selectable">
+                <input type="checkbox" :id="`${_uid}_Select_Row_${i}_${j}`" :value="i" v-model="child.selected">
+                <label :for="`${_uid}_Select_Row_${i}_${j}`">{{child[prop]}}</label>
+              </div>
+              <span v-else>{{child[prop]}}</span>
+            </td>
+          </tr>
+        </template>
       </template>
       </tbody>
     </table>

@@ -3,7 +3,12 @@
     <div class="selected left-right">
       <div class="layer-disabled" v-if="disabled" @click.stop></div>
       <div class="left">
-        <span class="s-tag" :class="{'s-tag-custom': customizable && s.custom}" v-if="multiple" v-for="(s,i) of selected"><span class="tag-name">{{s.name}}</span><svg class="icon-close" @click="remove(s,i)"><use xlink:href="/img/icons.svg#icon-close"></use></svg></span>
+        <template v-if="multiple">
+          <span class="s-tag" :class="{'s-tag-custom': customizable && s.custom}" v-for="(s,i) of selected">
+            <span class="tag-name">{{s.name}}</span><svg class="icon-close" @click="remove(s,i)"><use xlink:href="/img/icons.svg#icon-close"></use></svg>
+          </span>
+        </template>
+        
         <input ref="input" class="input" type="text" :size="customText.length*2 || 1" v-if="multiple && customizable" v-model="customText" @keypress.enter.prevent="custom">
         <input class="input" type="text" v-if="!multiple" :value="selected.name" placeholder="请选择" readonly>
       </div>
@@ -64,7 +69,7 @@
     },
     methods: {
       setSelected() {
-        if(Array.isArray(this.selected)) {
+        if (Array.isArray(this.selected)) {
           let tmp = {}
           this.selected.forEach(s => {
             tmp[s.value] = 1
@@ -74,7 +79,7 @@
           })
         } else {
           this.items.forEach(i => {
-            if(i.value === this.selected.value) {
+            if (i.value === this.selected.value) {
               i.selected = true
             }
           })
@@ -152,7 +157,7 @@
     },
     mounted() {
       window.addEventListener('click', () => {
-        if(!this.clicked) {
+        if (!this.clicked) {
           this.bShowCandidates = false
         }
         this.clicked = false
