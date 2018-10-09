@@ -11,6 +11,7 @@ npm install
 npm run serve
 npm run build
 ```
+访问：http://localhost:10001
 
 ### 使用方法
 - 第一种（推荐）：引入已编译的js文件，这样可以使用所有的组件
