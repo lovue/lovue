@@ -50,7 +50,7 @@
 
         this.bShowDd = true
         this.updatePos()
-        this.$nextTick(() => this.open = 'open')
+        setTimeout(() => this.open = 'open', 40)
       },
       hideDd() {
         this.clickHide = true

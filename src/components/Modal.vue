@@ -5,7 +5,7 @@
         <div class="title-bar">
           <div class="title-name">{{title}}</div>
           <button class="btn-text btn-close" type="button" @click="close">
-            <v-icon icon="close" size="16"></v-icon>
+            <v-icon icon="close" size="18"></v-icon>
           </button>
         </div>
         <div class="win-content" v-html="content"></div>
@@ -45,6 +45,7 @@
         this.visible = false
         this.$destroy()
         document.body.removeChild(this.$el)
+        document.body.classList.remove('overhidden')
       },
       async handleConfirm() {
         if (!this.async) {
@@ -60,6 +61,9 @@
         }
         this.loading = false
       }
+    },
+    mounted() {
+      document.body.classList.add('overhidden')
     }
   }
 </script>

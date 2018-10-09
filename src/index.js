@@ -1,5 +1,4 @@
-import './lib/iconfont'
-import { getype } from 'lovue-utils'
+import Vue from 'vue'
 import Message from './components/Message.vue'
 import Modal from './components/Modal.vue'
 import Row from './components/Row.vue'
@@ -23,7 +22,11 @@ import DatePicker from './components/DatePicker.vue'
 import PwdStrength from './components/PwdStrength.vue'
 import Popup from './components/Popup.vue'
 
-const Ants = [
+if (!NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach
+}
+
+const Components = [
   Row,
   Col,
   Icon,
@@ -45,98 +48,80 @@ const Ants = [
   PwdStrength,
   Popup
 ]
+Components.forEach(a => {
+  Vue.component(a.name, a)
+})
 
-if (typeof window !== 'undefined' && window.Vue) {
-  Ants.forEach(a => {
-    Vue.component(a.name, a)
-  })
+const MessageConstructor = Vue.extend(Message)
 
-  const MessageConstructor = Vue.extend(Message)
+const Msg = function (option) {
+  let instance
+  option = option || {}
 
-  const Msg = function (option) {
-    let instance
-    option = option || {}
-
-    if (getype(option) === 'string') {
-      option = {
-        message: option
-      }
+  if (typeof option === 'string') {
+    option = {
+      message: option
     }
-
-    instance = new MessageConstructor({
-      data: option
-    })
-    instance.vm = instance.$mount()
-    document.body.appendChild(instance.vm.$el)
-    instance.vm.visible = true
   }
 
-  Object.defineProperties(Vue.prototype, {
-    $msg: {
-      value: Msg
-    },
-    success: {
-      value: msg => Msg(msg)
-    },
-    info: {
-      value: msg => {
-        Msg({
-          type: 'info',
-          message: msg
-        })
-      }
-    },
-    warn: {
-      value: msg => {
-        Msg({
-          type: 'warn',
-          message: msg
-        })
-      }
-    },
-    error: {
-      value: (msg, close) => {
-        if (close === undefined) close = true
-
-        if (getype(msg) === 'error') {
-          console.error(msg)
-          return
-        }
-
-        if (getype(msg) === 'string') {
-          Msg({
-            type: 'error',
-            message: msg,
-            showClose: close
-          })
-        }
-      }
-    },
-    $modal: {
-      value: function (option = {}) {
-        let instance
-        if (typeof option === 'string') {
-          option = {
-            content: option
-          }
-        }
-
-        const Constructor = Vue.extend(Modal)
-        instance = new Constructor({
-          data: option
-        })
-        instance.vm = instance.$mount()
-        document.body.appendChild(instance.vm.$el)
-        instance.vm.visible = true
-      }
-    }
+  instance = new MessageConstructor({
+    data: option
   })
-
-  Vue.config.errorHandler = (error, vm) => {
-    vm.error(error)
-  }
-
-  Vue.config.warnHandler = (warn, vm) => {
-    vm.error(warn)
-  }
+  instance.vm = instance.$mount()
+  document.body.appendChild(instance.vm.$el)
+  instance.vm.visible = true
 }
+
+Object.defineProperties(Vue.prototype, {
+  $msg: {
+    value: Msg
+  },
+  success: {
+    value: msg => Msg(msg)
+  },
+  info: {
+    value: msg => {
+      Msg({
+        type: 'info',
+        message: msg
+      })
+    }
+  },
+  warn: {
+    value: msg => {
+      Msg({
+        type: 'warn',
+        message: msg
+      })
+    }
+  },
+  error: {
+    value: (msg, close) => {
+      if (close === undefined) close = true
+
+      Msg({
+        type: 'error',
+        message: msg,
+        showClose: close
+      })
+    }
+  },
+  $modal: {
+    value: function (option = {}) {
+      let instance
+      if (typeof option === 'string') {
+        option = {
+          content: option
+        }
+      }
+
+      const Constructor = Vue.extend(Modal)
+      instance = new Constructor({
+        data: option
+      })
+      instance.vm = instance.$mount()
+      document.body.appendChild(instance.vm.$el)
+      instance.vm.visible = true
+    }
+  }
+})

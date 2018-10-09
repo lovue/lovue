@@ -4,7 +4,7 @@
       <div class="title-bar" @mousedown="dragStart">
         <div class="title-name">{{title}}</div>
         <button class="btn-text btn-close" type="button" @click="$emit('input', false)">
-          <v-icon icon="close" size="16"></v-icon>
+          <v-icon icon="close" size="18"></v-icon>
         </button>
       </div>
       <div class="win-content">
@@ -33,7 +33,6 @@
     },
     props: {
       title: String,
-      show: Boolean,
       value: Boolean,
       async: Boolean,
       confirm: Function,
@@ -47,7 +46,7 @@
       }
     },
     watch: {
-      show(val) {
+      value(val) {
         document.body.classList.toggle('overhidden', val)
       }
     },

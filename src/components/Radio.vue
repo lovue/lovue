@@ -1,7 +1,7 @@
 <template>
   <label class="v-radio">
-    <input type="radio" class="v-radio-input" :value="option.value" :name="name" :disabled="disabled">
-    <span>{{option.label}}</span>
+    <input type="radio" :value="value" :name="name" :disabled="disabled">
+    <span>{{label}}</span>
   </label>
 </template>
 
@@ -9,7 +9,8 @@
   export default {
     name: 'v-radio',
     props: {
-      option: Object,
+      value: [String, Number],
+      label: String,
       name: String,
       disabled: Boolean
     }

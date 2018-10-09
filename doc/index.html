@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--<link rel="icon" href="<%= BASE_URL %>favicon.ico">-->
+    <link rel="stylesheet" href="css/lovue.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>synth</title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but synth doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app">
+      <div class="container">
+        <aside class="l aside"></aside>
+        <div class="r main">
+          <div class="panel" id="toRowCol">
+            <div class="title">栅格布局</div>
+            <div class="content">
+              <v-row>
+                <v-col :span="12">col-12</v-col>
+                <v-col :span="12">col-12</v-col>
+              </v-row>
+              <v-row>
+                <v-col :span="8">col-8</v-col>
+                <v-col :span="8">col-8</v-col>
+                <v-col :span="8">col-8</v-col>
+              </v-row>
+              <v-row>
+                <v-col :span="6">col-6</v-col>
+                <v-col :span="6">col-6</v-col>
+                <v-col :span="6">col-6</v-col>
+                <v-col :span="6">col-6</v-col>
+              </v-row>
+            </div>
+          </div>
+
+          <div class="panel" id="toLeftRight">
+            <div class="title">左右布局</div>
+            <p>左边固定宽度，右边全宽且自适应的布局</p>
+            <div class="content">
+              <div class="content-cell">
+                <div class="controls">
+                  <div class="v-layout-lr v-layout-lr-demo">
+                    <div class="l"></div>
+                    <div class="r"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="toButton">
+            <div class="title">按钮</div>
+            <div class="content">
+              <div class="content-cell">
+                <div class="controls">
+                  <v-button>普通按钮</v-button>
+                  <v-button pattern="ghost">Ghost按钮</v-button>
+                  <v-button disabled>禁用按钮</v-button>
+                  <v-button pattern="danger">危险按钮</v-button>
+                </div>
+                <div class="controls">
+                  <v-button size="large">大按钮</v-button>
+                  <v-button>普通按钮</v-button>
+                  <v-button size="small">小按钮</v-button>
+                </div>
+                <div class="controls">
+                  <v-button icon="download">普通按钮</v-button>
+                  <v-button pattern="ghost" icon="download">普通按钮</v-button>
+                  <v-button pattern="danger" icon="download">普通按钮</v-button>
+                  <v-button size="large" icon="download">普通按钮</v-button>
+                </div>
+                <div class="controls">
+                  <v-button :loading="true">加载按钮</v-button>
+                  <v-button :loading="loading" icon="download" @click="loading = !loading">点击看效果</v-button>
+                  <v-button :loading="loading2" @click="loading2 = !loading2">点击看效果</v-button>
+                </div>
+                <div class="controls">
+                  <v-button-group>
+                    <v-button>前面</v-button>
+                    <v-button>中间</v-button>
+                    <v-button>后面</v-button>
+                  </v-button-group>
+                  <v-button-group>
+                    <v-button pattern="ghost">前面</v-button>
+                    <v-button pattern="ghost">中间</v-button>
+                    <v-button pattern="ghost">后面</v-button>
+                  </v-button-group>
+                </div>
+                <div class="source-code blog">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="toDropdown">
+            <div class="title">下拉菜单</div>
+            <div class="content">
+              <div class="content-cell">
+                <div class="controls">
+                  <div class="v-dropdown-wrap">
+                    <div class="v-dropdown-trigger">左对齐</div>
+                    <div class="v-dropdown">
+                      <a href="" class="v-dropdown-item">
+                        <v-icon icon="home"></v-icon>
+                        个人中心</a>
+                      <a href="" class="v-dropdown-item">
+                        <v-icon icon="guard"></v-icon>
+                        修改密码</a>
+                      <a class="v-dropdown-divider"></a>
+                      <a href="" class="v-dropdown-item">
+                        <v-icon icon="logout"></v-icon>
+                        退出登录</a>
+                    </div>
+                  </div>
+
+                  <div class="v-dropdown-wrap">
+                    <div class="v-dropdown-trigger">右对齐</div>
+                    <div class="v-dropdown align-right">
+                      <a href="" class="v-dropdown-item">
+                        <v-icon icon="home"></v-icon>
+                        个人中心</a>
+                      <a href="" class="v-dropdown-item">
+                        <v-icon icon="guard"></v-icon>
+                        修改密码</a>
+                      <a class="v-dropdown-divider"></a>
+                      <a href="" class="v-dropdown-item">
+                        <v-icon icon="logout"></v-icon>
+                        退出登录</a>
+                    </div>
+                  </div>
+
+                  <div class="v-dropdown-wrap">
+                    <div class="v-dropdown-trigger">底对齐</div>
+                    <div class="v-dropdown align-bottom">
+                      <a href="" class="v-dropdown-item">
+                        <v-icon icon="home"></v-icon>
+                        个人中心</a>
+                      <a href="" class="v-dropdown-item">
+                        <v-icon icon="guard"></v-icon>
+                        修改密码</a>
+                      <a class="v-dropdown-divider"></a>
+                      <a href="" class="v-dropdown-item">
+                        <v-icon icon="logout"></v-icon>
+                        退出登录</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="toNavbar">
+            <div class="title">导航菜单</div>
+            <div class="content">
+              <v-menu :menus="menus"></v-menu>
+            </div>
+          </div>
+
+          <div class="panel" id="toInput">
+            <div class="title">文本输入框</div>
+            <div class="content">
+              <div class="content-cell">
+                <div class="controls">
+                  <input class="v-input" placeholder="输入文字">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="toRadio">
+            <div class="title">单选框</div>
+            <div class="content">
+              <div class="content-cell">
+                <div class="controls">
+                  <v-radio :value="1" label="下一日费率" name="fees"></v-radio>
+                  <v-radio :value="2" label="History" name="fees"></v-radio>
+                  <v-radio :value="3" label="WORLD" name="fees"></v-radio>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="toCheckbox">
+            <div class="title">复选框</div>
+            <div class="content">
+              <div class="content-cell">
+                <div class="controls">
+                  <v-checkbox :value="1" label="下一日费率" :option="{value: 1, label: '下一日费率'}" name="fees2"></v-checkbox>
+                  <v-checkbox :value="2" label="History" :option="{value: 1, label: '下一日费率'}" name="fees2"></v-checkbox>
+                  <v-checkbox :value="3" label="WORLD" :option="{value: 1, label: '下一日费率'}" name="fees2"></v-checkbox>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="toSwitch">
+            <div class="title">开关</div>
+            <div class="content">
+              <div class="content-cell">
+                <div class="controls">
+                  <v-switch></v-switch>
+                  <v-switch disabled></v-switch>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="toSearch">
+            <div class="title">搜索框</div>
+            <div class="content">
+              <div class="content-cell">
+                <div class="controls">
+                  <v-search @input="startSearch"></v-search>
+                  <v-search @input="startSearch" :auto="false" placeholder="禁用自动搜索"></v-search>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="toUpload">
+            <div class="title">文件选择按钮</div>
+            <div class="content">
+              <div class="content-cell">
+                <div class="controls">
+                  <v-upload text="选择单个文件" @select="selectFiles"></v-upload>
+                </div>
+                <div class="controls">
+                  <v-upload text="选择多个文件" multi @select="selectFiles"></v-upload>
+                </div>
+                <div class="controls">
+                  <v-upload text="显示图片预览" thumbnail @select="selectFiles"></v-upload>
+                </div>
+                <div class="controls">
+                  <v-upload text="显示多张图片预览" thumbnail multi :thumb-size="200" @select="selectFiles"></v-upload>
+                </div>
+                <div class="controls">
+                  <v-upload thumbnail @select="selectFiles" shape="square"></v-upload>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="toTab">
+            <div class="title">Tab页</div>
+            <div class="content">
+              <div class="content-cell">
+                <div class="controls">
+                  <v-tab :titles="tabTitles" @select="selectTab"></v-tab>
+                </div>
+                <div class="controls">
+                  <v-tab :titles="tabTitles" @select="selectTab" lock></v-tab>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="toSteps">
+            <div class="title">步骤条</div>
+            <div class="content">
+              <div class="content-cell">
+                <div class="controls" style="display: block;">
+                  <v-steps :current="currentStep" :steps="allSteps"></v-steps>
+                </div>
+                <div class="controls" style="display: block;">
+                  <v-steps :current="currentStep" :steps="allSteps2"></v-steps>
+                </div>
+                <div class="controls" style="display: block;">
+                  <v-button @click="previousStep">上一步</v-button>
+                  <v-button @click="nextStep">下一步</v-button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="toMessage">
+            <div class="title">消息提示</div>
+            <div class="content">
+              <v-button @click="msgSuccess">成功</v-button>
+              <v-button @click="msgWarn">警告</v-button>
+              <v-button @click="msgInfo">提示</v-button>
+              <v-button pattern="danger" @click="msgError">错误</v-button>
+            </div>
+          </div>
+
+          <div class="panel" id="toSelect">
+            <div class="title">下拉列表</div>
+            <div class="content">
+              <v-select :source="cars"></v-select>
+              <v-select :source="cars" multiple></v-select>
+              <v-select :source="cars" searchable></v-select>
+              <v-select :source="cars" disabled></v-select>
+              <v-pure-select :source="diploma"></v-pure-select>
+            </div>
+          </div>
+
+          <div class="panel" id="toProgress">
+            <div class="title">进度条</div>
+            <div class="content">
+              <v-progress :value="0.12"></v-progress>
+              <v-progress :value="0.6434" decimal :width="300" :height="40" color="#f46e65"></v-progress>
+            </div>
+          </div>
+
+          <div class="panel" id="toPagination">
+            <div class="title">分页</div>
+            <div class="content">
+              <v-pagination :total="100"></v-pagination>
+              <v-pagination :total="100" simple></v-pagination>
+            </div>
+          </div>
+
+          <div class="panel" id="toDatePicker">
+            <div class="title">日期选择器</div>
+            <div class="content">
+              <v-date-picker></v-date-picker>
+            </div>
+          </div>
+
+          <div class="panel" id="toPwdStrength">
+            <div class="title">密码强度</div>
+            <div class="content">
+              <v-pwd-strength password="hello"></v-pwd-strength>
+            </div>
+          </div>
+
+          <div class="panel" id="toModal">
+            <div class="title">模态框</div>
+            <div class="content">
+              <v-button @click="showModal">显示</v-button>
+              <v-button @click="showSimpleModal">简单模式</v-button>
+              <v-button @click="showFixedModal">顶部固定模式</v-button>
+              <v-button @click="showAsyncModal">异步模式</v-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/iconfont.js"></script>
+    <script src="js/lovue.js"></script>
+    <script src="js/main.js"></script>
+    <!-- built files will be auto injected -->
+  </body>
+</html>

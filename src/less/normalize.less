@@ -1,0 +1,174 @@
+@import "Variables";
+
+*, *::after, *::before {
+  box-sizing: border-box;
+  max-height: 999999px;
+}
+
+html {
+  background: @white-color;
+  font-family: @body-font;
+  font-size: 62.5%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /*user-select: none;*/
+  scroll-behavior: smooth;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: @first-level-color;
+  font-size: @normal-font;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+a {
+  //color: #00B5E5;
+  color: inherit;
+  cursor: pointer;
+}
+
+a,
+a:focus,
+a:hover,
+a:active {
+  outline: 0;
+  text-decoration: none;
+}
+
+p {
+  text-indent: 2em;
+}
+
+:focus {
+  outline: 0;
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 @black-color;
+}
+
+select,
+input[type=radio],
+input[type=checkbox] {
+  cursor: pointer;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type=number]:hover,
+input[type=number]:focus {
+  -moz-appearance: inherit;
+}
+
+/*input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}*/
+
+input,
+select,
+textarea,
+button {
+  outline: none;
+}
+
+input:required:invalid,
+input:focus:invalid,
+textarea:required:invalid,
+textarea:focus:invalid {
+  box-shadow: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  box-shadow: 0 0 0 60px @white-color inset;
+  -webkit-text-fill-color: @first-level-color;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+textarea {
+  resize: none;
+  font-family: @body-font;
+  border: 1px solid @border-color;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+ul, ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+small {
+  color: @first-level-color;
+}
+
+svg {
+  color: inherit;
+  vertical-align: middle;
+  /* 通过设置 color 来改变 SVG 的颜色/fill */
+  fill: currentColor;
+  /* path 和 stroke 溢出 viewBox 部分在 IE 下会显示
+     normalize.css 中也包含这行 */
+  overflow: hidden;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background: @white-color;
+}
+
+::-webkit-scrollbar-thumb {
+  //border-radius: 3px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: @assist-font-color;
+
+  &:hover {
+    background-color: @main-color;
+  }
+}

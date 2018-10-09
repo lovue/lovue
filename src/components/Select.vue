@@ -92,7 +92,7 @@
         const bottomSpace = window.innerHeight - this.$el.getBoundingClientRect().bottom
         this.pos = bottomSpace < candidatesHeight ? 'top' : 'bottom'
 
-        this.$nextTick(() => this.open = 'open')
+        setTimeout(() => this.open = 'open', 40)
       },
       hideCandidates() {
         this.open = ''

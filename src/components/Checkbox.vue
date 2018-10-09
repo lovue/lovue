@@ -1,7 +1,7 @@
 <template>
   <label class="v-checkbox">
-    <input type="checkbox" class="v-checkbox-input" :value="option.value" :name="name" :disabled="disabled">
-    <span>{{option.label}}</span>
+    <input type="checkbox" :value="value" :name="name" :disabled="disabled">
+    <span>{{label}}</span>
   </label>
 </template>
 
@@ -9,7 +9,8 @@
   export default {
     name: 'v-checkbox',
     props: {
-      option: Object,
+      value: [String, Number],
+      label: String,
       name: String,
       disabled: Boolean
     }

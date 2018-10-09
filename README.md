@@ -5,11 +5,18 @@
 
 Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/spa/vue-components.html)
 
+### 开发
+```
+npm install
+npm run serve
+npm run build
+```
+
 ### 使用方法
 - 第一种（推荐）：引入已编译的js文件，这样可以使用所有的组件
 ```
 <head>
-<link href="path/to/lovue.css" rel="stylesheet">
+<link href="path/to/lovue.min.css" rel="stylesheet">
 <script src="path/to/vue.min.js">
 <script src="path/to/lovue.min.js" defer>
 </head>
@@ -26,7 +33,7 @@ Demo: [https://www.yikeyong.com/ui](https://www.yikeyong.com/spa/vue-components.
 ```
 - 第二种：在js文件中导入单个vue文件，可以按需引用
 ```
-import VueTable from './vue/Table.vue'
+import VueTable from './components/Table.vue'
 
 new Vue({
   el: '#app',
@@ -36,7 +43,6 @@ new Vue({
 
 ### 已完成：
 - 左右布局
-- 网格布局
 - 按钮：Button.vue
 - 复选框：Checkbox.vue
 - 日期选择器：DatePicker.vue

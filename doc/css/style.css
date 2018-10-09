@@ -23,10 +23,10 @@
   transition: color 0.25s;
 }
 .aside .list li a:hover {
-  color: #4AD3E8;
+  color: #4ad3e8;
 }
 .aside .list li a.focus {
-  color: #00C1DE;
+  color: #00c1de;
 }
 .main .grid-demo {
   width: 100%;
@@ -103,7 +103,7 @@
 .panel .controls > * {
   margin-right: 20px;
 }
-.panel .controls > .ant-dropdown-wrap {
+.panel .controls > .v-dropdown-wrap {
   margin-right: 100px;
 }
 .panel .source-code pre {
@@ -155,42 +155,41 @@
   margin-right: 0;
   width: 80%;
 }
-.ant-row {
+.v-row {
   height: auto;
   margin-bottom: 16px;
 }
-.ant-row .ant-col {
+.v-row .v-col {
   padding: 16px 0;
   text-align: center;
   color: #fff;
   font-size: 1.4rem;
 }
-.ant-row .ant-col:nth-child(odd) {
-  background-color: #00C1DE;
+.v-row .v-col:nth-child(odd) {
+  background-color: #00c1de;
 }
-.ant-row .ant-col:nth-child(even) {
+.v-row .v-col:nth-child(even) {
   background-color: #00a854;
 }
-.ant-layout-lr-demo {
+.v-layout-lr-demo {
   width: 100%;
 }
-.ant-layout-lr-demo > .l {
+.v-layout-lr-demo > .l {
   background-color: red;
   width: 300px;
   height: 60px;
 }
-.ant-layout-lr-demo > .r {
+.v-layout-lr-demo > .r {
   background-color: blue;
   height: 60px;
 }
-.ant-select {
+.v-select {
   vertical-align: top;
 }
-.ant-progress {
+.v-progress {
   display: inline-block;
   margin-right: 8px;
 }
-.ant-pagination {
+.v-pagination {
   margin-bottom: 16px;
 }
-/*# sourceMappingURL=ant.css.map */
