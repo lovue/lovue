@@ -635,7 +635,7 @@
               const __vue_script__$7 = script$7;
               
   /* template */
-  var __vue_render__$7 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"v-menu"},_vm._l((_vm.menus),function(menu){return _c('li',{staticClass:"v-menu-item"},[(menu.children)?_c('div',{staticClass:"v-dropdown-wrap"},[_c('div',{staticClass:"v-dropdown-trigger",class:{focus: menu._focus}},[_vm._v(_vm._s(menu.name)+" "),_c('v-icon',{attrs:{"icon":"down-wide"}})],1),_vm._v(" "),_c('div',{staticClass:"v-dropdown"},_vm._l((menu.children),function(child){return _c('a',{staticClass:"v-dropdown-item",class:{focus: child._focus},attrs:{"href":child.url}},[_vm._v(_vm._s(child.name))])}))]):_c('a',{class:{focus: menu._focus},attrs:{"href":menu.url}},[_vm._v(_vm._s(menu.name))])])}))};
+  var __vue_render__$7 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"v-menu"},_vm._l((_vm.menus),function(menu){return _c('li',{staticClass:"v-menu-item"},[(menu.children)?_c('div',{staticClass:"v-dropdown-wrap"},[_c('div',{staticClass:"d-trigger",class:{focus: menu._focus}},[_vm._v(_vm._s(menu.name)+" "),_c('v-icon',{attrs:{"icon":"down-wide"}})],1),_vm._v(" "),_c('div',{staticClass:"v-dropdown"},_vm._l((menu.children),function(child){return _c('a',{staticClass:"d-item",class:{focus: child._focus},attrs:{"href":child.url}},[_vm._v(_vm._s(child.name))])}))]):_c('a',{class:{focus: menu._focus},attrs:{"href":menu.url}},[_vm._v(_vm._s(menu.name))])])}))};
   var __vue_staticRenderFns__$7 = [];
 
     /* style */

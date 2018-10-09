@@ -352,7 +352,7 @@ svg {
   padding: 4px 0;
   background-color: #fff;
 }
-.v-dropdown .v-dropdown-item {
+.v-dropdown .d-item {
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -360,15 +360,15 @@ svg {
   line-height: 22px;
   transition: all 0.3s;
 }
-.v-dropdown .v-dropdown-item .icon {
+.v-dropdown .d-item .icon {
   width: 14px;
   height: 14px;
   margin-right: 8px;
 }
-.v-dropdown .v-dropdown-item:hover {
+.v-dropdown .d-item:hover {
   color: #00c1de;
 }
-.v-dropdown .v-dropdown-divider {
+.v-dropdown .d-divider {
   display: block;
   height: 1px;
   line-height: 0;
@@ -378,7 +378,7 @@ svg {
 .v-dropdown-wrap {
   position: relative;
 }
-.v-dropdown-wrap .v-dropdown-trigger {
+.v-dropdown-wrap .d-trigger {
   font-size: 1.4rem;
   cursor: pointer;
 }
