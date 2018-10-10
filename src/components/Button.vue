@@ -13,7 +13,7 @@
       return {
         type: this.submit ? 'submit' : 'button',
         theme: `v-btn-${this.type}`,
-        size: `v-btn-${this.size}`
+        size: this.size ? `v-btn-${this.size}` : ''
       }
     },
     props: {
