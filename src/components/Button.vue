@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" :class="`v-btn ${patternClass} ${sizeClass}`" :disabled="disabled" @click="click">
+  <button :type="type" :class="`v-btn ${theme} ${size}`" :disabled="disabled" @click="click">
     <v-icon :icon="icon" v-if="!!icon && !loading"></v-icon>
     <v-icon icon="refresh" :class="{loading: loading}" v-if="loading"></v-icon>
     <slot></slot>
@@ -10,32 +10,22 @@
   export default {
     name: 'v-button',
     data() {
-      let patternClass = '', sizeClass = ''
-
-      if (this.pattern === undefined) {
-        patternClass = 'v-btn-primary'
-      } else {
-        patternClass = `v-btn-${this.pattern}`
-      }
-
-      if (this.size === 'small') sizeClass = 'v-btn-sm'
-      if (this.size === 'large') sizeClass = 'v-btn-lg'
-
       return {
-        patternClass,
-        sizeClass
+        type: this.submit ? 'submit' : 'button',
+        theme: `v-btn-${this.type}`,
+        size: `v-btn-${this.size}`
       }
     },
     props: {
       type: {
         type: String,
-        'default': 'button'
+        'default': 'primary'
       },
-      pattern: String,
       size: String,
       disabled: Boolean,
       icon: String,
-      loading: Boolean
+      loading: Boolean,
+      submit: Boolean
     },
     methods: {
       click() {

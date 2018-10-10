@@ -454,32 +454,22 @@
   var script$5 = {
     name: 'v-button',
     data() {
-      let patternClass = '', sizeClass = '';
-
-      if (this.pattern === undefined) {
-        patternClass = 'v-btn-primary';
-      } else {
-        patternClass = `v-btn-${this.pattern}`;
-      }
-
-      if (this.size === 'small') sizeClass = 'v-btn-sm';
-      if (this.size === 'large') sizeClass = 'v-btn-lg';
-
       return {
-        patternClass,
-        sizeClass
+        type: this.submit ? 'submit' : 'button',
+        theme: `v-btn-${this.type}`,
+        size: `v-btn-${this.size}`
       }
     },
     props: {
       type: {
         type: String,
-        'default': 'button'
+        'default': 'primary'
       },
-      pattern: String,
       size: String,
       disabled: Boolean,
       icon: String,
-      loading: Boolean
+      loading: Boolean,
+      submit: Boolean
     },
     methods: {
       click() {
@@ -493,7 +483,7 @@
               const __vue_script__$5 = script$5;
               
   /* template */
-  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{class:("v-btn " + _vm.patternClass + " " + _vm.sizeClass),attrs:{"type":_vm.type,"disabled":_vm.disabled},on:{"click":_vm.click}},[(!!_vm.icon && !_vm.loading)?_c('v-icon',{attrs:{"icon":_vm.icon}}):_vm._e(),_vm._v(" "),(_vm.loading)?_c('v-icon',{class:{loading: _vm.loading},attrs:{"icon":"refresh"}}):_vm._e(),_vm._v(" "),_vm._t("default")],2)};
+  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{class:("v-btn " + _vm.theme + " " + _vm.size),attrs:{"type":_vm.type,"disabled":_vm.disabled},on:{"click":_vm.click}},[(!!_vm.icon && !_vm.loading)?_c('v-icon',{attrs:{"icon":_vm.icon}}):_vm._e(),_vm._v(" "),(_vm.loading)?_c('v-icon',{class:{loading: _vm.loading},attrs:{"icon":"refresh"}}):_vm._e(),_vm._v(" "),_vm._t("default")],2)};
   var __vue_staticRenderFns__$5 = [];
 
     /* style */
