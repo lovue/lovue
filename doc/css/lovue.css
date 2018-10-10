@@ -1401,17 +1401,14 @@ svg {
 .v-modal .win-content {
   padding: 24px;
 }
-.v-modal.simple .title-bar {
+.v-modal.no-title .title-bar {
   display: none;
 }
-.v-modal.simple .win-content {
+.v-modal.no-title .win-content {
   padding: 32px 24px;
 }
-.v-modal.simple .win-footer {
+.v-modal.no-title .win-footer {
   border-top: none;
-}
-.v-modal.simple .win-footer .v-btn-ghost {
-  display: none;
 }
 .v-modal.fixed .v-window {
   margin-top: 100px;

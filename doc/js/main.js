@@ -112,7 +112,7 @@ new Vue({
         custom: true
       }
     ],
-    bought2: 'Bugatti',
+    bought2: '',
     bought3: ['Bugatti', 'Ferrari'],
     items: {
       name: 'IT',
@@ -301,5 +301,7 @@ new Vue({
         }
       })
     }, 400)
+
+    setTimeout(() => this.bought2 = 'Aventador', 2000)
   }
 })

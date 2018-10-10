@@ -11,7 +11,7 @@
         <div class="win-content" v-html="content"></div>
         <div class="win-footer">
           <div class="right">
-            <v-button pattern="ghost" @click="close" v-if="noCancel">取消</v-button>
+            <v-button pattern="ghost" @click="close" v-if="!noCancel">取消</v-button>
             <v-button @click="handleConfirm" :loading="loading">确认</v-button>
           </div>
         </div>
