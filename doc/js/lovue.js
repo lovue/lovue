@@ -141,6 +141,7 @@
         title: '',
         content: '',
         loading: false,
+        noCancel: false,
         fixed: false,
         async: false,
         confirm() {}
@@ -149,7 +150,7 @@
     computed: {
       customCls() {
         let custom = '';
-        if (this.title === '') custom = 'simple';
+        if (this.title === '') custom = 'no-title';
         if (this.fixed) custom += ' fixed';
         return custom
       }
@@ -185,7 +186,7 @@
               const __vue_script__$1 = script$1;
               
   /* template */
-  var __vue_render__$1 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-modal overlay",class:_vm.customCls},[_c('transition',{attrs:{"name":"slide-fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-window"},[_c('div',{staticClass:"title-bar"},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('button',{staticClass:"btn-text btn-close",attrs:{"type":"button"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)]),_vm._v(" "),_c('div',{staticClass:"win-content",domProps:{"innerHTML":_vm._s(_vm.content)}}),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_c('v-button',{attrs:{"pattern":"ghost"},on:{"click":_vm.close}},[_vm._v("取消")]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v("确认")])],1)])])])],1)};
+  var __vue_render__$1 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-modal overlay",class:_vm.customCls},[_c('transition',{attrs:{"name":"slide-fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-window"},[_c('div',{staticClass:"title-bar"},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('button',{staticClass:"btn-text btn-close",attrs:{"type":"button"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)]),_vm._v(" "),_c('div',{staticClass:"win-content",domProps:{"innerHTML":_vm._s(_vm.content)}}),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[(_vm.noCancel)?_c('v-button',{attrs:{"pattern":"ghost"},on:{"click":_vm.close}},[_vm._v("取消")]):_vm._e(),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v("确认")])],1)])])])],1)};
   var __vue_staticRenderFns__$1 = [];
 
     /* style */
@@ -2467,11 +2468,6 @@
         return {
           transform: `translateX(${this.pos.x}px) translateY(${this.pos.y}px)`
         }
-      }
-    },
-    watch: {
-      value(val) {
-        document.body.classList.toggle('overhidden', val);
       }
     },
     methods: {

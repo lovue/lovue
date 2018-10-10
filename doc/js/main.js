@@ -181,7 +181,8 @@ new Vue({
       { title: '第一步' },
       { title: '第二步' },
       { title: '第三步' }
-    ]
+    ],
+    isShowPopup: false
   },
   methods: {
     sleep(delay = 1000) {
@@ -276,6 +277,9 @@ new Vue({
       const names = [];
       [].forEach.call(files, file => names.push(file.name))
       this.info(`选择了 ${names.join(',')}`)
+    },
+    showPopup() {
+      this.isShowPopup = true
     }
   },
   mounted() {

@@ -45,11 +45,6 @@
         }
       }
     },
-    watch: {
-      value(val) {
-        document.body.classList.toggle('overhidden', val)
-      }
-    },
     methods: {
       close() {
         this.$emit('input', false)

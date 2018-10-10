@@ -13,6 +13,10 @@
       <strong>We're sorry but synth doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app">
+      <template v-if="isShowPopup">
+        <v-popup title="上传" v-model="isShowPopup"></v-popup>
+      </template>
+
       <div class="container">
         <aside class="l aside"></aside>
         <div class="r main">
@@ -334,6 +338,13 @@
               <v-button @click="showSimpleModal">简单模式</v-button>
               <v-button @click="showFixedModal">顶部固定模式</v-button>
               <v-button @click="showAsyncModal">异步模式</v-button>
+            </div>
+          </div>
+
+          <div class="panel" id="toPopup">
+            <div class="title">弹出窗口</div>
+            <div class="content">
+              <v-button @click="showPopup">显示</v-button>
             </div>
           </div>
         </div>
