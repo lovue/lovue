@@ -9,18 +9,22 @@
           <v-icon icon="close" @click.native.stop="remove(s,i)"></v-icon>
         </span>
         </template>
-        <input class="input" :value="selected.name" v-else placeholder="请选择" readonly>
+        <input class="v-input" :value="selected.name" v-else :placeholder="placeholder" readonly>
       </div>
       <div class="r">
         <v-icon icon="down-wide" :class="{reverse: !open}"></v-icon>
       </div>
     </div>
     <div :class="`candidates ${pos} ${open}`" v-show="bShowCandidates">
-      <div class="item-search" v-if="searchable"><input class="input" type="text" placeholder="搜索" v-model="filterText"></div>
+      <div class="item-search" v-if="searchable"><input class="v-input" type="text" placeholder="搜索" v-model="filterText"></div>
       <ul class="list">
-        <li :class="{focus: i.selected}" v-for="i of filteredItems" @click.stop="toggle(i)">
-          <span class="item-name">{{i.name}}</span>
-          <v-icon icon="check" v-show="i.selected"></v-icon>
+        <li v-for="i of filteredItems" :title="i.name" @click.stop="toggle(i)">
+          <div class="i-title" :class="{focus: i.selected}"><span class="t-name">{{i.name}}</span><v-icon icon="check" v-if="i.selected"></v-icon></div>
+          <ul class="sub-list" v-if="i.children && i.children.length">
+            <li v-for="child of i.children" :title="child.name" @click.stop="toggle(child)">
+              <div class="i-title" :class="{focus: child.selected}"><span class="t-name">{{child.name}}</span><v-icon icon="check" v-if="child.selected"></v-icon></div>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
@@ -32,9 +36,10 @@
     data() {
       return {
         selected: this.multiple ? [] : {},
-        items: [],
+        items: JSON.parse(JSON.stringify(this.source)),
         filterText: '',
         bShowCandidates: false,
+        innerUpdate: false,
         pos: '',
         open: ''
       }
@@ -46,49 +51,58 @@
       }
     },
     props: {
+      value: [String, Number, Array, Object],
       source: Array,
-      current: {
-        validator(val) {
-          return val
-        }
-      },
       disabled: Boolean,
       multiple: Boolean,
-      searchable: Boolean
+      searchable: Boolean,
+      placeholder: {
+        type: String,
+        'default': '请选择'
+      },
+      max: Number
     },
     watch: {
       source(val) {
         //Watch source for requesting data from server asynchronously
         this.items = JSON.parse(JSON.stringify(val))
-        this.setSelected()
+        this.updateSelected(this.value)
       },
-      current(val) {
-        this.selected = val ? JSON.parse(JSON.stringify(val)) : this.selected
-        this.setSelected()
+      value: {
+        handler: 'updateSelected',
+        immediate: true
       }
     },
     methods: {
-      setSelected() {
-        if(Array.isArray(this.selected)) {
-          let tmp = {}
-          this.selected.forEach(s => {
-            tmp[s.value] = 1
-          })
+      updateSelected(val = '') {
+        if (this.innerUpdate) return
+
+        this.getSelected(val)
+        this.setSelected(val)
+      },
+      getSelected(val) {
+        let match = Array.isArray(val) ? this.source.filter(s => val.includes(s.value)) : (this.source.find(s => s.value === val) || {})
+        this.selected = JSON.parse(JSON.stringify(match))
+      },
+      setSelected(val) {
+        if(Array.isArray(val)) {
           this.items.forEach(i => {
-            i.selected = !!tmp[i.value]
+            i.selected = val.includes(i.value)
           })
         } else {
           this.items.forEach(i => {
-            if(i.value === this.selected.value) {
-              i.selected = true
-            }
+            i.selected = i.value === val
           })
         }
       },
       showCandidates() {
         this.bShowCandidates = true
 
-        const candidatesHeight = (this.searchable ? (this.filteredItems.length + 1) : this.filteredItems.length) * 32
+        let items = 0
+        this.filteredItems.forEach(item => {
+          items += item.children ? (item.children.length + 1) : 1
+        })
+        const candidatesHeight = (this.searchable ? (items + 1) : items) * 32
         const bottomSpace = window.innerHeight - this.$el.getBoundingClientRect().bottom
         this.pos = bottomSpace < candidatesHeight ? 'top' : 'bottom'
 
@@ -106,40 +120,52 @@
           item.selected = !item.selected
 
           if (item.selected) {
-            this.selected.push(item)
+            if (this.max && this.selected.length >= this.max) {
+              this.warn(`最多只能选择${this.max}个`)
+              item.selected = false
+            } else {
+              this.selected.push(item)
+            }
           } else {
             this.selected = this.selected.filter(val => {
               return val.value !== item.value
             })
           }
-          this.$emit('update', this.selected)
+          this.innerUpdate = true
+          this.$emit('input', this.selected.map(s => s.value))
         } else {
           this.items.forEach(current => {
             current.selected = false
+
+            if (current.children) {
+              current.children.forEach(child => child.selected = false)
+            }
           })
           item.selected = true
           this.selected = item
           this.hideCandidates()
-          this.$emit('update', this.selected)
+          this.innerUpdate = true
+          this.$emit('input', this.selected.value)
         }
       },
       remove(select, index) {
         this.selected.splice(index, 1)
 
-        this.items.forEach(val => {
-          if (val.value === select.value) {
-            val.selected = false
+        this.items.forEach(item => {
+          if (item.value === select.value) {
+            item.selected = false
+          } else if (item.children) {
+            item.children.forEach(child => {
+              if (child.value === select.value) {
+                child.selected = false
+              }
+            })
           }
         })
 
-        this.$emit('update', this.selected)
+        this.innerUpdate = true
+        this.$emit('input', this.selected.map(s => s.value))
       }
-    },
-    created() {
-      //Must deep clone
-      this.items = JSON.parse(JSON.stringify(this.source))
-      this.selected = this.current ? JSON.parse(JSON.stringify(this.current)) : this.selected
-      this.setSelected()
     },
     mounted() {
       window.addEventListener('click', () => this.hideCandidates())

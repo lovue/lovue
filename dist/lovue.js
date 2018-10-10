@@ -952,7 +952,7 @@
     /* style */
     const __vue_inject_styles__$b = undefined;
     /* scoped */
-    const __vue_scope_id__$b = "data-v-3c219ba8";
+    const __vue_scope_id__$b = "data-v-285923ca";
     /* module identifier */
     const __vue_module_identifier__$b = undefined;
     /* functional template */
@@ -1127,7 +1127,7 @@
     /* style */
     const __vue_inject_styles__$c = undefined;
     /* scoped */
-    const __vue_scope_id__$c = "data-v-9d6885c6";
+    const __vue_scope_id__$c = "data-v-4be83e8c";
     /* module identifier */
     const __vue_module_identifier__$c = undefined;
     /* functional template */
@@ -2447,6 +2447,10 @@
       }
     },
     methods: {
+      close() {
+        this.$emit('input', false);
+        document.body.classList.remove('overhidden');
+      },
       dragStart(ev) {
         this.startX = ev.pageX - this.pos.x;
         this.startY = ev.pageY - this.pos.y;
@@ -2463,7 +2467,7 @@
       },
       async handleConfirm() {
         if (!this.async) {
-          this.$emit('input', false);
+          this.close();
           return
         }
 
@@ -2471,10 +2475,13 @@
 
         this.loading = true;
         if (await this.confirm()) {
-          this.$emit('input', false);
+          this.close();
         }
         this.loading = false;
       }
+    },
+    mounted() {
+      document.body.classList.add('overhidden');
     }
   };
 
@@ -2482,7 +2489,7 @@
               const __vue_script__$l = script$l;
               
   /* template */
-  var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"ant-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"ant-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('button',{staticClass:"btn-text btn-close",attrs:{"type":"button"},on:{"click":function($event){_vm.$emit('input', false);}}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)]),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("content")],2),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_c('v-button',{attrs:{"pattern":"ghost"},on:{"click":function($event){_vm.$emit('input', false);}}},[_vm._v("取消")]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v("确认")])],1)])])]):_vm._e()};
+  var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('button',{staticClass:"btn-text btn-close",attrs:{"type":"button"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)]),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("content")],2),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_c('v-button',{attrs:{"pattern":"ghost"},on:{"click":_vm.close}},[_vm._v("取消")]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v("确认")])],1)])])]):_vm._e()};
   var __vue_staticRenderFns__$l = [];
 
     /* style */

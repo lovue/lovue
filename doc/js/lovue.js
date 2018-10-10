@@ -954,7 +954,7 @@
     /* style */
     const __vue_inject_styles__$b = undefined;
     /* scoped */
-    const __vue_scope_id__$b = "data-v-3c219ba8";
+    const __vue_scope_id__$b = "data-v-285923ca";
     /* module identifier */
     const __vue_module_identifier__$b = undefined;
     /* functional template */
@@ -1129,7 +1129,7 @@
     /* style */
     const __vue_inject_styles__$c = undefined;
     /* scoped */
-    const __vue_scope_id__$c = "data-v-9d6885c6";
+    const __vue_scope_id__$c = "data-v-4be83e8c";
     /* module identifier */
     const __vue_module_identifier__$c = undefined;
     /* functional template */
@@ -1421,15 +1421,20 @@
   //
   //
   //
+  //
+  //
+  //
+  //
 
   var script$f = {
     name: 'v-select',
     data() {
       return {
         selected: this.multiple ? [] : {},
-        items: [],
+        items: JSON.parse(JSON.stringify(this.source)),
         filterText: '',
         bShowCandidates: false,
+        innerUpdate: false,
         pos: '',
         open: ''
       }
@@ -1441,49 +1446,58 @@
       }
     },
     props: {
+      value: [String, Number, Array, Object],
       source: Array,
-      current: {
-        validator(val) {
-          return val
-        }
-      },
       disabled: Boolean,
       multiple: Boolean,
-      searchable: Boolean
+      searchable: Boolean,
+      placeholder: {
+        type: String,
+        'default': '请选择'
+      },
+      max: Number
     },
     watch: {
       source(val) {
         //Watch source for requesting data from server asynchronously
         this.items = JSON.parse(JSON.stringify(val));
-        this.setSelected();
+        this.updateSelected(this.value);
       },
-      current(val) {
-        this.selected = val ? JSON.parse(JSON.stringify(val)) : this.selected;
-        this.setSelected();
+      value: {
+        handler: 'updateSelected',
+        immediate: true
       }
     },
     methods: {
-      setSelected() {
-        if(Array.isArray(this.selected)) {
-          let tmp = {};
-          this.selected.forEach(s => {
-            tmp[s.value] = 1;
-          });
+      updateSelected(val = '') {
+        if (this.innerUpdate) return
+
+        this.getSelected(val);
+        this.setSelected(val);
+      },
+      getSelected(val) {
+        let match = Array.isArray(val) ? this.source.filter(s => val.includes(s.value)) : (this.source.find(s => s.value === val) || {});
+        this.selected = JSON.parse(JSON.stringify(match));
+      },
+      setSelected(val) {
+        if(Array.isArray(val)) {
           this.items.forEach(i => {
-            i.selected = !!tmp[i.value];
+            i.selected = val.includes(i.value);
           });
         } else {
           this.items.forEach(i => {
-            if(i.value === this.selected.value) {
-              i.selected = true;
-            }
+            i.selected = i.value === val;
           });
         }
       },
       showCandidates() {
         this.bShowCandidates = true;
 
-        const candidatesHeight = (this.searchable ? (this.filteredItems.length + 1) : this.filteredItems.length) * 32;
+        let items = 0;
+        this.filteredItems.forEach(item => {
+          items += item.children ? (item.children.length + 1) : 1;
+        });
+        const candidatesHeight = (this.searchable ? (items + 1) : items) * 32;
         const bottomSpace = window.innerHeight - this.$el.getBoundingClientRect().bottom;
         this.pos = bottomSpace < candidatesHeight ? 'top' : 'bottom';
 
@@ -1501,40 +1515,52 @@
           item.selected = !item.selected;
 
           if (item.selected) {
-            this.selected.push(item);
+            if (this.max && this.selected.length >= this.max) {
+              this.warn(`最多只能选择${this.max}个`);
+              item.selected = false;
+            } else {
+              this.selected.push(item);
+            }
           } else {
             this.selected = this.selected.filter(val => {
               return val.value !== item.value
             });
           }
-          this.$emit('update', this.selected);
+          this.innerUpdate = true;
+          this.$emit('input', this.selected.map(s => s.value));
         } else {
           this.items.forEach(current => {
             current.selected = false;
+
+            if (current.children) {
+              current.children.forEach(child => child.selected = false);
+            }
           });
           item.selected = true;
           this.selected = item;
           this.hideCandidates();
-          this.$emit('update', this.selected);
+          this.innerUpdate = true;
+          this.$emit('input', this.selected.value);
         }
       },
       remove(select, index) {
         this.selected.splice(index, 1);
 
-        this.items.forEach(val => {
-          if (val.value === select.value) {
-            val.selected = false;
+        this.items.forEach(item => {
+          if (item.value === select.value) {
+            item.selected = false;
+          } else if (item.children) {
+            item.children.forEach(child => {
+              if (child.value === select.value) {
+                child.selected = false;
+              }
+            });
           }
         });
 
-        this.$emit('update', this.selected);
+        this.innerUpdate = true;
+        this.$emit('input', this.selected.map(s => s.value));
       }
-    },
-    created() {
-      //Must deep clone
-      this.items = JSON.parse(JSON.stringify(this.source));
-      this.selected = this.current ? JSON.parse(JSON.stringify(this.current)) : this.selected;
-      this.setSelected();
     },
     mounted() {
       window.addEventListener('click', () => this.hideCandidates());
@@ -1545,7 +1571,7 @@
               const __vue_script__$f = script$f;
               
   /* template */
-  var __vue_render__$f = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-select",on:{"click":function($event){$event.stopPropagation();return _vm.showCandidates($event)}}},[_c('div',{staticClass:"selected v-layout-lr"},[(_vm.disabled)?_c('div',{staticClass:"layer-disabled"}):_vm._e(),_vm._v(" "),_c('div',{staticClass:"l"},[(_vm.multiple)?_vm._l((_vm.selected),function(s,i){return _c('span',{staticClass:"s-tag"},[_c('span',{staticClass:"tag-name"},[_vm._v(_vm._s(s.name))]),_vm._v(" "),_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){$event.stopPropagation();_vm.remove(s,i);}}})],1)}):_c('input',{staticClass:"input",attrs:{"placeholder":"请选择","readonly":""},domProps:{"value":_vm.selected.name}})],2),_vm._v(" "),_c('div',{staticClass:"r"},[_c('v-icon',{class:{reverse: !_vm.open},attrs:{"icon":"down-wide"}})],1)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowCandidates),expression:"bShowCandidates"}],class:("candidates " + _vm.pos + " " + _vm.open)},[(_vm.searchable)?_c('div',{staticClass:"item-search"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.filterText),expression:"filterText"}],staticClass:"input",attrs:{"type":"text","placeholder":"搜索"},domProps:{"value":(_vm.filterText)},on:{"input":function($event){if($event.target.composing){ return; }_vm.filterText=$event.target.value;}}})]):_vm._e(),_vm._v(" "),_c('ul',{staticClass:"list"},_vm._l((_vm.filteredItems),function(i){return _c('li',{class:{focus: i.selected},on:{"click":function($event){$event.stopPropagation();_vm.toggle(i);}}},[_c('span',{staticClass:"item-name"},[_vm._v(_vm._s(i.name))]),_vm._v(" "),_c('v-icon',{directives:[{name:"show",rawName:"v-show",value:(i.selected),expression:"i.selected"}],attrs:{"icon":"check"}})],1)}))])])};
+  var __vue_render__$f = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-select",on:{"click":function($event){$event.stopPropagation();return _vm.showCandidates($event)}}},[_c('div',{staticClass:"selected v-layout-lr"},[(_vm.disabled)?_c('div',{staticClass:"layer-disabled"}):_vm._e(),_vm._v(" "),_c('div',{staticClass:"l"},[(_vm.multiple)?_vm._l((_vm.selected),function(s,i){return _c('span',{staticClass:"s-tag"},[_c('span',{staticClass:"tag-name"},[_vm._v(_vm._s(s.name))]),_vm._v(" "),_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){$event.stopPropagation();_vm.remove(s,i);}}})],1)}):_c('input',{staticClass:"v-input",attrs:{"placeholder":_vm.placeholder,"readonly":""},domProps:{"value":_vm.selected.name}})],2),_vm._v(" "),_c('div',{staticClass:"r"},[_c('v-icon',{class:{reverse: !_vm.open},attrs:{"icon":"down-wide"}})],1)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowCandidates),expression:"bShowCandidates"}],class:("candidates " + _vm.pos + " " + _vm.open)},[(_vm.searchable)?_c('div',{staticClass:"item-search"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.filterText),expression:"filterText"}],staticClass:"v-input",attrs:{"type":"text","placeholder":"搜索"},domProps:{"value":(_vm.filterText)},on:{"input":function($event){if($event.target.composing){ return; }_vm.filterText=$event.target.value;}}})]):_vm._e(),_vm._v(" "),_c('ul',{staticClass:"list"},_vm._l((_vm.filteredItems),function(i){return _c('li',{attrs:{"title":i.name},on:{"click":function($event){$event.stopPropagation();_vm.toggle(i);}}},[_c('div',{staticClass:"i-title",class:{focus: i.selected}},[_c('span',{staticClass:"t-name"},[_vm._v(_vm._s(i.name))]),(i.selected)?_c('v-icon',{attrs:{"icon":"check"}}):_vm._e()],1),_vm._v(" "),(i.children && i.children.length)?_c('ul',{staticClass:"sub-list"},_vm._l((i.children),function(child){return _c('li',{attrs:{"title":child.name},on:{"click":function($event){$event.stopPropagation();_vm.toggle(child);}}},[_c('div',{staticClass:"i-title",class:{focus: child.selected}},[_c('span',{staticClass:"t-name"},[_vm._v(_vm._s(child.name))]),(child.selected)?_c('v-icon',{attrs:{"icon":"check"}}):_vm._e()],1)])})):_vm._e()])}))])])};
   var __vue_staticRenderFns__$f = [];
 
     /* style */
@@ -2449,6 +2475,10 @@
       }
     },
     methods: {
+      close() {
+        this.$emit('input', false);
+        document.body.classList.remove('overhidden');
+      },
       dragStart(ev) {
         this.startX = ev.pageX - this.pos.x;
         this.startY = ev.pageY - this.pos.y;
@@ -2465,7 +2495,7 @@
       },
       async handleConfirm() {
         if (!this.async) {
-          this.$emit('input', false);
+          this.close();
           return
         }
 
@@ -2473,10 +2503,13 @@
 
         this.loading = true;
         if (await this.confirm()) {
-          this.$emit('input', false);
+          this.close();
         }
         this.loading = false;
       }
+    },
+    mounted() {
+      document.body.classList.add('overhidden');
     }
   };
 
@@ -2484,7 +2517,7 @@
               const __vue_script__$l = script$l;
               
   /* template */
-  var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"ant-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"ant-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('button',{staticClass:"btn-text btn-close",attrs:{"type":"button"},on:{"click":function($event){_vm.$emit('input', false);}}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)]),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("content")],2),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_c('v-button',{attrs:{"pattern":"ghost"},on:{"click":function($event){_vm.$emit('input', false);}}},[_vm._v("取消")]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v("确认")])],1)])])]):_vm._e()};
+  var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('button',{staticClass:"btn-text btn-close",attrs:{"type":"button"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)]),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("content")],2),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_c('v-button',{attrs:{"pattern":"ghost"},on:{"click":_vm.close}},[_vm._v("取消")]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v("确认")])],1)])])]):_vm._e()};
   var __vue_staticRenderFns__$l = [];
 
     /* style */

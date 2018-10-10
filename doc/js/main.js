@@ -85,7 +85,13 @@ new Vue({
       },
       {
         name: '兰博基尼',
-        value: 'Lamborghini'
+        value: 'Lamborghini',
+        children: [
+          { name: 'Aventador', value: 'Aventador' },
+          { name: 'Sesto Elemento', value: 'SestoElemento' },
+          { name: 'Veneno', value: 'Veneno' },
+          { name: 'Urus', value: 'Urus' }
+        ]
       },
       {
         name: '迈凯伦',
@@ -106,10 +112,8 @@ new Vue({
         custom: true
       }
     ],
-    bought2: {
-      name: '布加迪',
-      value: 'Bugatti'
-    },
+    bought2: 'Bugatti',
+    bought3: ['Bugatti', 'Ferrari'],
     items: {
       name: 'IT',
       children: [

@@ -1,9 +1,9 @@
 <template>
-  <div class="ant-popup overlay" :class="{fixed: fixed}" v-if="value" @mousemove="dragging" @mouseup="dragEnd">
-    <div class="ant-window" :style="transform">
+  <div class="v-popup overlay" :class="{fixed: fixed}" v-if="value" @mousemove="dragging" @mouseup="dragEnd">
+    <div class="v-window" :style="transform">
       <div class="title-bar" @mousedown="dragStart">
         <div class="title-name">{{title}}</div>
-        <button class="btn-text btn-close" type="button" @click="$emit('input', false)">
+        <button class="btn-text btn-close" type="button" @click="close">
           <v-icon icon="close" size="18"></v-icon>
         </button>
       </div>
@@ -12,7 +12,7 @@
       </div>
       <div class="win-footer">
         <div class="right">
-          <v-button pattern="ghost" @click="$emit('input', false)">取消</v-button>
+          <v-button pattern="ghost" @click="close">取消</v-button>
           <v-button @click="handleConfirm" :loading="loading">确认</v-button>
         </div>
       </div>
@@ -51,6 +51,10 @@
       }
     },
     methods: {
+      close() {
+        this.$emit('input', false)
+        document.body.classList.remove('overhidden')
+      },
       dragStart(ev) {
         this.startX = ev.pageX - this.pos.x
         this.startY = ev.pageY - this.pos.y
@@ -67,7 +71,7 @@
       },
       async handleConfirm() {
         if (!this.async) {
-          this.$emit('input', false)
+          this.close()
           return
         }
 
@@ -75,10 +79,13 @@
 
         this.loading = true
         if (await this.confirm()) {
-          this.$emit('input', false)
+          this.close()
         }
         this.loading = false
       }
+    },
+    mounted() {
+      document.body.classList.add('overhidden')
     }
   }
 </script>

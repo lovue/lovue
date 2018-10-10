@@ -289,9 +289,9 @@
           <div class="panel" id="toSelect">
             <div class="title">下拉列表</div>
             <div class="content">
-              <v-select :source="cars"></v-select>
-              <v-select :source="cars" multiple></v-select>
-              <v-select :source="cars" searchable></v-select>
+              <v-select :source="cars" v-model="bought2"></v-select>
+              <v-select :source="cars" v-model="bought3" multiple></v-select>
+              <v-select :source="cars" v-model="bought2" searchable></v-select>
               <v-select :source="cars" disabled></v-select>
               <v-pure-select :source="diploma"></v-pure-select>
             </div>
