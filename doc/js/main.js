@@ -182,7 +182,8 @@ new Vue({
       { title: '第二步' },
       { title: '第三步' }
     ],
-    isShowPopup: false
+    isShowPopup: false,
+    switchValue: true
   },
   methods: {
     sleep(delay = 1000) {

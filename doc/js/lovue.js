@@ -844,6 +844,7 @@
   var script$a = {
     name: 'v-switch',
     props: {
+      value: Boolean,
       name: String,
       disabled: Boolean
     }
@@ -853,7 +854,7 @@
               const __vue_script__$a = script$a;
               
   /* template */
-  var __vue_render__$a = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-switch",class:{disabled: _vm.disabled}},[_c('input',{attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled}}),_vm._v(" "),_c('span')])};
+  var __vue_render__$a = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-switch",class:{disabled: _vm.disabled}},[_c('input',{attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":_vm.value},on:{"change":function($event){_vm.$emit('input', $event.target.checked);}}}),_vm._v(" "),_c('span')])};
   var __vue_staticRenderFns__$a = [];
 
     /* style */

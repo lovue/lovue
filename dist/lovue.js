@@ -1468,26 +1468,58 @@
       }
     },
     methods: {
-      updateSelected(val = '') {
-        if (this.innerUpdate) return
+      updateSelected(val) {
+        if (this.innerUpdate) {
+          this.innerUpdate = false;
+          return
+        }
 
-        this.getSelected(val);
-        this.setSelected(val);
-      },
-      getSelected(val) {
-        let match = Array.isArray(val) ? this.source.filter(s => val.includes(s.value)) : (this.source.find(s => s.value === val) || {});
-        this.selected = JSON.parse(JSON.stringify(match));
-      },
-      setSelected(val) {
-        if(Array.isArray(val)) {
-          this.items.forEach(i => {
-            i.selected = val.includes(i.value);
+        let match;
+        if (Array.isArray(val)) {
+          match = [];
+          this.items.forEach(item => {
+            item.selected = false;
+            if (val.includes(item.value)) {
+              item.selected = true;
+              match.push({
+                name: item.name,
+                value: item.value
+              });
+            }
+
+            if (item.children) {
+              item.children.forEach(child => {
+                child.selected = false;
+                if (val.includes(child.value)) {
+                  child.selected = true;
+                  match.push({
+                    name: child.name,
+                    value: child.value
+                  });
+                }
+              });
+            }
           });
         } else {
-          this.items.forEach(i => {
-            i.selected = i.value === val;
+          match = {};
+          this.items.forEach(item => {
+            item.selected = false;
+            if (item.value === val) {
+              item.selected = true;
+              match = { name: item.name, value: item.value };
+            } else if (item.children) {
+              item.children.forEach(child => {
+                child.selected = false;
+                if (child.value === val) {
+                  child.selected = true;
+                  match = { name: child.name, value: child.value };
+                }
+              });
+            }
           });
         }
+        this.selected = JSON.parse(JSON.stringify(match));
+        this.innerUpdate = false;
       },
       showCandidates() {
         this.bShowCandidates = true;

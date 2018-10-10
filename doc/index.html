@@ -65,6 +65,7 @@
                   <v-button pattern="ghost">Ghost按钮</v-button>
                   <v-button disabled>禁用按钮</v-button>
                   <v-button pattern="danger">危险按钮</v-button>
+                  <v-button pattern="text">文本按钮</v-button>
                 </div>
                 <div class="controls">
                   <v-button size="large">大按钮</v-button>
@@ -206,7 +207,7 @@
             <div class="content">
               <div class="content-cell">
                 <div class="controls">
-                  <v-switch></v-switch>
+                  <v-switch v-model="switchValue"></v-switch>
                   <v-switch disabled></v-switch>
                 </div>
               </div>

@@ -53,6 +53,18 @@
   }
 }
 
+.input,
+.textarea,
+.select {
+  border: 1px solid @border-color;
+  border-radius: @border-radius;
+  transition: border-color .2s;
+
+  &:hover {
+    border-color: @hover-blue-color;
+  }
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -250,6 +262,19 @@
     }
   }
 
+  &.v-btn-text {
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      color: @hover-blue-color;
+    }
+
+    &:active {
+      color: @active-blue-color;
+    }
+  }
+
   &.v-btn-lg {
     font-size: @normal-font;
     height: 40px;
@@ -419,7 +444,7 @@
   transition: border-color .3s;
 
   &:hover {
-    border-color: @blue-color;
+    border-color: @hover-blue-color;
   }
 
   &:focus {
