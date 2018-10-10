@@ -131,8 +131,6 @@
   //
   //
   //
-  //
-  //
 
   var script$1 = {
     data() {
@@ -186,7 +184,7 @@
               const __vue_script__$1 = script$1;
               
   /* template */
-  var __vue_render__$1 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-modal overlay",class:_vm.customCls},[_c('transition',{attrs:{"name":"slide-fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-window"},[_c('div',{staticClass:"title-bar"},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('button',{staticClass:"btn-text btn-close",attrs:{"type":"button"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)]),_vm._v(" "),_c('div',{staticClass:"win-content",domProps:{"innerHTML":_vm._s(_vm.content)}}),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[(!_vm.noCancel)?_c('v-button',{attrs:{"pattern":"ghost"},on:{"click":_vm.close}},[_vm._v("取消")]):_vm._e(),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v("确认")])],1)])])])],1)};
+  var __vue_render__$1 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-modal overlay",class:_vm.customCls},[_c('transition',{attrs:{"name":"slide-fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-window"},[_c('div',{staticClass:"title-bar"},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content",domProps:{"innerHTML":_vm._s(_vm.content)}}),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[(!_vm.noCancel)?_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v("取消")]):_vm._e(),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v("确认")])],1)])])])],1)};
   var __vue_staticRenderFns__$1 = [];
 
     /* style */
@@ -455,7 +453,7 @@
     name: 'v-button',
     data() {
       return {
-        type: this.submit ? 'submit' : 'button',
+        btnType: this.submit ? 'submit' : 'button',
         theme: `v-btn-${this.type}`,
         size: this.size ? `v-btn-${this.size}` : ''
       }
@@ -483,7 +481,7 @@
               const __vue_script__$5 = script$5;
               
   /* template */
-  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{class:("v-btn " + _vm.theme + " " + _vm.size),attrs:{"type":_vm.type,"disabled":_vm.disabled},on:{"click":_vm.click}},[(!!_vm.icon && !_vm.loading)?_c('v-icon',{attrs:{"icon":_vm.icon}}):_vm._e(),_vm._v(" "),(_vm.loading)?_c('v-icon',{class:{loading: _vm.loading},attrs:{"icon":"refresh"}}):_vm._e(),_vm._v(" "),_vm._t("default")],2)};
+  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{class:("v-btn " + _vm.theme + " " + _vm.size),attrs:{"type":_vm.btnType,"disabled":_vm.disabled},on:{"click":_vm.click}},[(!!_vm.icon && !_vm.loading)?_c('v-icon',{attrs:{"icon":_vm.icon}}):_vm._e(),_vm._v(" "),(_vm.loading)?_c('v-icon',{class:{loading: _vm.loading},attrs:{"icon":"refresh"}}):_vm._e(),_vm._v(" "),_vm._t("default")],2)};
   var __vue_staticRenderFns__$5 = [];
 
     /* style */
@@ -2465,8 +2463,6 @@
   //
   //
   //
-  //
-  //
 
   var script$l = {
     name: 'v-popup',
@@ -2536,7 +2532,7 @@
               const __vue_script__$l = script$l;
               
   /* template */
-  var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('button',{staticClass:"btn-text btn-close",attrs:{"type":"button"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)]),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("content")],2),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_c('v-button',{attrs:{"pattern":"ghost"},on:{"click":_vm.close}},[_vm._v("取消")]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v("确认")])],1)])])]):_vm._e()};
+  var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("content")],2),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v("取消")]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v("确认")])],1)])])]):_vm._e()};
   var __vue_staticRenderFns__$l = [];
 
     /* style */

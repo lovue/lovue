@@ -3,16 +3,14 @@
     <div class="v-window" :style="transform">
       <div class="title-bar" @mousedown="dragStart">
         <div class="title-name">{{title}}</div>
-        <button class="btn-text btn-close" type="button" @click="close">
-          <v-icon icon="close" size="18"></v-icon>
-        </button>
+        <v-button type="text" @click="close"><v-icon icon="close" size="18"></v-icon></v-button>
       </div>
       <div class="win-content">
         <slot name="content"></slot>
       </div>
       <div class="win-footer">
         <div class="right">
-          <v-button pattern="ghost" @click="close">取消</v-button>
+          <v-button type="ghost" @click="close">取消</v-button>
           <v-button @click="handleConfirm" :loading="loading">确认</v-button>
         </div>
       </div>

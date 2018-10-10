@@ -4,14 +4,12 @@
       <div class="v-window" v-show="visible">
         <div class="title-bar">
           <div class="title-name">{{title}}</div>
-          <button class="btn-text btn-close" type="button" @click="close">
-            <v-icon icon="close" size="18"></v-icon>
-          </button>
+          <v-button type="text" @click="close"><v-icon icon="close" size="18"></v-icon></v-button>
         </div>
         <div class="win-content" v-html="content"></div>
         <div class="win-footer">
           <div class="right">
-            <v-button pattern="ghost" @click="close" v-if="!noCancel">取消</v-button>
+            <v-button type="ghost" @click="close" v-if="!noCancel">取消</v-button>
             <v-button @click="handleConfirm" :loading="loading">确认</v-button>
           </div>
         </div>

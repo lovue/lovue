@@ -229,21 +229,18 @@ svg {
   justify-content: space-between;
   border-radius: 4px 4px 0 0;
 }
-.v-window .title-bar .btn-close {
-  font-family: "PingFang SC Light", sans-serif;
+.v-window .title-bar .v-btn {
   font-size: 2rem;
   padding: 0 16px;
   height: 50px;
   line-height: 50px;
   color: #919191;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
 }
-.v-window .title-bar .btn-close span {
-  display: block;
+.v-window .title-bar .v-btn .icon {
+  width: auto;
+  height: auto;
 }
-.v-window .title-bar .btn-close:hover {
+.v-window .title-bar .v-btn:hover {
   color: #f04134;
 }
 .v-window .win-content {
