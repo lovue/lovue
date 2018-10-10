@@ -452,8 +452,8 @@
     data() {
       return {
         btnType: this.submit ? 'submit' : 'button',
-        theme: `v-btn-${this.type}`,
-        size: this.size ? `v-btn-${this.size}` : ''
+        btnTheme: `v-btn-${this.type}`,
+        btnSize: this.size ? `v-btn-${this.size}` : ''
       }
     },
     props: {
@@ -479,7 +479,7 @@
               const __vue_script__$5 = script$5;
               
   /* template */
-  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{class:("v-btn " + _vm.theme + " " + _vm.size),attrs:{"type":_vm.btnType,"disabled":_vm.disabled},on:{"click":_vm.click}},[(!!_vm.icon && !_vm.loading)?_c('v-icon',{attrs:{"icon":_vm.icon}}):_vm._e(),_vm._v(" "),(_vm.loading)?_c('v-icon',{class:{loading: _vm.loading},attrs:{"icon":"refresh"}}):_vm._e(),_vm._v(" "),_vm._t("default")],2)};
+  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{class:("v-btn " + _vm.btnTheme + " " + _vm.btnSize),attrs:{"type":_vm.btnType,"disabled":_vm.disabled},on:{"click":_vm.click}},[(!!_vm.icon && !_vm.loading)?_c('v-icon',{attrs:{"icon":_vm.icon}}):_vm._e(),_vm._v(" "),(_vm.loading)?_c('v-icon',{class:{loading: _vm.loading},attrs:{"icon":"refresh"}}):_vm._e(),_vm._v(" "),_vm._t("default")],2)};
   var __vue_staticRenderFns__$5 = [];
 
     /* style */
@@ -942,7 +942,7 @@
     /* style */
     const __vue_inject_styles__$b = undefined;
     /* scoped */
-    const __vue_scope_id__$b = "data-v-285923ca";
+    const __vue_scope_id__$b = "data-v-3c219ba8";
     /* module identifier */
     const __vue_module_identifier__$b = undefined;
     /* functional template */
@@ -1117,7 +1117,7 @@
     /* style */
     const __vue_inject_styles__$c = undefined;
     /* scoped */
-    const __vue_scope_id__$c = "data-v-4be83e8c";
+    const __vue_scope_id__$c = "data-v-9d6885c6";
     /* module identifier */
     const __vue_module_identifier__$c = undefined;
     /* functional template */

@@ -1,5 +1,5 @@
 <template>
-  <button :type="btnType" :class="`v-btn ${theme} ${size}`" :disabled="disabled" @click="click">
+  <button :type="btnType" :class="`v-btn ${btnTheme} ${btnSize}`" :disabled="disabled" @click="click">
     <v-icon :icon="icon" v-if="!!icon && !loading"></v-icon>
     <v-icon icon="refresh" :class="{loading: loading}" v-if="loading"></v-icon>
     <slot></slot>
@@ -12,8 +12,8 @@
     data() {
       return {
         btnType: this.submit ? 'submit' : 'button',
-        theme: `v-btn-${this.type}`,
-        size: this.size ? `v-btn-${this.size}` : ''
+        btnTheme: `v-btn-${this.type}`,
+        btnSize: this.size ? `v-btn-${this.size}` : ''
       }
     },
     props: {
