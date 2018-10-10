@@ -5,7 +5,7 @@
         <v-icon :icon="iconType"></v-icon>
       </div>
       <p>{{message}}</p>
-      <v-icon icon="close" v-if="showClose" @click.native="visible = false"></v-icon>
+      <v-icon icon="close" v-if="showClose" @click.native="close"></v-icon>
     </div>
   </transition>
 </template>
@@ -33,6 +33,10 @@
       }
     },
     methods: {
+      close() {
+        this.visible = false
+        this.$el.addEventListener('transitionend', this.destroy)
+      },
       destroy() {
         this.$el.removeEventListener('transitionend', this.destroy)
         this.$destroy()
@@ -42,10 +46,7 @@
     },
     mounted() {
       if (!this.showClose) {
-        this.timer = setTimeout(() => {
-          this.visible = false
-          this.$el.addEventListener('transitionend', this.destroy)
-        }, this.duration)
+        this.timer = setTimeout(() => this.close(), this.duration)
       }
     }
   }

@@ -38,6 +38,10 @@
       }
     },
     methods: {
+      close() {
+        this.visible = false;
+        this.$el.addEventListener('transitionend', this.destroy);
+      },
       destroy() {
         this.$el.removeEventListener('transitionend', this.destroy);
         this.$destroy();
@@ -47,10 +51,7 @@
     },
     mounted() {
       if (!this.showClose) {
-        this.timer = setTimeout(() => {
-          this.visible = false;
-          this.$el.addEventListener('transitionend', this.destroy);
-        }, this.duration);
+        this.timer = setTimeout(() => this.close(), this.duration);
       }
     }
   };
@@ -59,7 +60,7 @@
               const __vue_script__ = script;
               
   /* template */
-  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"slide-fade2"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-message"},[_c('div',{staticClass:"m-icon",class:("m-" + _vm.type)},[_c('v-icon',{attrs:{"icon":_vm.iconType}})],1),_vm._v(" "),_c('p',[_vm._v(_vm._s(_vm.message))]),_vm._v(" "),(_vm.showClose)?_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){_vm.visible = false;}}}):_vm._e()],1)])};
+  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"slide-fade2"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-message"},[_c('div',{staticClass:"m-icon",class:("m-" + _vm.type)},[_c('v-icon',{attrs:{"icon":_vm.iconType}})],1),_vm._v(" "),_c('p',[_vm._v(_vm._s(_vm.message))]),_vm._v(" "),(_vm.showClose)?_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){return _vm.close($event)}}}):_vm._e()],1)])};
   var __vue_staticRenderFns__ = [];
 
     /* style */
