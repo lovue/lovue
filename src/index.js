@@ -1,52 +1,54 @@
 import Vue from 'vue'
 import Message from './components/Message.vue'
 import Modal from './components/Modal.vue'
-import Row from './components/Row.vue'
-import Col from './components/Col.vue'
-import Icon from './components/Icon.vue'
 import Button from './components/Button.vue'
 import ButtonGroup from './components/ButtonGroup.vue'
-import Menu from './components/Menu.vue'
-import Radio from './components/Radio.vue'
 import Checkbox from './components/Checkbox.vue'
-import Switch from './components/Switch.vue'
-import Search from './components/Search.vue'
-import Upload from './components/Upload.vue'
-import Tab from './components/Tab.vue'
-import Steps from './components/Steps.vue'
-import Select from './components/Select.vue'
-import PureSelect from './components/PureSelect.vue'
-import Progress from './components/Progress.vue'
-import Pagination from './components/Pagination.vue'
+import Col from './components/Col.vue'
 import DatePicker from './components/DatePicker.vue'
-import PwdStrength from './components/PwdStrength.vue'
+import Icon from './components/Icon.vue'
+import Input from './components/Input.vue'
+import Menu from './components/Menu.vue'
+import Pagination from './components/Pagination.vue'
 import Popup from './components/Popup.vue'
+import Progress from './components/Progress.vue'
+import PureSelect from './components/PureSelect.vue'
+import PwdStrength from './components/PwdStrength.vue'
+import Radio from './components/Radio.vue'
+import Row from './components/Row.vue'
+import Search from './components/Search.vue'
+import Select from './components/Select.vue'
+import Steps from './components/Steps.vue'
+import Switch from './components/Switch.vue'
+import Tab from './components/Tab.vue'
+import Upload from './components/Upload.vue'
 
 if (!NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach
 }
 
 const Components = [
-  Row,
-  Col,
-  Icon,
   Button,
   ButtonGroup,
-  Menu,
-  Radio,
   Checkbox,
-  Switch,
-  Search,
-  Upload,
-  Tab,
-  Steps,
-  Select,
-  PureSelect,
-  Progress,
-  Pagination,
+  Col,
   DatePicker,
+  Icon,
+  Input,
+  Menu,
+  Pagination,
+  Popup,
+  Progress,
+  PureSelect,
   PwdStrength,
-  Popup
+  Radio,
+  Row,
+  Search,
+  Select,
+  Steps,
+  Switch,
+  Tab,
+  Upload
 ]
 Components.forEach(a => {
   Vue.component(a.name, a)
