@@ -200,6 +200,19 @@ svg {
 .select:hover {
   border-color: #4ad3e8;
 }
+.input {
+  height: 32px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #e9e9e9;
+  transition: border-color 0.2s ease-out;
+}
+.input:hover {
+  border-color: #4ad3e8;
+}
+.input:focus {
+  border-color: #00c1de;
+}
 .overlay {
   position: fixed;
   top: 0;
@@ -214,6 +227,18 @@ svg {
 }
 .overlay.fixed {
   align-items: flex-start;
+}
+.layout-lr {
+  display: flex;
+  align-items: flex-start;
+}
+.layout-lr > .l {
+  flex-shrink: 0;
+  margin-right: 1.2rem;
+}
+.layout-lr > .r {
+  flex: 1;
+  min-width: 0;
 }
 .v-window {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
@@ -289,18 +314,6 @@ svg {
 }
 .v-row .v-col.col-12 {
   width: 50%;
-}
-.v-layout-lr {
-  display: flex;
-  align-items: flex-start;
-}
-.v-layout-lr > .l {
-  flex-shrink: 0;
-  margin-right: 1.2rem;
-}
-.v-layout-lr > .r {
-  flex: 1;
-  min-width: 0;
 }
 .v-btn {
   touch-action: manipulation;
@@ -496,19 +509,6 @@ svg {
   display: inline-block;
   font-size: 1.4rem;
 }
-.v-input input {
-  height: 32px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 1px solid #e9e9e9;
-  transition: border-color 0.3s;
-}
-.v-input input:hover {
-  border-color: #4ad3e8;
-}
-.v-input input:focus {
-  border-color: #00c1de;
-}
 .v-input hr {
   position: absolute;
   bottom: -1px;
@@ -518,7 +518,6 @@ svg {
   border: none;
   display: block;
   background-color: #00c1de;
-  will-change: transform;
   transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
   transform: scaleX(0);
 }
@@ -669,19 +668,8 @@ svg {
 .v-search {
   position: relative;
 }
-.v-search input {
-  height: 32px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 1px solid #e9e9e9;
-  transition: border-color 0.3s;
+.v-search .input {
   padding-right: calc(8px + 20px);
-}
-.v-search input:hover {
-  border-color: #4ad3e8;
-}
-.v-search input:focus {
-  border-color: #00c1de;
 }
 .v-search .icon-search {
   position: absolute;
@@ -970,27 +958,27 @@ svg {
   display: inline-block;
   font-size: 1.4rem;
 }
-.v-select .v-layout-lr {
+.v-select .layout-lr {
   align-items: center;
   justify-content: space-between;
 }
-.v-select .v-layout-lr > .l {
+.v-select .layout-lr > .l {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   width: calc(100% - 40px);
   margin-right: 0;
 }
-.v-select .v-layout-lr > .r {
+.v-select .layout-lr > .r {
   font-size: 0;
 }
-.v-select .v-layout-lr > .r .icon-down-wide {
+.v-select .layout-lr > .r .icon-down-wide {
   width: 40px;
   height: 20px;
   will-change: transform;
   transition: transform 0.25s ease-out;
 }
-.v-select .v-layout-lr > .r .icon-down-wide.reverse {
+.v-select .layout-lr > .r .icon-down-wide.reverse {
   transform: rotateX(180deg);
 }
 .v-select .selected {
@@ -1020,7 +1008,6 @@ svg {
   white-space: nowrap;
 }
 .v-select .selected .s-tag .icon-close {
-  will-change: color;
   transition: color 0.2s ease-out;
   flex-shrink: 0;
   width: 28px;
@@ -1033,11 +1020,11 @@ svg {
 .v-select .selected .s-tag-custom {
   background-color: #fa90ba;
 }
-.v-select .selected .v-input {
+.v-select .selected .input {
+  padding-left: 4px;
   max-width: 198px;
   overflow: visible;
   border: none;
-  padding-left: 6px;
   cursor: pointer;
 }
 .v-select .selected .layer-disabled {
@@ -1064,7 +1051,7 @@ svg {
   padding: 0 8px;
   margin-top: 8px;
 }
-.v-select .candidates .item-search .v-input {
+.v-select .candidates .item-search .input {
   width: 100%;
 }
 .v-select .candidates .i-title {
@@ -1135,16 +1122,18 @@ svg {
 }
 .v-progress .layer-1 {
   background-color: #f5f5f5;
+  border-radius: 4px;
   width: 100%;
   height: 100%;
 }
 .v-progress .layer-2 {
+  transition: width 0.2s ease-out;
   position: absolute;
   top: 0;
   width: 0;
   height: 100%;
   background-color: #00c1de;
-  transition: width 0.2s ease-out;
+  border-radius: 4px 0 0 4px;
 }
 .v-progress .layer-3 {
   position: absolute;
@@ -1300,12 +1289,11 @@ svg {
   display: inline-block;
   font-size: 1.4rem;
 }
-.v-date-picker .v-input {
-  will-change: width;
-  transition: width 0.2s ease-out;
+.v-date-picker .input {
   width: 200px;
   background-color: #fff;
   border-radius: 4px;
+  transition: border-color 0.2s ease-out, width 0.2s ease-out;
   cursor: pointer;
 }
 .v-date-picker .picker-container {

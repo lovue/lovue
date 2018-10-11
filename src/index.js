@@ -3,6 +3,7 @@ import Message from './components/Message.vue'
 import Modal from './components/Modal.vue'
 import Button from './components/Button.vue'
 import ButtonGroup from './components/ButtonGroup.vue'
+import ButtonSend from './components/ButtonSend.vue'
 import Checkbox from './components/Checkbox.vue'
 import Col from './components/Col.vue'
 import DatePicker from './components/DatePicker.vue'
@@ -30,6 +31,7 @@ if (!NodeList.prototype.forEach) {
 const Components = [
   Button,
   ButtonGroup,
+  ButtonSend,
   Checkbox,
   Col,
   DatePicker,

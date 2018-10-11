@@ -153,7 +153,6 @@
 }
 
 .mixin-transition(@property, @time: .2s, @function: ease-out) {
-  will-change: @property;
   transition: @property @time @function;
 }
 
@@ -264,20 +263,4 @@
 .mixin-md-pre-font {
   font-family: Roboto Mono, Lucida Sans Typewriter, Lucida Console, monaco, Courrier, monospace;
   font-size: .85em;
-}
-
-.mixin-input {
-  height: @4unit;
-  padding: 4px @unit;
-  border-radius: @border-radius;
-  border: 1px solid @border-color;
-  transition: border-color .3s;
-
-  &:hover {
-    border-color: @hover-blue-color;
-  }
-
-  &:focus {
-    border-color: @blue-color;
-  }
 }

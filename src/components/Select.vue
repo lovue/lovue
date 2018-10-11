@@ -1,6 +1,6 @@
 <template>
   <div class="v-select" @click.stop="showCandidates">
-    <div class="selected v-layout-lr">
+    <div class="selected layout-lr">
       <div class="layer-disabled" v-if="disabled"></div>
       <div class="l">
         <template v-if="multiple">
@@ -9,14 +9,14 @@
           <v-icon icon="close" @click.native.stop="remove(s,i)"></v-icon>
         </span>
         </template>
-        <input class="v-input" :value="selected.name" v-else :placeholder="placeholder" readonly>
+        <input class="input" :value="selected.name" v-else :placeholder="placeholder" readonly>
       </div>
       <div class="r">
         <v-icon icon="down-wide" :class="{reverse: !open}"></v-icon>
       </div>
     </div>
     <div :class="`candidates ${pos} ${open}`" v-show="bShowCandidates">
-      <div class="item-search" v-if="searchable"><input class="v-input" type="text" placeholder="搜索" v-model="filterText"></div>
+      <div class="item-search" v-if="searchable"><input class="input" placeholder="搜索" v-model="filterText"></div>
       <ul class="list">
         <li v-for="i of filteredItems" :title="i.name" @click.stop="toggle(i)">
           <div class="i-title" :class="{focus: i.selected}"><span class="t-name">{{i.name}}</span><v-icon icon="check" v-if="i.selected"></v-icon></div>
@@ -128,6 +128,8 @@
         this.innerUpdate = false
       },
       showCandidates() {
+        if (this.disabled) return
+
         this.bShowCandidates = true
 
         let items = 0

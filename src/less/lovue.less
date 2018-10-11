@@ -65,6 +65,22 @@
   }
 }
 
+.input {
+  height: @4unit;
+  padding: 4px @unit;
+  border-radius: @border-radius;
+  border: 1px solid @border-color;
+  .mixin-transition(@property: border-color);
+
+  &:hover {
+    border-color: @hover-blue-color;
+  }
+
+  &:focus {
+    border-color: @blue-color;
+  }
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -79,6 +95,21 @@
 
   &.fixed {
     align-items: flex-start;
+  }
+}
+
+.layout-lr {
+  display: flex;
+  align-items: flex-start;
+
+  > .l {
+    flex-shrink: 0;
+    margin-right: 1.2rem;
+  }
+
+  > .r {
+    flex: 1;
+    min-width: 0;
   }
 }
 
@@ -172,21 +203,6 @@
     &.col-12 {
       width: 50%;
     }
-  }
-}
-
-.v-layout-lr {
-  display: flex;
-  align-items: flex-start;
-
-  > .l {
-    flex-shrink: 0;
-    margin-right: 1.2rem;
-  }
-
-  > .r {
-    flex: 1;
-    min-width: 0;
   }
 }
 
@@ -437,10 +453,6 @@
   display: inline-block;
   font-size: @small-font;
 
-  input {
-    .mixin-input;
-  }
-
   hr {
     position: absolute;
     bottom: -1px;
@@ -450,7 +462,6 @@
     border: none;
     display: block;
     background-color: @blue-color;
-    will-change: transform;
     transition: transform .45s cubic-bezier(0.23, 1, 0.32, 1);
     transform: scaleX(0);
   }
@@ -629,8 +640,7 @@
 .v-search {
   position: relative;
 
-  input {
-    .mixin-input;
+  .input {
     padding-right: calc(@unit + 20px);
   }
 
@@ -975,7 +985,7 @@
   display: inline-block;
   font-size: @small-font;
 
-  .v-layout-lr {
+  .layout-lr {
     align-items: center;
     justify-content: space-between;
 
@@ -1044,11 +1054,11 @@
       background-color: @light-pink-color;
     }
 
-    .v-input {
+    .input {
+      padding-left: 4px;
       max-width: 198px;
       overflow: visible;
       border: none;
-      padding-left: 6px;
       cursor: pointer;
     }
 
@@ -1078,7 +1088,7 @@
       padding: 0 8px;
       margin-top: 8px;
 
-      .v-input {
+      .input {
         width: 100%;
       }
     }
@@ -1161,17 +1171,19 @@
 
   .layer-1 {
     background-color: @bg-color;
+    border-radius: @border-radius;
     width: 100%;
     height: 100%;
   }
 
   .layer-2 {
+    .mixin-transition(@property: width);
     position: absolute;
     top: 0;
     width: 0;
     height: 100%;
     background-color: @blue-color;
-    transition: width .2s ease-out;
+    border-radius: @border-radius 0 0 @border-radius;
   }
 
   .layer-3 {
@@ -1352,11 +1364,11 @@
   display: inline-block;
   font-size: @small-font;
 
-  .v-input {
-    .mixin-transition(@property: width);
+  .input {
     width: 200px;
     background-color: @white-color;
     border-radius: @border-radius;
+    transition: border-color .2s ease-out, width .2s ease-out;
     cursor: pointer;
   }
 

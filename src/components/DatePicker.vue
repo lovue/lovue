@@ -1,6 +1,6 @@
 <template>
   <div class="v-date-picker" @click.stop="showPicker">
-    <input class="v-input" :style="inputStyle" :name="name" v-model="date" readonly>
+    <input class="input" :style="inputStyle" :name="name" v-model="date" readonly>
     <div class="picker-container" :class="`${pos} ${open}`" ref="container" v-show="bShowPicker">
       <div class="date-picker">
         <div class="picker-filter">
