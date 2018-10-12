@@ -2,7 +2,8 @@
   "name": "lovue",
   "version": "2.0.0",
   "description": "Love Vue: UI components for Vue",
-  "main": "dist/lovue.js",
+  "main": "dist/lovue.common.js",
+  "module": "dist/lovue.esm.js",
   "unpkg": "dist/lovue.min.js",
   "jsdelivr": "dist/lovue.min.js",
   "repository": {
@@ -16,9 +17,11 @@
     "serve": "rollup -c --watch",
     "normalize": "lessc src/less/normalize.less dist/normalize.min.css --clean-css",
     "less": "lessc src/less/lovue.less dist/lovue.min.css --clean-css",
+    "cjs": "rollup -c --environment production,cjs",
+    "esm": "rollup -c --environment production,esm",
     "js": "rollup -c --environment production",
     "min": "terser dist/lovue.js -o dist/lovue.min.js -c",
-    "build": "npm run less && npm run normalize && npm run js && npm run min"
+    "build": "npm run less && npm run normalize && npm run cjs && npm run esm && npm run js && npm run min"
   },
   "author": "loliconer",
   "license": "Apache-2.0",
