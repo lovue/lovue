@@ -32,7 +32,6 @@
     props: {
       title: String,
       value: Boolean,
-      async: Boolean,
       confirm: Function,
       fixed: Boolean
     },
@@ -63,7 +62,7 @@
         this.flag = false
       },
       async handleConfirm() {
-        if (!this.async) {
+        if (!this.confirm) {
           this.close()
           return
         }

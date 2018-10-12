@@ -1,7 +1,7 @@
 <template>
   <div class="v-search">
-    <input class="input" autocomplete="off" :placeholder="placeholder" @input="inputHandler" v-model.trim="keywords">
-    <v-icon icon="search" @click.native="$emit('input', keywords)"></v-icon>
+    <v-input :placeholder="placeholder" @input="inputHandler"></v-input>
+    <v-icon icon="search" @click.native="$emit('search', keywords)"></v-icon>
   </div>
 </template>
 
@@ -10,11 +10,6 @@
 
   export default {
     name: 'v-search',
-    data() {
-      return {
-        keywords: ''
-      }
-    },
     props: {
       auto: {
         type: Boolean,
@@ -26,15 +21,15 @@
       }
     },
     methods: {
-      inputHandler(ev) {
+      inputHandler(text) {
         if (!this.auto) return
 
         if (timer) {
           clearTimeout(timer)
         }
         timer = setTimeout(() => {
-          this.$emit('input', ev.target.value.trim())
-        }, 300)
+          this.$emit('search', text)
+        }, 500)
       }
     }
   }

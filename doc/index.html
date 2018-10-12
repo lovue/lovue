@@ -222,8 +222,8 @@
             <div class="content">
               <div class="content-cell">
                 <div class="controls">
-                  <v-search @input="startSearch"></v-search>
-                  <v-search @input="startSearch" :auto="false" placeholder="禁用自动搜索"></v-search>
+                  <v-search @search="startSearch"></v-search>
+                  <v-search @search="startSearch" :auto="false" placeholder="禁用自动搜索"></v-search>
                 </div>
               </div>
             </div>

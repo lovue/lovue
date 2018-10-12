@@ -1,6 +1,7 @@
 <template>
   <div class="v-input" :class="{effect: effect}">
-    <input class="input" :type="type" :name="name" :value="value" @input="$emit('input', $event.target.value)" :placeholder="placeholder" :required="required">
+    <input class="input" :type="type" :name="name" :value="value" @input="$emit('input', $event.target.value)"
+           :placeholder="placeholder" :required="required" autocomplete="off">
     <hr v-if="effect">
   </div>
 </template>

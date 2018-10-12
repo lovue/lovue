@@ -27,8 +27,7 @@
         loading: false,
         noCancel: false,
         fixed: false,
-        async: false,
-        confirm() {}
+        confirm: undefined
       }
     },
     computed: {
@@ -47,7 +46,7 @@
         document.body.classList.remove('overhidden')
       },
       async handleConfirm() {
-        if (!this.async) {
+        if (!this.confirm) {
           this.close()
           return
         }

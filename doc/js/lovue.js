@@ -142,8 +142,7 @@
         loading: false,
         noCancel: false,
         fixed: false,
-        async: false,
-        confirm() {}
+        confirm: undefined
       }
     },
     computed: {
@@ -162,7 +161,7 @@
         document.body.classList.remove('overhidden');
       },
       async handleConfirm() {
-        if (!this.async) {
+        if (!this.confirm) {
           this.close();
           return
         }
@@ -1036,6 +1035,7 @@
   //
   //
   //
+  //
 
   var script$9 = {
     name: 'v-input',
@@ -1053,7 +1053,7 @@
               const __vue_script__$9 = script$9;
               
   /* template */
-  var __vue_render__$9 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-input",class:{effect: _vm.effect}},[_c('input',{staticClass:"input",attrs:{"type":_vm.type,"name":_vm.name,"placeholder":_vm.placeholder,"required":_vm.required},domProps:{"value":_vm.value},on:{"input":function($event){_vm.$emit('input', $event.target.value);}}}),_vm._v(" "),(_vm.effect)?_c('hr'):_vm._e()])};
+  var __vue_render__$9 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-input",class:{effect: _vm.effect}},[_c('input',{staticClass:"input",attrs:{"type":_vm.type,"name":_vm.name,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off"},domProps:{"value":_vm.value},on:{"input":function($event){_vm.$emit('input', $event.target.value);}}}),_vm._v(" "),(_vm.effect)?_c('hr'):_vm._e()])};
   var __vue_staticRenderFns__$9 = [];
 
     /* style */
@@ -1382,7 +1382,6 @@
     props: {
       title: String,
       value: Boolean,
-      async: Boolean,
       confirm: Function,
       fixed: Boolean
     },
@@ -1413,7 +1412,7 @@
         this.flag = false;
       },
       async handleConfirm() {
-        if (!this.async) {
+        if (!this.confirm) {
           this.close();
           return
         }
@@ -1966,11 +1965,6 @@
 
   var script$i = {
     name: 'v-search',
-    data() {
-      return {
-        keywords: ''
-      }
-    },
     props: {
       auto: {
         type: Boolean,
@@ -1982,15 +1976,15 @@
       }
     },
     methods: {
-      inputHandler(ev) {
+      inputHandler(text) {
         if (!this.auto) return
 
         if (timer) {
           clearTimeout(timer);
         }
         timer = setTimeout(() => {
-          this.$emit('input', ev.target.value.trim());
-        }, 300);
+          this.$emit('search', text);
+        }, 500);
       }
     }
   };
@@ -1999,7 +1993,7 @@
               const __vue_script__$i = script$i;
               
   /* template */
-  var __vue_render__$i = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-search"},[_c('input',{directives:[{name:"model",rawName:"v-model.trim",value:(_vm.keywords),expression:"keywords",modifiers:{"trim":true}}],staticClass:"input",attrs:{"autocomplete":"off","placeholder":_vm.placeholder},domProps:{"value":(_vm.keywords)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.keywords=$event.target.value.trim();},_vm.inputHandler],"blur":function($event){_vm.$forceUpdate();}}}),_vm._v(" "),_c('v-icon',{attrs:{"icon":"search"},nativeOn:{"click":function($event){_vm.$emit('input', _vm.keywords);}}})],1)};
+  var __vue_render__$i = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-search"},[_c('v-input',{attrs:{"placeholder":_vm.placeholder},on:{"input":_vm.inputHandler}}),_vm._v(" "),_c('v-icon',{attrs:{"icon":"search"},nativeOn:{"click":function($event){_vm.$emit('search', _vm.keywords);}}})],1)};
   var __vue_staticRenderFns__$i = [];
 
     /* style */
