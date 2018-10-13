@@ -1,4 +1,4 @@
-<template>
+weg<template>
   <div class="vue-carousel">
     <ul class="list">
       <li class="item"><img src="/img/carousel01.jpg"></li>

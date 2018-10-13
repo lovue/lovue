@@ -197,3 +197,7 @@ body.overhidden {
 .v-pagination {
   margin-bottom: 16px;
 }
+
+.v-select-city .v-select {
+  width: 200px;
+}

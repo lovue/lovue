@@ -1,12 +1,7 @@
 <template>
-  <div class="vue-select-city">
-    <select class="select" name="province" v-model="province">
-      <option value="-1">省/直辖市</option>
-      <option :value="province.name" v-for="province of provinces">{{province.name}}</option>
-    </select>
-    <select class="select" name="city" v-model="city">
-      <option :value="city" v-for="city of cities">{{city}}</option>
-    </select>
+  <div class="v-select-city">
+    <v-select :source="provinces" v-model="province"></v-select>
+    <v-select :source="cities" v-model="city"></v-select>
   </div>
 </template>
 
@@ -70,51 +65,49 @@
       name: "台湾省",
       cities: ["台北市", "台北县市", "台东县", "台中市", "台中县市", "高雄市", "高雄县市", "新竹市", "新竹县", "宜兰县", "桃园县", "云林县", "彰化县", "台南市", "台南县市", "连江县市", "嘉义市", "基隆市", "花莲县", "嘉义县", "金门县", "苗栗县", "南投县", "澎湖县", "屏东县"]
     }
-  ];
+  ]
   export default {
+    name: 'v-select-city',
     data () {
+      const provinces = [
+        { name: '省/直辖市', value: -1 }
+      ], indexes = {}
+      data.forEach((item, i) => {
+        indexes[item.name] = i
+        provinces.push({ name: item.name, value: item.name })
+      })
+
+      const value = this.value || [-1, '先选择省']
       return {
-        provinces: data,
-        province: this.currentProvince,
-        city: this.currentCity
+        provinces,
+        province: value[0],
+        city: value[1],
+        indexes
       }
     },
     computed: {
-      cities () {
-        if (Number(this.province) === -1) {
-          return ['先选择省'];
-        } else {
-          for (let i = 0; i < this.provinces.length; i++) {
-            if (this.provinces[i].name === this.province) {
-              return this.provinces[i].cities;
-            }
-          }
-        }
+      cities() {
+        return Number(this.province) === -1
+          ? [{ name: '先选择省', value: '先选择省' }]
+          : data[this.indexes[this.province]].cities.map(city => ({ name: city, value: city }))
       }
     },
     props: {
-      currentProvince: {
-        type: String,
-        default: "-1"
-      },
-      currentCity: {
-        type: String,
-        default: "先选择省"
-      }
+      value: Array
     },
     watch: {
-      currentProvince (val) {
-        this.province = val;
+      currentProvince(val) {
+        this.province = val
       },
       currentCity (val) {
-        setTimeout(() => this.city = val, 10);
+        setTimeout(() => this.city = val, 60)
       },
       province (val) {
-        this.city = this.cities[0];
-        this.$emit('updateProvince', val);
+        this.city = this.cities[0].value
+        this.$emit('input', [val, this.city])
       },
       city (val) {
-        this.$emit('updateCity', val);
+        this.$emit('input', [this.province, val])
       }
     }
   }

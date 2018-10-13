@@ -113,7 +113,9 @@
             if (item.value === val) {
               item.selected = true
               match = { name: item.name, value: item.value }
-            } else if (item.children) {
+            }
+
+            if (item.children) {
               item.children.forEach(child => {
                 child.selected = false
                 if (child.value === val) {

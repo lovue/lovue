@@ -35,6 +35,7 @@ function updateLinks(links) {
 new Vue({
   el: '#app',
   data: {
+    provinceCity: ['江西省', '抚州市'],
     diploma: ['初中', '高中', '本科', '硕士', '博士'],
     buildings: [
       {

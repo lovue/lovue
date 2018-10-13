@@ -1,6 +1,6 @@
 <template>
-  <div class="vue-img-reflex">
-    <div class="img">
+  <div class="v-img-reflex">
+    <div class="img-wrap">
       <img :src="src" :alt="alt">
     </div>
     <div class="reflex-wrap">
@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  name: 'v-img-reflex',
   props: {
     src: String,
     alt: String
