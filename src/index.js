@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import Message from './components/Message.vue'
 import Modal from './components/Modal.vue'
 import Button from './components/Button.vue'
