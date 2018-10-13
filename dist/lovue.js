@@ -1,5 +1,7 @@
-(function () {
+(function (Vue) {
   'use strict';
+
+  Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue;
 
   //
   //
@@ -2875,4 +2877,4 @@
     }
   });
 
-}());
+}(Vue));

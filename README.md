@@ -14,7 +14,7 @@ npm run build
 访问：http://localhost:10001
 
 ### 使用方法
-- 第一种（推荐）：引入已编译的js文件，这样可以使用所有的组件
+- 第一种：引入已编译的js文件，这样可以使用所有的组件
 ```
 <head>
 <link href="path/to/lovue.min.css" rel="stylesheet">
@@ -23,7 +23,7 @@ npm run build
 </head>
 <body>
 <div id="app">
-  <vue-table></vue-table>
+  <v-input></v-input>
 </div>
 <script>
   new Vue({
@@ -32,13 +32,26 @@ npm run build
 </script>
 </body>
 ```
-- 第二种：在js文件中导入单个vue文件，可以按需引用
+- 第二种：通过import导入
 ```
-import VueTable from './components/Table.vue'
+npm install -D lovue
+
+//main.js
+import 'lovue'
+import 'lovue/dist/lovue.min.css'
 
 new Vue({
-  el: '#app',
-  components: { VueTable }
+  el: '#app'
+})
+```
+- 第三种：在js文件中导入单个vue文件，可以按需引用
+```
+import Table from './components/Table.vue'
+
+Vue.component(Table.name, Table)
+
+new Vue({
+  el: '#app'
 })
 ```
 
