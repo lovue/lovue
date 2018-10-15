@@ -31,7 +31,11 @@
     "esmPro": "rollup -c rollup.pro.config.js --environment production,esm",
     "jsPro": "rollup -c rollup.pro.config.js --environment production",
     "minPro": "terser dist/lovue.pro.js -o dist/lovue.pro.min.js -c",
-    "buildPro": "npm run lessPro && npm run cjsPro && npm run esmPro && npm run jsPro && npm run minPro"
+    "buildPro": "npm run lessPro && npm run cjsPro && npm run esmPro && npm run jsPro && npm run minPro",
+    "cjsUtils": "rollup src/utils.js --o dist/utils.common.js --f cjs --no-strict",
+    "esmUtils": "rollup src/utils.js --o dist/utils.esm.js --f esm --no-strict",
+    "jsUtils": "rollup src/utils.js --o dist/utils.js --f iife -n utils --no-strict",
+    "buildUtils": "npm run cjsUtils && npm run esmUtils && npm run jsUtils"
   },
   "author": "loliconer",
   "license": "Apache-2.0",

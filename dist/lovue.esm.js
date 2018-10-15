@@ -2725,7 +2725,7 @@ var __vue_staticRenderFns__$n = [];
   /* style */
   const __vue_inject_styles__$n = undefined;
   /* scoped */
-  const __vue_scope_id__$n = "data-v-9d6885c6";
+  const __vue_scope_id__$n = "data-v-4be83e8c";
   /* module identifier */
   const __vue_module_identifier__$n = undefined;
   /* functional template */
@@ -2851,7 +2851,7 @@ Object.defineProperties(Vue.prototype, {
 
       Msg({
         type: 'error',
-        message: msg,
+        message: msg.msg || msg,
         showClose: close
       });
     }

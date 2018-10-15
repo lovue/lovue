@@ -105,7 +105,7 @@ Object.defineProperties(Vue.prototype, {
 
       Msg({
         type: 'error',
-        message: msg,
+        message: msg.msg || msg,
         showClose: close
       })
     }
