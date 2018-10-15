@@ -56,6 +56,8 @@ new Vue({
 ```
 
 ### 已完成：
+
+#### Basic
 - 左右布局
 - 按钮：Button.vue
 - 复选框：Checkbox.vue
@@ -76,17 +78,18 @@ new Vue({
 - Tab页：Tab.vue
 - 选择文件按钮：Upload.vue
 
+#### Pro
+- 中国省市选择器：SelectCity.vue
+- HTML5富文本编辑器：HtmlEditor.vue
+- 图片倒影：ImgReflex.vue
+- 收缩菜单：Collapse.vue
+
 
 ### 开发中：
-- 中国省市选择器：SelectCity.vue
+
 - 图片裁剪并上传（简版）：Crop.vue
-- HTML5富文本编辑器：HtmlEditor.vue
 - 走马灯：Carousel.vue
-- 图片倒影：ImgReflex.vue
 - 表格：Table.vue
 - 树形列表：TreeList.vue
-- 密码验证：PwdValidity.vue
-- 拖拽：DragDrop.vue
-- 拖动滑块验证：NoCaptcha.vue
 - 带树形结构的表格:TableTree.vue
-- 收缩菜单：Collapse.vue
+
