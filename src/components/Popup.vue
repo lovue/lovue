@@ -10,8 +10,10 @@
       </div>
       <div class="win-footer">
         <div class="right">
-          <v-button type="ghost" @click="close">取消</v-button>
-          <v-button @click="handleConfirm" :loading="loading">确认</v-button>
+          <slot name="footer">
+            <v-button type="ghost" @click="close">取消</v-button>
+            <v-button @click="handleConfirm" :loading="loading">确认</v-button>
+          </slot>
         </div>
       </div>
     </div>
@@ -40,6 +42,11 @@
         return {
           transform: `translateX(${this.pos.x}px) translateY(${this.pos.y}px)`
         }
+      }
+    },
+    watch: {
+      value(val) {
+        val && document.body.classList.add('overhidden')
       }
     },
     methods: {
@@ -75,9 +82,6 @@
         }
         this.loading = false
       }
-    },
-    mounted() {
-      document.body.classList.add('overhidden')
     }
   }
 </script>

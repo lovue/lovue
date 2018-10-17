@@ -1,6 +1,6 @@
 <template>
   <div class="v-input" :class="{effect: effect}">
-    <input class="input" :type="type" :name="name" :value="value" @input="$emit('input', $event.target.value)"
+    <input class="input" :type="type" :name="name" :value="value" :step="step" :min="min" :max="max" @input="$emit('input', $event.target.value)"
            :placeholder="placeholder" :required="required" autocomplete="off">
     <hr v-if="effect">
   </div>
@@ -15,7 +15,10 @@
       type: String,
       name: String,
       placeholder: String,
-      required: Boolean
+      required: Boolean,
+      step: String,
+      min: String,
+      max: String
     }
   }
 </script>

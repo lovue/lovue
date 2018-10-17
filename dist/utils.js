@@ -148,13 +148,16 @@ var utils = (function () {
       }).catch(reject);
     })
   };
-  const urlPrefix = '/api';
+  let urlPrefix = '/api';
   const requestUrl = function (url) {
     if (url.startsWith('/') || url.startsWith('http')) return url
     return `${urlPrefix}/${url}`
   };
 
   var $fetch = {
+    prefix(prefix) {
+      urlPrefix = prefix;
+    },
     get(url) {
       return wrapFetch(new Request(requestUrl(url), {
         credentials: 'same-origin',

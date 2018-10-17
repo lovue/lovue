@@ -319,7 +319,7 @@ svg {
   touch-action: manipulation;
   border: 1px solid #e9e9e9;
   white-space: nowrap;
-  padding: 0 15px;
+  padding: 0 16px;
   font-size: 1.4rem;
   border-radius: 4px;
   height: 32px;
@@ -383,13 +383,15 @@ svg {
 .v-btn.v-btn-lg {
   font-size: 1.6rem;
   height: 40px;
+  padding: 0 24px;
 }
 .v-btn.v-btn-lg .icon {
   width: 16px;
   height: 16px;
 }
 .v-btn.v-btn-sm {
-  padding: 0 7px;
+  font-size: 1.2rem;
+  padding: 0 8px;
   height: 24px;
 }
 .v-btn[disabled] {
@@ -986,6 +988,7 @@ svg {
   padding: 0 4px;
   border: 1px solid #e9e9e9;
   border-radius: 4px;
+  background-color: #fff;
   min-height: 32px;
   cursor: pointer;
 }
@@ -1082,7 +1085,7 @@ svg {
 }
 .v-select .candidates .list {
   padding: 8px 0;
-  max-height: 600px;
+  max-height: 320px;
   overflow-y: auto;
 }
 .v-select .candidates .sub-list .i-title {
@@ -1195,12 +1198,12 @@ svg {
 .v-pagination > .p-jump {
   margin-left: 10px;
 }
-.v-pagination > .p-jump .v-input {
+.v-pagination > .p-jump .input {
   width: 40px;
   padding: 0;
   text-align: center;
 }
-.v-pagination > .p-jump .v-input::-webkit-inner-spin-button {
+.v-pagination > .p-jump .input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 .v-pure-select {

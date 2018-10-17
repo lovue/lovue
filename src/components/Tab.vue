@@ -45,8 +45,8 @@
         this.$emit('select', i)
       },
       calculateWidth() {
+        this.tabWidths = []
         this.totalWidth = this.$refs.tabs.offsetWidth
-        //this.tabWidth = this.$refs.tabs.querySelector('.tab').offsetWidth
         this.$refs.tabs.querySelectorAll('.tab').forEach(el => {
           this.tabWidths.push(el.offsetWidth)
         })

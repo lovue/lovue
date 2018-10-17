@@ -19,6 +19,7 @@
   ],
   "scripts": {
     "serve": "rollup -c --watch",
+    "servePro": "rollup -c rollup.pro.config.js --watch",
     "normalize": "lessc src/less/normalize.less dist/normalize.min.css --clean-css",
     "less": "lessc src/less/lovue.less dist/lovue.min.css --clean-css",
     "cjs": "rollup -c --environment production,cjs",
@@ -44,6 +45,7 @@
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "less-plugin-clean-css": "^1.5.1",
+    "qrcode.vue": "^1.6.1",
     "rollup": "^0.66.5",
     "rollup-plugin-less": "^0.1.4",
     "rollup-plugin-livereload": "^0.6.0",

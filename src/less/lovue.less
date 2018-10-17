@@ -210,10 +210,10 @@
   touch-action: manipulation;
   border: 1px solid @border-color;
   white-space: nowrap;
-  padding: 0 15px;
+  padding: 0 @2unit;
   font-size: @small-font;
   border-radius: @border-radius;
-  height: 32px;
+  height: @4unit;
   user-select: none;
   transition: all .3s cubic-bezier(.645, .045, .355, 1);
   color: @light-black-color;
@@ -290,17 +290,19 @@
 
   &.v-btn-lg {
     font-size: @normal-font;
-    height: 40px;
+    height: @5unit;
+    padding: 0 @3unit;
 
     .icon {
-      width: 16px;
-      height: 16px;
+      width: @2unit;
+      height: @2unit;
     }
   }
 
   &.v-btn-sm {
-    padding: 0 7px;
-    height: 24px;
+    font-size: @tiny-font;
+    padding: 0 @unit;
+    height: @3unit;
   }
 
   &[disabled] {
@@ -1018,6 +1020,7 @@
     padding: 0 4px;
     border: 1px solid @border-color;
     border-radius: @border-radius;
+    background-color: @white-color;
     min-height: 32px;
     cursor: pointer;
 
@@ -1121,7 +1124,7 @@
 
     .list {
       padding: @unit 0;
-      max-height: 600px;
+      max-height: 320px;
       overflow-y: auto;
     }
 
@@ -1252,7 +1255,8 @@
 
   > .p-jump {
     margin-left: 10px;
-    .v-input {
+
+    .input {
       width: 40px;
       padding: 0;
       text-align: center;

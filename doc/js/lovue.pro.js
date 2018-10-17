@@ -718,11 +718,14 @@
       undefined
     );
 
+  // import Share from './pro/Share.vue'
+
   const components = [
     ImgReflex,
     SelectCity,
     Collapse,
-    HtmlEditor
+    HtmlEditor,
+    // Share
   ];
 
   components.forEach(component => {

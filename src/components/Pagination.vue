@@ -23,7 +23,7 @@
       </ul>
       <div class="p-jump">
         <span>前往</span>
-        <input class="v-input" type="number" min="1" :max="pages" required v-model="jumpPage" @change="jump">
+        <input class="input" type="number" min="1" :max="pages" required v-model="jumpPage" @change="jump">
         <span>页</span>
       </div>
     </template>

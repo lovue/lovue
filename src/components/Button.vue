@@ -1,5 +1,5 @@
 <template>
-  <button :type="btnType" :class="`v-btn ${btnTheme} ${btnSize}`" :disabled="disabled" @click="click">
+  <button class="v-btn" :class="customClass" :type="submit || 'button'" :disabled="disabled" @click="click">
     <v-icon :icon="icon" v-if="!!icon && !loading"></v-icon>
     <v-icon icon="refresh" :class="{loading: loading}" v-if="loading"></v-icon>
     <slot></slot>
@@ -9,13 +9,6 @@
 <script>
   export default {
     name: 'v-button',
-    data() {
-      return {
-        btnType: this.submit ? 'submit' : 'button',
-        btnTheme: `v-btn-${this.type}`,
-        btnSize: this.size ? `v-btn-${this.size}` : ''
-      }
-    },
     props: {
       type: {
         type: String,
@@ -26,6 +19,13 @@
       icon: String,
       loading: Boolean,
       submit: Boolean
+    },
+    computed: {
+      customClass() {
+        let classes = `v-btn-${this.type}`
+        this.size && (classes += ` v-btn-${this.size}`)
+        return classes
+      }
     },
     methods: {
       click() {

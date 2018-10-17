@@ -138,7 +138,7 @@
         this.filteredItems.forEach(item => {
           items += item.children ? (item.children.length + 1) : 1
         })
-        const candidatesHeight = (this.searchable ? (items + 1) : items) * 32
+        const candidatesHeight = Math.min((this.searchable ? (items + 1) : items) * 32, 320)
         const bottomSpace = window.innerHeight - this.$el.getBoundingClientRect().bottom
         this.pos = bottomSpace < candidatesHeight ? 'top' : 'bottom'
 

@@ -99,3 +99,45 @@
     padding: @2unit;
   }
 }
+
+.v-share {
+  > div + div {
+    margin-top: @unit;
+  }
+
+  .icon {
+    cursor: pointer;
+  }
+
+  .icon-wechat-o {
+    color: #20a839;
+  }
+
+  .icon-sina-o {
+    color: #e89213;
+  }
+
+  .icon-qq-o {
+    color: #009bdb;
+  }
+
+  .vs-wechat {
+    position: relative;
+
+    .qrcode-wrap {
+      position: absolute;
+      top: calc(@unit + 20px);
+      right: 0;
+      padding: @2unit;
+      border-radius: @border-radius-ant;
+      background-color: @white-color;
+      border: 1px solid @light-border-color;
+
+      p {
+        text-indent: 0;
+        font-size: @tiny-font;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
