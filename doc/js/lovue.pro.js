@@ -718,14 +718,131 @@
       undefined
     );
 
-  // import Share from './pro/Share.vue'
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+
+  var script$5 = {
+    name: 'v-tags',
+    data() {
+      return {
+        tag: '',
+        isShowCandidates: false
+      }
+    },
+    props: {
+      value: {
+        type: Array,
+        'default': () => []
+      },
+      tags: Array,
+      max: {
+        type: Number,
+        'default': 5
+      }
+    },
+    methods: {
+      addCustom(ev) {
+        ev.preventDefault();
+        if (this.add({ name: this.tag, custom: true }, this.tags.findIndex(t => t.name === this.tag))) this.tag = '';
+      },
+      add(tag, index) {
+        if (this.value.length >= this.max) {
+          this.warn(`最多只能添加${this.max}个标签`);
+          return
+        }
+
+        if (this.value.findIndex(t => t.name === tag.name) >= 0) {
+          this.warn('该标签已存在');
+          return
+        }
+
+        this.value.push(tag);
+        index >= 0 && this.tags.splice(index, 1);
+        return true
+      },
+      remove(tag, index) {
+        this.value.splice(index, 1);
+        if (tag.custom) return
+
+        if (this.tags.findIndex(t => t.name === tag.name) < 0) this.tags.push(tag);
+      }
+    },
+    mounted() {
+      window.addEventListener('click', () => this.isShowCandidates = false);
+    }
+  };
+
+  /* script */
+              const __vue_script__$5 = script$5;
+              
+  /* template */
+  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-tags",on:{"click":function($event){$event.stopPropagation();}}},[_c('input',{directives:[{name:"model",rawName:"v-model.trim",value:(_vm.tag),expression:"tag",modifiers:{"trim":true}}],staticClass:"input",domProps:{"value":(_vm.tag)},on:{"focus":function($event){_vm.isShowCandidates = true;},"keydown":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.addCustom($event)},"input":function($event){if($event.target.composing){ return; }_vm.tag=$event.target.value.trim();},"blur":function($event){_vm.$forceUpdate();}}}),_vm._v(" "),_c('div',{staticClass:"t-selected"},_vm._l((_vm.value),function(t,i){return _c('a',{staticClass:"tag tag-black",on:{"click":function($event){_vm.remove(t, i);}}},[_vm._v(_vm._s(t.name))])})),_vm._v(" "),(_vm.tags.length)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.isShowCandidates),expression:"isShowCandidates"}],staticClass:"t-candidates"},[_vm._l((_vm.tags),function(t,i){return _c('a',{staticClass:"tag tag-white",on:{"click":function($event){_vm.add(t, i);}}},[_vm._v(_vm._s(t.name))])}),_vm._v(" "),_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){_vm.isShowCandidates = false;}}})],2):_vm._e()])};
+  var __vue_staticRenderFns__$5 = [];
+
+    /* style */
+    const __vue_inject_styles__$5 = undefined;
+    /* scoped */
+    const __vue_scope_id__$5 = undefined;
+    /* module identifier */
+    const __vue_module_identifier__$5 = undefined;
+    /* functional template */
+    const __vue_is_functional_template__$5 = false;
+    /* component normalizer */
+    function __vue_normalize__$5(
+      template, style, script,
+      scope, functional, moduleIdentifier,
+      createInjector, createInjectorSSR
+    ) {
+      const component = (typeof script === 'function' ? script.options : script) || {};
+
+      // For security concerns, we use only base name in production mode.
+      component.__file = "Tags.vue";
+
+      if (!component.render) {
+        component.render = template.render;
+        component.staticRenderFns = template.staticRenderFns;
+        component._compiled = true;
+
+        if (functional) component.functional = true;
+      }
+
+      component._scopeId = scope;
+
+      return component
+    }
+    /* style inject */
+    
+    /* style inject SSR */
+    
+
+    
+    var Tags = __vue_normalize__$5(
+      { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
+      __vue_inject_styles__$5,
+      __vue_script__$5,
+      __vue_scope_id__$5,
+      __vue_is_functional_template__$5,
+      __vue_module_identifier__$5,
+      undefined,
+      undefined
+    );
 
   const components = [
     ImgReflex,
     SelectCity,
     Collapse,
     HtmlEditor,
-    // Share
+    Tags
   ];
 
   components.forEach(component => {

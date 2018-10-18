@@ -3,14 +3,14 @@ import ImgReflex from './pro/ImgReflex.vue'
 import SelectCity from './pro/SelectCity.vue'
 import Collapse from './pro/Collapse.vue'
 import HtmlEditor from './pro/HtmlEditor.vue'
-// import Share from './pro/Share.vue'
+import Tags from './pro/Tags.vue'
 
 const components = [
   ImgReflex,
   SelectCity,
   Collapse,
   HtmlEditor,
-  // Share
+  Tags
 ]
 
 components.forEach(component => {

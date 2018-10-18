@@ -81,6 +81,23 @@
   }
 }
 
+.tag {
+  padding: @unit @2unit;
+  font-size: @tiny-font;
+  cursor: pointer;
+  border-radius: 20px;
+  line-height: 14px;
+
+  &.tag-black {
+    background-color: @first-level-color;
+    color: @white-color;
+  }
+
+  &.tag-white {
+    border: 1px dashed @light-border-color;
+  }
+}
+
 .overlay {
   position: fixed;
   top: 0;

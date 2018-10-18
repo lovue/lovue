@@ -141,3 +141,42 @@
     }
   }
 }
+
+.v-tags {
+  .flex-start;
+  position: relative;
+
+  .t-selected {
+    .flex-start;
+    margin-left: @unit;
+
+    .tag {
+      margin: 0 @unit;
+    }
+  }
+
+  .t-candidates {
+    position: absolute;
+    top: 30px;
+    width: 650px;
+    background-color: @white-color;
+    border: 1px solid @light-border-color;
+    border-radius: @border-radius-ant;
+    margin-top: @unit;
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 50px;
+    z-index: 100;
+
+    .tag {
+      margin: @unit 0 @unit @unit;
+    }
+
+    .icon-close {
+      position: absolute;
+      top: @unit;
+      right: @unit;
+      cursor: pointer;
+    }
+  }
+}

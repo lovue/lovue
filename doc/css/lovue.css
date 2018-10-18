@@ -213,6 +213,20 @@ svg {
 .input:focus {
   border-color: #00c1de;
 }
+.tag {
+  padding: 8px 16px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 20px;
+  line-height: 14px;
+}
+.tag.tag-black {
+  background-color: #222222;
+  color: #fff;
+}
+.tag.tag-white {
+  border: 1px dashed #e9e9e9;
+}
 .overlay {
   position: fixed;
   top: 0;

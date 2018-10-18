@@ -184,7 +184,17 @@ new Vue({
       { title: '第三步' }
     ],
     isShowPopup: false,
-    switchValue: true
+    switchValue: true,
+    tags: [
+      { name: 'HTML' },
+      { name: 'CSS' },
+      { name: 'JavaScript' },
+      { name: 'Vue' },
+      { name: 'Angular' },
+      { name: 'React' },
+      { name: 'Node' },
+      { name: 'npm' },
+    ]
   },
   methods: {
     sleep(delay = 1000) {
