@@ -18,6 +18,10 @@
       placeholder: {
         type: String,
         'default': '关键词'
+      },
+      delay: {
+        type: Number,
+        'default': 500
       }
     },
     methods: {
@@ -29,7 +33,7 @@
         }
         timer = setTimeout(() => {
           this.$emit('search', text)
-        }, 500)
+        }, this.delay)
       }
     }
   }

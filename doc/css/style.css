@@ -201,3 +201,7 @@ body.overhidden {
 .v-select-city .v-select {
   width: 200px;
 }
+
+.v-table {
+  margin-bottom: 40px;
+}

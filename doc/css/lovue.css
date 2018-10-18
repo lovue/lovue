@@ -227,6 +227,57 @@ svg {
 .tag.tag-white {
   border: 1px dashed #e9e9e9;
 }
+.table {
+  width: 100%;
+  text-align: left;
+  font-size: 1.4rem;
+  border: 1px solid #e9e9e9;
+}
+.table caption {
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+}
+.table thead {
+  border-bottom: 1px solid #e9e9e9;
+  background-color: #F5F6FA;
+}
+.table thead tr {
+  height: 40px;
+}
+.table thead tr th {
+  padding: 0 15px;
+  font-weight: normal;
+  color: #919191;
+  white-space: nowrap;
+}
+.table tbody tr {
+  height: 40px;
+  transition: background-color 0.25s ease;
+  border-bottom: 1px solid #e9e9e9;
+}
+.table tbody tr:last-child {
+  border-bottom: none;
+}
+.table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+.table tbody tr.row-loading {
+  text-align: center;
+}
+.table tbody tr td {
+  padding: 0 15px;
+  white-space: nowrap;
+}
+.table tbody tr td.no-data-info {
+  text-align: center;
+  color: #919191;
+}
+.table tbody .btn-text {
+  color: #00c1de;
+}
+.table tbody .btn-text:hover {
+  color: #4ad3e8;
+}
 .overlay {
   position: fixed;
   top: 0;
@@ -596,6 +647,13 @@ svg {
 .v-radio input[disabled] + span:before {
   border-color: #d9d9d9;
 }
+.v-radio-group {
+  display: flex;
+  align-items: center;
+}
+.v-radio-group .v-radio:not(:last-child) {
+  margin-right: 16px;
+}
 .v-checkbox {
   user-select: none;
   font-size: 1.4rem;
@@ -647,6 +705,13 @@ svg {
 }
 .v-checkbox input[disabled] + span:after {
   border-color: #d9d9d9;
+}
+.v-checkbox-group {
+  display: flex;
+  align-items: center;
+}
+.v-checkbox-group .v-checkbox:not(:last-child) {
+  margin-right: 16px;
 }
 .v-switch {
   cursor: pointer;
@@ -1179,7 +1244,7 @@ svg {
   margin-left: 8px;
 }
 .v-pagination > .p-one .v-pure-select {
-  width: 40px;
+  min-width: 40px;
   margin: 0 4px;
 }
 .v-pagination > .p-one .v-pure-select dt {
@@ -1502,6 +1567,146 @@ svg {
 }
 .v-popup.fixed .v-window {
   margin-top: 100px;
+}
+.v-table > .t-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.v-table > .t-tools > .l .icon-bars {
+  color: #919191;
+  width: 24px;
+  height: 30px;
+}
+.v-table > .t-tools > .l .icon-bars:hover {
+  color: #222222;
+}
+.v-table > .t-tools > .r .vue-search {
+  margin-right: 2px;
+}
+.v-table > .t-table {
+  position: relative;
+  overflow-x: auto;
+  border-left: 1px solid #e9e9e9;
+  border-right: 1px solid #e9e9e9;
+}
+.v-table .table {
+  border-left: 0;
+  border-right: 0;
+}
+.v-table .table > thead th {
+  color: #666;
+  line-height: 28px;
+}
+.v-table .table > thead th.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  background-color: #f5f6fa;
+}
+.v-table .table > thead th.sticky.left {
+  left: 0;
+  box-shadow: 1px 5px 8px rgba(0, 0, 0, 0.08);
+}
+.v-table .table > thead th.sticky.right {
+  right: 0;
+  box-shadow: -1px 5px 8px rgba(0, 0, 0, 0.08);
+}
+.v-table .table > thead .t-title {
+  display: flex;
+  align-items: center;
+}
+.v-table .table > thead .sort-arrows {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: inline-block;
+  vertical-align: bottom;
+  cursor: pointer;
+}
+.v-table .table > thead .sort-arrows .icon-down-wide {
+  display: block;
+  width: 20px;
+  height: 12px;
+  color: #919191;
+}
+.v-table .table > thead .sort-arrows .icon-down-wide.dir-up {
+  transform: rotateX(180deg);
+}
+.v-table .table > thead .sort-arrows .icon-down-wide.focus {
+  color: #000;
+}
+.v-table .table tbody tr.no-data-row td {
+  text-align: center;
+  color: #919191;
+}
+.v-table .table tbody tr.focus {
+  background-color: #cfefdf;
+}
+.v-table .table tbody tr.focus td.sticky {
+  background-color: #cfefdf;
+}
+.v-table .table tbody tr.focus:hover td.sticky {
+  background-color: #cfefdf;
+}
+.v-table .table tbody tr:hover td.sticky {
+  background-color: #f5f5f5;
+}
+.v-table .table tbody tr td {
+  transition: background-color 0.25s ease;
+}
+.v-table .table tbody tr td.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  background-color: #fff;
+}
+.v-table .table tbody tr td.sticky.left {
+  left: 0;
+  box-shadow: 1px 5px 8px rgba(0, 0, 0, 0.08);
+}
+.v-table .table tbody tr td.sticky.right {
+  right: 0;
+  box-shadow: -1px 5px 8px rgba(0, 0, 0, 0.08);
+}
+.v-table .fixed-head {
+  position: relative;
+  padding-top: 40px;
+  background-color: #f5f5f5;
+  border: 1px solid #e9e9e9;
+}
+.v-table .fixed-head .table-wrap {
+  max-height: 400px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.v-table .fixed-head .table {
+  background-color: #fff;
+  border: none;
+  border-top: 1px solid #e9e9e9;
+}
+.v-table .fixed-head .table > thead {
+  border: none;
+}
+.v-table .fixed-head .table > thead tr {
+  height: 0;
+}
+.v-table .fixed-head .table > thead th {
+  height: 0;
+  line-height: 0;
+  padding: 0;
+}
+.v-table .fixed-head .table > thead .t-title {
+  position: absolute;
+  top: 0;
+  line-height: 40px;
+  padding: 0 15px;
+}
+.v-table .fixed-head .table > thead .sort-arrows {
+  vertical-align: middle;
+}
+.v-table > .t-footer {
+  margin-top: 10px;
 }
 /* Animation Classes */
 .slide-fade-enter,

@@ -183,9 +183,7 @@
             <div class="content">
               <div class="content-cell">
                 <div class="controls">
-                  <v-radio :value="1" label="下一日费率" name="fees"></v-radio>
-                  <v-radio :value="2" label="History" name="fees"></v-radio>
-                  <v-radio :value="3" label="WORLD" name="fees"></v-radio>
+                  <v-radio-group :source="radioSource" v-model="radioValue" name="framework"></v-radio-group>
                 </div>
               </div>
             </div>
@@ -194,12 +192,13 @@
           <div class="panel" id="toCheckbox">
             <div class="title">复选框</div>
             <div class="content">
-              <div class="content-cell">
-                <div class="controls">
-                  <v-checkbox :value="1" label="下一日费率" :option="{value: 1, label: '下一日费率'}" name="fees2"></v-checkbox>
-                  <v-checkbox :value="2" label="History" :option="{value: 1, label: '下一日费率'}" name="fees2"></v-checkbox>
-                  <v-checkbox :value="3" label="WORLD" :option="{value: 1, label: '下一日费率'}" name="fees2"></v-checkbox>
-                </div>
+              <div class="cell" style="display: flex; align-items: center; margin-bottom: 16px;">
+                <label class="label">单个：</label>
+                <v-checkbox label="全选" name="selectAll" v-model="checkboxValue"></v-checkbox>
+              </div>
+              <div class="cell" style="display: flex; align-items: center;">
+                <label class="label">多个：</label>
+                <v-checkbox-group :source="checkboxSource" v-model="multiCheckboxValue"></v-checkbox-group>
               </div>
             </div>
           </div>
@@ -390,7 +389,16 @@
           <div class="panel" id="toTags">
             <div class="title">标签</div>
             <div class="content">
-              <v-tags :tags="tags"></v-tags>
+              <v-tag :tags="tags"></v-tag>
+            </div>
+          </div>
+
+          <div class="panel" id="toTable">
+            <div class="title">表格</div>
+            <div class="content">
+              <v-table :source="buildings" :columns="buildingColumns" :count-of-page="20" checkbox @check="checkTableRows" fixed-head></v-table>
+              <v-table :source="buildings" :columns="buildingColumns" simple fixed-head></v-table>
+              <v-table :source="[]" :columns="buildingColumns" simple></v-table>
             </div>
           </div>
         </div>

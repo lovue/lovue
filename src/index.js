@@ -5,6 +5,7 @@ import Button from './components/Button.vue'
 import ButtonGroup from './components/ButtonGroup.vue'
 import ButtonSend from './components/ButtonSend.vue'
 import Checkbox from './components/Checkbox.vue'
+import CheckboxGroup from './components/CheckboxGroup.vue'
 import Col from './components/Col.vue'
 import DatePicker from './components/DatePicker.vue'
 import Icon from './components/Icon.vue'
@@ -16,12 +17,14 @@ import Progress from './components/Progress.vue'
 import PureSelect from './components/PureSelect.vue'
 import PwdStrength from './components/PwdStrength.vue'
 import Radio from './components/Radio.vue'
+import RadioGroup from './components/RadioGroup.vue'
 import Row from './components/Row.vue'
 import Search from './components/Search.vue'
 import Select from './components/Select.vue'
 import Steps from './components/Steps.vue'
 import Switch from './components/Switch.vue'
 import Tab from './components/Tab.vue'
+import Table from './components/Table.vue'
 import Upload from './components/Upload.vue'
 
 if (!NodeList.prototype.forEach) {
@@ -33,6 +36,7 @@ const Components = [
   ButtonGroup,
   ButtonSend,
   Checkbox,
+  CheckboxGroup,
   Col,
   DatePicker,
   Icon,
@@ -44,12 +48,14 @@ const Components = [
   PureSelect,
   PwdStrength,
   Radio,
+  RadioGroup,
   Row,
   Search,
   Select,
   Steps,
   Switch,
   Tab,
+  Table,
   Upload
 ]
 Components.forEach(a => {

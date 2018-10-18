@@ -32,28 +32,40 @@ function updateLinks(links) {
   })
 }
 
+const buildings = function () {
+  const base = [
+    {
+      name: '一公寓',
+      layers: 5,
+      age: 80
+    },
+    {
+      name: '二公寓',
+      layers: 10,
+      age: 40
+    },
+    {
+      name: '研究生公寓',
+      layers: 6,
+      age: 3
+    }
+  ]
+
+  let result = []
+
+  for (let i = 0; i < 10; i++) {
+    result = result.concat(base)
+  }
+
+  return result
+}
+
 new Vue({
   el: '#app',
   data: {
     provinceCity: ['江西省', '抚州市'],
     diploma: ['初中', '高中', '本科', '硕士', '博士'],
-    buildings: [
-      {
-        name: '一公寓',
-        layers: 5,
-        age: 80
-      },
-      {
-        name: '二公寓',
-        layers: 10,
-        age: 40
-      },
-      {
-        name: '研究生公寓',
-        layers: 6,
-        age: 3
-      }
-    ],
+    buildings: buildings(),
     buildingColumns: [
       {
         title: '楼栋名称',
@@ -194,7 +206,25 @@ new Vue({
       { name: 'React' },
       { name: 'Node' },
       { name: 'npm' },
-    ]
+    ],
+    checkboxValue: true,
+    checkboxSource: [
+      { name: 'HTML', value: 'html' },
+      { name: 'CSS', value: 'css' },
+      { name: 'JavaScript', value: 'js' },
+      { name: 'Vue', value: 'vue' },
+      { name: 'Angular', value: 'angular' },
+      { name: 'React', value: 'react' },
+      { name: 'Node', value: 'node' },
+      { name: 'npm', value: 'npm' }
+    ],
+    multiCheckboxValue: ['html', 'css', 'js', 'npm'],
+    radioSource: [
+      { name: 'Vue', value: 'vue' },
+      { name: 'Angular', value: 'angular' },
+      { name: 'React', value: 'react' }
+    ],
+    radioValue: 'vue'
   },
   methods: {
     sleep(delay = 1000) {
@@ -292,6 +322,9 @@ new Vue({
     },
     showPopup() {
       this.isShowPopup = true
+    },
+    checkTableRows(rows) {
+      this.warn(rows.map(row => row.name).join(', '))
     }
   },
   mounted() {

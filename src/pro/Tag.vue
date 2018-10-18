@@ -1,5 +1,5 @@
 <template>
-  <div class="v-tags" @click.stop>
+  <div class="v-tag" @click.stop>
     <input class="input" v-model.trim="tag" @focus="isShowCandidates = true" @keydown.enter="addCustom">
     <div class="t-selected">
       <a class="tag tag-black" v-for="(t, i) of value" @click="remove(t, i)">{{t.name}}</a>
@@ -12,7 +12,7 @@
 </template>
 <script>
   export default {
-    name: 'v-tags',
+    name: 'v-tag',
     data() {
       return {
         tag: '',

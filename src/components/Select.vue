@@ -16,7 +16,7 @@
       </div>
     </div>
     <div :class="`candidates ${pos} ${open}`" v-show="bShowCandidates">
-      <div class="item-search" v-if="searchable"><input class="input" placeholder="搜索" v-model="filterText"></div>
+      <div class="item-search" v-if="searchable"><input class="input" :placeholder="searchPlaceholder" v-model="filterText"></div>
       <ul class="list">
         <li v-for="i of filteredItems" :title="i.name" @click.stop="toggle(i)">
           <div class="i-title" :class="{focus: i.selected}"><span class="t-name">{{i.name}}</span><v-icon icon="check" v-if="i.selected"></v-icon></div>
@@ -59,6 +59,10 @@
       placeholder: {
         type: String,
         'default': '请选择'
+      },
+      searchPlaceholder: {
+        type: String,
+        'default': '搜索'
       },
       max: Number
     },

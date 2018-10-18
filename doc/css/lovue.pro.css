@@ -112,20 +112,20 @@
   font-size: 1.2rem;
   margin-bottom: 0;
 }
-.v-tags {
+.v-tag {
   display: flex;
   align-items: center;
   position: relative;
 }
-.v-tags .t-selected {
+.v-tag .t-selected {
   display: flex;
   align-items: center;
   margin-left: 8px;
 }
-.v-tags .t-selected .tag {
+.v-tag .t-selected .tag {
   margin: 0 8px;
 }
-.v-tags .t-candidates {
+.v-tag .t-candidates {
   position: absolute;
   top: 30px;
   width: 650px;
@@ -138,10 +138,10 @@
   padding-right: 50px;
   z-index: 100;
 }
-.v-tags .t-candidates .tag {
+.v-tag .t-candidates .tag {
   margin: 8px 0 8px 8px;
 }
-.v-tags .t-candidates .icon-close {
+.v-tag .t-candidates .icon-close {
   position: absolute;
   top: 8px;
   right: 8px;

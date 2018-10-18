@@ -98,6 +98,10 @@
   }
 }
 
+.table {
+  .mixin-table();
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -556,6 +560,14 @@
   }
 }
 
+.v-radio-group {
+  .flex-start;
+
+  .v-radio:not(:last-child) {
+    margin-right: @2unit;
+  }
+}
+
 .v-checkbox {
   user-select: none;
   font-size: @small-font;
@@ -614,6 +626,14 @@
 
   input[disabled] + span:after {
     border-color: @disabled-color;
+  }
+}
+
+.v-checkbox-group {
+  .flex-start;
+
+  .v-checkbox:not(:last-child) {
+    margin-right: @2unit;
   }
 }
 
@@ -1237,7 +1257,7 @@
     margin-left: @unit;
 
     .v-pure-select {
-      width: 40px;
+      min-width: 40px;
       margin: 0 4px;
 
       dt {
@@ -1627,6 +1647,197 @@
     .v-window {
       margin-top: 100px;
     }
+  }
+}
+
+.v-table {
+  > .t-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    > .l {
+      .icon-bars {
+        color: @assist-font-color;
+        width: 24px;
+        height: 30px;
+
+        &:hover {
+          color: @first-level-color;
+        }
+      }
+    }
+
+    > .r {
+      .vue-search {
+        margin-right: 2px;
+      }
+    }
+  }
+
+  > .t-table {
+    position: relative;
+    overflow-x: auto;
+    border-left: 1px solid @border-color;
+    border-right: 1px solid @border-color;
+  }
+
+  .table {
+    border-left: 0;
+    border-right: 0;
+
+    > thead {
+      th {
+        color: #666;
+        line-height: 28px;
+
+        &.sticky {
+          position: -webkit-sticky;
+          position: sticky;
+          background-color: #f5f6fa;
+
+          &.left {
+            left: 0;
+            box-shadow: 1px 5px 8px rgba(0, 0, 0, .08);
+          }
+
+          &.right {
+            right: 0;
+            box-shadow: -1px 5px 8px rgba(0, 0, 0, .08);
+          }
+        }
+      }
+
+      .t-title {
+        .flex-start;
+      }
+
+      .sort-arrows {
+        .non-select;
+        display: inline-block;
+        vertical-align: bottom;
+        cursor: pointer;
+
+        .icon-down-wide {
+          display: block;
+          width: 20px;
+          height: 12px;
+          color: @assist-font-color;
+
+          &.dir-up {
+            transform: rotateX(180deg);
+          }
+
+          &.focus {
+            color: @black-color;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        &.no-data-row {
+          td {
+            text-align: center;
+            color: @assist-font-color;
+          }
+        }
+
+        &.focus {
+          background-color: @highlight-color;
+
+          td {
+            &.sticky {
+              background-color: @highlight-color;
+            }
+          }
+
+          &:hover {
+            td {
+              &.sticky {
+                background-color: @highlight-color;
+              }
+            }
+          }
+        }
+
+        &:hover {
+          td {
+            &.sticky {
+              background-color: @bg-color;
+            }
+          }
+        }
+
+        td {
+          transition: background-color .25s ease;
+
+          &.sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            background-color: @white-color;
+
+            &.left {
+              left: 0;
+              box-shadow: 1px 5px 8px rgba(0, 0, 0, .08);
+            }
+
+            &.right {
+              right: 0;
+              box-shadow: -1px 5px 8px rgba(0, 0, 0, .08);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .fixed-head {
+    position: relative;
+    padding-top: 40px;
+    background-color: @bg-color;
+    border: 1px solid @border-color;
+
+    .table-wrap {
+      max-height: 400px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    .table {
+      background-color: @white-color;
+      border: none;
+      border-top: 1px solid @border-color;
+
+      > thead {
+        border: none;
+        tr {
+          height: 0;
+        }
+        th {
+          height: 0;
+          line-height: 0;
+          padding: 0;
+        }
+
+        .t-title {
+          position: absolute;
+          top: 0;
+          line-height: 40px;
+          padding: 0 15px;
+        }
+
+        .sort-arrows {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  > .t-footer {
+    margin-top: 10px;
   }
 }
 
