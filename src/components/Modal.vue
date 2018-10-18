@@ -43,7 +43,6 @@
         this.visible = false
         this.$destroy()
         document.body.removeChild(this.$el)
-        document.body.classList.remove('overhidden')
       },
       async handleConfirm() {
         if (!this.confirm) {
@@ -59,9 +58,6 @@
         }
         this.loading = false
       }
-    },
-    mounted() {
-      document.body.classList.add('overhidden')
     }
   }
 </script>

@@ -158,7 +158,6 @@
         this.visible = false;
         this.$destroy();
         document.body.removeChild(this.$el);
-        document.body.classList.remove('overhidden');
       },
       async handleConfirm() {
         if (!this.confirm) {
@@ -174,9 +173,6 @@
         }
         this.loading = false;
       }
-    },
-    mounted() {
-      document.body.classList.add('overhidden');
     }
   };
 
@@ -1397,15 +1393,9 @@
         }
       }
     },
-    watch: {
-      value(val) {
-        val && document.body.classList.add('overhidden');
-      }
-    },
     methods: {
       close() {
         this.$emit('input', false);
-        document.body.classList.remove('overhidden');
       },
       dragStart(ev) {
         this.startX = ev.pageX - this.pos.x;

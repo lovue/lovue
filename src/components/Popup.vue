@@ -44,15 +44,9 @@
         }
       }
     },
-    watch: {
-      value(val) {
-        val && document.body.classList.add('overhidden')
-      }
-    },
     methods: {
       close() {
         this.$emit('input', false)
-        document.body.classList.remove('overhidden')
       },
       dragStart(ev) {
         this.startX = ev.pageX - this.pos.x

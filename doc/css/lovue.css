@@ -224,6 +224,8 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 .overlay.fixed {
   align-items: flex-start;
@@ -511,6 +513,9 @@ svg {
   display: inline-block;
   font-size: 1.4rem;
 }
+.v-input input {
+  width: 100%;
+}
 .v-input hr {
   position: absolute;
   bottom: -1px;
@@ -670,7 +675,10 @@ svg {
 .v-search {
   position: relative;
 }
-.v-search .input {
+.v-search .v-input {
+  width: 100%;
+}
+.v-search .v-input .input {
   padding-right: calc(8px + 20px);
 }
 .v-search .icon-search {
@@ -1024,6 +1032,7 @@ svg {
   background-color: #fa90ba;
 }
 .v-select .selected .input {
+  height: 30px;
   padding-left: 4px;
   width: 100%;
   overflow: visible;
@@ -1087,6 +1096,7 @@ svg {
   padding: 8px 0;
   max-height: 320px;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 .v-select .candidates .sub-list .i-title {
   position: relative;

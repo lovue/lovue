@@ -92,6 +92,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: auto;
+  overscroll-behavior: contain;
 
   &.fixed {
     align-items: flex-start;
@@ -455,6 +457,10 @@
   display: inline-block;
   font-size: @small-font;
 
+  input {
+    width: 100%;
+  }
+
   hr {
     position: absolute;
     bottom: -1px;
@@ -642,8 +648,12 @@
 .v-search {
   position: relative;
 
-  .input {
-    padding-right: calc(@unit + 20px);
+  .v-input {
+    width: 100%;
+
+    .input {
+      padding-right: calc(@unit + 20px);
+    }
   }
 
   .icon-search {
@@ -1058,6 +1068,7 @@
     }
 
     .input {
+      height: 30px;
       padding-left: 4px;
       width: 100%;
       overflow: visible;
@@ -1126,6 +1137,7 @@
       padding: @unit 0;
       max-height: 320px;
       overflow-y: auto;
+      overscroll-behavior: contain;
     }
 
     .sub-list {
