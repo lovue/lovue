@@ -196,7 +196,7 @@
       },
       updateTable(slice) {
         this.slice = slice
-        this.$emit('pagination-change', this.slice)
+        this.$emit('flip', this.slice)
       },
       handleSortClick(index) {
         this.sortIndex = index

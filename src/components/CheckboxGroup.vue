@@ -21,6 +21,9 @@
       name: String
     },
     watch: {
+      value(val) {
+        this.checked = val
+      },
       checked(val) {
         this.$emit('input', val)
       }

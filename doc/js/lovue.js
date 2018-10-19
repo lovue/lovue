@@ -527,6 +527,11 @@
       label: String,
       name: String,
       disabled: Boolean
+    },
+    watch: {
+      value(val) {
+        this.checked = val;
+      }
     }
   };
 
@@ -608,6 +613,9 @@
       name: String
     },
     watch: {
+      value(val) {
+        this.checked = val;
+      },
       checked(val) {
         this.$emit('input', val);
       }
@@ -1996,6 +2004,9 @@
       name: String
     },
     watch: {
+      value(val) {
+        this.checked = val;
+      },
       checked(val) {
         this.$emit('input', val);
       }
@@ -2976,7 +2987,7 @@
       },
       updateTable(slice) {
         this.slice = slice;
-        this.$emit('pagination-change', this.slice);
+        this.$emit('flip', this.slice);
       },
       handleSortClick(index) {
         this.sortIndex = index;

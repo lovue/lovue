@@ -18,6 +18,11 @@
       label: String,
       name: String,
       disabled: Boolean
+    },
+    watch: {
+      value(val) {
+        this.checked = val
+      }
     }
   }
 </script>
