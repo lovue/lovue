@@ -64,7 +64,8 @@
         type: String,
         'default': '搜索'
       },
-      max: Number
+      max: Number,
+      emitItem: Boolean
     },
     watch: {
       source(val) {
@@ -172,7 +173,7 @@
             })
           }
           this.innerUpdate = true
-          this.$emit('input', this.selected.map(s => s.value))
+          this.$emit('input', this.emitItem ? this.selected : this.selected.map(s => s.value))
         } else {
           this.items.forEach(current => {
             current.selected = false
@@ -185,7 +186,7 @@
           this.selected = item
           this.hideCandidates()
           this.innerUpdate = true
-          this.$emit('input', this.selected.value)
+          this.$emit('input', this.emitItem ? this.selected : this.selected.value)
         }
       },
       remove(select, index) {
@@ -204,7 +205,7 @@
         })
 
         this.innerUpdate = true
-        this.$emit('input', this.selected.map(s => s.value))
+        this.$emit('input', this.emitItem ? this.selected : this.selected.map(s => s.value))
       }
     },
     mounted() {
