@@ -36,7 +36,7 @@
 
           <tbody>
           <tr class="no-data-row" v-if="!source.length">
-            <td :colspan="columns.length">{{emptyText}}</td>
+            <td :colspan="columns.length">{{emptyText || '暂无数据'}}</td>
           </tr>
           <tr v-for="(row, i) of showed" v-if="simple || (i >= slice[0] && i < slice[1])" :class="{focus: row.focused}">
             <td v-if="checkbox" @click.stop>
@@ -115,10 +115,7 @@
         }
       },
       total: Number,
-      emptyText: {
-        type: String,
-        'default': '暂无数据'
-      },
+      emptyText: String,
       simplePagination: Boolean
     },
     computed: {

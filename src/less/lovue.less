@@ -56,6 +56,7 @@
 .input,
 .textarea,
 .select {
+  font-size: @small-font;
   border: 1px solid @border-color;
   border-radius: @border-radius;
   transition: border-color .2s;
@@ -68,13 +69,6 @@
 .input {
   height: @4unit;
   padding: 4px @unit;
-  border-radius: @border-radius;
-  border: 1px solid @border-color;
-  .mixin-transition(@property: border-color);
-
-  &:hover {
-    border-color: @hover-blue-color;
-  }
 
   &:focus {
     border-color: @blue-color;
@@ -1469,7 +1463,6 @@
   .input {
     width: 200px;
     background-color: @white-color;
-    border-radius: @border-radius;
     transition: border-color .2s ease-out, width .2s ease-out;
     cursor: pointer;
   }

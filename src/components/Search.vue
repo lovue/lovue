@@ -1,6 +1,6 @@
 <template>
   <div class="v-search">
-    <v-input :placeholder="placeholder" @input="inputHandler"></v-input>
+    <v-input :placeholder="placeholder || '关键词'" @input="inputHandler"></v-input>
     <v-icon icon="search" @click.native="$emit('search', keywords)"></v-icon>
   </div>
 </template>
@@ -15,10 +15,7 @@
         type: Boolean,
         'default': true
       },
-      placeholder: {
-        type: String,
-        'default': '关键词'
-      },
+      placeholder: String,
       delay: {
         type: Number,
         'default': 500

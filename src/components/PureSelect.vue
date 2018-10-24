@@ -1,7 +1,7 @@
 <template>
   <dl class="v-pure-select" :class="open" @click.stop="showDd">
     <dt>
-      <span class="placeholder" v-if="current === undefined">请选择</span>
+      <span class="placeholder" v-if="current === undefined">{{placeholder || '请选择'}}</span>
       <template v-for="(elem, index) of source">
         <input :id="`pure_radio_${_uid}_${index}`" type="radio" :name="name" :value="elem" v-model="current">
         <span>{{elem}}</span>
@@ -28,11 +28,12 @@
     props: {
       value: [String, Number],
       name: String,
-      source: Array
+      source: Array,
+      placeholder: String
     },
     computed: {
       ddHeight() {
-        return this.source.length * 32 + 16
+        return Math.min(this.source.length * 32 + 16, 200)
       }
     },
     watch: {

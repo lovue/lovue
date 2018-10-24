@@ -10,10 +10,7 @@
   export default {
     name: 'v-button',
     props: {
-      type: {
-        type: String,
-        'default': 'primary'
-      },
+      type: String,
       size: String,
       disabled: Boolean,
       icon: String,
@@ -22,7 +19,7 @@
     },
     computed: {
       customClass() {
-        let classes = `v-btn-${this.type}`
+        let classes = `v-btn-${this.type || 'primary'}`
         this.size && (classes += ` v-btn-${this.size}`)
         return classes
       }

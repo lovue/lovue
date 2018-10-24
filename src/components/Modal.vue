@@ -9,8 +9,8 @@
         <div class="win-content" v-html="content"></div>
         <div class="win-footer">
           <div class="right">
-            <v-button type="ghost" @click="close" v-if="!noCancel">取消</v-button>
-            <v-button @click="handleConfirm" :loading="loading">确认</v-button>
+            <v-button type="ghost" @click="close" v-if="!noCancel">{{cancelText}}</v-button>
+            <v-button @click="handleConfirm" :loading="loading">{{okText}}</v-button>
           </div>
         </div>
       </div>
@@ -27,7 +27,9 @@
         loading: false,
         noCancel: false,
         fixed: false,
-        confirm: undefined
+        confirm: undefined,
+        okText: '确认',
+        cancelText: '取消'
       }
     },
     computed: {

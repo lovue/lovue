@@ -9,14 +9,14 @@
           <v-icon icon="close" @click.native.stop="remove(s,i)"></v-icon>
         </span>
         </template>
-        <input class="input" :value="selected.name" v-else :placeholder="placeholder" readonly>
+        <input class="input" :value="selected.name" v-else :placeholder="placeholder || '请选择'" readonly>
       </div>
       <div class="r">
         <v-icon icon="down-wide" :class="{reverse: !open}"></v-icon>
       </div>
     </div>
     <div :class="`candidates ${pos} ${open}`" v-show="bShowCandidates">
-      <div class="item-search" v-if="searchable"><input class="input" :placeholder="searchPlaceholder" v-model="filterText"></div>
+      <div class="item-search" v-if="searchable"><input class="input" :placeholder="searchPlaceholder || '搜索'" v-model="filterText"></div>
       <ul class="list">
         <li v-for="i of filteredItems" :title="i.name" @click.stop="toggle(i)">
           <div class="i-title" :class="{focus: i.selected}"><span class="t-name">{{i.name}}</span><v-icon icon="check" v-if="i.selected"></v-icon></div>
@@ -56,14 +56,8 @@
       disabled: Boolean,
       multiple: Boolean,
       searchable: Boolean,
-      placeholder: {
-        type: String,
-        'default': '请选择'
-      },
-      searchPlaceholder: {
-        type: String,
-        'default': '搜索'
-      },
+      placeholder: String,
+      searchPlaceholder: String,
       max: Number,
       emitItem: Boolean
     },

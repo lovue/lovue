@@ -11,8 +11,8 @@
       <div class="win-footer">
         <div class="right">
           <slot name="footer">
-            <v-button type="ghost" @click="close">取消</v-button>
-            <v-button @click="handleConfirm" :loading="loading">确认</v-button>
+            <v-button type="ghost" @click="close">{{cancelText || '取消'}}</v-button>
+            <v-button @click="handleConfirm" :loading="loading">{{okText || '确认'}}</v-button>
           </slot>
         </div>
       </div>
@@ -35,7 +35,9 @@
       title: String,
       value: Boolean,
       confirm: Function,
-      fixed: Boolean
+      fixed: Boolean,
+      okText: String,
+      cancelText: String
     },
     computed: {
       transform() {

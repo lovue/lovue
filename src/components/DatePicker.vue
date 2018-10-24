@@ -6,7 +6,7 @@
         <div class="picker-filter">
           <div class="month-picker">
             <button class="btn-text" type="button" @click="prevMonth">◀</button>
-            <div>{{month}}月</div>
+            <div>{{localeMonths[month - 1]}}</div>
             <button class="btn-text" type="button" @click="nextMonth">▶</button>
           </div>
           <div class="year-picker">
@@ -17,7 +17,7 @@
           <table>
             <thead>
             <tr>
-              <th v-for="week of weeks">{{week}}</th>
+              <th v-for="week of localeWeeks">{{week}}</th>
             </tr>
             </thead>
             <tbody>
@@ -47,8 +47,8 @@
     data() {
       return {
         years: getArray(this.minYear, this.maxYear),
-        months: getArray(1, 12),
-        weeks: ['日', '一', '二', '三', '四', '五', '六'],
+        localeWeeks: this.weeks || ['日', '一', '二', '三', '四', '五', '六'],
+        localeMonths: this.months || ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
         year: 0,
         month: 0,
         day: 0,
@@ -67,13 +67,15 @@
       timepicker: Boolean,
       interval: Number,
       minYear: {
-        'type': Number,
+        type: Number,
         'default': 1950
       },
       maxYear: {
-        'type': Number,
+        type: Number,
         'default': 2050
-      }
+      },
+      weeks: Array,
+      months: Array
     },
     computed: {
       inputStyle() {

@@ -76,6 +76,7 @@ new Vue({
 - 步骤：Steps.vue
 - 开关：Switch.vue
 - Tab页：Tab.vue
+- 表格：Table.vue
 - 选择文件按钮：Upload.vue
 
 #### Pro
@@ -89,6 +90,5 @@ new Vue({
 
 - 图片裁剪并上传（简版）：Crop.vue
 - 走马灯：Carousel.vue
-- 表格：Table.vue
 - 树形列表：TreeList.vue
 - 带树形结构的表格:TableTree.vue

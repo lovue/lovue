@@ -13,7 +13,7 @@
     <template v-else>
       <div class="u-above">
         <div class="btn-wrap">
-          <v-button icon="upload">{{text}}</v-button>
+          <v-button icon="upload">{{text || '选择文件'}}</v-button>
           <input type="file" :name="name" @change="selectFile" :multiple="multi" :required="required">
         </div>
         <div class="u-file-names" v-if="!upload && !thumbnail && fileNames.length">
@@ -47,10 +47,7 @@
       upload: Boolean,
       multi: Boolean,
       required: Boolean,
-      text: {
-        'type': String,
-        'default': '选择文件'
-      },
+      text: String,
       thumbnail: Boolean,
       thumbSize: {
         type: Number,
