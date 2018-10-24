@@ -1,5 +1,5 @@
 <template>
-  <label class="v-checkbox">
+  <label class="v-checkbox" :class="{reverse, disabled}">
     <input type="checkbox" v-model="checked" :name="name" :disabled="disabled" @change="$emit('input', checked)">
     <span>{{label}}</span>
   </label>
@@ -17,7 +17,8 @@
       value: Boolean,
       label: String,
       name: String,
-      disabled: Boolean
+      disabled: Boolean,
+      reverse: Boolean
     },
     watch: {
       value(val) {

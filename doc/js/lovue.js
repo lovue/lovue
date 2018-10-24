@@ -526,7 +526,8 @@
       value: Boolean,
       label: String,
       name: String,
-      disabled: Boolean
+      disabled: Boolean,
+      reverse: Boolean
     },
     watch: {
       value(val) {
@@ -539,7 +540,7 @@
               const __vue_script__$5 = script$5;
               
   /* template */
-  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-checkbox"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,null)>-1:(_vm.checked)},on:{"change":[function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}},function($event){_vm.$emit('input', _vm.checked);}]}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])};
+  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-checkbox",class:{reverse: _vm.reverse, disabled: _vm.disabled}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,null)>-1:(_vm.checked)},on:{"change":[function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}},function($event){_vm.$emit('input', _vm.checked);}]}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])};
   var __vue_staticRenderFns__$5 = [];
 
     /* style */
@@ -599,6 +600,8 @@
   //
   //
   //
+  //
+  //
 
   var script$6 = {
     name: 'v-checkbox-group',
@@ -610,7 +613,9 @@
     props: {
       value: Array,
       source: Array,
-      name: String
+      name: String,
+      reverse: Boolean,
+      vertical: Boolean
     },
     watch: {
       value(val) {
@@ -626,7 +631,7 @@
               const __vue_script__$6 = script$6;
               
   /* template */
-  var __vue_render__$6 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-checkbox-group"},_vm._l((_vm.source),function(item){return _c('label',{staticClass:"v-checkbox"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,item.value)>-1:(_vm.checked)},on:{"change":function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.value,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])}))};
+  var __vue_render__$6 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-checkbox-group",class:{vertical: _vm.vertical}},_vm._l((_vm.source),function(item){return _c('div',{staticClass:"g-item"},[_c('label',{staticClass:"v-checkbox",class:{reverse: _vm.reverse, disabled: item.disabled}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,item.value)>-1:(_vm.checked)},on:{"change":function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.value,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])])}))};
   var __vue_staticRenderFns__$6 = [];
 
     /* style */
@@ -1141,7 +1146,11 @@
       required: Boolean,
       step: String,
       min: String,
-      max: String
+      max: String,
+      focus: Boolean
+    },
+    mounted() {
+      this.focus && this.$el.querySelector('input').focus();
     }
   };
 
@@ -1922,7 +1931,8 @@
       value: [String, Number],
       label: String,
       name: String,
-      disabled: Boolean
+      disabled: Boolean,
+      reverse: Boolean
     }
   };
 
@@ -1930,7 +1940,7 @@
               const __vue_script__$h = script$h;
               
   /* template */
-  var __vue_render__$h = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-radio"},[_c('input',{attrs:{"type":"radio","name":_vm.name,"disabled":_vm.disabled},domProps:{"value":_vm.value}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])};
+  var __vue_render__$h = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-radio",class:{reverse: _vm.reverse, disabled: _vm.disabled}},[_c('input',{attrs:{"type":"radio","name":_vm.name,"disabled":_vm.disabled},domProps:{"value":_vm.value}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])};
   var __vue_staticRenderFns__$h = [];
 
     /* style */
@@ -1990,6 +2000,8 @@
   //
   //
   //
+  //
+  //
 
   var script$i = {
     name: 'v-radio-group',
@@ -2001,7 +2013,9 @@
     props: {
       value: [Number, String, Boolean],
       source: Array,
-      name: String
+      name: String,
+      reverse: Boolean,
+      vertical: Boolean
     },
     watch: {
       value(val) {
@@ -2017,7 +2031,7 @@
               const __vue_script__$i = script$i;
               
   /* template */
-  var __vue_render__$i = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-radio-group"},_vm._l((_vm.source),function(item){return _c('label',{staticClass:"v-radio"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"radio","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":_vm._q(_vm.checked,item.value)},on:{"change":function($event){_vm.checked=item.value;}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])}))};
+  var __vue_render__$i = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-radio-group",class:{vertical: _vm.vertical}},_vm._l((_vm.source),function(item){return _c('div',{staticClass:"g-item"},[_c('label',{staticClass:"v-radio",class:{reverse: _vm.reverse, disabled: item.disabled}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"radio","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":_vm._q(_vm.checked,item.value)},on:{"change":function($event){_vm.checked=item.value;}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])])}))};
   var __vue_staticRenderFns__$i = [];
 
     /* style */

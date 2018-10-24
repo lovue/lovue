@@ -1,5 +1,5 @@
 <template>
-  <label class="v-radio">
+  <label class="v-radio" :class="{reverse, disabled}">
     <input type="radio" :value="value" :name="name" :disabled="disabled">
     <span>{{label}}</span>
   </label>
@@ -12,7 +12,8 @@
       value: [String, Number],
       label: String,
       name: String,
-      disabled: Boolean
+      disabled: Boolean,
+      reverse: Boolean
     }
   }
 </script>

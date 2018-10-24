@@ -211,7 +211,7 @@ new Vue({
     checkboxSource: [
       { name: 'HTML', value: 'html' },
       { name: 'CSS', value: 'css' },
-      { name: 'JavaScript', value: 'js' },
+      { name: 'JavaScript', value: 'js', disabled: true },
       { name: 'Vue', value: 'vue' },
       { name: 'Angular', value: 'angular' },
       { name: 'React', value: 'react' },
@@ -221,7 +221,7 @@ new Vue({
     multiCheckboxValue: ['html', 'css', 'js', 'npm'],
     radioSource: [
       { name: 'Vue', value: 'vue' },
-      { name: 'Angular', value: 'angular' },
+      { name: 'Angular', value: 'angular', disabled: true },
       { name: 'React', value: 'react' }
     ],
     radioValue: 'vue'

@@ -205,3 +205,11 @@ body.overhidden {
 .v-table {
   margin-bottom: 40px;
 }
+
+.v-checkbox-group.vertical .g-item {
+  padding: 10px 0;
+}
+
+.v-radio-group.vertical .g-item {
+  padding: 10px 0;
+}

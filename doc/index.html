@@ -181,10 +181,12 @@
           <div class="panel" id="toRadio">
             <div class="title">单选框</div>
             <div class="content">
-              <div class="content-cell">
-                <div class="controls">
-                  <v-radio-group :source="radioSource" v-model="radioValue" name="framework"></v-radio-group>
-                </div>
+              <div class="cell" style="display: flex; align-items: center; margin-bottom: 16px;">
+                <v-radio-group :source="radioSource" v-model="radioValue" name="framework1"></v-radio-group>
+              </div>
+              <div class="cell" style="display: flex; align-items: center;">
+                <label class="label">垂直模式：</label>
+                <v-radio-group style="width: 100px;" :source="radioSource" v-model="radioValue" name="framework2" reverse vertical></v-radio-group>
               </div>
             </div>
           </div>
@@ -194,11 +196,17 @@
             <div class="content">
               <div class="cell" style="display: flex; align-items: center; margin-bottom: 16px;">
                 <label class="label">单个：</label>
-                <v-checkbox label="全选" name="selectAll" v-model="checkboxValue"></v-checkbox>
+                <v-checkbox style="margin-right: 20px;" label="全选" name="selectAll" v-model="checkboxValue"></v-checkbox>
+                <v-checkbox style="margin-right: 20px;" label="全选" name="selectAll" v-model="checkboxValue" disabled></v-checkbox>
+                <v-checkbox style="width: 100px;" label="全选" name="selectAll" v-model="checkboxValue" reverse></v-checkbox>
               </div>
-              <div class="cell" style="display: flex; align-items: center;">
+              <div class="cell" style="display: flex; align-items: center; margin-bottom: 16px;">
                 <label class="label">多个：</label>
                 <v-checkbox-group :source="checkboxSource" v-model="multiCheckboxValue"></v-checkbox-group>
+              </div>
+              <div class="cell" style="display: flex; align-items: center;">
+                <label class="label">多个，垂直模式：</label>
+                <v-checkbox-group style="width: 100px;" :source="checkboxSource" v-model="multiCheckboxValue" reverse vertical></v-checkbox-group>
               </div>
             </div>
           </div>

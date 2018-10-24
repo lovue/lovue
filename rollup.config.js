@@ -23,7 +23,10 @@ if (esm) {
 
 if (!production) {
   plugins.push(serve('doc'))
-  plugins.push(livereload())
+  plugins.push(livereload({
+    watch: 'doc',
+    delay: 100
+  }))
   file = 'doc/js/lovue.js'
   format = 'iife'
 }

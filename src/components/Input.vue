@@ -18,7 +18,11 @@
       required: Boolean,
       step: String,
       min: String,
-      max: String
+      max: String,
+      focus: Boolean
+    },
+    mounted() {
+      this.focus && this.$el.querySelector('input').focus()
     }
   }
 </script>

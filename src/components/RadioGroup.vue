@@ -1,9 +1,11 @@
 <template>
-  <div class="v-radio-group">
-    <label class="v-radio" v-for="item of source">
-      <input type="radio" :value="item.value" v-model="checked" :name="name" :disabled="item.disabled">
-      <span>{{item.name}}</span>
-    </label>
+  <div class="v-radio-group" :class="{vertical}">
+    <div class="g-item" v-for="item of source">
+      <label class="v-radio" :class="{reverse, disabled: item.disabled}">
+        <input type="radio" :value="item.value" v-model="checked" :name="name" :disabled="item.disabled">
+        <span>{{item.name}}</span>
+      </label>
+    </div>
   </div>
 </template>
 
@@ -18,7 +20,9 @@
     props: {
       value: [Number, String, Boolean],
       source: Array,
-      name: String
+      name: String,
+      reverse: Boolean,
+      vertical: Boolean
     },
     watch: {
       value(val) {
