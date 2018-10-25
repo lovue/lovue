@@ -18,7 +18,7 @@ const wrapFetch = function (request) {
         throw {
           status,
           code: body.code,
-          msg: config.errorMsg[body.code] || body.msg || 'Unknown Error'
+          msg: config.errorMsg[body.code] || body.msg || body.error || 'Unknown Error'
         }
       }
     }).catch(reject)
