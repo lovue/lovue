@@ -141,6 +141,8 @@
         }
       },
       date(val) {
+        const date = new Date(val)
+        if (date.getMonth() + 1 !== Number(val.split('-')[1])) return
         this.$emit('update', val)
       }
     },

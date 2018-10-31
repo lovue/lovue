@@ -325,6 +325,9 @@ new Vue({
     },
     checkTableRows(rows) {
       this.warn(rows.map(row => row.name).join(', '))
+    },
+    selectDate(date) {
+      console.log(date)
     }
   },
   mounted() {
