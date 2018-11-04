@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <!--<link rel="icon" href="<%= BASE_URL %>favicon.ico">-->
     <link rel="stylesheet" href="css/lovue.css">
-    <link rel="stylesheet" href="css/lovue.pro.css">
+    <link rel="stylesheet" href="css/lovue.extension.css">
     <link rel="stylesheet" href="css/style.css">
     <title>synth</title>
   </head>
@@ -358,49 +358,6 @@
             </div>
           </div>
 
-          <div class="panel" id="toImgReflex">
-            <div class="title">图片倒影</div>
-            <div class="content">
-              <v-img-reflex src="/img/reflex.jpg"></v-img-reflex>
-            </div>
-          </div>
-
-          <div class="panel" id="toSelectCity">
-            <div class="title">省市选择器</div>
-            <div class="content">
-              <v-select-city v-model="provinceCity"></v-select-city>
-            </div>
-          </div>
-
-          <div class="panel" id="toCollapse">
-            <div class="title">收缩菜单</div>
-            <div class="content">
-              <v-collapse></v-collapse>
-            </div>
-          </div>
-
-          <div class="panel" id="toHtmlEditor">
-            <div class="title">富文本编辑器</div>
-            <div class="content" style="display: flex">
-              <v-html-editor></v-html-editor>
-            </div>
-          </div>
-
-          <div class="panel" id="toShare">
-            <div class="title">分享</div>
-            <div class="content">
-              待开发
-              <!--<v-share url="https://github.com/loliconer/lovue" title="UI Components for Vue"></v-share>-->
-            </div>
-          </div>
-
-          <div class="panel" id="toTags">
-            <div class="title">标签</div>
-            <div class="content">
-              <v-tag :tags="tags"></v-tag>
-            </div>
-          </div>
-
           <div class="panel" id="toTable">
             <div class="title">表格</div>
             <div class="content">
@@ -409,13 +366,56 @@
               <v-table :source="[]" :columns="buildingColumns" simple></v-table>
             </div>
           </div>
+
+          <div class="panel" id="toImgReflex">
+            <div class="title">【扩展】图片倒影</div>
+            <div class="content">
+              <v-img-reflex src="/img/reflex.jpg"></v-img-reflex>
+            </div>
+          </div>
+
+          <div class="panel" id="toSelectCity">
+            <div class="title">【扩展】省市选择器</div>
+            <div class="content">
+              <v-select-city v-model="provinceCity"></v-select-city>
+            </div>
+          </div>
+
+          <div class="panel" id="toCollapse">
+            <div class="title">【扩展】收缩菜单</div>
+            <div class="content">
+              <v-collapse></v-collapse>
+            </div>
+          </div>
+
+          <div class="panel" id="toHtmlEditor">
+            <div class="title">【扩展】富文本编辑器</div>
+            <div class="content" style="display: flex">
+              <v-html-editor></v-html-editor>
+            </div>
+          </div>
+
+          <div class="panel" id="toShare">
+            <div class="title">【扩展】分享</div>
+            <div class="content">
+              待开发
+              <!--<v-share url="https://github.com/loliconer/lovue" title="UI Components for Vue"></v-share>-->
+            </div>
+          </div>
+
+          <div class="panel" id="toTags">
+            <div class="title">【扩展】标签</div>
+            <div class="content">
+              <v-tag :tags="tags"></v-tag>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <script src="js/vue.js"></script>
     <script src="js/iconfont.js"></script>
     <script src="js/lovue.js"></script>
-    <script src="js/lovue.pro.js"></script>
+    <script src="js/lovue.extension.js"></script>
     <script src="js/main.js"></script>
     <!-- built files will be auto injected -->
   </body>
