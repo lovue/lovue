@@ -79,11 +79,12 @@ new Vue({
 - 表格：Table.vue
 - 选择文件按钮：Upload.vue
 
-#### Pro
-- 中国省市选择器：SelectCity.vue
-- HTML5富文本编辑器：HtmlEditor.vue
-- 图片倒影：ImgReflex.vue
+#### Extension
 - 收缩菜单：Collapse.vue
+- 图片倒影：ImgReflex.vue
+- HTML5富文本编辑器：HtmlEditor.vue
+- 中国省市选择器：SelectCity.vue
+- 标签选择：Tag.vue
 
 
 ### 开发中：
