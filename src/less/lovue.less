@@ -439,23 +439,28 @@
   height: 50px;
   line-height: 48px;
   border-bottom: 1px solid @border-color;
+  font-size: @small-font;
 
   .focus {
     color: @blue-color;
   }
 
   .v-menu-item {
-    > * {
-      display: block;
-      font-size: @small-font;
-      padding: 0 20px;
-      border-bottom: 2px solid transparent;
+    > .v-dropdown-wrap,
+    > .i-title,
+    > a {
+      padding: 0 @2unit;
       transition: all .3s cubic-bezier(.645, .045, .355, 1);
+      border-bottom: 2px solid transparent;
 
       &:hover {
         border-color: @blue-color;
         color: @blue-color;
       }
+    }
+
+    > a {
+      display: block;
     }
   }
 
@@ -463,7 +468,53 @@
     left: 0;
     top: calc(100% + 5px);
     min-width: 160px;
+  }
 
+  &.vertical {
+    width: 300px;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: none;
+
+    .v-menu-item {
+      width: 100%;
+
+      .i-title {
+        .truncate;
+        .flex-between;
+        cursor: pointer;
+
+        .icon-down-wide {
+          flex-shrink: 0;
+          transition: transform .3s cubic-bezier(.645, .045, .355, 1);
+
+          &.up {
+            transform: rotateX(180deg);
+          }
+        }
+      }
+
+      .m-sub {
+        background-color: @bg-color;
+        overflow: hidden;
+        transition: height .3s cubic-bezier(.645, .045, .355, 1);
+
+        .s-item {
+          a {
+            .truncate;
+            display: block;
+            padding: 0 @4unit;
+            height: 100%;
+            transition: all .3s cubic-bezier(.645, .045, .355, 1);
+
+            &:hover {
+              color: @blue-color;
+            }
+          }
+        }
+      }
+    }
   }
 }
 

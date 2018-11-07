@@ -160,7 +160,12 @@
           <div class="panel" id="toNavbar">
             <div class="title">导航菜单</div>
             <div class="content">
-              <v-menu :menus="menus"></v-menu>
+              <div class="cell" style="margin-bottom: 16px;">
+                <v-menu :menus="menus"></v-menu>
+              </div>
+              <div class="cell">
+                <v-menu :menus="menus" vertical></v-menu>
+              </div>
             </div>
           </div>
 
