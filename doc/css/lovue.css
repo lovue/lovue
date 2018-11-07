@@ -555,19 +555,33 @@ svg {
 }
 .v-menu .v-menu-item > .v-dropdown-wrap,
 .v-menu .v-menu-item > .i-title,
-.v-menu .v-menu-item > a {
+.v-menu .v-menu-item > .i-link {
   padding: 0 16px;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   border-bottom: 2px solid transparent;
 }
 .v-menu .v-menu-item > .v-dropdown-wrap:hover,
 .v-menu .v-menu-item > .i-title:hover,
-.v-menu .v-menu-item > a:hover {
+.v-menu .v-menu-item > .i-link:hover {
   border-color: #00c1de;
   color: #00c1de;
 }
-.v-menu .v-menu-item > a {
-  display: block;
+.v-menu .v-menu-item > .i-link {
+  display: flex;
+  align-items: center;
+}
+.v-menu .v-menu-item > .i-link .icon:first-child {
+  margin-right: 4px;
+}
+.v-menu .v-menu-item > .v-dropdown-wrap .d-trigger {
+  display: flex;
+  align-items: center;
+}
+.v-menu .v-menu-item > .v-dropdown-wrap .d-trigger .icon:first-child {
+  margin-right: 4px;
+}
+.v-menu .v-menu-item > .v-dropdown-wrap .d-trigger .icon-down-wide {
+  margin-left: 8px;
 }
 .v-menu .v-dropdown {
   left: 0;
@@ -591,11 +605,14 @@ svg {
   white-space: nowrap;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   cursor: pointer;
+}
+.v-menu.vertical .v-menu-item .i-title .icon:first-child {
+  margin-right: 4px;
 }
 .v-menu.vertical .v-menu-item .i-title .icon-down-wide {
   flex-shrink: 0;
+  margin-left: auto;
   transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .v-menu.vertical .v-menu-item .i-title .icon-down-wide.up {

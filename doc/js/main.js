@@ -162,15 +162,17 @@ new Vue({
     menus: [
       {
         name: '交易流水',
+        icon: 'setting',
         _focus: true,
         children: [
           { name: 'OTC商品期权', url: '/otc/options.html', _focus: true },
           { name: 'OTC价差期权', url: '/otc/spread.html' }
         ]
       },
-      { name: '持仓管理', url: '/otc/position.html' },
+      { name: '持仓管理', icon: 'setting', url: '/otc/position.html' },
       {
         name: 'TA管理',
+        icon: 'setting',
         children: [
           { name: '申购赎回管理', url: '/otc/purchase.html' },
           { name: '客户信息管理', url: '/otc/information.html' },
