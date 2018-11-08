@@ -63,6 +63,159 @@ const buildings = function () {
 new Vue({
   el: '#app',
   data: {
+    columns: [
+      { title: '属性', prop: 'prop' },
+      { title: '说明', prop: 'desc' },
+      { title: '类型', prop: 'type' },
+      { title: '默认值', prop: 'deft' },
+    ],
+    sourceButton: [
+      { prop: 'type', desc: '样式', type: 'String', deft: 'primary' },
+      { prop: 'size', desc: '大小', type: 'String', deft: '无' },
+      { prop: 'disabled', desc: '是否禁用', type: 'Boolean', deft: '无' },
+      { prop: 'icon', desc: '图标', type: 'String', deft: '无' },
+      { prop: 'loading', desc: '是否正在等待，用于异步请求', type: 'Boolean', deft: '无' },
+      { prop: 'submit', desc: '是否是提交按钮', type: 'Boolean', deft: '无' }
+    ],
+    sourceMenu: [
+      { prop: 'menus', desc: '菜单数据，支持子菜单children与图标icon属性', type: 'Array', deft: '无' },
+      { prop: 'vertical', desc: '是否垂直模式', type: 'Boolean', deft: '无' }
+    ],
+    sourceInput: [
+      { prop: 'v-model', desc: '组件双向绑定的值', type: 'String, Number', deft: '无' },
+      { prop: 'effect', desc: '是否特效模式', type: 'Boolean', deft: '无' },
+      { prop: 'type', desc: 'input的type值', type: 'String', deft: '无' },
+      { prop: 'name', desc: 'input的name值', type: 'String', deft: '无' },
+      { prop: 'placeholder', desc: 'input的placeholder值', type: 'String', deft: '无' },
+      { prop: 'required', desc: 'input的required值', type: 'Boolean', deft: '无' },
+      { prop: 'step', desc: 'number类型的input的step值', type: 'String', deft: '无' },
+      { prop: 'min', desc: 'number类型的input的min值', type: 'String', deft: '无' },
+      { prop: 'max', desc: 'number类型的input的max值', type: 'String', deft: '无' },
+      { prop: 'focus', desc: '是否自动获得焦点', type: 'Boolean', deft: '无' }
+    ],
+    sourceRadio: [
+      { prop: 'v-model', desc: '组件双向绑定的值', type: 'String, Number, Boolean', deft: '无' },
+      { prop: 'source', desc: '选项数据，单个radio数据支持属性：disabled, name, value', type: 'Array', deft: '无' },
+      { prop: 'name', desc: 'radio的name值', type: 'String', deft: '无' },
+      { prop: 'vertical', desc: '是否垂直模式', type: 'Boolean', deft: '无' },
+      { prop: 'reverse', desc: '是否文本与选择框顺序反转', type: 'Boolean', deft: '无' }
+    ],
+    sourceCheckbox: [
+      { prop: 'v-model', desc: '组件双向绑定的值', type: 'Boolean', deft: '无' },
+      { prop: 'label', desc: '显示的文本', type: 'String', deft: '无' },
+      { prop: 'name', desc: 'checkbox的name值', type: 'String', deft: '无' },
+      { prop: 'disabled', desc: '是否禁用', type: 'Boolean', deft: '无' },
+      { prop: 'reverse', desc: '是否文本与选择框顺序反转', type: 'Boolean', deft: '无' }
+    ],
+    sourceCheckboxGroup: [
+      { prop: 'v-model', desc: '组件双向绑定的值', type: 'Array', deft: '无' },
+      { prop: 'source', desc: '选项数据，单个checkbox数据支持属性：disabled, name, value', type: 'Array', deft: '无' },
+      { prop: 'name', desc: 'checkbox的name值', type: 'String', deft: '无' },
+      { prop: 'vertical', desc: '是否垂直模式', type: 'Boolean', deft: '无' },
+      { prop: 'reverse', desc: '是否文本与选择框顺序反转', type: 'Boolean', deft: '无' }
+    ],
+    sourceSwitch: [
+      { prop: 'v-model', desc: '组件双向绑定的值', type: 'Boolean', deft: '无' },
+      { prop: 'name', desc: 'checkbox的name值', type: 'String', deft: '无' },
+      { prop: 'disabled', desc: '是否禁用', type: 'Boolean', deft: '无' }
+    ],
+    sourceSearch: [
+      { prop: 'auto', desc: '是否自动搜索', type: 'Boolean', deft: 'true' },
+      { prop: 'placeholder', desc: '占位符', type: 'String', deft: '关键词' },
+      { prop: 'delay', desc: '输入搜索内容后自动搜索的延迟时间，单位：ms', type: 'Number', deft: '500' }
+    ],
+    sourceUpload: [
+      { prop: 'name', desc: 'input的name值', type: 'String', deft: '' },
+      { prop: 'upload', desc: '是否选择文件后立即上传，是，则选择文件后不显示文件名；否，则显示', type: 'Boolean', deft: '无' },
+      { prop: 'multi', desc: '是否可多选文件', type: 'Boolean', deft: '无' },
+      { prop: 'required', desc: 'input的required值', type: 'Boolean', deft: '无' },
+      { prop: 'text', desc: '按钮显示的文本', type: 'String', deft: '选择文件' },
+      { prop: 'thumbnail', desc: '选择图片后是否显示缩略图', type: 'Boolean', deft: '无' },
+      { prop: 'thumbSize', desc: '缩略图的大小', type: 'Number', deft: '100' },
+      { prop: 'shape', desc: '样式，支持：button, square', type: 'String', deft: 'button' }
+    ],
+    sourceTab: [
+      { prop: 'titles', desc: '选项数据，支持属性：name, icon', type: 'Array', deft: '无' },
+      { prop: 'cur', desc: '当前选中的索引', type: 'Number', deft: '0' },
+      { prop: 'lock', desc: '是否锁定，锁定时无法切换tab', type: 'Boolean', deft: '无' }
+    ],
+    sourceSteps: [
+      { prop: 'steps', desc: '选项数据，支持属性：title, icon', type: 'Array', deft: '无' },
+      { prop: 'cur', desc: '当前选中的索引', type: 'Number', deft: '0' },
+    ],
+    sourceSelect: [
+      { prop: 'v-model', desc: '组件双向绑定的值', type: 'String, Number, Array, Object', deft: '无' },
+      { prop: 'source', desc: '选项数据，支持属性：name, value', type: 'Array', deft: '无' },
+      { prop: 'disabled', desc: '是否禁用', type: 'Boolean', deft: '无' },
+      { prop: 'multiple', desc: '是否可多选', type: 'Boolean', deft: '无' },
+      { prop: 'searchable', desc: '下拉列表是否可搜索', type: 'Boolean', deft: '无' },
+      { prop: 'placeholder', desc: '占位符', type: 'String', deft: '请选择' },
+      { prop: 'searchPlaceholder', desc: '搜索占位符', type: 'String', deft: '搜索' },
+      { prop: 'steps', desc: '选项数据，支持属性：title, icon', type: 'Array', deft: '无' },
+      { prop: 'max', desc: '多选时最多可选择的数量，没有则不限制', type: 'Number', deft: '无' },
+      { prop: 'emitItem', desc: '是否emit整个item，是，则v-model绑定的是选中项的整个对象，否，则绑定选中项的value值', type: 'Boolean', deft: '无' },
+    ],
+    sourcePureSelect: [
+      { prop: 'v-model', desc: '组件双向绑定的值', type: 'String, Number', deft: '无' },
+      { prop: 'source', desc: '选项数据，每个选项为原始值', type: 'Array', deft: '无' },
+      { prop: 'name', desc: 'radio的name值', type: 'String', deft: '无' },
+      { prop: 'placeholder', desc: '占位符', type: 'String', deft: '请选择' }
+    ],
+    sourceProgress: [
+      { prop: 'value', desc: '传入的值', type: 'Number', deft: '无' },
+      { prop: 'decimal', desc: '是否支持小数', type: 'Boolean', deft: '无' },
+      { prop: 'width', desc: '宽度', type: 'Boolean', deft: '无' },
+      { prop: 'height', desc: '高度', type: 'Boolean', deft: '无' },
+      { prop: 'color', desc: '进度条的颜色', type: 'String', deft: 'blue-color' }
+    ],
+    sourcePagination: [
+      { prop: 'total', desc: '总数', type: 'Number', deft: '无' },
+      { prop: 'countOfPage', desc: '每页数目', type: 'Number', deft: '10' },
+      { prop: 'pageCounts', desc: '可选的每页数目', type: 'Array', deft: '[10, 20, 50]' },
+      { prop: 'simple', desc: '是否简易模式', type: 'Boolean', deft: '无' }
+    ],
+    sourceDatePicker: [
+      { prop: 'current', desc: '默认值', type: 'String', deft: '无' },
+      { prop: 'name', desc: 'input的name值', type: 'String', deft: '无' },
+      { prop: 'timepicker', desc: '是否可选择时分', type: 'Boolean', deft: '无' },
+      { prop: 'interval', desc: '时分列表的间隔，单位：小时，小数只支持0.5', type: 'Number', deft: '无' },
+      { prop: 'minYear', desc: '最小年份', type: 'Number', deft: '1950' },
+      { prop: 'maxYear', desc: '最大年份', type: 'Number', deft: '2050' },
+      { prop: 'weeks', desc: '显示的星期列表', type: 'Array', deft: "['日', '一', '二', '三', '四', '五', '六']" },
+      { prop: 'months', desc: '显示的月份列表', type: 'Array', deft: "['1月', '2月', ... '11月', '12月']" }
+    ],
+    sourceModal: [
+      { prop: 'title', desc: '标题，没有，则不显示标题栏', type: 'String', deft: '无' },
+      { prop: 'content', desc: '正文', type: 'String', deft: '无' },
+      { prop: 'noCancel', desc: '是否不显示取消按钮', type: 'Boolean', deft: 'false' },
+      { prop: 'fixed', desc: '是否顶部固定，否，则垂直居中', type: 'Boolean', deft: 'false' },
+      { prop: 'confirm', desc: '点击确认时执行的异步请求，如果不提供，则点击确认直接关闭', type: 'Function', deft: 'undefined' },
+      { prop: 'okText', desc: '确认按钮文本', type: 'String', deft: '确认' },
+      { prop: 'cancelText', desc: '取消按钮文本', type: 'String', deft: '取消' }
+    ],
+    sourcePopup: [
+      { prop: 'v-model', desc: '组件双向绑定的值，是否显示弹窗', type: 'Boolean', deft: '无' },
+      { prop: 'title', desc: '标题', type: 'String', deft: '无' },
+      { prop: 'content', desc: '正文', type: 'String', deft: '无' },
+      { prop: 'fixed', desc: '是否顶部固定，否，则垂直居中', type: 'Boolean', deft: 'false' },
+      { prop: 'confirm', desc: '点击确认时执行的异步请求，如果不提供，则点击确认直接关闭', type: 'Function', deft: 'undefined' },
+      { prop: 'okText', desc: '确认按钮文本', type: 'String', deft: '确认' },
+      { prop: 'cancelText', desc: '取消按钮文本', type: 'String', deft: '取消' }
+    ],
+    sourceTable: [
+      { prop: 'source', desc: '数据源', type: 'Array', deft: '[]' },
+      { prop: 'columns', desc: '表格列，支持属性：title, prop, custom, cssClass', type: 'Array', deft: '[]' },
+      { prop: 'checkbox', desc: '是否显示复选框', type: 'Boolean', deft: '无' },
+      { prop: 'checkboxColumn', desc: '复选框旁边显示哪一列的值', type: 'String', deft: '无' },
+      { prop: 'simple', desc: '是否简易模式，是，则没有搜索栏、分页', type: 'Boolean', deft: '无' },
+      { prop: 'fixedHead', desc: '是否表头固定', type: 'Boolean', deft: '无' },
+      { prop: 'keepSort', desc: '当数据源更新时，是否保持排序不变', type: 'Boolean', deft: '无' },
+      { prop: 'countOfPage', desc: '每页数目', type: 'Number', deft: '10' },
+      { prop: 'filters', desc: '过滤器数组，用于自定义某一列数据的显示', type: 'Array', deft: '[Intl.NumberFormat]' },
+      { prop: 'total', desc: '数据总数量，显示在分页组件上', type: 'Number', deft: '无' },
+      { prop: 'emptyText', desc: '没有数据时表格显示的内容', type: 'String', deft: '暂无数据' },
+      { prop: 'simplePagination', desc: '分页组件是否简易模式', type: 'Boolean', deft: '无' },
+    ],
     provinceCity: ['江西省', '抚州市'],
     diploma: ['初中', '高中', '本科', '硕士', '博士'],
     buildings: buildings(),

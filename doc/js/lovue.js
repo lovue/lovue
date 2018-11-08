@@ -2576,7 +2576,10 @@
   var script$m = {
     name: 'v-steps',
     props: {
-      current: Number,
+      cur: {
+        type: Number,
+        'default': 0
+      },
       steps: Array
     }
   };
@@ -2585,7 +2588,7 @@
               const __vue_script__$m = script$m;
               
   /* template */
-  var __vue_render__$m = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-steps"},_vm._l((_vm.steps),function(step,i){return _c('div',{staticClass:"v-step"},[_c('div',{staticClass:"s-content",class:{finished: i < _vm.current, processing: i === _vm.current, wait: i > _vm.current}},[(step.icon)?_c('v-icon',{attrs:{"icon":step.icon,"size":"16"}}):_c('span',{staticClass:"default-icon"},[(i < _vm.current)?_c('v-icon',{attrs:{"icon":"check"}}):[_vm._v(_vm._s(i+1))]],2),_vm._v("\n      "+_vm._s(step.title))],1),_vm._v(" "),(i < _vm.steps.length-1)?_c('div',{staticClass:"s-line",class:{success: i < _vm.current}}):_vm._e()])}))};
+  var __vue_render__$m = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-steps"},_vm._l((_vm.steps),function(step,i){return _c('div',{staticClass:"v-step"},[_c('div',{staticClass:"s-content",class:{finished: i < _vm.cur, processing: i === _vm.cur, wait: i > _vm.cur}},[(step.icon)?_c('v-icon',{attrs:{"icon":step.icon,"size":"16"}}):_c('span',{staticClass:"default-icon"},[(i < _vm.cur)?_c('v-icon',{attrs:{"icon":"check"}}):[_vm._v(_vm._s(i+1))]],2),_vm._v("\n      "+_vm._s(step.title))],1),_vm._v(" "),(i < _vm.steps.length-1)?_c('div',{staticClass:"s-line",class:{success: i < _vm.cur}}):_vm._e()])}))};
   var __vue_staticRenderFns__$m = [];
 
     /* style */
