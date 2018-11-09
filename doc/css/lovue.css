@@ -641,6 +641,14 @@ svg {
   display: inline-block;
   font-size: 1.4rem;
 }
+.v-input .hidden-value {
+  position: absolute;
+  left: 0;
+  padding: 4px 10px;
+  white-space: nowrap;
+  z-index: -1;
+  opacity: 0;
+}
 .v-input input {
   width: 100%;
 }

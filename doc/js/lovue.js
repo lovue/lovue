@@ -1130,9 +1130,16 @@
   //
   //
   //
+  //
 
   var script$a = {
     name: 'v-input',
+    data() {
+      return {
+        width: this.resize ? 0 : undefined,
+        content: this.value
+      }
+    },
     props: {
       value: [String, Number],
       effect: Boolean,
@@ -1144,7 +1151,23 @@
       step: String,
       min: String,
       max: String,
-      focus: Boolean
+      focus: Boolean,
+      resize: Boolean
+    },
+    watch: {
+      value(val) {
+        this.content = val;
+      },
+      content(val) {
+        this.resize && this.updateSize();
+        this.$emit('input', val);
+      }
+    },
+    methods: {
+      async updateSize() {
+        await this.$nextTick();
+        this.width = this.$el.querySelector('.hidden-value').offsetWidth;
+      }
     },
     mounted() {
       this.focus && this.$el.querySelector('input').focus();
@@ -1155,7 +1178,7 @@
               const __vue_script__$a = script$a;
               
   /* template */
-  var __vue_render__$a = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-input",class:{effect: _vm.effect}},[_c('input',{staticClass:"input",attrs:{"type":_vm.type,"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled},domProps:{"value":_vm.value},on:{"input":function($event){_vm.$emit('input', $event.target.value);}}}),_vm._v(" "),(_vm.effect)?_c('hr'):_vm._e()])};
+  var __vue_render__$a = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-input",class:{effect: _vm.effect}},[(_vm.resize)?_c('div',{staticClass:"hidden-value"},[_vm._v(_vm._s(_vm.content))]):_vm._e(),_vm._v(" "),((_vm.type)==='checkbox')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.content)?_vm._i(_vm.content,null)>-1:(_vm.content)},on:{"change":function($event){var $$a=_vm.content,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.content=$$a.concat([$$v]));}else{$$i>-1&&(_vm.content=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.content=$$c;}}}}):((_vm.type)==='radio')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"type":"radio"},domProps:{"checked":_vm._q(_vm.content,null)},on:{"change":function($event){_vm.content=null;}}}):_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"type":_vm.type},domProps:{"value":(_vm.content)},on:{"input":function($event){if($event.target.composing){ return; }_vm.content=$event.target.value;}}}),_vm._v(" "),(_vm.effect)?_c('hr'):_vm._e()])};
   var __vue_staticRenderFns__$a = [];
 
     /* style */
