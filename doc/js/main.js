@@ -88,6 +88,7 @@ new Vue({
       { prop: 'name', desc: 'input的name值', type: 'String', deft: '无' },
       { prop: 'placeholder', desc: 'input的placeholder值', type: 'String', deft: '无' },
       { prop: 'required', desc: 'input的required值', type: 'Boolean', deft: '无' },
+      { prop: 'disabled', desc: '是否禁用', type: 'Boolean', deft: '无' },
       { prop: 'step', desc: 'number类型的input的step值', type: 'String', deft: '无' },
       { prop: 'min', desc: 'number类型的input的min值', type: 'String', deft: '无' },
       { prop: 'max', desc: 'number类型的input的max值', type: 'String', deft: '无' },
@@ -175,9 +176,9 @@ new Vue({
       { prop: 'simple', desc: '是否简易模式', type: 'Boolean', deft: '无' }
     ],
     sourceDatePicker: [
-      { prop: 'current', desc: '默认值', type: 'String', deft: '无' },
+      { prop: 'v-model', desc: '组件双向绑定的值', type: 'String', deft: '无' },
       { prop: 'name', desc: 'input的name值', type: 'String', deft: '无' },
-      { prop: 'timepicker', desc: '是否可选择时分', type: 'Boolean', deft: '无' },
+      { prop: 'full', desc: '是否可选择时分', type: 'Boolean', deft: '无' },
       { prop: 'interval', desc: '时分列表的间隔，单位：小时，小数只支持0.5', type: 'Number', deft: '无' },
       { prop: 'minYear', desc: '最小年份', type: 'Number', deft: '1950' },
       { prop: 'maxYear', desc: '最大年份', type: 'Number', deft: '2050' },
@@ -218,6 +219,7 @@ new Vue({
     ],
     provinceCity: ['江西省', '抚州市'],
     diploma: ['初中', '高中', '本科', '硕士', '博士'],
+    pureSelectValue: undefined,
     buildings: buildings(),
     buildingColumns: [
       {
@@ -379,7 +381,8 @@ new Vue({
       { name: 'Angular', value: 'angular', disabled: true },
       { name: 'React', value: 'react' }
     ],
-    radioValue: 'vue'
+    radioValue: 'vue',
+    datePickerValue: '2018-11-11'
   },
   methods: {
     sleep(delay = 1000) {
@@ -505,6 +508,9 @@ new Vue({
       })
     }, 400)
 
-    setTimeout(() => this.bought2 = 'Aventador', 2000)
+    setTimeout(() => {
+      this.bought2 = 'Aventador'
+      this.pureSelectValue = '高中'
+    }, 2000)
   }
 })

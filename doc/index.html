@@ -184,6 +184,7 @@
               <div class="content-cell">
                 <div class="controls">
                   <v-input></v-input>
+                  <v-input disabled></v-input>
                   <v-input type="number" placeholder="请输入"></v-input>
                   <v-input effect></v-input>
                   <!--<input class="v-input" placeholder="输入文字">-->
@@ -342,7 +343,7 @@
               <v-select :source="cars" v-model="bought3" multiple></v-select>
               <v-select :source="cars" v-model="bought2" searchable></v-select>
               <v-select :source="cars" disabled></v-select>
-              <v-pure-select :source="diploma"></v-pure-select>
+              <v-pure-select v-model="pureSelectValue" :source="diploma"></v-pure-select>
             </div>
             <div class="content">
               <v-table :source="sourceSelect" :columns="columns" simple></v-table>
@@ -382,6 +383,7 @@
             <div class="usage">【v-date-picker】</div>
             <div class="content">
               <v-date-picker @update="selectDate"></v-date-picker>
+              <v-date-picker v-model="datePickerValue" @update="selectDate"></v-date-picker>
             </div>
             <div class="content">
               <v-table :source="sourceDatePicker" :columns="columns" simple></v-table>

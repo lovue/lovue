@@ -792,13 +792,12 @@
   //
   //
 
-  const today = new Date;
-
   var script$8 = {
     name: 'v-date-picker',
     data() {
       return {
-        years: getArray(this.minYear, this.maxYear),
+        selfClicked: false,
+        years: new Array(this.maxYear - this.minYear + 1).fill(0).map((item, i) => this.minYear + i),
         localeWeeks: this.weeks || ['日', '一', '二', '三', '四', '五', '六'],
         localeMonths: this.months || ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
         year: 0,
@@ -810,13 +809,14 @@
         scrolling: false,
         pickerWidth: 0,
         pos: '',
-        open: ''
+        open: '',
+        innerUpdate: false // 防止$emit input事件时触发value的watch事件导致执行init函数
       }
     },
     props: {
-      current: String,
+      value: String,
       name: String,
-      timepicker: Boolean,
+      full: Boolean,
       interval: Number,
       minYear: {
         type: Number,
@@ -880,26 +880,35 @@
       }
     },
     watch: {
-      current(val) {
-        let t = new Date(val);
-        this.year = t.getFullYear();
-        this.month = t.getMonth() + 1;
-        this.day = t.getDate();
-
-        if (this.timepicker) {
-          let hour = t.getHours();
-          let minute = t.getMinutes();
-          this.hour = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute);
+      value(val) {
+        if (this.innerUpdate) {
+          this.innerUpdate = false;
+          return
         }
+        this.init(new Date(val));
       },
       date(val) {
         const date = new Date(val);
         if (date.getMonth() + 1 !== Number(val.split('-')[1])) return
-        this.$emit('update', val);
+        this.innerUpdate = true;
+        this.$emit('input', val);
       }
     },
     methods: {
+      init(date) {
+        this.year = date.getFullYear();
+        this.month = date.getMonth() + 1;
+        this.day = date.getDate();
+
+        if (this.full) {
+          let hour = date.getHours();
+          let minute = date.getMinutes();
+          this.hour = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute);
+        }
+      },
       showPicker() {
+        this.selfClicked = true;
+        if (this.bShowPicker) return
         this.bShowPicker = true;
 
         const bottomSpace = window.innerHeight - this.$el.getBoundingClientRect().bottom;
@@ -958,33 +967,20 @@
       }
     },
     created() {
-      let t = this.current ? new Date(this.current) : today;
+      this.init(this.value ? new Date(this.value) : new Date);
 
-      this.year = t.getFullYear();
-      this.month = t.getMonth() + 1;
-      this.day = t.getDate();
-
-      if (this.timepicker) {
-        if (this.current) {
-          let hour = t.getHours();
-          let minute = t.getMinutes();
-          this.hour = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute);
-        }
+      if (this.full) {
         this.times = getTimeArray(this.interval);
       }
     },
     mounted() {
-      window.addEventListener('click', () => this.hidePicker());
+      window.addEventListener('click', () => {
+        // 当点击组件之外的区域（包括其他DatePicker组件）时，隐藏日期选择框；点击组件自身时不做任何处理
+        if (!this.selfClicked) this.hidePicker();
+        this.selfClicked = false;
+      });
     }
   };
-
-  function getArray(min, max) {
-    let obj = [];
-    for (let i = min; i <= max; i++) {
-      obj.push(i);
-    }
-    return obj
-  }
 
   function getTimeArray(interval) {
     interval = interval < 1 ? 0.5 : Math.floor(interval);
@@ -1008,7 +1004,7 @@
               const __vue_script__$8 = script$8;
               
   /* template */
-  var __vue_render__$8 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-date-picker",on:{"click":function($event){$event.stopPropagation();return _vm.showPicker($event)}}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.date),expression:"date"}],staticClass:"input",style:(_vm.inputStyle),attrs:{"name":_vm.name,"readonly":""},domProps:{"value":(_vm.date)},on:{"input":function($event){if($event.target.composing){ return; }_vm.date=$event.target.value;}}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowPicker),expression:"bShowPicker"}],ref:"container",staticClass:"picker-container",class:(_vm.pos + " " + _vm.open)},[_c('div',{staticClass:"date-picker"},[_c('div',{staticClass:"picker-filter"},[_c('div',{staticClass:"month-picker"},[_c('button',{staticClass:"btn-text",attrs:{"type":"button"},on:{"click":_vm.prevMonth}},[_vm._v("◀")]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.localeMonths[_vm.month - 1]))]),_vm._v(" "),_c('button',{staticClass:"btn-text",attrs:{"type":"button"},on:{"click":_vm.nextMonth}},[_vm._v("▶")])]),_vm._v(" "),_c('div',{staticClass:"year-picker"},[_c('v-pure-select',{attrs:{"source":_vm.years},model:{value:(_vm.year),callback:function ($$v) {_vm.year=$$v;},expression:"year"}})],1)]),_vm._v(" "),_c('div',{staticClass:"calendar"},[_c('table',[_c('thead',[_c('tr',_vm._l((_vm.localeWeeks),function(week){return _c('th',[_vm._v(_vm._s(week))])}))]),_vm._v(" "),_c('tbody',_vm._l((6),function(i){return _c('tr',_vm._l((7),function(j){return _c('td',{class:_vm.days[(i-1)*7+(j-1)].status,on:{"click":function($event){$event.stopPropagation();_vm.selectDay(i,j);}}},[_c('div',[_vm._v(_vm._s(_vm.days[(i-1)*7+(j-1)].text))])])}))}))])])]),_vm._v(" "),(_vm.timepicker)?_c('div',{staticClass:"time-picker"},[_c('ul',{staticClass:"list"},_vm._l((_vm.times),function(time){return _c('li',{class:time === _vm.hour ? 'focus' : '',on:{"click":function($event){$event.stopPropagation();_vm.selectHour(time);}}},[_vm._v(_vm._s(time))])}))]):_vm._e()])])};
+  var __vue_render__$8 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-date-picker",on:{"click":_vm.showPicker}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.date),expression:"date"}],staticClass:"input",style:(_vm.inputStyle),attrs:{"name":_vm.name,"readonly":""},domProps:{"value":(_vm.date)},on:{"input":function($event){if($event.target.composing){ return; }_vm.date=$event.target.value;}}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowPicker),expression:"bShowPicker"}],ref:"container",staticClass:"picker-container",class:(_vm.pos + " " + _vm.open)},[_c('div',{staticClass:"date-picker"},[_c('div',{staticClass:"picker-filter"},[_c('div',{staticClass:"month-picker"},[_c('button',{staticClass:"btn-text",attrs:{"type":"button"},on:{"click":_vm.prevMonth}},[_vm._v("◀")]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.localeMonths[_vm.month - 1]))]),_vm._v(" "),_c('button',{staticClass:"btn-text",attrs:{"type":"button"},on:{"click":_vm.nextMonth}},[_vm._v("▶")])]),_vm._v(" "),_c('div',{staticClass:"year-picker"},[_c('v-pure-select',{attrs:{"source":_vm.years},model:{value:(_vm.year),callback:function ($$v) {_vm.year=$$v;},expression:"year"}})],1)]),_vm._v(" "),_c('div',{staticClass:"calendar"},[_c('table',[_c('thead',[_c('tr',_vm._l((_vm.localeWeeks),function(week){return _c('th',[_vm._v(_vm._s(week))])}))]),_vm._v(" "),_c('tbody',_vm._l((6),function(i){return _c('tr',_vm._l((7),function(j){return _c('td',{class:_vm.days[(i-1)*7+(j-1)].status,on:{"click":function($event){$event.stopPropagation();_vm.selectDay(i,j);}}},[_c('div',[_vm._v(_vm._s(_vm.days[(i-1)*7+(j-1)].text))])])}))}))])])]),_vm._v(" "),(_vm.timepicker)?_c('div',{staticClass:"time-picker"},[_c('ul',{staticClass:"list"},_vm._l((_vm.times),function(time){return _c('li',{class:time === _vm.hour ? 'focus' : '',on:{"click":function($event){$event.stopPropagation();_vm.selectHour(time);}}},[_vm._v(_vm._s(time))])}))]):_vm._e()])])};
   var __vue_staticRenderFns__$8 = [];
 
     /* style */
@@ -1144,6 +1140,7 @@
       name: String,
       placeholder: String,
       required: Boolean,
+      disabled: Boolean,
       step: String,
       min: String,
       max: String,
@@ -1158,7 +1155,7 @@
               const __vue_script__$a = script$a;
               
   /* template */
-  var __vue_render__$a = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-input",class:{effect: _vm.effect}},[_c('input',{staticClass:"input",attrs:{"type":_vm.type,"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off"},domProps:{"value":_vm.value},on:{"input":function($event){_vm.$emit('input', $event.target.value);}}}),_vm._v(" "),(_vm.effect)?_c('hr'):_vm._e()])};
+  var __vue_render__$a = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-input",class:{effect: _vm.effect}},[_c('input',{staticClass:"input",attrs:{"type":_vm.type,"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled},domProps:{"value":_vm.value},on:{"input":function($event){_vm.$emit('input', $event.target.value);}}}),_vm._v(" "),(_vm.effect)?_c('hr'):_vm._e()])};
   var __vue_staticRenderFns__$a = [];
 
     /* style */
@@ -1757,9 +1754,9 @@
     name: 'v-pure-select',
     data() {
       return {
+        selfClicked: false,
         current: this.value,
         bShowDd: false,
-        clickHide: false,
         open: '',
         pos: ''
       }
@@ -1776,6 +1773,9 @@
       }
     },
     watch: {
+      value(val) {
+        this.current = val;
+      },
       current(val) {
         this.$emit('input', val);
       }
@@ -1786,24 +1786,26 @@
         this.pos = bottomSpace < this.ddHeight ? 'top' : 'bottom';
       },
       showDd() {
-        if (this.clickHide) return
+        this.selfClicked = true;
+        if (this.bShowDd) return
 
         this.bShowDd = true;
         this.updatePos();
         setTimeout(() => this.open = 'open', 40);
       },
       hideDd() {
-        this.clickHide = true;
         this.open = '';
         setTimeout(() => {
           this.pos = '';
           this.bShowDd = false;
-          this.clickHide = false;
         }, 400);
       }
     },
     mounted() {
-      window.addEventListener('click', () => this.hideDd());
+      window.addEventListener('click', () => {
+        if (!this.selfClicked) this.hideDd();
+        this.selfClicked = false;
+      });
     }
   };
 
@@ -1811,7 +1813,7 @@
               const __vue_script__$f = script$f;
               
   /* template */
-  var __vue_render__$f = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dl',{staticClass:"v-pure-select",class:_vm.open,on:{"click":function($event){$event.stopPropagation();return _vm.showDd($event)}}},[_c('dt',[(_vm.current === undefined)?_c('span',{staticClass:"placeholder"},[_vm._v(_vm._s(_vm.placeholder || '请选择'))]):_vm._e(),_vm._v(" "),_vm._l((_vm.source),function(elem,index){return [_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.current),expression:"current"}],attrs:{"id":("pure_radio_" + _vm._uid + "_" + index),"type":"radio","name":_vm.name},domProps:{"value":elem,"checked":_vm._q(_vm.current,elem)},on:{"change":function($event){_vm.current=elem;}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(elem))])]})],2),_vm._v(" "),_c('dd',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowDd),expression:"bShowDd"}],class:_vm.pos},_vm._l((_vm.source),function(elem,index){return _c('label',{attrs:{"for":("pure_radio_" + _vm._uid + "_" + index)},on:{"click":function($event){$event.stopPropagation();return _vm.hideDd($event)}}},[_vm._v(_vm._s(elem))])}))])};
+  var __vue_render__$f = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dl',{staticClass:"v-pure-select",class:_vm.open,on:{"click":_vm.showDd}},[_c('dt',[(_vm.current === undefined)?_c('span',{staticClass:"placeholder"},[_vm._v(_vm._s(_vm.placeholder || '请选择'))]):_vm._e(),_vm._v(" "),_vm._l((_vm.source),function(elem,index){return [_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.current),expression:"current"}],attrs:{"id":("pure_radio_" + _vm._uid + "_" + index),"type":"radio","name":_vm.name},domProps:{"value":elem,"checked":_vm._q(_vm.current,elem)},on:{"change":function($event){_vm.current=elem;}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(elem))])]})],2),_vm._v(" "),_c('dd',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowDd),expression:"bShowDd"}],class:_vm.pos},_vm._l((_vm.source),function(elem,index){return _c('label',{attrs:{"for":("pure_radio_" + _vm._uid + "_" + index)},on:{"click":_vm.hideDd}},[_vm._v(_vm._s(elem))])}))])};
   var __vue_staticRenderFns__$f = [];
 
     /* style */
@@ -2330,6 +2332,7 @@
     name: 'v-select',
     data() {
       return {
+        selfClicked: false,
         selected: this.multiple ? [] : {},
         items: JSON.parse(JSON.stringify(this.source)),
         filterText: '',
@@ -2421,11 +2424,11 @@
           });
         }
         this.selected = JSON.parse(JSON.stringify(match));
-        this.innerUpdate = false;
       },
       showCandidates() {
+        this.selfClicked = true;
         if (this.disabled) return
-
+        if (this.bShowCandidates) return
         this.bShowCandidates = true;
 
         let items = 0;
@@ -2498,7 +2501,11 @@
       }
     },
     mounted() {
-      window.addEventListener('click', () => this.hideCandidates());
+      window.addEventListener('click', () => {
+        // 当点击组件之外的区域（包括其他Select组件）时，隐藏下拉列表；点击组件自身时不做任何处理
+        if (!this.selfClicked) this.hideCandidates();
+        this.selfClicked = false;
+      });
     }
   };
 
@@ -2506,7 +2513,7 @@
               const __vue_script__$l = script$l;
               
   /* template */
-  var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-select",on:{"click":function($event){$event.stopPropagation();return _vm.showCandidates($event)}}},[_c('div',{staticClass:"selected layout-lr"},[(_vm.disabled)?_c('div',{staticClass:"layer-disabled"}):_vm._e(),_vm._v(" "),_c('div',{staticClass:"l"},[(_vm.multiple)?_vm._l((_vm.selected),function(s,i){return _c('span',{staticClass:"s-tag"},[_c('span',{staticClass:"tag-name"},[_vm._v(_vm._s(s.name))]),_vm._v(" "),_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){$event.stopPropagation();_vm.remove(s,i);}}})],1)}):_c('input',{staticClass:"input",attrs:{"placeholder":_vm.placeholder || '请选择',"readonly":""},domProps:{"value":_vm.selected.name}})],2),_vm._v(" "),_c('div',{staticClass:"r"},[_c('v-icon',{class:{reverse: !_vm.open},attrs:{"icon":"down-wide"}})],1)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowCandidates),expression:"bShowCandidates"}],class:("candidates " + _vm.pos + " " + _vm.open)},[(_vm.searchable)?_c('div',{staticClass:"item-search"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.filterText),expression:"filterText"}],staticClass:"input",attrs:{"placeholder":_vm.searchPlaceholder || '搜索'},domProps:{"value":(_vm.filterText)},on:{"input":function($event){if($event.target.composing){ return; }_vm.filterText=$event.target.value;}}})]):_vm._e(),_vm._v(" "),_c('ul',{staticClass:"list"},_vm._l((_vm.filteredItems),function(i){return _c('li',{attrs:{"title":i.name},on:{"click":function($event){$event.stopPropagation();_vm.toggle(i);}}},[_c('div',{staticClass:"i-title",class:{focus: i.selected}},[_c('span',{staticClass:"t-name"},[_vm._v(_vm._s(i.name))]),(i.selected)?_c('v-icon',{attrs:{"icon":"check"}}):_vm._e()],1),_vm._v(" "),(i.children && i.children.length)?_c('ul',{staticClass:"sub-list"},_vm._l((i.children),function(child){return _c('li',{attrs:{"title":child.name},on:{"click":function($event){$event.stopPropagation();_vm.toggle(child);}}},[_c('div',{staticClass:"i-title",class:{focus: child.selected}},[_c('span',{staticClass:"t-name"},[_vm._v(_vm._s(child.name))]),(child.selected)?_c('v-icon',{attrs:{"icon":"check"}}):_vm._e()],1)])})):_vm._e()])}))])])};
+  var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-select",on:{"click":_vm.showCandidates}},[_c('div',{staticClass:"selected layout-lr",attrs:{"disabled":_vm.disabled}},[(_vm.disabled)?_c('div',{staticClass:"layer-disabled"}):_vm._e(),_vm._v(" "),_c('div',{staticClass:"l"},[(_vm.multiple)?_vm._l((_vm.selected),function(s,i){return _c('span',{staticClass:"s-tag"},[_c('span',{staticClass:"tag-name"},[_vm._v(_vm._s(s.name))]),_vm._v(" "),_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){$event.stopPropagation();_vm.remove(s,i);}}})],1)}):_c('input',{staticClass:"input",attrs:{"placeholder":_vm.placeholder || '请选择',"readonly":""},domProps:{"value":_vm.selected.name}})],2),_vm._v(" "),_c('div',{staticClass:"r"},[_c('v-icon',{class:{reverse: !_vm.open},attrs:{"icon":"down-wide"}})],1)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowCandidates),expression:"bShowCandidates"}],class:("candidates " + _vm.pos + " " + _vm.open)},[(_vm.searchable)?_c('div',{staticClass:"item-search"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.filterText),expression:"filterText"}],staticClass:"input",attrs:{"placeholder":_vm.searchPlaceholder || '搜索'},domProps:{"value":(_vm.filterText)},on:{"input":function($event){if($event.target.composing){ return; }_vm.filterText=$event.target.value;}}})]):_vm._e(),_vm._v(" "),_c('ul',{staticClass:"list"},_vm._l((_vm.filteredItems),function(i){return _c('li',{attrs:{"title":i.name},on:{"click":function($event){$event.stopPropagation();_vm.toggle(i);}}},[_c('div',{staticClass:"i-title",class:{focus: i.selected}},[_c('span',{staticClass:"t-name"},[_vm._v(_vm._s(i.name))]),(i.selected)?_c('v-icon',{attrs:{"icon":"check"}}):_vm._e()],1),_vm._v(" "),(i.children && i.children.length)?_c('ul',{staticClass:"sub-list"},_vm._l((i.children),function(child){return _c('li',{attrs:{"title":child.name},on:{"click":function($event){$event.stopPropagation();_vm.toggle(child);}}},[_c('div',{staticClass:"i-title",class:{focus: child.selected}},[_c('span',{staticClass:"t-name"},[_vm._v(_vm._s(child.name))]),(child.selected)?_c('v-icon',{attrs:{"icon":"check"}}):_vm._e()],1)])})):_vm._e()])}))])])};
   var __vue_staticRenderFns__$l = [];
 
     /* style */

@@ -1,5 +1,5 @@
 <template>
-  <div class="v-date-picker" @click.stop="showPicker">
+  <div class="v-date-picker" @click="showPicker">
     <input class="input" :style="inputStyle" :name="name" v-model="date" readonly>
     <div class="picker-container" :class="`${pos} ${open}`" ref="container" v-show="bShowPicker">
       <div class="date-picker">
@@ -40,13 +40,12 @@
 </template>
 
 <script>
-  const today = new Date
-
   export default {
     name: 'v-date-picker',
     data() {
       return {
-        years: getArray(this.minYear, this.maxYear),
+        selfClicked: false,
+        years: new Array(this.maxYear - this.minYear + 1).fill(0).map((item, i) => this.minYear + i),
         localeWeeks: this.weeks || ['日', '一', '二', '三', '四', '五', '六'],
         localeMonths: this.months || ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
         year: 0,
@@ -58,13 +57,14 @@
         scrolling: false,
         pickerWidth: 0,
         pos: '',
-        open: ''
+        open: '',
+        innerUpdate: false // 防止$emit input事件时触发value的watch事件导致执行init函数
       }
     },
     props: {
-      current: String,
+      value: String,
       name: String,
-      timepicker: Boolean,
+      full: Boolean,
       interval: Number,
       minYear: {
         type: Number,
@@ -128,26 +128,35 @@
       }
     },
     watch: {
-      current(val) {
-        let t = new Date(val)
-        this.year = t.getFullYear()
-        this.month = t.getMonth() + 1
-        this.day = t.getDate()
-
-        if (this.timepicker) {
-          let hour = t.getHours()
-          let minute = t.getMinutes()
-          this.hour = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute)
+      value(val) {
+        if (this.innerUpdate) {
+          this.innerUpdate = false
+          return
         }
+        this.init(new Date(val))
       },
       date(val) {
         const date = new Date(val)
         if (date.getMonth() + 1 !== Number(val.split('-')[1])) return
-        this.$emit('update', val)
+        this.innerUpdate = true
+        this.$emit('input', val)
       }
     },
     methods: {
+      init(date) {
+        this.year = date.getFullYear()
+        this.month = date.getMonth() + 1
+        this.day = date.getDate()
+
+        if (this.full) {
+          let hour = date.getHours()
+          let minute = date.getMinutes()
+          this.hour = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute)
+        }
+      },
       showPicker() {
+        this.selfClicked = true
+        if (this.bShowPicker) return
         this.bShowPicker = true
 
         const bottomSpace = window.innerHeight - this.$el.getBoundingClientRect().bottom
@@ -206,32 +215,19 @@
       }
     },
     created() {
-      let t = this.current ? new Date(this.current) : today
+      this.init(this.value ? new Date(this.value) : new Date)
 
-      this.year = t.getFullYear()
-      this.month = t.getMonth() + 1
-      this.day = t.getDate()
-
-      if (this.timepicker) {
-        if (this.current) {
-          let hour = t.getHours()
-          let minute = t.getMinutes()
-          this.hour = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute)
-        }
+      if (this.full) {
         this.times = getTimeArray(this.interval)
       }
     },
     mounted() {
-      window.addEventListener('click', () => this.hidePicker())
+      window.addEventListener('click', () => {
+        // 当点击组件之外的区域（包括其他DatePicker组件）时，隐藏日期选择框；点击组件自身时不做任何处理
+        if (!this.selfClicked) this.hidePicker()
+        this.selfClicked = false
+      })
     }
-  }
-
-  function getArray(min, max) {
-    let obj = []
-    for (let i = min; i <= max; i++) {
-      obj.push(i)
-    }
-    return obj
   }
 
   function getTimeArray(interval) {

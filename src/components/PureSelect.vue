@@ -1,5 +1,5 @@
 <template>
-  <dl class="v-pure-select" :class="open" @click.stop="showDd">
+  <dl class="v-pure-select" :class="open" @click="showDd">
     <dt>
       <span class="placeholder" v-if="current === undefined">{{placeholder || '请选择'}}</span>
       <template v-for="(elem, index) of source">
@@ -8,7 +8,7 @@
       </template>
     </dt>
     <dd :class="pos" v-show="bShowDd">
-      <label :for="`pure_radio_${_uid}_${index}`" v-for="(elem, index) of source" @click.stop="hideDd">{{elem}}</label>
+      <label :for="`pure_radio_${_uid}_${index}`" v-for="(elem, index) of source" @click="hideDd">{{elem}}</label>
     </dd>
   </dl>
 </template>
@@ -18,9 +18,9 @@
     name: 'v-pure-select',
     data() {
       return {
+        selfClicked: false,
         current: this.value,
         bShowDd: false,
-        clickHide: false,
         open: '',
         pos: ''
       }
@@ -37,6 +37,9 @@
       }
     },
     watch: {
+      value(val) {
+        this.current = val
+      },
       current(val) {
         this.$emit('input', val)
       }
@@ -47,24 +50,26 @@
         this.pos = bottomSpace < this.ddHeight ? 'top' : 'bottom'
       },
       showDd() {
-        if (this.clickHide) return
+        this.selfClicked = true
+        if (this.bShowDd) return
 
         this.bShowDd = true
         this.updatePos()
         setTimeout(() => this.open = 'open', 40)
       },
       hideDd() {
-        this.clickHide = true
         this.open = ''
         setTimeout(() => {
           this.pos = ''
           this.bShowDd = false
-          this.clickHide = false
         }, 400)
       }
     },
     mounted() {
-      window.addEventListener('click', () => this.hideDd())
+      window.addEventListener('click', () => {
+        if (!this.selfClicked) this.hideDd()
+        this.selfClicked = false
+      })
     }
   }
 </script>

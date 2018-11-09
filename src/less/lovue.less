@@ -61,7 +61,7 @@
   border-radius: @border-radius;
   transition: border-color .2s;
 
-  &:hover {
+  &:not([disabled]):hover {
     border-color: @hover-blue-color;
   }
 }
@@ -1097,6 +1097,7 @@
     border-radius: @border-radius;
     background-color: @white-color;
     min-height: 32px;
+    transition: border-color .2s;
     cursor: pointer;
 
     .s-tag {
@@ -1150,6 +1151,10 @@
       opacity: .8;
       z-index: 2;
       cursor: not-allowed;
+    }
+
+    &:not([disabled]):hover {
+      border-color: @blue-color;
     }
   }
 
@@ -1362,6 +1367,7 @@
     border-radius: @border-radius;
     padding: 0 20px 0 @unit;
     vertical-align: middle;
+    transition: border-color .2s;
 
     .placeholder {
       color: @placeholder-color;
@@ -1376,6 +1382,10 @@
       color: @first-level-color;
       transform: scale(0.8);
       transition: transform .2s ease;
+    }
+
+    &:hover {
+      border-color: @blue-color;
     }
   }
 

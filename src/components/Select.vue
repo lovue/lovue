@@ -1,6 +1,6 @@
 <template>
-  <div class="v-select" @click.stop="showCandidates">
-    <div class="selected layout-lr">
+  <div class="v-select" @click="showCandidates">
+    <div class="selected layout-lr" :disabled="disabled">
       <div class="layer-disabled" v-if="disabled"></div>
       <div class="l">
         <template v-if="multiple">
@@ -35,6 +35,7 @@
     name: 'v-select',
     data() {
       return {
+        selfClicked: false,
         selected: this.multiple ? [] : {},
         items: JSON.parse(JSON.stringify(this.source)),
         filterText: '',
@@ -126,11 +127,11 @@
           })
         }
         this.selected = JSON.parse(JSON.stringify(match))
-        this.innerUpdate = false
       },
       showCandidates() {
+        this.selfClicked = true
         if (this.disabled) return
-
+        if (this.bShowCandidates) return
         this.bShowCandidates = true
 
         let items = 0
@@ -203,7 +204,11 @@
       }
     },
     mounted() {
-      window.addEventListener('click', () => this.hideCandidates())
+      window.addEventListener('click', () => {
+        // 当点击组件之外的区域（包括其他Select组件）时，隐藏下拉列表；点击组件自身时不做任何处理
+        if (!this.selfClicked) this.hideCandidates()
+        this.selfClicked = false
+      })
     }
   }
 </script>
