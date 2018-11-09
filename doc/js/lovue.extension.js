@@ -730,8 +730,90 @@
   //
   //
   //
+  //
+  //
+  //
 
   var script$5 = {
+    name: 'v-step',
+    props: {
+      cur: {
+        type: Number,
+        'default': 0
+      },
+      steps: Array
+    }
+  };
+
+  /* script */
+              const __vue_script__$5 = script$5;
+              
+  /* template */
+  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-step"},_vm._l((_vm.steps),function(step,i){return _c('div',{staticClass:"step-item"},[_c('div',{staticClass:"i-content",class:{finished: i < _vm.cur, processing: i === _vm.cur, wait: i > _vm.cur}},[(step.icon)?_c('v-icon',{attrs:{"icon":step.icon,"size":"16"}}):_c('span',{staticClass:"default-icon"},[(i < _vm.cur)?_c('v-icon',{attrs:{"icon":"check"}}):[_vm._v(_vm._s(i+1))]],2),_vm._v("\n      "+_vm._s(step.title))],1),_vm._v(" "),(i < _vm.steps.length-1)?_c('div',{staticClass:"i-line",class:{success: i < _vm.cur}}):_vm._e()])}))};
+  var __vue_staticRenderFns__$5 = [];
+
+    /* style */
+    const __vue_inject_styles__$5 = undefined;
+    /* scoped */
+    const __vue_scope_id__$5 = undefined;
+    /* module identifier */
+    const __vue_module_identifier__$5 = undefined;
+    /* functional template */
+    const __vue_is_functional_template__$5 = false;
+    /* component normalizer */
+    function __vue_normalize__$5(
+      template, style, script,
+      scope, functional, moduleIdentifier,
+      createInjector, createInjectorSSR
+    ) {
+      const component = (typeof script === 'function' ? script.options : script) || {};
+
+      // For security concerns, we use only base name in production mode.
+      component.__file = "Step.vue";
+
+      if (!component.render) {
+        component.render = template.render;
+        component.staticRenderFns = template.staticRenderFns;
+        component._compiled = true;
+
+        if (functional) component.functional = true;
+      }
+
+      component._scopeId = scope;
+
+      return component
+    }
+    /* style inject */
+    
+    /* style inject SSR */
+    
+
+    
+    var Step = __vue_normalize__$5(
+      { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
+      __vue_inject_styles__$5,
+      __vue_script__$5,
+      __vue_scope_id__$5,
+      __vue_is_functional_template__$5,
+      __vue_module_identifier__$5,
+      undefined,
+      undefined
+    );
+
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+
+  var script$6 = {
     name: 'v-tag',
     data() {
       return {
@@ -783,22 +865,22 @@
   };
 
   /* script */
-              const __vue_script__$5 = script$5;
+              const __vue_script__$6 = script$6;
               
   /* template */
-  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-tag",on:{"click":function($event){$event.stopPropagation();}}},[_c('input',{directives:[{name:"model",rawName:"v-model.trim",value:(_vm.tag),expression:"tag",modifiers:{"trim":true}}],staticClass:"input",domProps:{"value":(_vm.tag)},on:{"focus":function($event){_vm.isShowCandidates = true;},"keydown":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.addCustom($event)},"input":function($event){if($event.target.composing){ return; }_vm.tag=$event.target.value.trim();},"blur":function($event){_vm.$forceUpdate();}}}),_vm._v(" "),_c('div',{staticClass:"t-selected"},_vm._l((_vm.value),function(t,i){return _c('a',{staticClass:"tag tag-black",on:{"click":function($event){_vm.remove(t, i);}}},[_vm._v(_vm._s(t.name))])})),_vm._v(" "),(_vm.tags.length)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.isShowCandidates),expression:"isShowCandidates"}],staticClass:"t-candidates"},[_vm._l((_vm.tags),function(t,i){return _c('a',{staticClass:"tag tag-white",on:{"click":function($event){_vm.add(t, i);}}},[_vm._v(_vm._s(t.name))])}),_vm._v(" "),_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){_vm.isShowCandidates = false;}}})],2):_vm._e()])};
-  var __vue_staticRenderFns__$5 = [];
+  var __vue_render__$6 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-tag",on:{"click":function($event){$event.stopPropagation();}}},[_c('input',{directives:[{name:"model",rawName:"v-model.trim",value:(_vm.tag),expression:"tag",modifiers:{"trim":true}}],staticClass:"input",domProps:{"value":(_vm.tag)},on:{"focus":function($event){_vm.isShowCandidates = true;},"keydown":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.addCustom($event)},"input":function($event){if($event.target.composing){ return; }_vm.tag=$event.target.value.trim();},"blur":function($event){_vm.$forceUpdate();}}}),_vm._v(" "),_c('div',{staticClass:"t-selected"},_vm._l((_vm.value),function(t,i){return _c('a',{staticClass:"tag tag-black",on:{"click":function($event){_vm.remove(t, i);}}},[_vm._v(_vm._s(t.name))])})),_vm._v(" "),(_vm.tags.length)?_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.isShowCandidates),expression:"isShowCandidates"}],staticClass:"t-candidates"},[_vm._l((_vm.tags),function(t,i){return _c('a',{staticClass:"tag tag-white",on:{"click":function($event){_vm.add(t, i);}}},[_vm._v(_vm._s(t.name))])}),_vm._v(" "),_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){_vm.isShowCandidates = false;}}})],2):_vm._e()])};
+  var __vue_staticRenderFns__$6 = [];
 
     /* style */
-    const __vue_inject_styles__$5 = undefined;
+    const __vue_inject_styles__$6 = undefined;
     /* scoped */
-    const __vue_scope_id__$5 = undefined;
+    const __vue_scope_id__$6 = undefined;
     /* module identifier */
-    const __vue_module_identifier__$5 = undefined;
+    const __vue_module_identifier__$6 = undefined;
     /* functional template */
-    const __vue_is_functional_template__$5 = false;
+    const __vue_is_functional_template__$6 = false;
     /* component normalizer */
-    function __vue_normalize__$5(
+    function __vue_normalize__$6(
       template, style, script,
       scope, functional, moduleIdentifier,
       createInjector, createInjectorSSR
@@ -826,13 +908,13 @@
     
 
     
-    var Tag = __vue_normalize__$5(
-      { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
-      __vue_inject_styles__$5,
-      __vue_script__$5,
-      __vue_scope_id__$5,
-      __vue_is_functional_template__$5,
-      __vue_module_identifier__$5,
+    var Tag = __vue_normalize__$6(
+      { render: __vue_render__$6, staticRenderFns: __vue_staticRenderFns__$6 },
+      __vue_inject_styles__$6,
+      __vue_script__$6,
+      __vue_scope_id__$6,
+      __vue_is_functional_template__$6,
+      __vue_module_identifier__$6,
       undefined,
       undefined
     );
@@ -842,6 +924,7 @@
     SelectCity,
     Collapse,
     HtmlEditor,
+    Step,
     Tag
   ];
 

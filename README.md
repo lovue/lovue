@@ -73,7 +73,6 @@ new Vue({
 - 单选框：Radio.vue
 - 搜索框：Search.vue
 - 高级下拉列表：Select.vue
-- 步骤：Steps.vue
 - 开关：Switch.vue
 - Tab页：Tab.vue
 - 表格：Table.vue
@@ -84,6 +83,7 @@ new Vue({
 - 图片倒影：ImgReflex.vue
 - HTML5富文本编辑器：HtmlEditor.vue
 - 中国省市选择器：SelectCity.vue
+- 步骤：Step.vue
 - 标签选择：Tag.vue
 
 

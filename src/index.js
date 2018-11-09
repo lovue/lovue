@@ -21,7 +21,6 @@ import RadioGroup from './components/RadioGroup.vue'
 import Row from './components/Row.vue'
 import Search from './components/Search.vue'
 import Select from './components/Select.vue'
-import Steps from './components/Steps.vue'
 import Switch from './components/Switch.vue'
 import Tab from './components/Tab.vue'
 import Table from './components/Table.vue'
@@ -52,7 +51,6 @@ const Components = [
   Row,
   Search,
   Select,
-  Steps,
   Switch,
   Tab,
   Table,

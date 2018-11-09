@@ -322,28 +322,6 @@
             </div>
           </div>
 
-          <div class="panel" id="toSteps">
-            <div class="title">步骤条</div>
-            <div class="usage">【v-steps】</div>
-            <div class="content">
-              <div class="content-cell">
-                <div class="controls" style="display: block;">
-                  <v-steps :cur="currentStep" :steps="allSteps"></v-steps>
-                </div>
-                <div class="controls" style="display: block;">
-                  <v-steps :cur="currentStep" :steps="allSteps2"></v-steps>
-                </div>
-                <div class="controls" style="display: block;">
-                  <v-button @click="previousStep">上一步</v-button>
-                  <v-button @click="nextStep">下一步</v-button>
-                </div>
-              </div>
-            </div>
-            <div class="content">
-              <v-table :source="sourceSteps" :columns="columns" simple></v-table>
-            </div>
-          </div>
-
           <div class="panel" id="toMessage">
             <div class="title">消息提示</div>
             <div class="usage">【this.success(), this.warn(), this.info(), this.error()】</div>
@@ -454,6 +432,28 @@
             </div>
             <div class="content">
               <v-table :source="sourceTable" :columns="columns" simple></v-table>
+            </div>
+          </div>
+
+          <div class="panel" id="toSteps">
+            <div class="title">【扩展】步骤条</div>
+            <div class="usage">【v-step】</div>
+            <div class="content">
+              <div class="content-cell">
+                <div class="controls" style="display: block;">
+                  <v-step :cur="currentStep" :steps="allSteps"></v-step>
+                </div>
+                <div class="controls" style="display: block;">
+                  <v-step :cur="currentStep" :steps="allSteps2"></v-step>
+                </div>
+                <div class="controls" style="display: block;">
+                  <v-button @click="previousStep">上一步</v-button>
+                  <v-button @click="nextStep">下一步</v-button>
+                </div>
+              </div>
+            </div>
+            <div class="content">
+              <v-table :source="sourceSteps" :columns="columns" simple></v-table>
             </div>
           </div>
 

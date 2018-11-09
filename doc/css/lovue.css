@@ -1013,26 +1013,26 @@ svg {
   background-color: #00c1de;
   will-change: left, right;
 }
-.v-steps {
+.v-step {
   display: flex;
   align-items: center;
 }
-.v-steps .v-step {
+.v-step .step-item {
   display: flex;
   align-items: center;
   flex: 1;
 }
-.v-steps .v-step .s-content {
+.v-step .step-item .i-content {
   display: flex;
   align-items: center;
   font-size: 1.4rem;
   transition: color 0.3s;
   color: #d9d9d9;
 }
-.v-steps .v-step .s-content .icon {
+.v-step .step-item .i-content .icon {
   color: #d9d9d9;
 }
-.v-steps .v-step .s-content > .default-icon {
+.v-step .step-item .i-content > .default-icon {
   border: 1px solid #d9d9d9;
   width: 32px;
   height: 32px;
@@ -1043,48 +1043,48 @@ svg {
   margin-right: 8px;
   transition: background-color 0.3s, border-color 0.3s;
 }
-.v-steps .v-step .s-content > .default-icon > .icon {
+.v-step .step-item .i-content > .default-icon > .icon {
   vertical-align: text-bottom;
 }
-.v-steps .v-step .s-content > .icon {
+.v-step .step-item .i-content > .icon {
   margin-right: 8px;
 }
-.v-steps .v-step .s-content.finished {
+.v-step .step-item .i-content.finished {
   color: #00c1de;
 }
-.v-steps .v-step .s-content.finished .icon {
+.v-step .step-item .i-content.finished .icon {
   color: #00c1de;
 }
-.v-steps .v-step .s-content.finished > .default-icon {
+.v-step .step-item .i-content.finished > .default-icon {
   border-color: #00c1de;
 }
-.v-steps .v-step .s-content.processing {
+.v-step .step-item .i-content.processing {
   color: #222222;
   font-weight: bold;
 }
-.v-steps .v-step .s-content.processing .icon {
+.v-step .step-item .i-content.processing .icon {
   color: #00c1de;
 }
-.v-steps .v-step .s-content.processing > .default-icon {
+.v-step .step-item .i-content.processing > .default-icon {
   background-color: #00c1de;
   color: #fff;
   border-color: #00c1de;
 }
-.v-steps .v-step .s-content.wait {
+.v-step .step-item .i-content.wait {
   color: #d9d9d9;
 }
-.v-steps .v-step .s-content.wait .icon {
+.v-step .step-item .i-content.wait .icon {
   color: #d9d9d9;
 }
-.v-steps .v-step .s-line {
+.v-step .step-item .i-line {
   flex: 1;
   border-top: 1px solid #d9d9d9;
   margin: 0 16px;
 }
-.v-steps .v-step .s-line.success {
+.v-step .step-item .i-line.success {
   border-color: #00c1de;
 }
-.v-steps .v-step:last-child {
+.v-step .step-item:last-child {
   flex: none;
 }
 .v-message {
