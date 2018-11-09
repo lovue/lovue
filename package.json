@@ -26,7 +26,7 @@
     "esm": "rollup -c --environment production,esm",
     "js": "rollup -c --environment production",
     "min": "terser dist/lovue.js -o dist/lovue.min.js -c",
-    "build": "npm run less && npm run normalize && npm run cjs && npm run esm && npm run js && npm run min",
+    "buildLovue": "npm run less && npm run normalize && npm run cjs && npm run esm && npm run js && npm run min",
     "lessExtension": "lessc src/less/lovue.extension.less dist/lovue.extension.min.css --clean-css",
     "cjsExtension": "rollup -c rollup.extension.config.js --environment production,cjs",
     "esmExtension": "rollup -c rollup.extension.config.js --environment production,esm",
@@ -36,7 +36,8 @@
     "cjsUtils": "rollup src/utils.js --o dist/utils.common.js --f cjs --no-strict",
     "esmUtils": "rollup src/utils.js --o dist/utils.esm.js --f esm --no-strict",
     "jsUtils": "rollup src/utils.js --o dist/utils.js --f iife -n utils --no-strict",
-    "buildUtils": "npm run cjsUtils && npm run esmUtils && npm run jsUtils"
+    "buildUtils": "npm run cjsUtils && npm run esmUtils && npm run jsUtils",
+    "build": "npm run buildLovue && npm run buildExtension && npm run buildUtils"
   },
   "author": "loliconer",
   "license": "Apache-2.0",
