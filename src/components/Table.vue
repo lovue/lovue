@@ -38,7 +38,7 @@
           <tr class="no-data-row" v-if="!source.length">
             <td :colspan="columns.length">{{emptyText || '暂无数据'}}</td>
           </tr>
-          <tr v-for="(row, i) of showed" v-if="simple || (i >= slice[0] && i < slice[1])" :class="{focus: row.focused}">
+          <tr v-for="(row, i) of showed" v-if="simple || (i >= slice[0] && i < slice[1])" :class="{focus: row.focused}" @click="$emit('click-row', row)" @dblclick="$emit('dbl-click-row', row)">
             <td v-if="checkbox" @click.stop>
               <label class="v-checkbox">
                 <input type="checkbox" :value="i" v-model="selected">

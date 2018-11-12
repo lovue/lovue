@@ -138,12 +138,12 @@
       date(val) {
         const date = new Date(val)
         if (date.getMonth() + 1 !== Number(val.split('-')[1])) return
-        this.innerUpdate = true
         this.$emit('input', val)
       }
     },
     methods: {
       init(date) {
+        console.log('init')
         this.year = date.getFullYear()
         this.month = date.getMonth() + 1
         this.day = date.getDate()
@@ -176,6 +176,9 @@
         }, 400)
       },
       selectDay(i, j) {
+        let d = this.days[(i - 1) * 7 + (j - 1)]
+        if (d.month === 0 && d.text === this.day) return
+
         for (let m = 0; m < 42; m++) {
           let day = this.days[m]
           if (day.month === 0 && day.text === this.day) {
@@ -183,16 +186,19 @@
           }
         }
 
-        let d = this.days[(i - 1) * 7 + (j - 1)]
         d.status = 'focus'
         this.day = d.text
         if (d.month === -1) this.prevMonth()
         if (d.month === 1) this.nextMonth()
 
+        this.innerUpdate = true
         if (!this.timepicker) this.hidePicker()
       },
       selectHour(time) {
+        if (this.hour === time) return
+
         this.hour = time
+        this.innerUpdate = true
         this.hidePicker()
       },
       prevMonth() {
@@ -203,6 +209,7 @@
         } else {
           this.month--
         }
+        this.innerUpdate = true
       },
       nextMonth() {
         if (this.month === 12) {
@@ -212,6 +219,7 @@
         } else {
           this.month++
         }
+        this.innerUpdate = true
       }
     },
     created() {

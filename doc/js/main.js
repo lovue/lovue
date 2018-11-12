@@ -217,6 +217,9 @@ new Vue({
       { prop: 'total', desc: '数据总数量，显示在分页组件上', type: 'Number', deft: '无' },
       { prop: 'emptyText', desc: '没有数据时表格显示的内容', type: 'String', deft: '暂无数据' },
       { prop: 'simplePagination', desc: '分页组件是否简易模式', type: 'Boolean', deft: '无' },
+      { prop: '@check', desc: '勾选复选框时触发该事件', type: '无', deft: '无' },
+      { prop: '@click-row', desc: '单击行时触发该事件', type: '无', deft: '无' },
+      { prop: '@dbl-click-row', desc: '双击行时触发该事件', type: '无', deft: '无' }
     ],
     provinceCity: ['江西省', '抚州市'],
     diploma: ['初中', '高中', '本科', '硕士', '博士'],
@@ -487,6 +490,12 @@ new Vue({
     },
     selectDate(date) {
       console.log(date)
+    },
+    clickRow(row) {
+      console.log('click', row)
+    },
+    dblClickRow(row) {
+      console.log('dblClick', row)
     }
   },
   mounted() {
@@ -512,6 +521,7 @@ new Vue({
     setTimeout(() => {
       this.bought2 = 'Aventador'
       this.pureSelectValue = '高中'
+      this.datePickerValue = '2019-03-15'
     }, 2000)
   }
 })

@@ -8,7 +8,7 @@
       </template>
     </dt>
     <dd :class="pos" v-show="bShowDd">
-      <label :for="`pure_radio_${_uid}_${index}`" v-for="(elem, index) of source" @click="hideDd">{{elem}}</label>
+      <label :class="{focus: current === elem}" :for="`pure_radio_${_uid}_${index}`" v-for="(elem, index) of source" @click="hideDd">{{elem}}</label>
     </dd>
   </dl>
 </template>
