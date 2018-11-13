@@ -100,21 +100,24 @@ new Vue({
       { prop: 'source', desc: '选项数据，单个radio数据支持属性：disabled, name, value', type: 'Array', deft: '无' },
       { prop: 'name', desc: 'radio的name值', type: 'String', deft: '无' },
       { prop: 'vertical', desc: '是否垂直模式', type: 'Boolean', deft: '无' },
-      { prop: 'reverse', desc: '是否文本与选择框顺序反转', type: 'Boolean', deft: '无' }
+      { prop: 'reverse', desc: '是否文本与选择框顺序反转', type: 'Boolean', deft: '无' },
+      { prop: 'lnf', desc: 'Look And Feel，支持：button', type: 'String', deft: '无' }
     ],
     sourceCheckbox: [
       { prop: 'v-model', desc: '组件双向绑定的值', type: 'Boolean', deft: '无' },
       { prop: 'label', desc: '显示的文本', type: 'String', deft: '无' },
       { prop: 'name', desc: 'checkbox的name值', type: 'String', deft: '无' },
       { prop: 'disabled', desc: '是否禁用', type: 'Boolean', deft: '无' },
-      { prop: 'reverse', desc: '是否文本与选择框顺序反转', type: 'Boolean', deft: '无' }
+      { prop: 'reverse', desc: '是否文本与选择框顺序反转', type: 'Boolean', deft: '无' },
+      { prop: 'lnf', desc: 'Look And Feel，支持：button', type: 'String', deft: '无' }
     ],
     sourceCheckboxGroup: [
       { prop: 'v-model', desc: '组件双向绑定的值', type: 'Array', deft: '无' },
       { prop: 'source', desc: '选项数据，单个checkbox数据支持属性：disabled, name, value', type: 'Array', deft: '无' },
       { prop: 'name', desc: 'checkbox的name值', type: 'String', deft: '无' },
       { prop: 'vertical', desc: '是否垂直模式', type: 'Boolean', deft: '无' },
-      { prop: 'reverse', desc: '是否文本与选择框顺序反转', type: 'Boolean', deft: '无' }
+      { prop: 'reverse', desc: '是否文本与选择框顺序反转', type: 'Boolean', deft: '无' },
+      { prop: 'lnf', desc: 'Look And Feel，支持：button', type: 'String', deft: '无' }
     ],
     sourceSwitch: [
       { prop: 'v-model', desc: '组件双向绑定的值', type: 'Boolean', deft: '无' },
@@ -124,7 +127,8 @@ new Vue({
     sourceSearch: [
       { prop: 'auto', desc: '是否自动搜索', type: 'Boolean', deft: 'true' },
       { prop: 'placeholder', desc: '占位符', type: 'String', deft: '关键词' },
-      { prop: 'delay', desc: '输入搜索内容后自动搜索的延迟时间，单位：ms', type: 'Number', deft: '500' }
+      { prop: 'delay', desc: '输入搜索内容后自动搜索的延迟时间，单位：ms', type: 'Number', deft: '500' },
+      { prop: '@search', desc: '搜索事件，参数：关键词', type: 'Event', deft: '无' }
     ],
     sourceUpload: [
       { prop: 'name', desc: 'input的name值', type: 'String', deft: '' },
@@ -134,11 +138,12 @@ new Vue({
       { prop: 'text', desc: '按钮显示的文本', type: 'String', deft: '选择文件' },
       { prop: 'thumbnail', desc: '选择图片后是否显示缩略图', type: 'Boolean', deft: '无' },
       { prop: 'thumbSize', desc: '缩略图的大小', type: 'Number', deft: '100' },
-      { prop: 'shape', desc: '样式，支持：button, square', type: 'String', deft: 'button' }
+      { prop: 'shape', desc: '样式，支持：button, square', type: 'String', deft: 'button' },
+      { prop: '@select', desc: '选择文件事件，参数：shape为button时，ev.target.files；shape为square时，files数组', type: 'Event', deft: '无' }
     ],
     sourceTab: [
+      { prop: 'v-model', desc: '组件双向绑定的值', type: 'Number', deft: '无' },
       { prop: 'titles', desc: '选项数据，支持属性：name, icon', type: 'Array', deft: '无' },
-      { prop: 'cur', desc: '当前选中的索引', type: 'Number', deft: '0' },
       { prop: 'lock', desc: '是否锁定，锁定时无法切换tab', type: 'Boolean', deft: '无' }
     ],
     sourceSteps: [
@@ -373,7 +378,7 @@ new Vue({
       { name: 'HTML', value: 'html' },
       { name: 'CSS', value: 'css' },
       { name: 'JavaScript', value: 'js', disabled: true },
-      { name: 'Vue', value: 'vue' },
+      { name: 'Vue', value: 'vue', disabled: true },
       { name: 'Angular', value: 'angular' },
       { name: 'React', value: 'react' },
       { name: 'Node', value: 'node' },
@@ -386,7 +391,8 @@ new Vue({
       { name: 'React', value: 'react' }
     ],
     radioValue: 'vue',
-    datePickerValue: '2018-11-11'
+    datePickerValue: '2018-11-11',
+    tabValue: 1
   },
   methods: {
     sleep(delay = 1000) {
@@ -415,9 +421,6 @@ new Vue({
     uploadFile(file) {
       const form = new FormData()
       form.append('evFile', file)
-    },
-    selectTab(i) {
-      console.log(i)
     },
     getSlice(slice) {
       console.log(slice)
@@ -522,6 +525,7 @@ new Vue({
       this.bought2 = 'Aventador'
       this.pureSelectValue = '高中'
       this.datePickerValue = '2019-03-15'
+      this.tabValue = 2
     }, 2000)
   }
 })

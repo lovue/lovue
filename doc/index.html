@@ -203,9 +203,13 @@
               <div class="cell" style="display: flex; align-items: center; margin-bottom: 16px;">
                 <v-radio-group :source="radioSource" v-model="radioValue" name="framework1"></v-radio-group>
               </div>
+              <div class="cell" style="display: flex; align-items: center; margin-bottom: 16px;">
+                <v-radio-group :source="radioSource" v-model="radioValue" name="framework2" lnf="button"></v-radio-group>
+              </div>
               <div class="cell" style="display: flex; align-items: center;">
                 <label class="label">垂直模式：</label>
-                <v-radio-group style="width: 100px;" :source="radioSource" v-model="radioValue" name="framework2" reverse vertical></v-radio-group>
+                <v-radio-group style="width: 100px; margin-right: 24px;" :source="radioSource" v-model="radioValue" name="framework3" reverse vertical></v-radio-group>
+                <v-radio-group :source="radioSource" v-model="radioValue" name="framework2" lnf="button" vertical></v-radio-group>
               </div>
             </div>
             <div class="content">
@@ -220,6 +224,7 @@
               <div class="cell" style="display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 16px;">
                 <v-checkbox style="margin-bottom: 16px;" label="全选" name="selectAll" v-model="checkboxValue"></v-checkbox>
                 <v-checkbox style="margin-bottom: 16px;" label="全选" name="selectAll" v-model="checkboxValue" disabled></v-checkbox>
+                <v-checkbox style="margin-bottom: 16px;" label="全选" name="selectAll" v-model="checkboxValue" lnf="button"></v-checkbox>
                 <v-checkbox style="width: 100px;margin-bottom: 16px;" label="全选" name="selectAll" v-model="checkboxValue"></v-checkbox>
                 <v-checkbox style="width: 100px;margin-bottom: 16px;" label="全选" name="selectAll" v-model="checkboxValue" reverse></v-checkbox>
               </div>
@@ -236,9 +241,13 @@
               <div class="cell" style="display: flex; align-items: center; margin-bottom: 16px;">
                 <v-checkbox-group :source="checkboxSource" v-model="multiCheckboxValue"></v-checkbox-group>
               </div>
+              <div class="cell" style="display: flex; align-items: center; margin-bottom: 16px;">
+                <v-checkbox-group :source="checkboxSource" v-model="multiCheckboxValue" lnf="button"></v-checkbox-group>
+              </div>
               <div class="cell" style="display: flex; align-items: center;">
                 <label class="label">垂直模式：</label>
-                <v-checkbox-group style="width: 100px;" :source="checkboxSource" v-model="multiCheckboxValue" reverse vertical></v-checkbox-group>
+                <v-checkbox-group style="width: 100px; margin-right: 24px;" :source="checkboxSource" v-model="multiCheckboxValue" reverse vertical></v-checkbox-group>
+                <v-checkbox-group :source="checkboxSource" v-model="multiCheckboxValue" reverse vertical lnf="button"></v-checkbox-group>
               </div>
             </div>
             <div class="content">
@@ -311,10 +320,10 @@
             <div class="content">
               <div class="content-cell">
                 <div class="controls">
-                  <v-tab :titles="tabTitles" @select="selectTab"></v-tab>
+                  <v-tab :titles="tabTitles" v-model="tabValue"></v-tab>
                 </div>
                 <div class="controls">
-                  <v-tab :titles="tabTitles" @select="selectTab" lock></v-tab>
+                  <v-tab :titles="tabTitles" v-model="tabValue" lock></v-tab>
                 </div>
               </div>
             </div>

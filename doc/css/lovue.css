@@ -378,17 +378,18 @@ svg {
   width: 50%;
 }
 .v-btn {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   touch-action: manipulation;
-  border: 1px solid #e9e9e9;
+  border: 1px solid transparent;
   white-space: nowrap;
   padding: 0 16px;
   font-size: 1.4rem;
   border-radius: 4px;
   height: 32px;
-  user-select: none;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  color: rgba(0, 0, 0, 0.65);
-  background-color: #fff;
   cursor: pointer;
 }
 .v-btn .icon {
@@ -397,6 +398,10 @@ svg {
 }
 .v-btn .icon-refresh.loading {
   animation: rotate-reverse 2s linear infinite;
+}
+.v-btn.v-btn-ghost {
+  border-color: #e9e9e9;
+  background-color: #fff;
 }
 .v-btn.v-btn-ghost:hover {
   color: #4ad3e8;
@@ -409,15 +414,12 @@ svg {
 .v-btn.v-btn-primary {
   color: #fff;
   background-color: #00c1de;
-  border-color: #00c1de;
 }
 .v-btn.v-btn-primary:hover {
   background-color: #4ad3e8;
-  border-color: #4ad3e8;
 }
 .v-btn.v-btn-primary:active {
   background-color: #00aac7;
-  border-color: #00aac7;
 }
 .v-btn.v-btn-danger {
   color: #fff;
@@ -735,6 +737,69 @@ svg {
 }
 .v-radio.disabled input:checked {
   background-color: #d9d9d9;
+}
+.v-radio-button input,
+.v-checkbox-button input {
+  display: none;
+}
+.v-radio-button input:checked + span,
+.v-checkbox-button input:checked + span {
+  background-color: #00c1de;
+  color: #fff;
+  border-color: transparent;
+}
+.v-radio-button input:checked + span:hover,
+.v-checkbox-button input:checked + span:hover {
+  background-color: #4ad3e8;
+}
+.v-radio-button input:checked + span:active,
+.v-checkbox-button input:checked + span:active {
+  background-color: #00aac7;
+}
+.v-radio-button span,
+.v-checkbox-button span {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 0 16px;
+  font-size: 1.4rem;
+  border-radius: 4px;
+  height: 32px;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  cursor: pointer;
+  border-color: #e9e9e9;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.v-radio-button span:hover,
+.v-checkbox-button span:hover {
+  color: #4ad3e8;
+  border-color: #4ad3e8;
+}
+.v-radio-button span:active,
+.v-checkbox-button span:active {
+  color: #00aac7;
+  border-color: #00aac7;
+}
+.v-radio-button.disabled span,
+.v-checkbox-button.disabled span {
+  cursor: not-allowed;
+  color: #d9d9d9;
+  border-color: #d9d9d9;
+}
+.v-radio-button.disabled input:checked + span,
+.v-checkbox-button.disabled input:checked + span {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.v-radio-button.disabled input:checked + span:hover,
+.v-checkbox-button.disabled input:checked + span:hover {
+  background-color: #00c1de;
 }
 .v-radio-group {
   display: flex;

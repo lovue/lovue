@@ -224,18 +224,7 @@
 }
 
 .v-btn {
-  touch-action: manipulation;
-  border: 1px solid @border-color;
-  white-space: nowrap;
-  padding: 0 @2unit;
-  font-size: @small-font;
-  border-radius: @border-radius;
-  height: @4unit;
-  user-select: none;
-  transition: all .3s cubic-bezier(.645, .045, .355, 1);
-  color: @light-black-color;
-  background-color: @white-color;
-  cursor: pointer;
+  .mixin-button;
 
   .icon {
     width: 14px;
@@ -249,30 +238,19 @@
   }
 
   &.v-btn-ghost {
-    &:hover {
-      color: @hover-blue-color;
-      border-color: @hover-blue-color;
-    }
-
-    &:active {
-      color: @active-blue-color;
-      border-color: @active-blue-color;
-    }
+    .mixin-button-ghost;
   }
 
   &.v-btn-primary {
     color: @white-color;
     background-color: @blue-color;
-    border-color: @blue-color;
 
     &:hover {
       background-color: @hover-blue-color;
-      border-color: @hover-blue-color;
     }
 
     &:active {
       background-color: @active-blue-color;
-      border-color: @active-blue-color;
     }
   }
 
@@ -587,7 +565,7 @@
 
 .v-radio {
   .flex-between;
-  .non-select();
+  .mixin-non-select;
   position: relative;
   font-size: @small-font;
   height: @2unit;
@@ -654,6 +632,52 @@
   }
 }
 
+.v-radio-button,
+.v-checkbox-button {
+  input {
+    display: none;
+
+    &:checked + span {
+      background-color: @blue-color;
+      color: @white-color;
+      border-color: transparent;
+
+      &:hover {
+        background-color: @hover-blue-color;
+      }
+
+      &:active {
+        background-color: @active-blue-color;
+      }
+    }
+  }
+
+  span {
+    .mixin-button;
+    .mixin-button-ghost;
+    .flex-start;
+  }
+
+  &.disabled {
+    span {
+      cursor: not-allowed;
+      color: @disabled-color;
+      border-color: @disabled-color;
+    }
+
+    input {
+      &:checked + span {
+        opacity: .5;
+        cursor: not-allowed;
+
+        &:hover {
+          background-color: @blue-color;
+        }
+      }
+    }
+  }
+}
+
 .v-radio-group {
   .flex-start;
 
@@ -674,7 +698,7 @@
 
 .v-checkbox {
   .flex-between;
-  .non-select();
+  .mixin-non-select;
   position: relative;
   font-size: @small-font;
   height: @2unit;
@@ -1320,7 +1344,7 @@
     }
 
     .link {
-      .non-select;
+      .mixin-non-select;
       display: block;
       min-width: 30px;
       height: 30px;
@@ -1476,7 +1500,7 @@
   }
 
   .picker-container {
-    .non-select;
+    .mixin-non-select;
     .shadow-light;
     position: absolute;
     background-color: @white-color;
@@ -1680,7 +1704,7 @@
 
 .v-popup {
   .title-bar {
-    .non-select;
+    .mixin-non-select;
     cursor: move;
     font-size: @normal-font;
 
@@ -1758,7 +1782,7 @@
       }
 
       .sort-arrows {
-        .non-select;
+        .mixin-non-select;
         display: inline-block;
         vertical-align: bottom;
         cursor: pointer;

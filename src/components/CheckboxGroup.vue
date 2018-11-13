@@ -1,7 +1,7 @@
 <template>
   <div class="v-checkbox-group" :class="{vertical}">
     <div class="g-item" v-for="item of source">
-      <label class="v-checkbox" :class="{reverse, disabled: item.disabled}">
+      <label :class="{[lnfClass]: true, reverse, disabled: item.disabled}">
         <input type="checkbox" :value="item.value" v-model="checked" :name="name" :disabled="item.disabled">
         <span>{{item.name}}</span>
       </label>
@@ -22,7 +22,13 @@
       source: Array,
       name: String,
       reverse: Boolean,
-      vertical: Boolean
+      vertical: Boolean,
+      lnf: String
+    },
+    computed: {
+      lnfClass() {
+        return this.lnf === undefined ? 'v-checkbox' : `v-checkbox-${this.lnf}`
+      }
     },
     watch: {
       value(val) {

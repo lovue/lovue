@@ -1,7 +1,7 @@
 <template>
   <div class="v-radio-group" :class="{vertical}">
     <div class="g-item" v-for="item of source">
-      <label class="v-radio" :class="{reverse, disabled: item.disabled}">
+      <label :class="{[lnfClass]: true, reverse, disabled: item.disabled}">
         <input type="radio" :value="item.value" v-model="checked" :name="name" :disabled="item.disabled">
         <span>{{item.name}}</span>
       </label>
@@ -22,7 +22,13 @@
       source: Array,
       name: String,
       reverse: Boolean,
-      vertical: Boolean
+      vertical: Boolean,
+      lnf: String
+    },
+    computed: {
+      lnfClass() {
+        return this.lnf === undefined ? 'v-radio' : `v-radio-${this.lnf}`
+      }
     },
     watch: {
       value(val) {

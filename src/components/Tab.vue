@@ -1,7 +1,7 @@
 <template>
   <div class="v-tab">
     <div class="tabs" ref="tabs">
-      <div class="tab" v-for="(title,i) of titles" @click="setTab(i)"><v-icon :icon="title.icon" size="16" v-if="title.icon"></v-icon>{{title.name}}</div>
+      <div class="tab" v-for="(title, i) of titles" @click="clickTab(i)"><v-icon :icon="title.icon" size="16" v-if="title.icon"></v-icon>{{title.name}}</div>
     </div>
     <div class="focus-line" :style="lineStyle"></div>
   </div>
@@ -17,16 +17,21 @@
         index: -1,
         totalWidth: 0,
         tabWidth: 0,
-        tabWidths: []
+        tabWidths: [],
+        innerUpdate: false
       }
     },
     props: {
+      value: Number,
       titles: Array,
-      cur: Number,
       lock: Boolean
     },
     watch: {
-      cur(val) {
+      value(val) {
+        if (this.innerUpdate) {
+          this.innerUpdate = false
+          return
+        }
         this.setTab(val)
       }
     },
@@ -42,7 +47,11 @@
           : 'left .3s ease-out, right .3s ease-out .09s'
         this.index = i
 
-        this.$emit('select', i)
+        this.$emit('input', i)
+      },
+      clickTab(i) {
+        this.setTab(i)
+        this.innerUpdate = true
       },
       calculateWidth() {
         this.tabWidths = []
@@ -74,7 +83,7 @@
     },
     mounted() {
       this.calculateWidth()
-      this.setTab(this.cur || 0)
+      this.setTab(this.value || 0)
 
       window.addEventListener('resize', this.resize)
     },

@@ -1,5 +1,5 @@
 <template>
-  <label class="v-checkbox" :class="{reverse, disabled}">
+  <label :class="{[lnfClass]: true, reverse, disabled}">
     <input type="checkbox" v-model="checked" :name="name" :disabled="disabled" @change="$emit('input', checked)">
     <span>{{label}}</span>
   </label>
@@ -18,7 +18,13 @@
       label: String,
       name: String,
       disabled: Boolean,
-      reverse: Boolean
+      reverse: Boolean,
+      lnf: String
+    },
+    computed: {
+      lnfClass() {
+        return this.lnf === undefined ? 'v-checkbox' : `v-checkbox-${this.lnf}`
+      }
     },
     watch: {
       value(val) {

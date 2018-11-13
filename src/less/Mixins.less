@@ -59,7 +59,7 @@
   }
 }
 
-.non-select() {
+.mixin-non-select {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -156,67 +156,32 @@
   transition: @property @time @function;
 }
 
-.mixin-hidden() {
-  //visibility: hidden;
-  //transform: rotateY(90deg);
-  //will-change: transform;
-  //transition: transform .4s ease-out;
-  display: none;
-}
-
-.mixin-visible() {
-  //visibility: visible;
-  //transform: rotateY(0deg);
-  display: block;
-}
-
-.mixin-base-button() {
-  display: inline-block;
-  font-size: @small-font;
-  text-align: center;
-  padding: 0 12px;
-  height: 30px;
-  line-height: 28px;
-  min-width: 72px;
-  background-color: transparent;
+.mixin-button {
+  .mixin-non-select;
+  touch-action: manipulation;
   border: 1px solid transparent;
-  border-radius: @border-radius-small;
+  white-space: nowrap;
+  padding: 0 @2unit;
+  font-size: @small-font;
+  border-radius: @border-radius;
+  height: @4unit;
+  transition: all .3s cubic-bezier(.645, .045, .355, 1);
   cursor: pointer;
-  transition: all .3s;
 }
 
-.mixin-button-solid() {
-  background-color: @blue-color;
-  color: @white-color;
+.mixin-button-ghost {
+  border-color: @border-color;
+  background-color: @white-color;
 
   &:hover {
-    background-color: @hover-blue-color;
-  }
-
-  &:active {
-    background-color: @active-blue-color;
-  }
-}
-
-.mixin-button-ghost() {
-  border-color: @blue-color;
-  line-height: 28px;
-  color: @blue-color;
-
-  &:hover {
-    border-color: @hover-blue-color;
     color: @hover-blue-color;
+    border-color: @hover-blue-color;
   }
-  &:active {
-    border-color: @active-blue-color;
-    color: @active-blue-color;
-  }
-}
 
-.mixin-content-width() {
-  width: 60vw;
-  min-width: @min-width;
-  margin: 0 auto;
+  &:active {
+    color: @active-blue-color;
+    border-color: @active-blue-color;
+  }
 }
 
 .flex {
@@ -241,26 +206,4 @@
 .flex-around {
   .flex-start;
   justify-content: space-around;
-}
-
-.mixin-submit-loading-center() {
-  position: relative;
-
-  .vue-loading {
-    position: absolute;
-    top: 3px;
-    left: 50%;
-    transform: translateX(50px);
-  }
-}
-
-.mixin-bg-body {
-  background-color: @bg-color;
-  min-height: 100vh;
-  margin-bottom: 0;
-}
-
-.mixin-md-pre-font {
-  font-family: Roboto Mono, Lucida Sans Typewriter, Lucida Console, monaco, Courrier, monospace;
-  font-size: .85em;
 }
