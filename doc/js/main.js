@@ -70,8 +70,8 @@ new Vue({
       { title: '默认值', prop: 'deft' },
     ],
     sourceButton: [
-      { prop: 'type', desc: '样式', type: 'String', deft: 'primary' },
-      { prop: 'size', desc: '大小', type: 'String', deft: '无' },
+      { prop: 'type', desc: '样式，内置：primary, ghost, text，可自定义', type: 'String', deft: 'primary' },
+      { prop: 'size', desc: '大小，支持：lg, sm', type: 'String', deft: '无' },
       { prop: 'disabled', desc: '是否禁用', type: 'Boolean', deft: '无' },
       { prop: 'icon', desc: '图标', type: 'String', deft: '无' },
       { prop: 'loading', desc: '是否正在等待，用于异步请求', type: 'Boolean', deft: '无' },
@@ -152,7 +152,7 @@ new Vue({
     ],
     sourceSelect: [
       { prop: 'v-model', desc: '组件双向绑定的值', type: 'String, Number, Array, Object', deft: '无' },
-      { prop: 'source', desc: '选项数据，支持属性：name, value', type: 'Array', deft: '无' },
+      { prop: 'source', desc: '选项数据，支持属性：name, value, children', type: 'Array', deft: '无' },
       { prop: 'disabled', desc: '是否禁用', type: 'Boolean', deft: '无' },
       { prop: 'multiple', desc: '是否可多选', type: 'Boolean', deft: '无' },
       { prop: 'searchable', desc: '下拉列表是否可搜索', type: 'Boolean', deft: '无' },
@@ -164,7 +164,7 @@ new Vue({
     ],
     sourcePureSelect: [
       { prop: 'v-model', desc: '组件双向绑定的值', type: 'String, Number', deft: '无' },
-      { prop: 'source', desc: '选项数据，每个选项为原始值', type: 'Array', deft: '无' },
+      { prop: 'source', desc: '选项数据，每个选项只能为String/Number的原始值', type: 'Array', deft: '无' },
       { prop: 'name', desc: 'radio的name值', type: 'String', deft: '无' },
       { prop: 'placeholder', desc: '占位符', type: 'String', deft: '请选择' }
     ],
