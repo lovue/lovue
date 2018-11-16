@@ -37,8 +37,6 @@
     },
     methods: {
       setTab(i) {
-        if (this.lock) return
-
         if (this.index === i) return
 
         this.refreshLinePosition(i)
@@ -50,6 +48,9 @@
         this.$emit('input', i)
       },
       clickTab(i) {
+        if (this.lock) return
+        if (this.index === i) return
+
         this.setTab(i)
         this.innerUpdate = true
       },
