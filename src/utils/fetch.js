@@ -24,7 +24,7 @@ const wrapFetch = function (request) {
     }).catch(reject)
   })
 }
-let urlPrefix = '/api'
+let urlPrefix = '/api', CSRFHeader = 'X-CSRFToken', CSRFValue = 'csrf'
 const requestUrl = function (url) {
   if (url.startsWith('/') || url.startsWith('http')) return url
   return `${urlPrefix}/${url}`
@@ -33,6 +33,10 @@ const requestUrl = function (url) {
 export default {
   prefix(prefix) {
     urlPrefix = prefix
+  },
+  setCSRF(header, value) {
+    CSRFHeader = header
+    CSRFValue = value
   },
   get(url) {
     return wrapFetch(new Request(requestUrl(url), {
@@ -51,7 +55,7 @@ export default {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'x-access-token': localStorage.token,
-        'X-CSRFToken': sessionStorage.csrf
+        [CSRFHeader]: sessionStorage[CSRFValue]
       },
       body: JSON.stringify(params)
     }))
@@ -63,7 +67,7 @@ export default {
       headers: {
         'Accept': 'application/json',
         'x-access-token': localStorage.token,
-        'X-CSRFToken': sessionStorage.csrf
+        [CSRFHeader]: sessionStorage[CSRFValue]
       },
       body: params
     }))
@@ -76,7 +80,7 @@ export default {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'x-access-token': localStorage.token,
-        'X-CSRFToken': sessionStorage.csrf
+        [CSRFHeader]: sessionStorage[CSRFValue]
       },
       body: JSON.stringify(params)
     }))
@@ -88,7 +92,7 @@ export default {
       headers: {
         'Accept': 'application/json',
         'x-access-token': localStorage.token,
-        'X-CSRFToken': sessionStorage.csrf
+        [CSRFHeader]: sessionStorage[CSRFValue]
       }
     }))
   }
