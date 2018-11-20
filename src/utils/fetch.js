@@ -85,6 +85,18 @@ export default {
       body: JSON.stringify(params)
     }))
   },
+  putForm(url, params) {
+    return wrapFetch(new Request(requestUrl(url), {
+      method: 'put',
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'x-access-token': localStorage.token,
+        [CSRFHeader]: sessionStorage[CSRFValue]
+      },
+      body: params
+    }))
+  },
   delete(url) {
     return wrapFetch(new Request(requestUrl(url), {
       method: 'delete',
