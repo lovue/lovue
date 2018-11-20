@@ -1,7 +1,7 @@
 <template>
   <div class="v-tab">
     <div class="tabs" ref="tabs">
-      <div class="tab" v-for="(title, i) of titles" @click="clickTab(i)"><v-icon :icon="title.icon" size="16" v-if="title.icon"></v-icon>{{title.name}}</div>
+      <div class="tab" v-for="(title, i) of titles_" @click="clickTab(i)"><v-icon :icon="title.icon" size="16" v-if="title.icon"></v-icon>{{title.name}}</div>
       <div class="focus-line" :style="lineStyle"></div>
     </div>
   </div>
@@ -12,6 +12,7 @@
     name: 'v-tab',
     data() {
       return {
+        titles_: [],
         tabs: [],
         lineStyle: {},
         index: -1,
@@ -80,6 +81,13 @@
       resize() {
         this.calculateWidth()
         this.refreshLinePosition()
+      }
+    },
+    created() {
+      if (['string', 'number'].includes(typeof this.titles[0])) {
+        this.titles_ = this.titles.map(title => ({ name: title }))
+      } else {
+        this.titles_ = this.titles
       }
     },
     mounted() {

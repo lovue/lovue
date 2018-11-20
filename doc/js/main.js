@@ -143,7 +143,7 @@ new Vue({
     ],
     sourceTab: [
       { prop: 'v-model', desc: '组件双向绑定的值', type: 'Number', deft: '无' },
-      { prop: 'titles', desc: '选项数据，支持属性：name, icon', type: 'Array', deft: '无' },
+      { prop: 'titles', desc: '选项数据，数据项可以是对象：{name, icon}，也可以是原始值：String/Number', type: 'Array', deft: '无' },
       { prop: 'lock', desc: '是否锁定，锁定时无法切换tab', type: 'Boolean', deft: '无' }
     ],
     sourceSteps: [
@@ -350,6 +350,7 @@ new Vue({
       { name: 'React', icon: 'setting' },
       { name: 'Angular', icon: 'home' }
     ],
+    tabTitles2: ['Vue','React', 'Angular'],
     currentStep: 0,
     allSteps: [
       { title: '第一步', icon: 'heart' },
