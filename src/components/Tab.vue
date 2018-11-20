@@ -2,8 +2,8 @@
   <div class="v-tab">
     <div class="tabs" ref="tabs">
       <div class="tab" v-for="(title, i) of titles" @click="clickTab(i)"><v-icon :icon="title.icon" size="16" v-if="title.icon"></v-icon>{{title.name}}</div>
+      <div class="focus-line" :style="lineStyle"></div>
     </div>
-    <div class="focus-line" :style="lineStyle"></div>
   </div>
 </template>
 

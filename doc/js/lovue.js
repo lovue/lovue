@@ -2787,7 +2787,7 @@
               const __vue_script__$n = script$n;
               
   /* template */
-  var __vue_render__$n = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-tab"},[_c('div',{ref:"tabs",staticClass:"tabs"},_vm._l((_vm.titles),function(title,i){return _c('div',{staticClass:"tab",on:{"click":function($event){_vm.clickTab(i);}}},[(title.icon)?_c('v-icon',{attrs:{"icon":title.icon,"size":"16"}}):_vm._e(),_vm._v(_vm._s(title.name))],1)})),_vm._v(" "),_c('div',{staticClass:"focus-line",style:(_vm.lineStyle)})])};
+  var __vue_render__$n = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-tab"},[_c('div',{ref:"tabs",staticClass:"tabs"},[_vm._l((_vm.titles),function(title,i){return _c('div',{staticClass:"tab",on:{"click":function($event){_vm.clickTab(i);}}},[(title.icon)?_c('v-icon',{attrs:{"icon":title.icon,"size":"16"}}):_vm._e(),_vm._v(_vm._s(title.name))],1)}),_vm._v(" "),_c('div',{staticClass:"focus-line",style:(_vm.lineStyle)})],2)])};
   var __vue_staticRenderFns__$n = [];
 
     /* style */

@@ -190,6 +190,9 @@ body.overhidden {
   background-color: blue;
   height: 60px;
 }
+.v-tab {
+  flex: 1;
+}
 .v-select {
   vertical-align: top;
 }

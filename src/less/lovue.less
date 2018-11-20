@@ -983,11 +983,12 @@
 }
 
 .v-tab {
-  position: relative;
+  display: flex;
   border-bottom: 1px solid @border-color;
 
   .tabs {
     display: flex;
+    position: relative;
 
     .tab {
       line-height: 48px;
@@ -1007,7 +1008,7 @@
   }
   .focus-line {
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     height: 2px;
     background-color: @blue-color;
     will-change: left, right;
