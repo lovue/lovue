@@ -33,7 +33,7 @@
           </div>
           <div class="v-dropdown">
             <template v-if="mode === 'spa'">
-              <router-link class="d-item" :class="{focus: child._focus}" :to="child.url" v-for="child of menu.children">{{child.name}}</router-link>
+              <router-link class="d-item" :class="{focus: child._focus}" :to="child.url" v-for="(child, i) of menu.children" :key="i">{{child.name}}</router-link>
             </template>
             <template v-if="mode === 'link'">
               <a class="d-item" :class="{focus: child._focus}" :href="child.url" v-for="child of menu.children">{{child.name}}</a>
