@@ -188,8 +188,9 @@
               <div class="cell" style="margin-bottom: 16px;">
                 <v-menu :menus="menus"></v-menu>
               </div>
-              <div class="cell">
+              <div class="cell" style="display: flex;">
                 <v-menu :menus="menus" vertical></v-menu>
+                <v-menu :menus="menus" @click="clickMenu" mode="nonLink" vertical></v-menu>
               </div>
             </div>
             <div class="content">

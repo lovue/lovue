@@ -78,8 +78,9 @@ new Vue({
       { prop: 'submit', desc: '是否是提交按钮', type: 'Boolean', deft: '无' }
     ],
     sourceMenu: [
-      { prop: 'menus', desc: '菜单数据，支持子菜单children与图标icon属性', type: 'Array', deft: '无' },
-      { prop: 'vertical', desc: '是否垂直模式', type: 'Boolean', deft: '无' }
+      { prop: 'menus', desc: '菜单数据，菜单项：{name, icon, children}', type: 'Array', deft: '无' },
+      { prop: 'vertical', desc: '是否垂直模式', type: 'Boolean', deft: '无' },
+      { prop: 'mode', desc: '菜单项模式，支持：link，超链接模式，点击跳转；nonLink，非链接模式，点击时，$emit("click", menu.value || menu.url)；spa，SPA模式，只能在SPA应用中使用', type: 'String', deft: 'link' }
     ],
     sourceInput: [
       { prop: 'v-model', desc: '组件双向绑定的值', type: 'String, Number', deft: '无' },
@@ -500,6 +501,9 @@ new Vue({
     },
     dblClickRow(row) {
       console.log('dblClick', row)
+    },
+    clickMenu(link) {
+      this.success('click menu ' + link)
     }
   },
   mounted() {
