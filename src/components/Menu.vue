@@ -4,7 +4,7 @@
       <template v-if="vertical">
         <template v-if="menu.children">
           <div class="i-title" :class="{focus: menu._focus}" @click="toggleMenu(menu)">
-            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon>{{menu.name}} <v-icon icon="down-wide" :class="{up: menu._openIcon}"></v-icon>
+            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon><span>{{menu.name}}</span> <v-icon icon="down-wide" :class="{up: menu._openIcon}"></v-icon>
           </div>
           <ul class="m-sub" :style="`height: ${menu.height || 0}px;`" v-show="menu._open">
             <li class="s-item" v-for="child of menu.children">
@@ -16,20 +16,20 @@
         </template>
         <template v-else>
           <router-link class="i-link" :to="menu.url" v-if="mode === 'spa'">
-            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon>{{menu.name}}
+            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon><span>{{menu.name}}</span>
           </router-link>
           <a class="i-link" :class="{focus: menu._focus}" :href="menu.url" v-if="mode === 'link'">
-            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon>{{menu.name}}
+            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon><span>{{menu.name}}</span>
           </a>
           <a class="i-link" :class="{focus: menu._focus}" v-if="mode === 'nonLink'" @click="clickItem(menu)">
-            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon>{{menu.name}}
+            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon><span>{{menu.name}}</span>
           </a>
         </template>
       </template>
       <template v-else>
         <div class="v-dropdown-wrap" v-if="menu.children">
           <div class="d-trigger" :class="{focus: menu._focus}">
-            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon>{{menu.name}} <v-icon icon="down-wide"></v-icon>
+            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon><span>{{menu.name}}</span> <v-icon icon="down-wide"></v-icon>
           </div>
           <div class="v-dropdown">
             <template v-if="mode === 'spa'">
@@ -45,13 +45,13 @@
         </div>
         <template v-else>
           <router-link class="i-link" :to="menu.url" v-if="mode === 'spa'">
-            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon>{{menu.name}}
+            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon><span>{{menu.name}}</span>
           </router-link>
           <a class="i-link" :class="{focus: menu._focus}" :href="menu.url" v-if="mode === 'link'">
-            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon>{{menu.name}}
+            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon><span>{{menu.name}}</span>
           </a>
           <a class="i-link" :class="{focus: menu._focus}" v-if="mode === 'nonLink'" @click="clickItem(menu)">
-            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon>{{menu.name}}
+            <v-icon :icon="menu.icon" size="16" v-if="menu.icon"></v-icon><span>{{menu.name}}</span>
           </a>
         </template>
       </template>
