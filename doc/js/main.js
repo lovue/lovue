@@ -94,7 +94,8 @@ new Vue({
       { prop: 'min', desc: 'number类型的input的min值', type: 'String', deft: '无' },
       { prop: 'max', desc: 'number类型的input的max值', type: 'String', deft: '无' },
       { prop: 'focus', desc: '是否自动获得焦点', type: 'Boolean', deft: '无' },
-      { prop: 'resize', desc: '是否自动调整宽度', type: 'Boolean', deft: '无' }
+      { prop: 'resize', desc: '是否自动调整宽度', type: 'Boolean', deft: '无' },
+      { prop: '@enter', desc: '按回车时触发该事件', type: 'Function', deft: '无' }
     ],
     sourceRadio: [
       { prop: 'v-model', desc: '组件双向绑定的值', type: 'String, Number, Boolean', deft: '无' },
@@ -504,6 +505,9 @@ new Vue({
     },
     clickMenu(link) {
       this.success('click menu ' + link)
+    },
+    pressenter(value) {
+      this.success('input ' + value)
     }
   },
   mounted() {
