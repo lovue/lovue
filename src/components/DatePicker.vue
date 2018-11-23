@@ -75,12 +75,14 @@
         'default': 2050
       },
       weeks: Array,
-      months: Array
+      months: Array,
+      fixedWidth: Boolean,
+      lazy: Boolean
     },
     computed: {
       inputStyle() {
         return {
-          width: this.open ? (this.pickerWidth + 'px') : ''
+          width: !this.fixedWidth && this.open ? (this.pickerWidth + 'px') : ''
         }
       },
       date() {
