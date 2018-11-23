@@ -76,8 +76,7 @@
       },
       weeks: Array,
       months: Array,
-      fixedWidth: Boolean,
-      lazy: Boolean
+      fixedWidth: Boolean
     },
     computed: {
       inputStyle() {
