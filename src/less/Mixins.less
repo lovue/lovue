@@ -1,5 +1,3 @@
-@import "Variables";
-
 .hvcenter {
   display: flex;
   align-items: center;
@@ -69,16 +67,16 @@
 .mixin-table(@line-height: 40px; @bordered: false; @striped: false) {
   width: 100%;
   text-align: left;
-  font-size: @small-font;
-  border: 1px solid @border-color;
+  font-size: var(--small-font);
+  border: 1px solid var(--border-color);
 
   caption {
     margin-bottom: 10px;
-    font-size: @normal-font;
+    font-size: var(--normal-font);
   }
 
   thead {
-    border-bottom: 1px solid @border-color;
+    border-bottom: 1px solid var(--border-color);
     background-color: #F5F6FA;
 
     tr {
@@ -86,11 +84,11 @@
       th {
         padding: 0 15px;
         font-weight: normal;
-        color: @assist-font-color;
+        color: var(--second-color);
         white-space: nowrap;
 
         & when (@bordered = true) {
-          border-right: 1px solid @border-color;
+          border-right: 1px solid var(--border-color);
 
           &:last-child {
             border-right: none;
@@ -102,21 +100,21 @@
   tbody {
     & when (@striped = true) {
       tr:nth-child(odd) {
-        background-color: @bg-color;
+        background-color: var(--bg-color);
       }
     }
 
     tr {
       height: @line-height;
       transition: background-color .25s ease;
-      border-bottom: 1px solid @border-color;
+      border-bottom: 1px solid var(--border-color);
 
       &:last-child {
         border-bottom: none;
       }
 
       &:hover {
-        background-color: @bg-color;
+        background-color: var(--bg-color);
       }
 
       &.row-loading {
@@ -128,7 +126,7 @@
         white-space: nowrap;
 
         & when (@bordered = true) {
-          border-right: 1px solid @border-color;
+          border-right: 1px solid var(--border-color);
 
           &:last-child {
             border-right: none;
@@ -137,16 +135,16 @@
 
         &.no-data-info {
           text-align: center;
-          color: @assist-font-color;
+          color: var(--second-color);
         }
       }
     }
 
     .btn-text {
-      color: @blue-color;
+      color: var(--blue-color);
 
       &:hover {
-        color: @hover-blue-color;
+        color: var(--hover-blue);
       }
     }
   }
@@ -161,26 +159,26 @@
   touch-action: manipulation;
   border: 1px solid transparent;
   white-space: nowrap;
-  padding: 0 @2unit;
-  font-size: @small-font;
-  border-radius: @border-radius;
-  height: @4unit;
+  padding: 0 var(--2unit);
+  font-size: var(--small-font);
+  border-radius: var(--border-radius);
+  height: var(--4unit);
   transition: all .3s cubic-bezier(.645, .045, .355, 1);
   cursor: pointer;
 }
 
 .mixin-button-ghost {
-  border-color: @border-color;
-  background-color: @white-color;
+  border-color: var(--border-color);
+  background-color: var(--white);
 
   &:hover {
-    color: @hover-blue-color;
-    border-color: @hover-blue-color;
+    color: var(--hover-blue);
+    border-color: var(--hover-blue);
   }
 
   &:active {
-    color: @active-blue-color;
-    border-color: @active-blue-color;
+    color: var(--active-blue);
+    border-color: var(--active-blue);
   }
 }
 

@@ -1,4 +1,3 @@
-@import "Variables";
 @import (reference) "Mixins";
 @import "normalize";
 
@@ -41,14 +40,14 @@
 @keyframes toggle-check {
   0% {
     border-color: transparent;
-    background-color: @blue-color;
+    background-color: var(--blue-color);
   }
   50% {
     border-color: transparent;
     background-color: transparent;
   }
   100% {
-    border-color: @assist-font-color;
+    border-color: var(--second-color);
     background-color: transparent;
   }
 }
@@ -56,39 +55,39 @@
 .input,
 .textarea,
 .select {
-  font-size: @small-font;
-  border: 1px solid @border-color;
-  border-radius: @border-radius;
+  font-size: var(--small-font);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
   transition: border-color .2s;
 
   &:not([disabled]):hover {
-    border-color: @hover-blue-color;
+    border-color: var(--hover-blue);
   }
 }
 
 .input {
-  height: @4unit;
-  padding: 4px @unit;
+  height: var(--4unit);
+  padding: 4px var(--unit);
 
   &:focus {
-    border-color: @blue-color;
+    border-color: var(--blue-color);
   }
 }
 
 .tag {
-  padding: @unit @2unit;
-  font-size: @tiny-font;
+  padding: var(--unit) var(--2unit);
+  font-size: var(--tiny-font);
   cursor: pointer;
   border-radius: 20px;
   line-height: 14px;
 
   &.tag-black {
-    background-color: @first-level-color;
-    color: @white-color;
+    background-color: var(--main-color);
+    color: var(--white);
   }
 
   &.tag-white {
-    border: 1px dashed @light-border-color;
+    border: 1px dashed var(--border-color);
   }
 }
 
@@ -132,24 +131,24 @@
 
 .v-window {
   .shadow;
-  background-color: @white-color;
-  border-radius: @border-radius;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
 
   .title-bar {
     position: relative;
-    line-height: @title-height;
-    border-bottom: 1px solid @border-color;
-    padding-left: @3unit;
+    line-height: var(--bar-height);
+    border-bottom: 1px solid var(--border-color);
+    padding-left: var(--3unit);
     display: flex;
     justify-content: space-between;
-    border-radius: @border-radius @border-radius 0 0;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
 
     .v-btn {
       font-size: 2rem;
-      padding: 0 @2unit;
-      height: @title-height;
-      line-height: @title-height;
-      color: @assist-font-color;
+      padding: 0 var(--2unit);
+      height: var(--bar-height);
+      line-height: var(--bar-height);
+      color: var(--second-color);
 
       .icon {
         width: auto;
@@ -157,20 +156,20 @@
       }
 
       &:hover {
-        color: @pink-color;
+        color: var(--pink-color);
       }
     }
   }
 
   .win-content {
-    max-height: calc(85vh - @title-height);
+    max-height: calc(85vh - var(--bar-height));
     max-width: 80vw;
     min-width: 520px;
-    padding: @unit @2unit;
+    padding: var(--unit) var(--2unit);
     overflow-y: auto;
 
     @media (max-height: 800px) {
-      max-height: calc(95vh - @title-height);
+      max-height: calc(95vh - var(--bar-height));
     }
 
     .table-wrap {
@@ -179,15 +178,15 @@
   }
 
   .win-footer {
-    padding: @unit @2unit;
+    padding: var(--unit) var(--2unit);
     display: flex;
-    border-top: 1px solid @border-color;
+    border-top: 1px solid var(--border-color);
 
     .right {
       margin-left: auto;
 
       .v-btn-ghost {
-        margin-right: @unit;
+        margin-right: var(--unit);
       }
     }
   }
@@ -242,31 +241,31 @@
   }
 
   &.v-btn-primary {
-    color: @white-color;
-    background-color: @blue-color;
+    color: var(--white);
+    background-color: var(--blue-color);
 
     &:hover {
-      background-color: @hover-blue-color;
+      background-color: var(--hover-blue);
     }
 
     &:active {
-      background-color: @active-blue-color;
+      background-color: var(--active-blue);
     }
   }
 
   &.v-btn-danger {
-    color: @white-color;
-    background-color: @error-color;
-    border-color: @error-color;
+    color: var(--white);
+    background-color: var(--error-color);
+    border-color: var(--error-color);
 
     &:hover {
-      background-color: @hover-error-color;
-      border-color: @hover-error-color;
+      background-color: var(--hover-error);
+      border-color: var(--hover-error);
     }
 
     &:active {
-      background-color: @active-error-color;
-      border-color: @active-error-color;
+      background-color: var(--active-error);
+      border-color: var(--active-error);
     }
   }
 
@@ -275,29 +274,29 @@
     border: none;
 
     &:hover {
-      color: @hover-blue-color;
+      color: var(--hover-blue);
     }
 
     &:active {
-      color: @active-blue-color;
+      color: var(--active-blue);
     }
   }
 
   &.v-btn-lg {
-    font-size: @normal-font;
-    height: @5unit;
-    padding: 0 @3unit;
+    font-size: var(--normal-font);
+    height: var(--5unit);
+    padding: 0 var(--3unit);
 
     .icon {
-      width: @2unit;
-      height: @2unit;
+      width: var(--2unit);
+      height: var(--2unit);
     }
   }
 
   &.v-btn-sm {
-    font-size: @tiny-font;
-    padding: 0 @unit;
-    height: @3unit;
+    font-size: var(--tiny-font);
+    padding: 0 var(--unit);
+    height: var(--3unit);
   }
 
   &[disabled] {
@@ -325,7 +324,7 @@
     }
 
     &.v-btn-primary + .v-btn-primary {
-      border-left-color: @blue-3;
+      border-left-color: #8ce3f0;
     }
 
     &.v-btn-ghost:hover {
@@ -340,14 +339,14 @@
 }
 
 .v-dropdown {
-  font-size: @small-font;
+  font-size: var(--small-font);
   line-height: 1.5;
-  color: @light-black-color;
+  color: var(--light-black);
   box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
   background-clip: padding-box;
-  border-radius: @border-radius;
+  border-radius: var(--border-radius);
   padding: 4px 0;
-  background-color: @white-color;
+  background-color: var(--white);
 
   .d-item {
     display: flex;
@@ -364,7 +363,7 @@
     }
 
     &:hover {
-      color: @blue-color;
+      color: var(--blue-color);
     }
   }
 
@@ -381,7 +380,7 @@
   position: relative;
 
   .d-trigger {
-    font-size: @small-font;
+    font-size: var(--small-font);
     cursor: pointer;
   }
 
@@ -416,24 +415,24 @@
   align-items: center;
   height: 50px;
   line-height: 48px;
-  border-bottom: 1px solid @border-color;
-  font-size: @small-font;
+  border-bottom: 1px solid var(--border-color);
+  font-size: var(--small-font);
 
   .focus {
-    color: @blue-color;
+    color: var(--blue-color);
   }
 
   .v-menu-item {
     > .v-dropdown-wrap,
     > .i-title,
     > .i-link {
-      padding: 0 @2unit;
+      padding: 0 var(--2unit);
       transition: all .3s cubic-bezier(.645, .045, .355, 1);
       border-bottom: 2px solid transparent;
 
       &:hover {
-        border-color: @blue-color;
-        color: @blue-color;
+        border-color: var(--blue-color);
+        color: var(--blue-color);
       }
     }
 
@@ -454,7 +453,7 @@
         }
 
         .icon-down-wide {
-          margin-left: @unit;
+          margin-left: var(--unit);
         }
       }
     }
@@ -497,7 +496,7 @@
       }
 
       .m-sub {
-        background-color: @bg-color;
+        background-color: var(--bg-color);
         overflow: hidden;
         transition: height .3s cubic-bezier(.645, .045, .355, 1);
 
@@ -505,12 +504,12 @@
           a {
             .truncate;
             display: block;
-            padding: 0 @4unit;
+            padding: 0 var(--4unit);
             height: 100%;
             transition: all .3s cubic-bezier(.645, .045, .355, 1);
 
             &:hover {
-              color: @blue-color;
+              color: var(--blue-color);
             }
           }
         }
@@ -522,7 +521,7 @@
 .v-input {
   position: relative;
   display: inline-block;
-  font-size: @small-font;
+  font-size: var(--small-font);
 
   .hidden-value {
     position: absolute;
@@ -545,13 +544,13 @@
     height: 1px;
     border: none;
     display: block;
-    background-color: @blue-color;
+    background-color: var(--blue-color);
     transition: transform .45s cubic-bezier(0.23, 1, 0.32, 1);
     transform: scaleX(0);
   }
 
   &.effect {
-    border-bottom: 1px solid @border-color;
+    border-bottom: 1px solid var(--border-color);
 
     input {
       border: none;
@@ -567,23 +566,23 @@
   .flex-between;
   .mixin-non-select;
   position: relative;
-  font-size: @small-font;
-  height: @2unit;
+  font-size: var(--small-font);
+  height: var(--2unit);
   cursor: pointer;
 
   input {
     -webkit-appearance: none;
     -moz-appearance: none;
-    width: @2unit;
-    height: @2unit;
+    width: var(--2unit);
+    height: var(--2unit);
     box-shadow: none;
-    border: 1px solid @assist-font-color;
+    border: 1px solid var(--second-color);
     border-radius: 50%;
     margin: 0;
-    margin-right: @unit;
+    margin-right: var(--unit);
 
     &:checked {
-      border-color: @blue-color;
+      border-color: var(--blue-color);
 
       & + span:after {
         transform: scale(0.5);
@@ -596,10 +595,10 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: @2unit;
-    height: @2unit;
+    width: var(--2unit);
+    height: var(--2unit);
     border-radius: 50%;
-    background-color: @blue-color;
+    background-color: var(--blue-color);
     transform: scale(0);
     transition: transform .2s cubic-bezier(0.250, 0.460, 0.450, 0.940);
   }
@@ -609,7 +608,7 @@
 
     input {
       margin-right: 0;
-      margin-left: @unit;
+      margin-left: var(--unit);
     }
 
     span:after {
@@ -620,13 +619,13 @@
 
   &.disabled {
     cursor: not-allowed;
-    color: @disabled-color;
+    color: var(--disabled-color);
 
     input {
-      border-color: @disabled-color;
+      border-color: var(--disabled-color);
 
       &:checked {
-        background-color: @disabled-color;
+        background-color: var(--disabled-color);
       }
     }
   }
@@ -638,16 +637,16 @@
     display: none;
 
     &:checked + span {
-      background-color: @blue-color;
-      color: @white-color;
+      background-color: var(--blue-color);
+      color: var(--white);
       border-color: transparent;
 
       &:hover {
-        background-color: @hover-blue-color;
+        background-color: var(--hover-blue);
       }
 
       &:active {
-        background-color: @active-blue-color;
+        background-color: var(--active-blue);
       }
     }
   }
@@ -661,8 +660,8 @@
   &.disabled {
     span {
       cursor: not-allowed;
-      color: @disabled-color;
-      border-color: @disabled-color;
+      color: var(--disabled-color);
+      border-color: var(--disabled-color);
     }
 
     input {
@@ -671,7 +670,7 @@
         cursor: not-allowed;
 
         &:hover {
-          background-color: @blue-color;
+          background-color: var(--blue-color);
         }
       }
     }
@@ -682,7 +681,7 @@
   .flex-start;
 
   .g-item:not(:last-child) {
-    margin-right: @2unit;
+    margin-right: var(--2unit);
   }
 
   &.vertical {
@@ -700,9 +699,9 @@
   .flex-between;
   .mixin-non-select;
   position: relative;
-  font-size: @small-font;
-  height: @2unit;
-  line-height: @2unit;
+  font-size: var(--small-font);
+  height: var(--2unit);
+  line-height: var(--2unit);
   cursor: pointer;
 
   input {
@@ -711,14 +710,14 @@
     width: 16px;
     height: 16px;
     box-shadow: none;
-    border: 1px solid @assist-font-color;
+    border: 1px solid var(--second-color);
     border-radius: 2px;
     margin: 0;
-    margin-right: @unit;
+    margin-right: var(--unit);
 
     &:checked {
       border: none;
-      background-color: @blue-color;
+      background-color: var(--blue-color);
 
       & + span:after {
         transform: scale(1) rotateZ(37deg);
@@ -733,7 +732,7 @@
     top: 2px;
     width: 7px;
     height: 12px;
-    border: 2px solid @white-color;
+    border: 2px solid var(--white);
     border-top-color: transparent;
     border-left-color: transparent;
     transform-origin: 120% 90%;
@@ -746,7 +745,7 @@
 
     input {
       margin-right: 0;
-      margin-left: @unit;
+      margin-left: var(--unit);
     }
 
     span:after {
@@ -757,13 +756,13 @@
 
   &.disabled {
     cursor: not-allowed;
-    color: @disabled-color;
+    color: var(--disabled-color);
 
     input {
-      border-color: @disabled-color;
+      border-color: var(--disabled-color);
 
       &:checked {
-        background-color: @disabled-color;
+        background-color: var(--disabled-color);
       }
     }
   }
@@ -773,7 +772,7 @@
   .flex-start;
 
   .g-item:not(:last-child) {
-    margin-right: @2unit;
+    margin-right: var(--2unit);
   }
 
   &.vertical {
@@ -822,10 +821,10 @@
     display: none;
 
     &:checked + span {
-      background-color: @blue-color;
+      background-color: var(--blue-color);
 
       &:after {
-        background-color: @blue-color;
+        background-color: var(--blue-color);
         left: 24px;
       }
     }
@@ -839,7 +838,7 @@
     width: 100%;
 
     .input {
-      padding-right: calc(@unit + 20px);
+      padding-right: calc(var(--unit) + 20px);
     }
   }
 
@@ -847,7 +846,7 @@
     position: absolute;
     top: 6px;
     right: 6px;
-    color: @assist-font-color;
+    color: var(--second-color);
     cursor: pointer;
   }
 }
@@ -874,14 +873,14 @@
 
       &:hover {
         .v-btn {
-          background-color: @hover-blue-color;
-          border-color: @hover-blue-color;
+          background-color: var(--hover-blue);
+          border-color: var(--hover-blue);
         }
       }
       &:active {
         .v-btn {
-          background-color: @active-blue-color;
-          border-color: @active-blue-color;
+          background-color: var(--active-blue);
+          border-color: var(--active-blue);
         }
       }
     }
@@ -893,8 +892,8 @@
 
     span {
       padding: 4px 8px;
-      background-color: @bg-color;
-      border-radius: @border-radius;
+      background-color: var(--bg-color);
+      border-radius: var(--border-radius);
       margin-left: 6px;
     }
   }
@@ -910,8 +909,8 @@
       line-height: 98px;
       text-align: center;
       overflow: hidden;
-      border-radius: @border-radius;
-      border: 1px solid @border-color;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--border-color);
       margin-top: 10px;
       margin-right: 10px;
       display: flex;
@@ -935,7 +934,7 @@
         cursor: pointer;
 
         .icon-delete {
-          color: @white-color;
+          color: var(--white);
         }
       }
 
@@ -950,9 +949,9 @@
       position: relative;
       width: 100px;
       height: 100px;
-      border: 1px dashed @border-color;
-      border-radius: @border-radius;
-      background-color: @bg-color;
+      border: 1px dashed var(--border-color);
+      border-radius: var(--border-radius);
+      background-color: var(--bg-color);
       margin-top: 10px;
       margin-right: 10px;
       display: flex;
@@ -972,11 +971,11 @@
       }
 
       .icon-plus {
-        color: @assist-font-color;
+        color: var(--second-color);
       }
 
       &:hover {
-        border-color: @blue-color;
+        border-color: var(--blue-color);
       }
     }
   }
@@ -984,7 +983,7 @@
 
 .v-tab {
   display: flex;
-  border-bottom: 1px solid @border-color;
+  border-bottom: 1px solid var(--border-color);
 
   .tabs {
     display: flex;
@@ -1010,7 +1009,7 @@
     position: absolute;
     bottom: -1px;
     height: 2px;
-    background-color: @blue-color;
+    background-color: var(--blue-color);
     will-change: left, right;
   }
 }
@@ -1023,8 +1022,8 @@
   top: 30px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: @white-color;
-  border-radius: @border-radius;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
   transition: opacity .3s, transform .4s;
   overflow: hidden;
   display: flex;
@@ -1038,12 +1037,12 @@
     .icon {
       width: 40px;
       height: 20px;
-      color: @white-color;
+      color: var(--white);
       vertical-align: top;
     }
 
     &.m-info {
-      background-color: @blue-color;
+      background-color: var(--blue-color);
       padding-top: 5px;
 
       svg {
@@ -1051,10 +1050,10 @@
       }
     }
     &.m-success {
-      background-color: @success-color;
+      background-color: var(--success-color);
     }
     &.m-warn {
-      background-color: @warn-color;
+      background-color: var(--warn-color);
       padding-top: 5px;
 
       svg {
@@ -1062,7 +1061,7 @@
       }
     }
     &.m-error {
-      background-color: @error-color;
+      background-color: var(--error-color);
     }
   }
 
@@ -1072,7 +1071,7 @@
     line-height: 40px;
     padding-left: 12px;
     padding-right: 40px;
-    font-size: @small-font;
+    font-size: var(--small-font);
   }
 
   > .icon-close {
@@ -1081,11 +1080,11 @@
     top: 10px;
     width: 40px;
     height: 20px;
-    color: @assist-font-color;
+    color: var(--second-color);
     cursor: pointer;
 
     &:hover {
-      color: @pink-color;
+      color: var(--pink-color);
     }
   }
 }
@@ -1094,7 +1093,7 @@
   position: relative;
   width: 300px;
   display: inline-block;
-  font-size: @small-font;
+  font-size: var(--small-font);
 
   .layout-lr {
     align-items: center;
@@ -1127,9 +1126,9 @@
   .selected {
     position: relative;
     padding: 0 4px;
-    border: 1px solid @border-color;
-    border-radius: @border-radius;
-    background-color: @white-color;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
     min-height: 32px;
     transition: border-color .2s;
     cursor: pointer;
@@ -1137,11 +1136,11 @@
     .s-tag {
       padding-left: 4px;
       margin: 4px 4px 4px 0;
-      background-color: @blue-color;
-      color: @white-color;
-      font-size: @tiny-font;
+      background-color: var(--blue-color);
+      color: var(--white);
+      font-size: var(--tiny-font);
       height: 20px;
-      border-radius: @border-radius-small;
+      border-radius: var(--border-radius);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1158,13 +1157,13 @@
         cursor: pointer;
 
         &:hover {
-          color: @pink-color;
+          color: var(--pink-color);
         }
       }
     }
 
     .s-tag-custom {
-      background-color: @light-pink-color;
+      background-color: var(--light-pink);
     }
 
     .input {
@@ -1181,22 +1180,22 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: @bg-color;
+      background-color: var(--bg-color);
       opacity: .8;
       z-index: 2;
       cursor: not-allowed;
     }
 
     &:not([disabled]):hover {
-      border-color: @blue-color;
+      border-color: var(--blue-color);
     }
   }
 
   .candidates {
     position: absolute;
     width: 100%;
-    background-color: @white-color;
-    border: 1px solid @border-color;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
     visibility: hidden;
     opacity: 0;
     transition: visibility .2s ease, opacity .2s ease, transform .2s ease;
@@ -1213,17 +1212,17 @@
 
     .i-title {
       .flex-between;
-      padding: 0 4px 0 @unit;
+      padding: 0 4px 0 var(--unit);
       line-height: 32px;
       transition: background-color .2s;
       cursor: pointer;
 
       &:hover {
-        background-color: @bg-color;
+        background-color: var(--bg-color);
       }
 
       &.focus {
-        color: @blue-color;
+        color: var(--blue-color);
       }
     }
 
@@ -1238,7 +1237,7 @@
     }
 
     .list {
-      padding: @unit 0;
+      padding: var(--unit) 0;
       max-height: 320px;
       overflow-y: auto;
       overscroll-behavior: contain;
@@ -1247,16 +1246,16 @@
     .sub-list {
       .i-title {
         position: relative;
-        padding-left: @4unit;
+        padding-left: var(--4unit);
 
         &:before {
           content: '';
           display: block;
           width: 18px;
           position: absolute;
-          left: @unit;
+          left: var(--unit);
           top: 16px;
-          border-top: 1px dashed @assist-font-color;
+          border-top: 1px dashed var(--second-color);
         }
       }
     }
@@ -1283,14 +1282,14 @@
 .v-progress {
   position: relative;
   text-align: center;
-  font-size: @small-font;
+  font-size: var(--small-font);
   width: 200px;
   height: 32px;
   line-height: 32px;
 
   .layer-1 {
-    background-color: @bg-color;
-    border-radius: @border-radius;
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
     width: 100%;
     height: 100%;
   }
@@ -1301,8 +1300,8 @@
     top: 0;
     width: 0;
     height: 100%;
-    background-color: @blue-color;
-    border-radius: @border-radius 0 0 @border-radius;
+    background-color: var(--blue-color);
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
   }
 
   .layer-3 {
@@ -1316,12 +1315,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: @small-font;
+  font-size: var(--small-font);
 
   > .p-one {
     display: flex;
     align-items: center;
-    margin-left: @unit;
+    margin-left: var(--unit);
 
     .v-pure-select {
       min-width: 40px;
@@ -1336,7 +1335,7 @@
   > .p-pages {
     display: flex;
     align-items: center;
-    margin-left: @unit;
+    margin-left: var(--unit);
 
     .icon-arrow-down {
       width: 20px;
@@ -1353,15 +1352,15 @@
       padding: 0 4px;
       margin: 0 4px;
       text-align: center;
-      border: 1px solid @blue-color;
-      border-radius: @border-radius-small;
+      border: 1px solid var(--blue-color);
+      border-radius: var(--border-radius);
 
       .icon {
         margin-top: -4px;
       }
 
       &.focus {
-        color: @pink-color;
+        color: var(--pink-color);
         font-weight: bold;
         border: none;
         cursor: default;
@@ -1387,7 +1386,7 @@
 .v-pure-select {
   position: relative;
   display: inline-block;
-  font-size: @small-font;
+  font-size: var(--small-font);
   margin: 0;
   cursor: pointer;
 
@@ -1397,14 +1396,14 @@
     width: 100%;
     height: 32px;
     line-height: 30px;
-    border: 1px solid @border-color;
-    border-radius: @border-radius;
-    padding: 0 20px 0 @unit;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 0 20px 0 var(--unit);
     vertical-align: middle;
     transition: border-color .2s;
 
     .placeholder {
-      color: @placeholder-color;
+      color: var(--placeholder-color);
     }
 
     &:after {
@@ -1412,14 +1411,14 @@
       position: absolute;
       right: 4px;
       top: 0;
-      font-size: @tiny-font;
-      color: @first-level-color;
+      font-size: var(--tiny-font);
+      color: var(--main-color);
       transform: scale(0.8);
       transition: transform .2s ease;
     }
 
     &:hover {
-      border-color: @blue-color;
+      border-color: var(--blue-color);
     }
   }
 
@@ -1427,11 +1426,11 @@
     position: absolute;
     left: 0;
     margin: 0;
-    padding: @unit 0;
+    padding: var(--unit) 0;
     width: auto;
     min-width: 100%;
-    border: 1px solid @border-color;
-    background-color: @white-color;
+    border: 1px solid var(--border-color);
+    background-color: var(--white);
     visibility: hidden;
     opacity: 0;
     transition: visibility .2s ease, opacity .2s ease, transform .2s ease;
@@ -1451,17 +1450,17 @@
   label {
     cursor: pointer;
     display: block;
-    padding: 0 @unit;
+    padding: 0 var(--unit);
     line-height: 32px;
     white-space: nowrap;
 
     &:hover {
-      color: @first-level-color;
-      background-color: @bg-color;
+      color: var(--main-color);
+      background-color: var(--bg-color);
     }
 
     &.focus {
-      background-color: @blue-color;
+      background-color: var(--blue-color);
     }
   }
 
@@ -1491,11 +1490,11 @@
 .v-date-picker {
   position: relative;
   display: inline-block;
-  font-size: @small-font;
+  font-size: var(--small-font);
 
   .input {
     width: 200px;
-    background-color: @white-color;
+    background-color: var(--white);
     transition: border-color .2s ease-out, width .2s ease-out;
     cursor: pointer;
   }
@@ -1504,8 +1503,8 @@
     .mixin-non-select;
     .shadow-light;
     position: absolute;
-    background-color: @white-color;
-    border-top: 1px solid @border-color;
+    background-color: var(--white);
+    border-top: 1px solid var(--border-color);
     margin-top: 2px;
     display: flex;
     visibility: hidden;
@@ -1596,20 +1595,20 @@
 
                 &:hover {
                   div {
-                    background-color: @blue-4;
+                    background-color: var(--hover-blue);
                     border-radius: 50%;
                   }
                 }
               }
               td.focus {
                 div {
-                  background-color: @blue-color;
+                  background-color: var(--blue-color);
                   border-radius: 50%;
                 }
               }
               td.calendar-last-month,
               td.calendar-next-month {
-                color: @disabled-color;
+                color: var(--disabled-color);
               }
             }
           }
@@ -1620,7 +1619,7 @@
       margin-left: 20px;
       height: 314px;
       line-height: 24px;
-      border-left: 1px solid @border-color;
+      border-left: 1px solid var(--border-color);
       overflow-y: auto;
       .list {
         li {
@@ -1628,11 +1627,11 @@
           cursor: pointer;
 
           &:hover {
-            background-color: @blue-4;
+            background-color: var(--hover-blue);
           }
         }
         li.focus {
-          background-color: @blue-color;
+          background-color: var(--blue-color);
         }
       }
     }
@@ -1642,7 +1641,7 @@
 .v-pwd-strength {
   .flex-start;
   height: 20px;
-  font-size: @tiny-font;
+  font-size: var(--tiny-font);
 
   .str-lines {
     display: flex;
@@ -1650,24 +1649,24 @@
     > span {
       width: 40px;
       height: 2px;
-      background-color: @disabled-color;
+      background-color: var(--disabled-color);
       margin-right: 4px;
       border-radius: 30px;
 
       &.str-0 {
-        background-color: @red-10;
+        background-color: #880a38;
       }
       &.str-1 {
-        background-color: @error-color;
+        background-color: var(--error-color);
       }
       &.str-2 {
-        background-color: @warn-color;
+        background-color: var(--warn-color);
       }
       &.str-3 {
-        background-color: @cyan-5;
+        background-color: #3db8c1;
       }
       &.str-4 {
-        background-color: @success-color;
+        background-color: var(--success-color);
       }
     }
   }
@@ -1679,7 +1678,7 @@
   }
 
   .win-content {
-    padding: @3unit;
+    padding: var(--3unit);
   }
 
   &.no-title {
@@ -1688,7 +1687,7 @@
     }
 
     .win-content {
-      padding: @4unit @3unit;
+      padding: var(--4unit) var(--3unit);
     }
 
     .win-footer {
@@ -1707,12 +1706,12 @@
   .title-bar {
     .mixin-non-select;
     cursor: move;
-    font-size: @normal-font;
+    font-size: var(--normal-font);
 
     .btn-close {
       font-size: 0;
       border-radius: 0;
-      color: black;
+      color: var(--black);
       background-color: transparent;
       border: none;
     }
@@ -1730,16 +1729,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: @unit;
+    margin-bottom: var(--unit);
 
     > .l {
       .icon-bars {
-        color: @assist-font-color;
+        color: var(--second-color);
         width: 24px;
         height: 30px;
 
         &:hover {
-          color: @first-level-color;
+          color: var(--main-color);
         }
       }
     }
@@ -1748,8 +1747,8 @@
   > .t-table {
     position: relative;
     overflow-x: auto;
-    border-left: 1px solid @border-color;
-    border-right: 1px solid @border-color;
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
   }
 
   .table {
@@ -1792,14 +1791,14 @@
           display: block;
           width: 20px;
           height: 12px;
-          color: @assist-font-color;
+          color: var(--second-color);
 
           &.dir-up {
             transform: rotateX(180deg);
           }
 
           &.focus {
-            color: @black-color;
+            color: var(--black);
           }
         }
       }
@@ -1810,23 +1809,23 @@
         &.no-data-row {
           td {
             text-align: center;
-            color: @assist-font-color;
+            color: var(--second-color);
           }
         }
 
         &.focus {
-          background-color: @highlight-color;
+          background-color: var(--table-highlight);
 
           td {
             &.sticky {
-              background-color: @highlight-color;
+              background-color: var(--table-highlight);
             }
           }
 
           &:hover {
             td {
               &.sticky {
-                background-color: @highlight-color;
+                background-color: var(--table-highlight);
               }
             }
           }
@@ -1835,7 +1834,7 @@
         &:hover {
           td {
             &.sticky {
-              background-color: @bg-color;
+              background-color: var(--bg-color);
             }
           }
         }
@@ -1846,7 +1845,7 @@
           &.sticky {
             position: -webkit-sticky;
             position: sticky;
-            background-color: @white-color;
+            background-color: var(--white);
 
             &.left {
               left: 0;
@@ -1865,9 +1864,9 @@
 
   .fixed-head {
     position: relative;
-    padding-top: @5unit;
-    background-color: @bg-color;
-    border: 1px solid @border-color;
+    padding-top: var(--5unit);
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
 
     .table-wrap {
       max-height: 400px;
@@ -1876,9 +1875,9 @@
     }
 
     .table {
-      background-color: @white-color;
+      background-color: var(--white);
       border: none;
-      border-top: 1px solid @border-color;
+      border-top: 1px solid var(--border-color);
 
       > thead {
         border: none;
@@ -1895,7 +1894,7 @@
           .flex-start;
           position: absolute;
           top: 0;
-          height: @5unit;
+          height: var(--5unit);
           padding: 0 15px;
         }
 
@@ -1907,7 +1906,7 @@
   }
 
   > .t-footer {
-    margin-top: @unit;
+    margin-top: var(--unit);
   }
 }
 

@@ -1,18 +1,55 @@
-@import "Variables";
+:root {
+  -moz-tab-size: 4;
+  tab-size: 4;
+
+  --border-radius: 4px;
+  --main-color: #222222;
+  --second-color: #919191;
+  --bg-color: #f5f5f5;
+  --border-color: #e9e9e9;
+  --disabled-color: #d9d9d9;
+  --blue-color: #00c1de;
+  --hover-blue: #4ad3e8;
+  --active-blue: #00aac7;
+  --placeholder-color: #757575;
+  --login-placeholder-color: #bfbfbf;
+  --table-highlight: #cfefdf;
+  --success-color: #00a854;
+  --warn-color: #ffbf00;
+  --error-color: #f04134;
+  --hover-error: #f46e65;
+  --active-error: #d73435;
+  --pink-color: #f5317f;
+  --light-pink: #fa90ba;
+  --black: #000;
+  --light-black: rgba(0, 0, 0, .65);
+  --white: #fff;
+  --light-white: rgba(255, 255, 255, .65);
+  --tiny-font: 1.2rem;
+  --small-font: 1.4rem;
+  --normal-font: 1.6rem;
+  --big-font: 1.8rem;
+  --title-font: 2em;
+  --code-font: Monaco, Consolas, monospace;
+  --body-font: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC Regular", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", SimSun, sans-serif;
+  --bar-height: 50px;
+  --min-width: 960px;
+
+  --unit: 8px;
+  --2unit: 16px;
+  --3unit: 24px;
+  --4unit: 32px;
+  --5unit: 40px;
+}
 
 *, *::after, *::before {
   box-sizing: border-box;
   max-height: 999999px;
 }
 
-:root {
-  -moz-tab-size: 4;
-  tab-size: 4;
-}
-
 html {
-  background: @white-color;
-  font-family: @body-font;
+  background: var(--white);
+  font-family: var(--body-font);
   font-size: 62.5%;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -27,8 +64,8 @@ body {
 }
 
 body {
-  color: @first-level-color;
-  font-size: @normal-font;
+  color: var(--main-color);
+  font-size: var(--normal-font);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
@@ -64,7 +101,7 @@ p {
 
 select:-moz-focusring {
   color: transparent;
-  text-shadow: 0 0 0 @black-color;
+  text-shadow: 0 0 0 var(--black);
 }
 
 select,
@@ -123,7 +160,7 @@ select::-ms-expand {
 }
 
 pre, code, kbd, samp {
-  font-family: @code-font;
+  font-family: var(--code-font);
   font-size: 1em;
 }
 
@@ -145,7 +182,7 @@ img {
 }
 
 small {
-  color: @first-level-color;
+  color: var(--main-color);
 }
 
 svg {
@@ -200,15 +237,15 @@ summary {
 
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-  background: @white-color;
+  background: var(--white);
 }
 
 ::-webkit-scrollbar-thumb {
   //border-radius: 3px;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-  background-color: @assist-font-color;
+  background-color: var(--second-color);
 
   &:hover {
-    background-color: @main-color;
+    background-color: var(--main-color);
   }
 }
