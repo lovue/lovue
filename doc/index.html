@@ -459,7 +459,7 @@
             <div class="title">表格</div>
             <div class="usage">【v-table】</div>
             <div class="content">
-              <v-table :source="buildings" :columns="buildingColumns" :count-of-page="20" checkbox @check="checkTableRows" fixed-head></v-table>
+              <v-table :source="buildings" :columns="buildingColumns" :page-counts="pageCounts" :count-of-page="20" checkbox @check="checkTableRows" fixed-head></v-table>
               <v-table :source="buildings" :columns="buildingColumns" @click-row="clickRow" @dbl-click-row="dblClickRow" simple fixed-head></v-table>
               <v-table :source="[]" :columns="buildingColumns" simple></v-table>
             </div>

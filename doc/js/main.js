@@ -220,6 +220,7 @@ new Vue({
       { prop: 'simple', desc: '是否简易模式，是，则没有搜索栏、分页', type: 'Boolean', deft: '无' },
       { prop: 'fixedHead', desc: '是否表头固定', type: 'Boolean', deft: '无' },
       { prop: 'keepSort', desc: '当数据源更新时，是否保持排序不变', type: 'Boolean', deft: '无' },
+      { prop: 'pageCounts', desc: '可选的每页数目', type: 'Array', deft: '[10, 20, 50]' },
       { prop: 'countOfPage', desc: '每页数目', type: 'Number', deft: '10' },
       { prop: 'filters', desc: '过滤器数组，用于自定义某一列数据的显示', type: 'Array', deft: '[Intl.NumberFormat]' },
       { prop: 'total', desc: '数据总数量，显示在分页组件上', type: 'Number', deft: '无' },
@@ -396,7 +397,8 @@ new Vue({
     ],
     radioValue: 'vue',
     datePickerValue: '2018-11-11',
-    tabValue: 1
+    tabValue: 1,
+    pageCounts: [10, 20, 30, 40, 50]
   },
   methods: {
     sleep(delay = 1000) {
