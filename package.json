@@ -1,6 +1,6 @@
 {
   "name": "lovue",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Love Vue: UI components for Vue",
   "main": "dist/lovue.common.js",
   "module": "dist/lovue.esm.js",
