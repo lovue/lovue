@@ -5,6 +5,11 @@
   max-height: 999999px;
 }
 
+:root {
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
 html {
   background: @white-color;
   font-family: @body-font;
@@ -13,13 +18,12 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  /*user-select: none;*/
   scroll-behavior: smooth;
+  line-height: 1.15;
 }
 
-html, body {
+body {
   margin: 0;
-  padding: 0;
 }
 
 body {
@@ -86,9 +90,11 @@ input[type=number]::-webkit-inner-spin-button {
 input,
 select,
 textarea,
-button {
-  font-family: @body-font;
+button,
+optgroup {
+  font-family: inherit;
   outline: none;
+  margin: 0;
 }
 
 input:required:invalid,
@@ -114,6 +120,11 @@ textarea {
 
 select::-ms-expand {
   display: none;
+}
+
+pre, code, kbd, samp {
+  font-family: @code-font;
+  font-size: 1em;
 }
 
 table {
@@ -145,6 +156,37 @@ svg {
   /* path 和 stroke 溢出 viewBox 部分在 IE 下会显示
      normalize.css 中也包含这行 */
   overflow: hidden;
+}
+
+legend {
+  padding: 0;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+summary {
+  display: list-item;
 }
 
 [v-cloak] {
