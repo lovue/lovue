@@ -1,7 +1,7 @@
 .v-img-reflex {
   position: relative;
   display: inline-block;
-  background-color: #000;
+  background-color: var(--black);
 }
 .v-img-reflex .img-wrap {
   width: 240px;
@@ -34,15 +34,15 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding: 0 16px;
-  height: 40px;
-  line-height: 40px;
+  padding: 0 var(--2unit);
+  height: var(--5unit);
+  line-height: var(--5unit);
   cursor: pointer;
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 1px solid var(--border-color);
 }
 .v-collapse .c-item .c-body {
   height: 0;
-  background-color: #f5f5f5;
+  background-color: var(--bg-color);
   overflow: hidden;
   transition: height 0.2s ease-out;
 }
@@ -51,37 +51,37 @@
 }
 .v-html-editor {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-  font-size: 1.4rem;
-  background-color: #fff;
+  font-size: var(--small-font);
+  background-color: var(--white);
 }
 .v-html-editor .e-toolbar {
   display: flex;
   align-items: center;
   line-height: 36px;
-  border-bottom: 1px solid #e9e9e9;
+  border-bottom: 1px solid var(--border-color);
 }
 .v-html-editor .e-toolbar .v-btn-text {
-  padding: 0 8px;
+  padding: 0 var(--unit);
   margin-right: 4px;
 }
 .v-html-editor .e-toolbar .v-btn-text.active {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  background-color: #f5f5f5;
+  background-color: var(--bg-color);
 }
 .v-html-editor .e-toolbar .select {
   width: 48px;
   height: 28px;
-  margin: 0 8px;
+  margin: 0 var(--unit);
 }
 .v-html-editor .e-toolbar .select:hover {
   color: inherit;
 }
 .v-html-editor .e-content {
   min-height: 400px;
-  padding: 16px;
+  padding: var(--2unit);
 }
 .v-share > div + div {
-  margin-top: 8px;
+  margin-top: var(--unit);
 }
 .v-share .icon {
   cursor: pointer;
@@ -100,16 +100,16 @@
 }
 .v-share .vs-wechat .qrcode-wrap {
   position: absolute;
-  top: calc(8px + 20px);
+  top: calc(var(--unit) + 20px);
   right: 0;
-  padding: 16px;
-  border-radius: 4px;
-  background-color: #fff;
-  border: 1px solid #e9e9e9;
+  padding: var(--2unit);
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
 }
 .v-share .vs-wechat .qrcode-wrap p {
   text-indent: 0;
-  font-size: 1.2rem;
+  font-size: var(--tiny-font);
   margin-bottom: 0;
 }
 .v-step {
@@ -124,21 +124,21 @@
 .v-step .step-item .i-content {
   display: flex;
   align-items: center;
-  font-size: 1.4rem;
+  font-size: var(--small-font);
   transition: color 0.3s;
-  color: #d9d9d9;
+  color: var(--disabled-color);
 }
 .v-step .step-item .i-content .icon {
-  color: #d9d9d9;
+  color: var(--disabled-color);
 }
 .v-step .step-item .i-content > .default-icon {
-  border: 1px solid #d9d9d9;
+  border: 1px solid var(--disabled-color);
   width: 32px;
   height: 32px;
   line-height: 32px;
   text-align: center;
   border-radius: 32px;
-  font-size: 1.6rem;
+  font-size: var(--normal-font);
   margin-right: 8px;
   transition: background-color 0.3s, border-color 0.3s;
 }
@@ -149,39 +149,39 @@
   margin-right: 8px;
 }
 .v-step .step-item .i-content.finished {
-  color: #00c1de;
+  color: var(--blue-color);
 }
 .v-step .step-item .i-content.finished .icon {
-  color: #00c1de;
+  color: var(--blue-color);
 }
 .v-step .step-item .i-content.finished > .default-icon {
-  border-color: #00c1de;
+  border-color: var(--blue-color);
 }
 .v-step .step-item .i-content.processing {
-  color: #222222;
+  color: var(--main-color);
   font-weight: bold;
 }
 .v-step .step-item .i-content.processing .icon {
-  color: #00c1de;
+  color: var(--blue-color);
 }
 .v-step .step-item .i-content.processing > .default-icon {
-  background-color: #00c1de;
-  color: #fff;
-  border-color: #00c1de;
+  background-color: var(--blue-color);
+  color: var(--white);
+  border-color: var(--blue-color);
 }
 .v-step .step-item .i-content.wait {
-  color: #d9d9d9;
+  color: var(--disabled-color);
 }
 .v-step .step-item .i-content.wait .icon {
-  color: #d9d9d9;
+  color: var(--disabled-color);
 }
 .v-step .step-item .i-line {
   flex: 1;
-  border-top: 1px solid #d9d9d9;
+  border-top: 1px solid var(--disabled-color);
   margin: 0 16px;
 }
 .v-step .step-item .i-line.success {
-  border-color: #00c1de;
+  border-color: var(--blue-color);
 }
 .v-step .step-item:last-child {
   flex: none;
@@ -194,30 +194,30 @@
 .v-tag .t-selected {
   display: flex;
   align-items: center;
-  margin-left: 8px;
+  margin-left: var(--unit);
 }
 .v-tag .t-selected .tag {
-  margin: 0 8px;
+  margin: 0 var(--unit);
 }
 .v-tag .t-candidates {
   position: absolute;
   top: 30px;
   width: 650px;
-  background-color: #fff;
-  border: 1px solid #e9e9e9;
-  border-radius: 4px;
-  margin-top: 8px;
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-top: var(--unit);
   display: flex;
   flex-wrap: wrap;
   padding-right: 50px;
   z-index: 100;
 }
 .v-tag .t-candidates .tag {
-  margin: 8px 0 8px 8px;
+  margin: var(--unit) 0 var(--unit) var(--unit);
 }
 .v-tag .t-candidates .icon-close {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: var(--unit);
+  right: var(--unit);
   cursor: pointer;
 }
