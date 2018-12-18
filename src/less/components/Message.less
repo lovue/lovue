@@ -1,0 +1,81 @@
+@import (reference) "../Mixins";
+
+.message-enter, .message-leave-active {
+  opacity: 0;
+  transform: translate(-50%, -100%);
+}
+
+.v-message {
+  .shadow;
+  min-width: 300px;
+  height: 40px;
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  transition: opacity .3s, transform .4s;
+  overflow: hidden;
+  display: flex;
+  z-index: 2000;
+
+  .m-icon {
+    width: 40px;
+    height: 40px;
+    padding-top: 10px;
+
+    .icon {
+      width: 40px;
+      height: 20px;
+      color: var(--white);
+      vertical-align: top;
+    }
+
+    &.m-info {
+      background-color: var(--blue-color);
+      padding-top: 5px;
+
+      svg {
+        height: 30px;
+      }
+    }
+    &.m-success {
+      background-color: var(--success-color);
+    }
+    &.m-warn {
+      background-color: var(--warn-color);
+      padding-top: 5px;
+
+      svg {
+        height: 30px;
+      }
+    }
+    &.m-error {
+      background-color: var(--error-color);
+    }
+  }
+
+  > p {
+    text-indent: 0;
+    margin: 0;
+    line-height: 40px;
+    padding-left: 12px;
+    padding-right: 40px;
+    font-size: var(--small-font);
+  }
+
+  > .icon-close {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    width: 40px;
+    height: 20px;
+    color: var(--second-color);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--pink-color);
+    }
+  }
+}

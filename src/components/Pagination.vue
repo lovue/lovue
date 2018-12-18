@@ -30,6 +30,8 @@
   </div>
 </template>
 <script>
+  import PureSelect from './PureSelect.vue'
+
   export default {
     name: 'v-pagination',
     data() {
@@ -50,6 +52,9 @@
         'default': () => [10, 20, 50]
       },
       simple: Boolean
+    },
+    components: {
+      [PureSelect.name]: PureSelect
     },
     computed: {
       pages() {

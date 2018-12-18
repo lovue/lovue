@@ -1,0 +1,64 @@
+@import (reference) "../Mixins";
+
+.v-checkbox-button {
+  input {
+    display: none;
+
+    &:checked + span {
+      background-color: var(--blue-color);
+      color: var(--white);
+      border-color: transparent;
+
+      &:hover {
+        background-color: var(--hover-blue);
+      }
+
+      &:active {
+        background-color: var(--active-blue);
+      }
+    }
+  }
+
+  span {
+    .mixin-button;
+    .mixin-button-ghost;
+    .flex-start;
+  }
+
+  &.disabled {
+    span {
+      cursor: not-allowed;
+      color: var(--disabled-color);
+      border-color: var(--disabled-color);
+    }
+
+    input {
+      &:checked + span {
+        opacity: .5;
+        cursor: not-allowed;
+
+        &:hover {
+          background-color: var(--blue-color);
+        }
+      }
+    }
+  }
+}
+
+.v-checkbox-group {
+  .flex-start;
+
+  .g-item:not(:last-child) {
+    margin-right: var(--2unit);
+  }
+
+  &.vertical {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .g-item {
+      margin-right: 0;
+      width: 100%;
+    }
+  }
+}

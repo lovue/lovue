@@ -1,0 +1,44 @@
+.v-switch {
+  cursor: pointer;
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  > span {
+    position: relative;
+    width: 40px;
+    height: 15px;
+    display: inline-block;
+    background-color: #818181;
+    border-radius: 15px;
+    margin: 0 16px;
+    transition: background .3s ease;
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 21px;
+      height: 21px;
+      background-color: #f1f1f1;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+      left: -5px;
+      top: -3px;;
+      transition: left .3s ease, background .3s ease, box-shadow .1s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+    }
+  }
+
+  input {
+    display: none;
+
+    &:checked + span {
+      background-color: var(--blue-color);
+
+      &:after {
+        background-color: var(--blue-color);
+        left: 24px;
+      }
+    }
+  }
+}

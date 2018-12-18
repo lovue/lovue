@@ -1,0 +1,192 @@
+@import (reference) "../Mixins";
+@import "BasicControls";
+
+.v-select {
+  position: relative;
+  width: 300px;
+  display: inline-block;
+  font-size: var(--small-font);
+
+  .layout-lr {
+    align-items: center;
+    justify-content: space-between;
+
+    > .l {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: calc(100% - 40px);
+      margin-right: 0;
+    }
+
+    > .r {
+      font-size: 0;
+
+      .icon-down-wide {
+        width: 40px;
+        height: 20px;
+        will-change: transform;
+        transition: transform .25s ease-out;
+
+        &.reverse {
+          transform: rotateX(180deg);
+        }
+      }
+    }
+  }
+
+  .selected {
+    position: relative;
+    padding: 0 4px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--white);
+    min-height: 32px;
+    transition: border-color .2s;
+    cursor: pointer;
+
+    .s-tag {
+      padding-left: 4px;
+      margin: 4px 4px 4px 0;
+      background-color: var(--blue-color);
+      color: var(--white);
+      font-size: var(--tiny-font);
+      height: 20px;
+      border-radius: var(--border-radius);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .tag-name {
+        .truncate;
+      }
+
+      .icon-close {
+        .mixin-transition(@property: color);
+        flex-shrink: 0;
+        width: 28px;
+        height: 14px;
+        cursor: pointer;
+
+        &:hover {
+          color: var(--pink-color);
+        }
+      }
+    }
+
+    .s-tag-custom {
+      background-color: var(--light-pink);
+    }
+
+    .input {
+      height: 30px;
+      padding-left: 4px;
+      width: 100%;
+      overflow: visible;
+      border: none;
+      cursor: pointer;
+    }
+
+    .layer-disabled {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-color);
+      opacity: .8;
+      z-index: 2;
+      cursor: not-allowed;
+    }
+
+    &:not([disabled]):hover {
+      border-color: var(--blue-color);
+    }
+  }
+
+  .candidates {
+    position: absolute;
+    width: 100%;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .2s ease, opacity .2s ease, transform .2s ease;
+    z-index: 10;
+
+    .item-search {
+      padding: 0 8px;
+      margin-top: 8px;
+
+      .input {
+        width: 100%;
+      }
+    }
+
+    .i-title {
+      .flex-between;
+      padding: 0 4px 0 var(--unit);
+      line-height: 32px;
+      transition: background-color .2s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--bg-color);
+      }
+
+      &.focus {
+        color: var(--blue-color);
+      }
+    }
+
+    .t-name {
+      .truncate;
+    }
+
+    .icon-check {
+      width: 40px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .list {
+      padding: var(--unit) 0;
+      max-height: 320px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    .sub-list {
+      .i-title {
+        position: relative;
+        padding-left: var(--4unit);
+
+        &:before {
+          content: '';
+          display: block;
+          width: 18px;
+          position: absolute;
+          left: var(--unit);
+          top: 16px;
+          border-top: 1px dashed var(--second-color);
+        }
+      }
+    }
+
+    &.top {
+      bottom: 100%;
+      border-bottom: none;
+      transform: translateY(1em);
+    }
+
+    &.bottom {
+      border-top: none;
+      transform: translateY(-1em);
+    }
+
+    &.open {
+      transform: translateY(0);
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,79 @@
+@import (reference) "../Mixins";
+@import "Icon";
+
+.v-btn {
+  .mixin-button;
+
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  &.v-btn-ghost {
+    .mixin-button-ghost;
+  }
+
+  &.v-btn-primary {
+    color: var(--white);
+    background-color: var(--blue-color);
+
+    &:hover {
+      background-color: var(--hover-blue);
+    }
+
+    &:active {
+      background-color: var(--active-blue);
+    }
+  }
+
+  &.v-btn-danger {
+    color: var(--white);
+    background-color: var(--error-color);
+    border-color: var(--error-color);
+
+    &:hover {
+      background-color: var(--hover-error);
+      border-color: var(--hover-error);
+    }
+
+    &:active {
+      background-color: var(--active-error);
+      border-color: var(--active-error);
+    }
+  }
+
+  &.v-btn-text {
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      color: var(--hover-blue);
+    }
+
+    &:active {
+      color: var(--active-blue);
+    }
+  }
+
+  &.v-btn-lg {
+    font-size: var(--normal-font);
+    height: var(--5unit);
+    padding: 0 var(--3unit);
+
+    .icon {
+      width: var(--2unit);
+      height: var(--2unit);
+    }
+  }
+
+  &.v-btn-sm {
+    font-size: var(--tiny-font);
+    padding: 0 var(--unit);
+    height: var(--3unit);
+  }
+
+  &[disabled] {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+}

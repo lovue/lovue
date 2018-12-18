@@ -1,0 +1,19 @@
+.input, .textarea, .select {
+  font-size: var(--small-font);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  transition: border-color .2s;
+
+  &:not([disabled]):hover {
+    border-color: var(--hover-blue);
+  }
+}
+
+.input {
+  height: var(--4unit);
+  padding: 4px var(--unit);
+
+  &:focus {
+    border-color: var(--blue-color);
+  }
+}
