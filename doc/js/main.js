@@ -95,6 +95,7 @@ new Vue({
       { prop: 'max', desc: 'number类型的input的max值', type: 'String', deft: '无' },
       { prop: 'focus', desc: '是否自动获得焦点', type: 'Boolean', deft: '无' },
       { prop: 'resize', desc: '是否自动调整宽度', type: 'Boolean', deft: '无' },
+      { prop: 'readonly', desc: 'input的readonly值', type: 'Boolean', deft: '无' },
       { prop: '@enter', desc: '按回车时触发该事件', type: 'Function', deft: '无' }
     ],
     sourceRadio: [
