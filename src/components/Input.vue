@@ -2,7 +2,7 @@
   <div class="v-input" :class="{effect: effect}">
     <div class="hidden-value" v-if="resize">{{content}}</div>
     <input class="input" :style="`min-width: ${width}px;`" :type="type" :name="name" v-model="content" :step="step" :min="min" :max="max"
-           :placeholder="placeholder" :required="required" autocomplete="off" :disabled="disabled"
+           :placeholder="placeholder" :required="required" autocomplete="off" :disabled="disabled" :readonly="readonly"
            @keypress.enter="pressEnter">
     <hr v-if="effect">
   </div>
@@ -29,7 +29,8 @@
       min: String,
       max: String,
       focus: Boolean,
-      resize: Boolean
+      resize: Boolean,
+      readonly: Boolean
     },
     watch: {
       value(val) {
