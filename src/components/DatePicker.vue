@@ -30,7 +30,7 @@
           </table>
         </div>
       </div>
-      <div class="time-picker" v-if="timepicker">
+      <div class="time-picker" v-if="full">
         <ul class="list">
           <li v-for="time of times" :class="time === hour ? 'focus' : ''" @click.stop="selectHour(time)">{{time}}</li>
         </ul>
@@ -85,7 +85,7 @@
         }
       },
       date() {
-        return this.timepicker
+        return this.full
           ? this.year + '-' + this.month + '-' + this.day + ' ' + this.hour
           : this.year + '-' + this.month + '-' + this.day
       },
@@ -192,7 +192,7 @@
         if (d.month === 1) this.nextMonth()
 
         this.innerUpdate = true
-        if (!this.timepicker) this.hidePicker()
+        if (!this.full) this.hidePicker()
       },
       selectHour(time) {
         if (this.hour === time) return
