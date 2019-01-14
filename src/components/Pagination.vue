@@ -30,6 +30,7 @@
   </div>
 </template>
 <script>
+  import Icon from './Icon.vue'
   import PureSelect from './PureSelect.vue'
 
   export default {
@@ -54,6 +55,7 @@
       simple: Boolean
     },
     components: {
+      [Icon.name]: Icon,
       [PureSelect.name]: PureSelect
     },
     computed: {

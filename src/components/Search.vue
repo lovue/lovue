@@ -6,6 +6,9 @@
 </template>
 
 <script>
+  import Icon from './Icon.vue'
+  import Input from './Input.vue'
+
   let timer
 
   export default {
@@ -20,6 +23,10 @@
         type: Number,
         'default': 500
       }
+    },
+    components: {
+      [Icon.name]: Icon,
+      [Input.name]: Input
     },
     methods: {
       inputHandler(text) {

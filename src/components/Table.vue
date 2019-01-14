@@ -60,6 +60,11 @@
   </div>
 </template>
 <script>
+  import Checkbox from './Checkbox.vue'
+  import Icon from './Icon.vue'
+  import Pagination from './Pagination.vue'
+  import Search from './Search.vue'
+
   export default {
     name: 'v-table',
     data() {
@@ -115,6 +120,12 @@
       total: Number,
       emptyText: String,
       simplePagination: Boolean
+    },
+    components: {
+      [Checkbox.name]: Checkbox,
+      [Icon.name]: Icon,
+      [Pagination.name]: Pagination,
+      [Search.name]: Search
     },
     computed: {
       columnProps() {

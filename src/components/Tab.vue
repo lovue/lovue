@@ -8,6 +8,8 @@
 </template>
 
 <script>
+  import Icon from './Icon.vue'
+
   export default {
     name: 'v-tab',
     data() {
@@ -26,6 +28,9 @@
       value: Number,
       titles: Array,
       lock: Boolean
+    },
+    components: {
+      [Icon.name]: Icon
     },
     watch: {
       value(val) {
