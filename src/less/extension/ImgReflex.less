@@ -1,0 +1,32 @@
+.v-img-reflex {
+  position: relative;
+  display: inline-block;
+  background-color: var(--black);
+
+  .img-wrap {
+    width: 240px;
+    margin-bottom: 3px;
+  }
+
+  .reflex-wrap {
+    position: relative;
+
+    .reflex {
+      width: 100%;
+      height: 60px;
+      background-position: bottom center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      transform: scaleY(-1);
+      opacity: .8;
+    }
+
+    .reflex-gradient {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, .8));
+    }
+  }
+}

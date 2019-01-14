@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  import Icon from '../components/Icon.vue'
+
   export default {
     name: 'v-step',
     props: {
@@ -22,6 +24,9 @@
         'default': 0
       },
       steps: Array
+    },
+    components: {
+      [Icon.name]: Icon
     }
   }
 </script>

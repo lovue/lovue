@@ -12,6 +12,7 @@
   </div>
 </template>
 <script>
+  import Icon from '../components/Icon.vue'
   import VueQrcode from 'qrcode.vue'
 
   export default {
@@ -25,7 +26,10 @@
       url: String,
       title: String
     },
-    components: { VueQrcode },
+    components: {
+      [Icon.name]: Icon,
+      VueQrcode
+    },
     methods: {
       shareToSina() {
         const url = encodeURIComponent(this.url)

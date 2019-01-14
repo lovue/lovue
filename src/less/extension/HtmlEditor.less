@@ -1,0 +1,40 @@
+@import (reference) "../Mixins";
+@import "../components/Button";
+@import "../components/Popup";
+
+.v-html-editor {
+  .shadow;
+  font-size: var(--small-font);
+  background-color: var(--white);
+
+  .e-toolbar {
+    .flex-start;
+    line-height: 36px;
+    border-bottom: 1px solid var(--border-color);
+
+    .v-btn-text {
+      padding: 0 var(--unit);
+      margin-right: 4px;
+
+      &.active {
+        box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+        background-color: var(--bg-color);
+      }
+    }
+
+    .select {
+      width: 48px;
+      height: 28px;
+      margin: 0 var(--unit);
+
+      &:hover {
+        color: inherit;
+      }
+    }
+  }
+
+  .e-content {
+    min-height: 400px;
+    padding: var(--2unit);
+  }
+}

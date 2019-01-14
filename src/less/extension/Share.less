@@ -1,0 +1,41 @@
+.v-share {
+  > div + div {
+    margin-top: var(--unit);
+  }
+
+  .icon {
+    cursor: pointer;
+  }
+
+  .icon-wechat-o {
+    color: #20a839;
+  }
+
+  .icon-sina-o {
+    color: #e89213;
+  }
+
+  .icon-qq-o {
+    color: #009bdb;
+  }
+
+  .vs-wechat {
+    position: relative;
+
+    .qrcode-wrap {
+      position: absolute;
+      top: calc(var(--unit) + 20px);
+      right: 0;
+      padding: var(--2unit);
+      border-radius: var(--border-radius);
+      background-color: var(--white);
+      border: 1px solid var(--border-color);
+
+      p {
+        text-indent: 0;
+        font-size: var(--tiny-font);
+        margin-bottom: 0;
+      }
+    }
+  }
+}
