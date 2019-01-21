@@ -26,7 +26,7 @@ import Tab from './components/Tab.vue'
 import Table from './components/Table.vue'
 import Upload from './components/Upload.vue'
 
-if (typeof window !== 'undefined' && window.Vue) {
+if (typeof window !== 'undefined') {
   if (!NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach
   }
