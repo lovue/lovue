@@ -7,16 +7,18 @@ let plugins = [
       isProduction: true
     }
   })
-], file = 'dist/lovue.extension.js', format = 'iife'
+], file = 'dist/lovue.extension.js', format = 'iife', name = 'lovueEx'
 
 if (cjs) {
   format = 'cjs'
   file = 'dist/lovue.extension.common.js'
+  name = undefined
 }
 
 if (esm) {
   format = 'esm'
   file = 'dist/lovue.extension.esm.js'
+  name = undefined
 }
 
 if (!production) {
@@ -29,8 +31,10 @@ export default {
   output: {
     format,
     file,
+    name,
     globals: {
-      vue: 'Vue'
+      vue: 'Vue',
+      window: 'window'
     }
   },
   external: ['vue'],

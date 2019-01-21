@@ -18,11 +18,3 @@ if (typeof window !== 'undefined' && window.Vue) {
     Vue.component(component.name, component)
   })
 }
-
-export default {
-  Collapse,
-  HtmlEditor,
-  ImgReflex,
-  SelectCity, Step,
-  Tag
-}

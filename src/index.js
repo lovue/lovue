@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import Message from './components/Message.vue'
 import Modal from './components/Modal.vue'
 import Button from './components/Button.vue'
@@ -119,17 +120,4 @@ if (typeof window !== 'undefined' && window.Vue) {
       }
     }
   })
-}
-
-export {
-  Button, ButtonGroup, ButtonSend,
-  Checkbox, CheckboxGroup, Col,
-  DatePicker,
-  Icon, Input,
-  Menu,
-  Pagination, Popup, Progress, PureSelect, PwdStrength,
-  Radio, RadioGroup, Row,
-  Search, Select, Switch,
-  Tab, Table,
-  Upload
 }

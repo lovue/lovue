@@ -9,11 +9,12 @@ let plugins = [
       isProduction: true
     }
   })
-], file = 'dist/lovue.js', format = 'iife'
+], file = 'dist/lovue.js', format = 'iife', name = 'lovue'
 
 if (esm) {
   format = 'esm'
   file = 'dist/lovue.esm.js'
+  name = undefined
 }
 
 if (!production) {
@@ -31,6 +32,7 @@ export default {
   output: {
     format,
     file,
+    name,
     globals: {
       vue: 'Vue'
     }
