@@ -102,6 +102,8 @@
 
 <script>
   import EditorSvg from './EditorSvg.vue'
+  import Button from '../components/Button.vue'
+  import Popup from '../components/Popup.vue'
 
   export default {
     name: 'v-html-editor',
@@ -121,7 +123,11 @@
     props: {
       html: String
     },
-    components: { EditorSvg },
+    components: {
+      [EditorSvg.name]: EditorSvg,
+      [Button.name]: Button,
+      [Popup.name]: Popup
+    },
     watch: {
       bShowOverlay(val) {
         document.body.classList.toggle('overhidden', val)

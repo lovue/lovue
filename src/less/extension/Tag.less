@@ -1,0 +1,41 @@
+@import (reference) "../Mixins";
+@import "../components/Tag";
+
+.v-tag {
+  .flex-start;
+  position: relative;
+
+  .t-selected {
+    .flex-start;
+    margin-left: var(--unit);
+
+    .tag {
+      margin: 0 var(--unit);
+    }
+  }
+
+  .t-candidates {
+    position: absolute;
+    top: 30px;
+    width: 650px;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-top: var(--unit);
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 50px;
+    z-index: 100;
+
+    .tag {
+      margin: var(--unit) 0 var(--unit) var(--unit);
+    }
+
+    .icon-close {
+      position: absolute;
+      top: var(--unit);
+      right: var(--unit);
+      cursor: pointer;
+    }
+  }
+}

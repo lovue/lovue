@@ -40,6 +40,8 @@
 </template>
 
 <script>
+  import PureSelect from './PureSelect.vue'
+
   export default {
     name: 'v-date-picker',
     data() {
@@ -77,6 +79,9 @@
       weeks: Array,
       months: Array,
       fixedWidth: Boolean
+    },
+    components: {
+      [PureSelect.name]: PureSelect
     },
     computed: {
       inputStyle() {

@@ -1,0 +1,154 @@
+@import (reference) "../Mixins";
+@import "BasicControls";
+@import "PureSelect";
+
+.v-date-picker {
+  position: relative;
+  display: inline-block;
+  font-size: var(--small-font);
+
+  .input {
+    width: 200px;
+    background-color: var(--white);
+    transition: border-color .2s ease-out, width .2s ease-out;
+    cursor: pointer;
+  }
+
+  .picker-container {
+    .mixin-non-select;
+    .shadow-light;
+    position: absolute;
+    background-color: var(--white);
+    border-top: 1px solid var(--border-color);
+    margin-top: 2px;
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .2s ease, opacity .2s ease, transform .2s ease;
+    z-index: 100;
+
+    &.top {
+      bottom: calc(100% + 4px);
+      transform: translateY(1em);
+    }
+
+    &.bottom {
+      top: calc(100% - 1px);
+      transform: translateY(-1em);
+    }
+
+    &.open {
+      transform: translateY(0);
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .date-picker {
+      width: 280px;
+
+      .picker-filter {
+        display: flex;
+        padding: 4px;
+
+        .month-picker {
+          flex-grow: 1;
+          padding-right: 4px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: 30px;
+
+          .btn-text {
+            background-color: transparent;
+            border: none;
+            font-size: 12px;
+            min-width: 30px;
+            line-height: 30px;
+            padding: 0;
+            cursor: pointer;
+          }
+
+          div {
+            line-height: 32px;
+          }
+        }
+        .year-picker {
+          .v-pure-select {
+            width: 60px;
+
+            dd {
+              max-height: 200px;
+              overflow-y: auto;
+            }
+
+            label {
+              line-height: 20px;
+            }
+          }
+        }
+      }
+
+      .calendar {
+        table {
+          width: 100%;
+          text-align: center;
+          thead {
+            tr {
+              height: 34px;
+              th {
+                font-weight: 400;
+              }
+            }
+          }
+          tbody {
+            tr {
+              height: 40px;
+              td {
+                cursor: pointer;
+                line-height: 32px;
+                padding: 4px;
+
+                &:hover {
+                  div {
+                    background-color: var(--hover-blue);
+                    border-radius: 50%;
+                  }
+                }
+              }
+              td.focus {
+                div {
+                  background-color: var(--blue-color);
+                  border-radius: 50%;
+                }
+              }
+              td.calendar-last-month,
+              td.calendar-next-month {
+                color: var(--disabled-color);
+              }
+            }
+          }
+        }
+      }
+    }
+    .time-picker {
+      margin-left: 20px;
+      height: 314px;
+      line-height: 24px;
+      border-left: 1px solid var(--border-color);
+      overflow-y: auto;
+      .list {
+        li {
+          padding: 0 5px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: var(--hover-blue);
+          }
+        }
+        li.focus {
+          background-color: var(--blue-color);
+        }
+      }
+    }
+  }
+}

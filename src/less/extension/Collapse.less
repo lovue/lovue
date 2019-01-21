@@ -1,0 +1,30 @@
+@import (reference) "../Mixins";
+
+.v-collapse {
+  .shadow;
+
+  .c-item {
+    .c-head {
+      .mixin-non-select;
+      padding: 0 var(--2unit);
+      height: var(--5unit);
+      line-height: var(--5unit);
+      cursor: pointer;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .c-body {
+      height: 0;
+      background-color: var(--bg-color);
+      //padding: var(--2unit);
+      overflow: hidden;
+      transition: height .2s ease-out;
+    }
+
+    &.open {
+      .c-body {
+        height: 200px;
+      }
+    }
+  }
+}

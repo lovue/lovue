@@ -26,110 +26,98 @@ import Tab from './components/Tab.vue'
 import Table from './components/Table.vue'
 import Upload from './components/Upload.vue'
 
-if (!NodeList.prototype.forEach) {
-  NodeList.prototype.forEach = Array.prototype.forEach
-}
-
-const Components = [
-  Button,
-  ButtonGroup,
-  ButtonSend,
-  Checkbox,
-  CheckboxGroup,
-  Col,
-  DatePicker,
-  Icon,
-  Input,
-  Menu,
-  Pagination,
-  Popup,
-  Progress,
-  PureSelect,
-  PwdStrength,
-  Radio,
-  RadioGroup,
-  Row,
-  Search,
-  Select,
-  Switch,
-  Tab,
-  Table,
-  Upload
-]
-Components.forEach(a => {
-  Vue.component(a.name, a)
-})
-
-const MessageConstructor = Vue.extend(Message)
-
-const Msg = function (option) {
-  let instance
-  option = option || {}
-
-  if (typeof option === 'string') {
-    option = {
-      message: option
-    }
+if (typeof window !== 'undefined' && window.Vue) {
+  if (!NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach
   }
 
-  instance = new MessageConstructor({
-    data: option
+  const Components = [
+    Button, ButtonGroup, ButtonSend,
+    Checkbox, CheckboxGroup, Col,
+    DatePicker,
+    Icon, Input,
+    Menu,
+    Pagination, Popup, Progress, PureSelect, PwdStrength,
+    Radio, RadioGroup, Row,
+    Search, Select, Switch,
+    Tab, Table,
+    Upload
+  ]
+  Components.forEach(a => {
+    Vue.component(a.name, a)
   })
-  instance.vm = instance.$mount()
-  document.body.appendChild(instance.vm.$el)
-  instance.vm.visible = true
-}
 
-Object.defineProperties(Vue.prototype, {
-  $msg: {
-    value: Msg
-  },
-  success: {
-    value: msg => Msg(msg)
-  },
-  info: {
-    value: msg => {
-      Msg({
-        type: 'info',
-        message: msg
-      })
-    }
-  },
-  warn: {
-    value: msg => {
-      Msg({
-        type: 'warn',
-        message: msg
-      })
-    }
-  },
-  error: {
-    value: (msg, close) => {
-      if (close === undefined) close = true
+  const MessageConstructor = Vue.extend(Message)
 
-      Msg({
-        type: 'error',
-        message: msg.msg || msg,
-        showClose: close
-      })
-    }
-  },
-  $modal: {
-    value: function (option = {}) {
-      let instance
-      if (typeof option === 'string') {
-        option = {
-          content: option
-        }
+  const Msg = function (option) {
+    let instance
+    option = option || {}
+
+    if (typeof option === 'string') {
+      option = {
+        message: option
       }
-
-      const Constructor = Vue.extend(Modal)
-      instance = new Constructor({
-        data: option
-      })
-      instance.vm = instance.$mount()
-      document.body.appendChild(instance.vm.$el)
-      instance.vm.visible = true
     }
+
+    instance = new MessageConstructor({
+      data: option
+    })
+    instance.vm = instance.$mount()
+    document.body.appendChild(instance.vm.$el)
+    instance.vm.visible = true
   }
-})
+
+  Object.defineProperties(Vue.prototype, {
+    $msg: {
+      value: Msg
+    },
+    success: {
+      value: msg => Msg(msg)
+    },
+    info: {
+      value: msg => {
+        Msg({
+          type: 'info',
+          message: msg
+        })
+      }
+    },
+    warn: {
+      value: msg => {
+        Msg({
+          type: 'warn',
+          message: msg
+        })
+      }
+    },
+    error: {
+      value: (msg, close) => {
+        if (close === undefined) close = true
+
+        Msg({
+          type: 'error',
+          message: msg.msg || msg,
+          showClose: close
+        })
+      }
+    },
+    $modal: {
+      value: function (option = {}) {
+        let instance
+        if (typeof option === 'string') {
+          option = {
+            content: option
+          }
+        }
+
+        const Constructor = Vue.extend(Modal)
+        instance = new Constructor({
+          data: option
+        })
+        instance.vm = instance.$mount()
+        document.body.appendChild(instance.vm.$el)
+        instance.vm.visible = true
+      }
+    }
+  })
+}

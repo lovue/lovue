@@ -6,6 +6,8 @@
 </template>
 
 <script>
+  import Select from '../components/Select.vue'
+
   const data = [
     {
       name: "北京市",
@@ -94,6 +96,9 @@
     },
     props: {
       value: Array
+    },
+    components: {
+      [Select.name]: Select
     },
     watch: {
       currentProvince(val) {

@@ -1,0 +1,74 @@
+@import (reference) "../Mixins";
+
+.v-checkbox {
+  .flex-between;
+  .mixin-non-select;
+  position: relative;
+  font-size: var(--small-font);
+  height: var(--2unit);
+  line-height: var(--2unit);
+  cursor: pointer;
+
+  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 16px;
+    height: 16px;
+    box-shadow: none;
+    border: 1px solid var(--second-color);
+    border-radius: 2px;
+    margin: 0;
+    margin-right: var(--unit);
+
+    &:checked {
+      border: none;
+      background-color: var(--blue-color);
+
+      & + span:after {
+        transform: scale(1) rotateZ(37deg);
+      }
+    }
+  }
+
+  span:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 7px;
+    height: 12px;
+    border: 2px solid var(--white);
+    border-top-color: transparent;
+    border-left-color: transparent;
+    transform-origin: 120% 90%;
+    transform: scale(0) rotateZ(37deg);
+    transition: transform .2s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+  }
+
+  &.reverse {
+    flex-direction: row-reverse;
+
+    input {
+      margin-right: 0;
+      margin-left: var(--unit);
+    }
+
+    span:after {
+      left: inherit;
+      right: 9px;
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    color: var(--disabled-color);
+
+    input {
+      border-color: var(--disabled-color);
+
+      &:checked {
+        background-color: var(--disabled-color);
+      }
+    }
+  }
+}

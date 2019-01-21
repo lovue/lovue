@@ -211,7 +211,8 @@ new Vue({
       { prop: 'fixed', desc: '是否顶部固定，否，则垂直居中', type: 'Boolean', deft: 'false' },
       { prop: 'confirm', desc: '点击确认时执行的异步请求，如果不提供，则点击确认直接关闭', type: 'Function', deft: 'undefined' },
       { prop: 'okText', desc: '确认按钮文本', type: 'String', deft: '确认' },
-      { prop: 'cancelText', desc: '取消按钮文本', type: 'String', deft: '取消' }
+      { prop: 'cancelText', desc: '取消按钮文本', type: 'String', deft: '取消' },
+      { prop: 'noFooter', desc: '是否没有底部区域', type: 'Boolean', deft: 'false' }
     ],
     sourceTable: [
       { prop: 'source', desc: '数据源', type: 'Array', deft: '[]' },

@@ -1,0 +1,35 @@
+@import (reference) "../Mixins";
+
+.v-pwd-strength {
+  .flex-start;
+  height: 20px;
+  font-size: var(--tiny-font);
+
+  .str-lines {
+    display: flex;
+
+    > span {
+      width: 40px;
+      height: 2px;
+      background-color: var(--disabled-color);
+      margin-right: 4px;
+      border-radius: 30px;
+
+      &.str-0 {
+        background-color: #880a38;
+      }
+      &.str-1 {
+        background-color: var(--error-color);
+      }
+      &.str-2 {
+        background-color: var(--warn-color);
+      }
+      &.str-3 {
+        background-color: #3db8c1;
+      }
+      &.str-4 {
+        background-color: var(--success-color);
+      }
+    }
+  }
+}

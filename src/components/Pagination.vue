@@ -30,6 +30,9 @@
   </div>
 </template>
 <script>
+  import Icon from './Icon.vue'
+  import PureSelect from './PureSelect.vue'
+
   export default {
     name: 'v-pagination',
     data() {
@@ -50,6 +53,10 @@
         'default': () => [10, 20, 50]
       },
       simple: Boolean
+    },
+    components: {
+      [Icon.name]: Icon,
+      [PureSelect.name]: PureSelect
     },
     computed: {
       pages() {

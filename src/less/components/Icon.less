@@ -1,0 +1,11 @@
+@keyframes rotate-reverse {
+  100% {
+    transform: rotate(-360deg)
+  }
+}
+
+.icon-refresh {
+  &.loading {
+    animation: rotate-reverse 2s linear infinite;
+  }
+}

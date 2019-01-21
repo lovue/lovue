@@ -1,0 +1,131 @@
+@import "Button";
+
+.v-upload {
+  .u-above {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .btn-wrap {
+      position: relative;
+
+      input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        font-size: 0;
+        cursor: pointer;
+      }
+
+      &:hover {
+        .v-btn {
+          background-color: var(--hover-blue);
+          border-color: var(--hover-blue);
+        }
+      }
+      &:active {
+        .v-btn {
+          background-color: var(--active-blue);
+          border-color: var(--active-blue);
+        }
+      }
+    }
+  }
+
+  .u-file-names {
+    display: flex;
+    align-items: center;
+
+    span {
+      padding: 4px 8px;
+      background-color: var(--bg-color);
+      border-radius: var(--border-radius);
+      margin-left: 6px;
+    }
+  }
+
+  .u-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+
+    .thumb-wrap {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      line-height: 98px;
+      text-align: center;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--border-color);
+      margin-top: 10px;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      .del-mask {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, .65);
+        cursor: pointer;
+
+        .icon-delete {
+          color: var(--white);
+        }
+      }
+
+      &:hover {
+        .del-mask {
+          display: flex;
+        }
+      }
+    }
+
+    .btn-wrap {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border: 1px dashed var(--border-color);
+      border-radius: var(--border-radius);
+      background-color: var(--bg-color);
+      margin-top: 10px;
+      margin-right: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: border-color .3s ease;
+
+      input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .icon-plus {
+        color: var(--second-color);
+      }
+
+      &:hover {
+        border-color: var(--blue-color);
+      }
+    }
+  }
+}

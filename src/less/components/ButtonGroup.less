@@ -1,0 +1,32 @@
+.v-btn-group {
+  display: flex;
+
+  .v-btn {
+    &:first-child:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:last-child:not(:first-child) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+
+    &.v-btn-primary + .v-btn-primary {
+      border-left-color: #8ce3f0;
+    }
+
+    &.v-btn-ghost:hover {
+      z-index: 2;
+
+    }
+
+    &.v-btn-ghost + .v-btn-ghost {
+      margin-left: -1px;
+    }
+  }
+}

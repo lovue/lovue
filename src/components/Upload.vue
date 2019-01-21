@@ -33,6 +33,9 @@
 </template>
 
 <script>
+  import Button from './Button.vue'
+  import Icon from './Icon.vue'
+
   export default {
     name: 'v-upload',
     data() {
@@ -57,6 +60,10 @@
         type: String,
         'default': 'button'
       }
+    },
+    components: {
+      [Button.name]: Button,
+      [Icon.name]: Icon
     },
     methods: {
       selectFile(ev) {

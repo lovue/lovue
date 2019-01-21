@@ -1,5 +1,5 @@
 <template>
-  <transition name="slide-fade2">
+  <transition name="message">
     <div class="v-message" v-show="visible">
       <div class="m-icon" :class="`m-${type}`">
         <v-icon :icon="iconType"></v-icon>
@@ -10,6 +10,8 @@
   </transition>
 </template>
 <script>
+  import Icon from './Icon.vue'
+
   export default {
     data() {
       return {
@@ -20,6 +22,9 @@
         duration: 2000,
         timer: null
       }
+    },
+    components: {
+      [Icon.name]: Icon
     },
     computed: {
       iconType() {

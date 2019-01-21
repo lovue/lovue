@@ -31,6 +31,8 @@
   </div>
 </template>
 <script>
+  import Icon from './Icon.vue'
+
   export default {
     name: 'v-select',
     data() {
@@ -44,6 +46,9 @@
         pos: '',
         open: ''
       }
+    },
+    components: {
+      [Icon.name]: Icon
     },
     computed: {
       filteredItems() {

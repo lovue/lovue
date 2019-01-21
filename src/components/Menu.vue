@@ -60,6 +60,8 @@
 </template>
 
 <script>
+  import Icon from './Icon.vue'
+
   export default {
     name: 'v-menu',
     data() {
@@ -74,6 +76,9 @@
         type: String,
         'default': 'link'
       }
+    },
+    components: {
+      [Icon.name]: Icon
     },
     methods: {
       closeMenu(menu) {

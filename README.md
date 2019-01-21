@@ -1,7 +1,8 @@
 # Vue-components
 - .vue单文件形式的组件，可直接导入使用
 - 包含一些纯CSS控件
-- 优点：几乎每个组件都是一个.vue格式的单文件，并且尽量减少代码量，方便阅读和理解以及自行修改源码
+- 优点：每个组件都是一个.vue格式的单文件，并且尽量减少代码量，结构简单，方便阅读和理解以及自行修改源码
+- 尽量使用最新的技术实现
 
 [Demo](https://lovue.now.sh)
 
@@ -46,7 +47,9 @@ new Vue({
 ```
 - 第三种：在js文件中导入单个vue文件，可以按需引用
 ```
-import Table from './components/Table.vue'
+import Table from 'lovue/src/components/Table.vue'
+import 'lovue/src/less/normalize.less'
+import 'lovue/src/less/components/Table.less'
 
 Vue.component(Table.name, Table)
 

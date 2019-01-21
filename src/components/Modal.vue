@@ -1,6 +1,6 @@
 <template>
   <div class="v-modal overlay" :class="customCls" v-show="visible">
-    <transition name="slide-fade">
+    <transition name="modal">
       <div class="v-window" v-show="visible">
         <div class="title-bar">
           <div class="title-name">{{title}}</div>
@@ -18,6 +18,9 @@
   </div>
 </template>
 <script>
+  import Button from './Button.vue'
+  import Icon from './Icon.vue'
+
   export default {
     data() {
       return {
@@ -31,6 +34,10 @@
         okText: '确认',
         cancelText: '取消'
       }
+    },
+    components: {
+      [Button.name]: Button,
+      [Icon.name]: Icon
     },
     computed: {
       customCls() {

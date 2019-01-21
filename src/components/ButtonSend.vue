@@ -2,6 +2,8 @@
   <v-button :loading="loading" @click="send" :disabled="!canSend">{{text}}</v-button>
 </template>
 <script>
+  import Button from './Button.vue'
+
   export default {
     name: 'v-button-send',
     data() {
@@ -19,6 +21,9 @@
       target: String,
       action: String,
       url: String
+    },
+    components: {
+      [Button.name]: Button
     },
     methods: {
       async send() {

@@ -11,6 +11,8 @@
   </div>
 </template>
 <script>
+  import Icon from '../components/Icon.vue'
+
   export default {
     name: 'v-tag',
     data() {
@@ -29,6 +31,9 @@
         type: Number,
         'default': 5
       }
+    },
+    components: {
+      [Icon.name]: Icon
     },
     methods: {
       addCustom(ev) {

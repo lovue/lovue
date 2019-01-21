@@ -1,0 +1,64 @@
+@import (reference) "../Mixins";
+
+.v-window {
+  .shadow;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+
+  .title-bar {
+    position: relative;
+    line-height: var(--bar-height);
+    border-bottom: 1px solid var(--border-color);
+    padding-left: var(--3unit);
+    display: flex;
+    justify-content: space-between;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+
+    .v-btn {
+      font-size: 2rem;
+      padding: 0 var(--2unit);
+      height: var(--bar-height);
+      line-height: var(--bar-height);
+      color: var(--second-color);
+
+      .icon {
+        width: auto;
+        height: auto;
+      }
+
+      &:hover {
+        color: var(--pink-color);
+      }
+    }
+  }
+
+  .win-content {
+    max-height: calc(85vh - var(--bar-height));
+    max-width: 80vw;
+    min-width: 520px;
+    padding: var(--unit) var(--2unit);
+    overflow-y: auto;
+
+    @media (max-height: 800px) {
+      max-height: calc(95vh - var(--bar-height));
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+  }
+
+  .win-footer {
+    padding: var(--unit) var(--2unit);
+    display: flex;
+    border-top: 1px solid var(--border-color);
+
+    .right {
+      margin-left: auto;
+
+      .v-btn-ghost {
+        margin-right: var(--unit);
+      }
+    }
+  }
+}

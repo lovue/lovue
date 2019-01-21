@@ -1,0 +1,70 @@
+@import (reference) "../Mixins";
+
+.v-radio {
+  .flex-between;
+  .mixin-non-select;
+  position: relative;
+  font-size: var(--small-font);
+  height: var(--2unit);
+  cursor: pointer;
+
+  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: var(--2unit);
+    height: var(--2unit);
+    box-shadow: none;
+    border: 1px solid var(--second-color);
+    border-radius: 50%;
+    margin: 0;
+    margin-right: var(--unit);
+
+    &:checked {
+      border-color: var(--blue-color);
+
+      & + span:after {
+        transform: scale(0.5);
+      }
+    }
+  }
+
+  span:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--2unit);
+    height: var(--2unit);
+    border-radius: 50%;
+    background-color: var(--blue-color);
+    transform: scale(0);
+    transition: transform .2s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+  }
+
+  &.reverse {
+    flex-direction: row-reverse;
+
+    input {
+      margin-right: 0;
+      margin-left: var(--unit);
+    }
+
+    span:after {
+      left: inherit;
+      right: 0;
+    }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    color: var(--disabled-color);
+
+    input {
+      border-color: var(--disabled-color);
+
+      &:checked {
+        background-color: var(--disabled-color);
+      }
+    }
+  }
+}

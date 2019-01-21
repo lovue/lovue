@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import Icon from './Icon.vue'
+
   export default {
     name: 'v-button',
     props: {
@@ -16,6 +18,9 @@
       icon: String,
       loading: Boolean,
       submit: Boolean
+    },
+    components: {
+      [Icon.name]: Icon
     },
     computed: {
       customClass() {

@@ -1,0 +1,37 @@
+@import "Button";
+@import "Window";
+
+.modal-enter, .modal-leave-active {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.v-modal {
+  .v-window {
+    transition: opacity .2s, transform .3s;
+  }
+
+  .win-content {
+    padding: var(--3unit);
+  }
+
+  &.no-title {
+    .title-bar {
+      display: none;
+    }
+
+    .win-content {
+      padding: var(--4unit) var(--3unit);
+    }
+
+    .win-footer {
+      border-top: none;
+    }
+  }
+
+  &.fixed {
+    .v-window {
+      margin-top: 100px;
+    }
+  }
+}

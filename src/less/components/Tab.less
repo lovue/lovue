@@ -1,0 +1,32 @@
+.v-tab {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+
+  .tabs {
+    display: flex;
+    position: relative;
+
+    .tab {
+      line-height: 48px;
+      height: 48px;
+      white-space: nowrap;
+      flex: 1;
+      padding: 0 10px;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      .icon {
+        margin-right: 4px;
+      }
+    }
+  }
+  .focus-line {
+    position: absolute;
+    bottom: -1px;
+    height: 2px;
+    background-color: var(--blue-color);
+    will-change: left, right;
+  }
+}

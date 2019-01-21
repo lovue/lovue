@@ -8,7 +8,7 @@
       <div class="win-content">
         <slot name="content"></slot>
       </div>
-      <div class="win-footer">
+      <div class="win-footer" v-if="!noFooter">
         <div class="right">
           <slot name="footer">
             <v-button type="ghost" @click="close">{{cancelText || '取消'}}</v-button>
@@ -20,6 +20,9 @@
   </div>
 </template>
 <script>
+  import Button from './Button.vue'
+  import Icon from './Icon.vue'
+
   export default {
     name: 'v-popup',
     data() {
@@ -37,7 +40,12 @@
       confirm: Function,
       fixed: Boolean,
       okText: String,
-      cancelText: String
+      cancelText: String,
+      noFooter: Boolean
+    },
+    components: {
+      [Button.name]: Button,
+      [Icon.name]: Icon
     },
     computed: {
       transform() {
