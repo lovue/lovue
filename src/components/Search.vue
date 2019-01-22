@@ -13,6 +13,11 @@
 
   export default {
     name: 'v-search',
+    data() {
+      return {
+        keywords: ''
+      }
+    },
     props: {
       auto: {
         type: Boolean,
@@ -30,6 +35,8 @@
     },
     methods: {
       inputHandler(text) {
+        this.keywords = text
+
         if (!this.auto) return
 
         if (timer) {
