@@ -70,12 +70,12 @@
   font-size: var(--small-font);
   border: 1px solid var(--border-color);
 
-  caption {
+  > caption {
     margin-bottom: 10px;
     font-size: var(--normal-font);
   }
 
-  thead {
+  > thead {
     border-bottom: 1px solid var(--border-color);
     background-color: #F5F6FA;
 
@@ -97,7 +97,8 @@
       }
     }
   }
-  tbody {
+
+  > tbody {
     & when (@striped = true) {
       tr:nth-child(odd) {
         background-color: var(--bg-color);
