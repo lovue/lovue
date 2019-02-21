@@ -79,9 +79,9 @@
     border-bottom: 1px solid var(--border-color);
     background-color: #F5F6FA;
 
-    tr {
+    > tr {
       height: @line-height;
-      th {
+      > th {
         padding: 0 15px;
         font-weight: normal;
         color: var(--second-color);
@@ -105,7 +105,7 @@
       }
     }
 
-    tr {
+    > tr {
       height: @line-height;
       transition: background-color .25s ease;
       border-bottom: 1px solid var(--border-color);
@@ -122,7 +122,7 @@
         text-align: center;
       }
 
-      td {
+      > td {
         padding: 0 15px;
         white-space: nowrap;
 

@@ -39,23 +39,25 @@
     border-right: 0;
 
     > thead {
-      th {
-        color: #666;
-        line-height: 28px;
+      > tr {
+        > th {
+          color: #666;
+          line-height: 28px;
 
-        &.sticky {
-          position: -webkit-sticky;
-          position: sticky;
-          background-color: #f5f6fa;
+          &.sticky {
+            position: -webkit-sticky;
+            position: sticky;
+            background-color: #f5f6fa;
 
-          &.left {
-            left: 0;
-            box-shadow: 1px 5px 8px rgba(0, 0, 0, .08);
-          }
+            &.left {
+              left: 0;
+              box-shadow: 1px 5px 8px rgba(0, 0, 0, .08);
+            }
 
-          &.right {
-            right: 0;
-            box-shadow: -1px 5px 8px rgba(0, 0, 0, .08);
+            &.right {
+              right: 0;
+              box-shadow: -1px 5px 8px rgba(0, 0, 0, .08);
+            }
           }
         }
       }
@@ -88,41 +90,8 @@
     }
 
     > tbody {
-      tr {
-        &.no-data-row {
-          td {
-            text-align: center;
-            color: var(--second-color);
-          }
-        }
-
-        &.focus {
-          background-color: var(--table-highlight);
-
-          td {
-            &.sticky {
-              background-color: var(--table-highlight);
-            }
-          }
-
-          &:hover {
-            td {
-              &.sticky {
-                background-color: var(--table-highlight);
-              }
-            }
-          }
-        }
-
-        &:hover {
-          td {
-            &.sticky {
-              background-color: var(--bg-color);
-            }
-          }
-        }
-
-        td {
+      > tr {
+        > td {
           transition: background-color .2s ease;
 
           &.sticky {
@@ -138,6 +107,39 @@
             &.right {
               right: 0;
               box-shadow: -1px 5px 8px rgba(0, 0, 0, .08);
+            }
+          }
+        }
+
+        &.no-data-row {
+          > td {
+            text-align: center;
+            color: var(--second-color);
+          }
+        }
+
+        &.focus {
+          background-color: var(--table-highlight);
+
+          > td {
+            &.sticky {
+              background-color: var(--table-highlight);
+            }
+          }
+
+          &:hover {
+            > td {
+              &.sticky {
+                background-color: var(--table-highlight);
+              }
+            }
+          }
+        }
+
+        &:hover {
+          > td {
+            &.sticky {
+              background-color: var(--bg-color);
             }
           }
         }
@@ -164,13 +166,14 @@
 
       > thead {
         border: none;
-        tr {
+        > tr {
           height: 0;
-        }
-        th {
-          height: 0;
-          line-height: 0;
-          padding: 0;
+
+          > th {
+            height: 0;
+            line-height: 0;
+            padding: 0;
+          }
         }
 
         .t-title {

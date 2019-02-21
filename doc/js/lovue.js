@@ -8,16 +8,127 @@
   //
   //
   //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
 
   var script = {
+    name: 'v-icon',
+    props: {
+      icon: String,
+      size: String
+    }
+  };
+
+  function normalizeComponent(compiledTemplate, injectStyle, defaultExport, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, isShadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
+      if (typeof isShadowMode === 'function') {
+          createInjectorSSR = createInjector;
+          createInjector = isShadowMode;
+          isShadowMode = false;
+      }
+      // Vue.extend constructor export interop
+      const options = typeof defaultExport === 'function' ? defaultExport.options : defaultExport;
+      // render functions
+      if (compiledTemplate && compiledTemplate.render) {
+          options.render = compiledTemplate.render;
+          options.staticRenderFns = compiledTemplate.staticRenderFns;
+          options._compiled = true;
+          // functional template
+          if (isFunctionalTemplate) {
+              options.functional = true;
+          }
+      }
+      // scopedId
+      if (scopeId) {
+          options._scopeId = scopeId;
+      }
+      let hook;
+      if (moduleIdentifier) {
+          // server build
+          hook = function (context) {
+              // 2.3 injection
+              context =
+                  context || // cached call
+                      (this.$vnode && this.$vnode.ssrContext) || // stateful
+                      (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
+              // 2.2 with runInNewContext: true
+              if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+                  context = __VUE_SSR_CONTEXT__;
+              }
+              // inject component styles
+              if (injectStyle) {
+                  injectStyle.call(this, createInjectorSSR(context));
+              }
+              // register component module identifier for async chunk inference
+              if (context && context._registeredComponents) {
+                  context._registeredComponents.add(moduleIdentifier);
+              }
+          };
+          // used by ssr in case component is cached and beforeCreate
+          // never gets called
+          options._ssrRegister = hook;
+      }
+      else if (injectStyle) {
+          hook = isShadowMode
+              ? function () {
+                  injectStyle.call(this, createInjectorShadow(this.$root.$options.shadowRoot));
+              }
+              : function (context) {
+                  injectStyle.call(this, createInjector(context));
+              };
+      }
+      if (hook) {
+          if (options.functional) {
+              // register for functional component in vue file
+              const originalRender = options.render;
+              options.render = function renderWithStyleInjection(h, context) {
+                  hook.call(context);
+                  return originalRender(h, context);
+              };
+          }
+          else {
+              // inject component registration as beforeCreate hook
+              const existing = options.beforeCreate;
+              options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+          }
+      }
+      return defaultExport;
+  }
+
+  /* script */
+  const __vue_script__ = script;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script.__file = "D:\\workspace\\lovue\\src\\components\\Icon.vue";
+
+  /* template */
+  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{class:("icon icon-" + _vm.icon),attrs:{"width":_vm.size || 20,"height":_vm.size || 20},on:{"click":function($event){_vm.$emit('click');}}},[_c('use',{attrs:{"xlink:href":("#icon-" + _vm.icon)}})])};
+  var __vue_staticRenderFns__ = [];
+
+    /* style */
+    const __vue_inject_styles__ = undefined;
+    /* scoped */
+    const __vue_scope_id__ = undefined;
+    /* module identifier */
+    const __vue_module_identifier__ = undefined;
+    /* functional template */
+    const __vue_is_functional_template__ = false;
+    /* style inject */
+    
+    /* style inject SSR */
+    
+
+    
+    var Icon = normalizeComponent(
+      { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
+      __vue_inject_styles__,
+      __vue_script__,
+      __vue_scope_id__,
+      __vue_is_functional_template__,
+      __vue_module_identifier__,
+      undefined,
+      undefined
+    );
+
+  //
+
+  var script$1 = {
     data() {
       return {
         visible: false,
@@ -27,6 +138,9 @@
         duration: 2000,
         timer: null
       }
+    },
+    components: {
+      [Icon.name]: Icon
     },
     computed: {
       iconType() {
@@ -59,81 +173,106 @@
   };
 
   /* script */
-              const __vue_script__ = script;
-              
+  const __vue_script__$1 = script$1;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$1.__file = "D:\\workspace\\lovue\\src\\components\\Message.vue";
+
   /* template */
-  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"slide-fade2"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-message"},[_c('div',{staticClass:"m-icon",class:("m-" + _vm.type)},[_c('v-icon',{attrs:{"icon":_vm.iconType}})],1),_vm._v(" "),_c('p',[_vm._v(_vm._s(_vm.message))]),_vm._v(" "),(_vm.showClose)?_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){return _vm.close($event)}}}):_vm._e()],1)])};
-  var __vue_staticRenderFns__ = [];
+  var __vue_render__$1 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"message"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-message"},[_c('div',{staticClass:"m-icon",class:("m-" + _vm.type)},[_c('v-icon',{attrs:{"icon":_vm.iconType}})],1),_vm._v(" "),_c('p',[_vm._v(_vm._s(_vm.message))]),_vm._v(" "),(_vm.showClose)?_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){return _vm.close($event)}}}):_vm._e()],1)])};
+  var __vue_staticRenderFns__$1 = [];
 
     /* style */
-    const __vue_inject_styles__ = undefined;
+    const __vue_inject_styles__$1 = undefined;
     /* scoped */
-    const __vue_scope_id__ = undefined;
+    const __vue_scope_id__$1 = undefined;
     /* module identifier */
-    const __vue_module_identifier__ = undefined;
+    const __vue_module_identifier__$1 = undefined;
     /* functional template */
-    const __vue_is_functional_template__ = false;
-    /* component normalizer */
-    function __vue_normalize__(
-      template, style, script$$1,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script$$1 === 'function' ? script$$1.options : script$$1) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Message.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
+    const __vue_is_functional_template__$1 = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Message = __vue_normalize__(
-      { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
-      __vue_inject_styles__,
-      __vue_script__,
-      __vue_scope_id__,
-      __vue_is_functional_template__,
-      __vue_module_identifier__,
+    var Message = normalizeComponent(
+      { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
+      __vue_inject_styles__$1,
+      __vue_script__$1,
+      __vue_scope_id__$1,
+      __vue_is_functional_template__$1,
+      __vue_module_identifier__$1,
       undefined,
       undefined
     );
 
   //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
+
+  var script$2 = {
+    name: 'v-button',
+    props: {
+      type: String,
+      size: String,
+      disabled: Boolean,
+      icon: String,
+      loading: Boolean,
+      submit: Boolean
+    },
+    components: {
+      [Icon.name]: Icon
+    },
+    computed: {
+      customClass() {
+        let classes = `v-btn-${this.type || 'primary'}`;
+        this.size && (classes += ` v-btn-${this.size}`);
+        return classes
+      }
+    },
+    methods: {
+      click() {
+        if (this.loading) return
+        this.$emit('click');
+      }
+    }
+  };
+
+  /* script */
+  const __vue_script__$2 = script$2;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$2.__file = "D:\\workspace\\lovue\\src\\components\\Button.vue";
+
+  /* template */
+  var __vue_render__$2 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"v-btn",class:_vm.customClass,attrs:{"type":_vm.submit || 'button',"disabled":_vm.disabled},on:{"click":_vm.click}},[(!!_vm.icon && !_vm.loading)?_c('v-icon',{attrs:{"icon":_vm.icon}}):_vm._e(),_vm._v(" "),(_vm.loading)?_c('v-icon',{class:{loading: _vm.loading},attrs:{"icon":"refresh"}}):_vm._e(),_vm._v(" "),_vm._t("default")],2)};
+  var __vue_staticRenderFns__$2 = [];
+
+    /* style */
+    const __vue_inject_styles__$2 = undefined;
+    /* scoped */
+    const __vue_scope_id__$2 = undefined;
+    /* module identifier */
+    const __vue_module_identifier__$2 = undefined;
+    /* functional template */
+    const __vue_is_functional_template__$2 = false;
+    /* style inject */
+    
+    /* style inject SSR */
+    
+
+    
+    var Button = normalizeComponent(
+      { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
+      __vue_inject_styles__$2,
+      __vue_script__$2,
+      __vue_scope_id__$2,
+      __vue_is_functional_template__$2,
+      __vue_module_identifier__$2,
+      undefined,
+      undefined
+    );
+
   //
 
-  var script$1 = {
+  var script$3 = {
     data() {
       return {
         visible: false,
@@ -146,6 +285,10 @@
         okText: '确认',
         cancelText: '取消'
       }
+    },
+    components: {
+      [Button.name]: Button,
+      [Icon.name]: Icon
     },
     computed: {
       customCls() {
@@ -179,165 +322,12 @@
   };
 
   /* script */
-              const __vue_script__$1 = script$1;
-              
+  const __vue_script__$3 = script$3;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$3.__file = "D:\\workspace\\lovue\\src\\components\\Modal.vue";
+
   /* template */
-  var __vue_render__$1 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-modal overlay",class:_vm.customCls},[_c('transition',{attrs:{"name":"slide-fade"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-window"},[_c('div',{staticClass:"title-bar"},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content",domProps:{"innerHTML":_vm._s(_vm.content)}}),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[(!_vm.noCancel)?_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText))]):_vm._e(),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText))])],1)])])])],1)};
-  var __vue_staticRenderFns__$1 = [];
-
-    /* style */
-    const __vue_inject_styles__$1 = undefined;
-    /* scoped */
-    const __vue_scope_id__$1 = undefined;
-    /* module identifier */
-    const __vue_module_identifier__$1 = undefined;
-    /* functional template */
-    const __vue_is_functional_template__$1 = false;
-    /* component normalizer */
-    function __vue_normalize__$1(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Modal.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
-    /* style inject */
-    
-    /* style inject SSR */
-    
-
-    
-    var Modal = __vue_normalize__$1(
-      { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
-      __vue_inject_styles__$1,
-      __vue_script__$1,
-      __vue_scope_id__$1,
-      __vue_is_functional_template__$1,
-      __vue_module_identifier__$1,
-      undefined,
-      undefined
-    );
-
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-
-  var script$2 = {
-    name: 'v-button',
-    props: {
-      type: String,
-      size: String,
-      disabled: Boolean,
-      icon: String,
-      loading: Boolean,
-      submit: Boolean
-    },
-    computed: {
-      customClass() {
-        let classes = `v-btn-${this.type || 'primary'}`;
-        this.size && (classes += ` v-btn-${this.size}`);
-        return classes
-      }
-    },
-    methods: {
-      click() {
-        if (this.loading) return
-        this.$emit('click');
-      }
-    }
-  };
-
-  /* script */
-              const __vue_script__$2 = script$2;
-              
-  /* template */
-  var __vue_render__$2 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"v-btn",class:_vm.customClass,attrs:{"type":_vm.submit || 'button',"disabled":_vm.disabled},on:{"click":_vm.click}},[(!!_vm.icon && !_vm.loading)?_c('v-icon',{attrs:{"icon":_vm.icon}}):_vm._e(),_vm._v(" "),(_vm.loading)?_c('v-icon',{class:{loading: _vm.loading},attrs:{"icon":"refresh"}}):_vm._e(),_vm._v(" "),_vm._t("default")],2)};
-  var __vue_staticRenderFns__$2 = [];
-
-    /* style */
-    const __vue_inject_styles__$2 = undefined;
-    /* scoped */
-    const __vue_scope_id__$2 = undefined;
-    /* module identifier */
-    const __vue_module_identifier__$2 = undefined;
-    /* functional template */
-    const __vue_is_functional_template__$2 = false;
-    /* component normalizer */
-    function __vue_normalize__$2(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Button.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
-    /* style inject */
-    
-    /* style inject SSR */
-    
-
-    
-    var Button = __vue_normalize__$2(
-      { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
-      __vue_inject_styles__$2,
-      __vue_script__$2,
-      __vue_scope_id__$2,
-      __vue_is_functional_template__$2,
-      __vue_module_identifier__$2,
-      undefined,
-      undefined
-    );
-
-  //
-  //
-  //
-  //
-  //
-  //
-
-  var script$3 = {
-    name: 'v-button-group'
-  };
-
-  /* script */
-              const __vue_script__$3 = script$3;
-              
-  /* template */
-  var __vue_render__$3 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-btn-group"},[_vm._t("default")],2)};
+  var __vue_render__$3 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-modal overlay",class:_vm.customCls},[_c('transition',{attrs:{"name":"modal"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-window"},[_c('div',{staticClass:"title-bar"},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content",domProps:{"innerHTML":_vm._s(_vm.content)}}),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[(!_vm.noCancel)?_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText))]):_vm._e(),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText))])],1)])])])],1)};
   var __vue_staticRenderFns__$3 = [];
 
     /* style */
@@ -348,36 +338,13 @@
     const __vue_module_identifier__$3 = undefined;
     /* functional template */
     const __vue_is_functional_template__$3 = false;
-    /* component normalizer */
-    function __vue_normalize__$3(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "ButtonGroup.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var ButtonGroup = __vue_normalize__$3(
+    var Modal = normalizeComponent(
       { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
       __vue_inject_styles__$3,
       __vue_script__$3,
@@ -391,8 +358,51 @@
   //
   //
   //
+  //
+  //
+  //
 
   var script$4 = {
+    name: 'v-button-group'
+  };
+
+  /* script */
+  const __vue_script__$4 = script$4;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$4.__file = "D:\\workspace\\lovue\\src\\components\\ButtonGroup.vue";
+
+  /* template */
+  var __vue_render__$4 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-btn-group"},[_vm._t("default")],2)};
+  var __vue_staticRenderFns__$4 = [];
+
+    /* style */
+    const __vue_inject_styles__$4 = undefined;
+    /* scoped */
+    const __vue_scope_id__$4 = undefined;
+    /* module identifier */
+    const __vue_module_identifier__$4 = undefined;
+    /* functional template */
+    const __vue_is_functional_template__$4 = false;
+    /* style inject */
+    
+    /* style inject SSR */
+    
+
+    
+    var ButtonGroup = normalizeComponent(
+      { render: __vue_render__$4, staticRenderFns: __vue_staticRenderFns__$4 },
+      __vue_inject_styles__$4,
+      __vue_script__$4,
+      __vue_scope_id__$4,
+      __vue_is_functional_template__$4,
+      __vue_module_identifier__$4,
+      undefined,
+      undefined
+    );
+
+  //
+
+  var script$5 = {
     name: 'v-button-send',
     data() {
       return {
@@ -409,6 +419,9 @@
       target: String,
       action: String,
       url: String
+    },
+    components: {
+      [Button.name]: Button
     },
     methods: {
       async send() {
@@ -452,56 +465,35 @@
   };
 
   /* script */
-              const __vue_script__$4 = script$4;
-              
+  const __vue_script__$5 = script$5;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$5.__file = "D:\\workspace\\lovue\\src\\components\\ButtonSend.vue";
+
   /* template */
-  var __vue_render__$4 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-button',{attrs:{"loading":_vm.loading,"disabled":!_vm.canSend},on:{"click":_vm.send}},[_vm._v(_vm._s(_vm.text))])};
-  var __vue_staticRenderFns__$4 = [];
+  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-button',{attrs:{"loading":_vm.loading,"disabled":!_vm.canSend},on:{"click":_vm.send}},[_vm._v(_vm._s(_vm.text))])};
+  var __vue_staticRenderFns__$5 = [];
 
     /* style */
-    const __vue_inject_styles__$4 = undefined;
+    const __vue_inject_styles__$5 = undefined;
     /* scoped */
-    const __vue_scope_id__$4 = undefined;
+    const __vue_scope_id__$5 = undefined;
     /* module identifier */
-    const __vue_module_identifier__$4 = undefined;
+    const __vue_module_identifier__$5 = undefined;
     /* functional template */
-    const __vue_is_functional_template__$4 = false;
-    /* component normalizer */
-    function __vue_normalize__$4(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "ButtonSend.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
+    const __vue_is_functional_template__$5 = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var ButtonSend = __vue_normalize__$4(
-      { render: __vue_render__$4, staticRenderFns: __vue_staticRenderFns__$4 },
-      __vue_inject_styles__$4,
-      __vue_script__$4,
-      __vue_scope_id__$4,
-      __vue_is_functional_template__$4,
-      __vue_module_identifier__$4,
+    var ButtonSend = normalizeComponent(
+      { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
+      __vue_inject_styles__$5,
+      __vue_script__$5,
+      __vue_scope_id__$5,
+      __vue_is_functional_template__$5,
+      __vue_module_identifier__$5,
       undefined,
       undefined
     );
@@ -514,7 +506,7 @@
   //
   //
 
-  var script$5 = {
+  var script$6 = {
     name: 'v-checkbox',
     data() {
       return {
@@ -542,57 +534,36 @@
   };
 
   /* script */
-              const __vue_script__$5 = script$5;
-              
+  const __vue_script__$6 = script$6;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$6.__file = "D:\\workspace\\lovue\\src\\components\\Checkbox.vue";
+
   /* template */
-  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{class:( _obj = { reverse: _vm.reverse, disabled: _vm.disabled}, _obj[_vm.lnfClass] = true, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,null)>-1:(_vm.checked)},on:{"change":[function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}},function($event){_vm.$emit('input', _vm.checked);}]}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])
+  var __vue_render__$6 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{class:( _obj = { reverse: _vm.reverse, disabled: _vm.disabled}, _obj[_vm.lnfClass] = true, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,null)>-1:(_vm.checked)},on:{"change":[function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}},function($event){_vm.$emit('input', _vm.checked);}]}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])
   var _obj;};
-  var __vue_staticRenderFns__$5 = [];
+  var __vue_staticRenderFns__$6 = [];
 
     /* style */
-    const __vue_inject_styles__$5 = undefined;
+    const __vue_inject_styles__$6 = undefined;
     /* scoped */
-    const __vue_scope_id__$5 = undefined;
+    const __vue_scope_id__$6 = undefined;
     /* module identifier */
-    const __vue_module_identifier__$5 = undefined;
+    const __vue_module_identifier__$6 = undefined;
     /* functional template */
-    const __vue_is_functional_template__$5 = false;
-    /* component normalizer */
-    function __vue_normalize__$5(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Checkbox.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
+    const __vue_is_functional_template__$6 = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Checkbox = __vue_normalize__$5(
-      { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
-      __vue_inject_styles__$5,
-      __vue_script__$5,
-      __vue_scope_id__$5,
-      __vue_is_functional_template__$5,
-      __vue_module_identifier__$5,
+    var Checkbox = normalizeComponent(
+      { render: __vue_render__$6, staticRenderFns: __vue_staticRenderFns__$6 },
+      __vue_inject_styles__$6,
+      __vue_script__$6,
+      __vue_scope_id__$6,
+      __vue_is_functional_template__$6,
+      __vue_module_identifier__$6,
       undefined,
       undefined
     );
@@ -609,7 +580,7 @@
   //
   //
 
-  var script$6 = {
+  var script$7 = {
     name: 'v-checkbox-group',
     data() {
       return {
@@ -640,80 +611,13 @@
   };
 
   /* script */
-              const __vue_script__$6 = script$6;
-              
+  const __vue_script__$7 = script$7;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$7.__file = "D:\\workspace\\lovue\\src\\components\\CheckboxGroup.vue";
+
   /* template */
-  var __vue_render__$6 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-checkbox-group",class:{vertical: _vm.vertical}},_vm._l((_vm.source),function(item){return _c('div',{staticClass:"g-item"},[_c('label',{class:( _obj = { reverse: _vm.reverse, disabled: item.disabled}, _obj[_vm.lnfClass] = true, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,item.value)>-1:(_vm.checked)},on:{"change":function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.value,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])])
+  var __vue_render__$7 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-checkbox-group",class:{vertical: _vm.vertical}},_vm._l((_vm.source),function(item){return _c('div',{staticClass:"g-item"},[_c('label',{class:( _obj = { reverse: _vm.reverse, disabled: item.disabled}, _obj[_vm.lnfClass] = true, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,item.value)>-1:(_vm.checked)},on:{"change":function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.value,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])])
   var _obj;}))};
-  var __vue_staticRenderFns__$6 = [];
-
-    /* style */
-    const __vue_inject_styles__$6 = undefined;
-    /* scoped */
-    const __vue_scope_id__$6 = undefined;
-    /* module identifier */
-    const __vue_module_identifier__$6 = undefined;
-    /* functional template */
-    const __vue_is_functional_template__$6 = false;
-    /* component normalizer */
-    function __vue_normalize__$6(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "CheckboxGroup.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
-    /* style inject */
-    
-    /* style inject SSR */
-    
-
-    
-    var CheckboxGroup = __vue_normalize__$6(
-      { render: __vue_render__$6, staticRenderFns: __vue_staticRenderFns__$6 },
-      __vue_inject_styles__$6,
-      __vue_script__$6,
-      __vue_scope_id__$6,
-      __vue_is_functional_template__$6,
-      __vue_module_identifier__$6,
-      undefined,
-      undefined
-    );
-
-  //
-  //
-  //
-  //
-  //
-  //
-
-  var script$7 = {
-    name: 'v-col',
-    props: {
-      span: Number
-    }
-  };
-
-  /* script */
-              const __vue_script__$7 = script$7;
-              
-  /* template */
-  var __vue_render__$7 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-col",class:("col-" + _vm.span)},[_vm._t("default")],2)};
   var __vue_staticRenderFns__$7 = [];
 
     /* style */
@@ -724,36 +628,13 @@
     const __vue_module_identifier__$7 = undefined;
     /* functional template */
     const __vue_is_functional_template__$7 = false;
-    /* component normalizer */
-    function __vue_normalize__$7(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Col.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Col = __vue_normalize__$7(
+    var CheckboxGroup = normalizeComponent(
       { render: __vue_render__$7, staticRenderFns: __vue_staticRenderFns__$7 },
       __vue_inject_styles__$7,
       __vue_script__$7,
@@ -770,26 +651,48 @@
   //
   //
   //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
+
+  var script$8 = {
+    name: 'v-col',
+    props: {
+      span: Number
+    }
+  };
+
+  /* script */
+  const __vue_script__$8 = script$8;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$8.__file = "D:\\workspace\\lovue\\src\\components\\Col.vue";
+
+  /* template */
+  var __vue_render__$8 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-col",class:("col-" + _vm.span)},[_vm._t("default")],2)};
+  var __vue_staticRenderFns__$8 = [];
+
+    /* style */
+    const __vue_inject_styles__$8 = undefined;
+    /* scoped */
+    const __vue_scope_id__$8 = undefined;
+    /* module identifier */
+    const __vue_module_identifier__$8 = undefined;
+    /* functional template */
+    const __vue_is_functional_template__$8 = false;
+    /* style inject */
+    
+    /* style inject SSR */
+    
+
+    
+    var Col = normalizeComponent(
+      { render: __vue_render__$8, staticRenderFns: __vue_staticRenderFns__$8 },
+      __vue_inject_styles__$8,
+      __vue_script__$8,
+      __vue_scope_id__$8,
+      __vue_is_functional_template__$8,
+      __vue_module_identifier__$8,
+      undefined,
+      undefined
+    );
+
   //
   //
   //
@@ -806,7 +709,102 @@
   //
   //
 
-  var script$8 = {
+  var script$9 = {
+    name: 'v-pure-select',
+    data() {
+      return {
+        selfClicked: false,
+        current: this.value,
+        bShowDd: false,
+        open: '',
+        pos: ''
+      }
+    },
+    props: {
+      value: [String, Number],
+      name: String,
+      source: Array,
+      placeholder: String
+    },
+    computed: {
+      ddHeight() {
+        return Math.min(this.source.length * 32 + 16, 200)
+      }
+    },
+    watch: {
+      value(val) {
+        this.current = val;
+      },
+      current(val) {
+        this.$emit('input', val);
+      }
+    },
+    methods: {
+      updatePos() {
+        const bottomSpace = window.innerHeight - this.$el.getBoundingClientRect().bottom;
+        this.pos = bottomSpace < this.ddHeight ? 'top' : 'bottom';
+      },
+      showDd() {
+        this.selfClicked = true;
+        if (this.bShowDd) return
+
+        this.bShowDd = true;
+        this.updatePos();
+        setTimeout(() => this.open = 'open', 40);
+      },
+      hideDd() {
+        this.open = '';
+        setTimeout(() => {
+          this.pos = '';
+          this.bShowDd = false;
+        }, 400);
+      }
+    },
+    mounted() {
+      window.addEventListener('click', () => {
+        if (!this.selfClicked) this.hideDd();
+        this.selfClicked = false;
+      });
+    }
+  };
+
+  /* script */
+  const __vue_script__$9 = script$9;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$9.__file = "D:\\workspace\\lovue\\src\\components\\PureSelect.vue";
+
+  /* template */
+  var __vue_render__$9 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dl',{staticClass:"v-pure-select",class:_vm.open,on:{"click":_vm.showDd}},[_c('dt',[(_vm.current === undefined)?_c('span',{staticClass:"placeholder"},[_vm._v(_vm._s(_vm.placeholder || '请选择'))]):_vm._e(),_vm._v(" "),_vm._l((_vm.source),function(elem,index){return [_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.current),expression:"current"}],attrs:{"id":("pure_radio_" + _vm._uid + "_" + index),"type":"radio","name":_vm.name},domProps:{"value":elem,"checked":_vm._q(_vm.current,elem)},on:{"change":function($event){_vm.current=elem;}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(elem))])]})],2),_vm._v(" "),_c('dd',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowDd),expression:"bShowDd"}],class:_vm.pos},_vm._l((_vm.source),function(elem,index){return _c('label',{class:{focus: _vm.current === elem},attrs:{"for":("pure_radio_" + _vm._uid + "_" + index)},on:{"click":_vm.hideDd}},[_vm._v(_vm._s(elem))])}))])};
+  var __vue_staticRenderFns__$9 = [];
+
+    /* style */
+    const __vue_inject_styles__$9 = undefined;
+    /* scoped */
+    const __vue_scope_id__$9 = undefined;
+    /* module identifier */
+    const __vue_module_identifier__$9 = undefined;
+    /* functional template */
+    const __vue_is_functional_template__$9 = false;
+    /* style inject */
+    
+    /* style inject SSR */
+    
+
+    
+    var PureSelect = normalizeComponent(
+      { render: __vue_render__$9, staticRenderFns: __vue_staticRenderFns__$9 },
+      __vue_inject_styles__$9,
+      __vue_script__$9,
+      __vue_scope_id__$9,
+      __vue_is_functional_template__$9,
+      __vue_module_identifier__$9,
+      undefined,
+      undefined
+    );
+
+  //
+
+  var script$a = {
     name: 'v-date-picker',
     data() {
       return {
@@ -843,6 +841,9 @@
       weeks: Array,
       months: Array,
       fixedWidth: Boolean
+    },
+    components: {
+      [PureSelect.name]: PureSelect
     },
     computed: {
       inputStyle() {
@@ -1023,123 +1024,35 @@
   }
 
   /* script */
-              const __vue_script__$8 = script$8;
-              
+  const __vue_script__$a = script$a;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$a.__file = "D:\\workspace\\lovue\\src\\components\\DatePicker.vue";
+
   /* template */
-  var __vue_render__$8 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-date-picker",on:{"click":_vm.showPicker}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.date),expression:"date"}],staticClass:"input",style:(_vm.inputStyle),attrs:{"name":_vm.name,"readonly":""},domProps:{"value":(_vm.date)},on:{"input":function($event){if($event.target.composing){ return; }_vm.date=$event.target.value;}}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowPicker),expression:"bShowPicker"}],ref:"container",staticClass:"picker-container",class:(_vm.pos + " " + _vm.open)},[_c('div',{staticClass:"date-picker"},[_c('div',{staticClass:"picker-filter"},[_c('div',{staticClass:"month-picker"},[_c('button',{staticClass:"btn-text",attrs:{"type":"button"},on:{"click":_vm.prevMonth}},[_vm._v("◀")]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.localeMonths[_vm.month - 1]))]),_vm._v(" "),_c('button',{staticClass:"btn-text",attrs:{"type":"button"},on:{"click":_vm.nextMonth}},[_vm._v("▶")])]),_vm._v(" "),_c('div',{staticClass:"year-picker"},[_c('v-pure-select',{attrs:{"source":_vm.years},model:{value:(_vm.year),callback:function ($$v) {_vm.year=$$v;},expression:"year"}})],1)]),_vm._v(" "),_c('div',{staticClass:"calendar"},[_c('table',[_c('thead',[_c('tr',_vm._l((_vm.localeWeeks),function(week){return _c('th',[_vm._v(_vm._s(week))])}))]),_vm._v(" "),_c('tbody',_vm._l((6),function(i){return _c('tr',_vm._l((7),function(j){return _c('td',{class:_vm.days[(i-1)*7+(j-1)].status,on:{"click":function($event){$event.stopPropagation();_vm.selectDay(i,j);}}},[_c('div',[_vm._v(_vm._s(_vm.days[(i-1)*7+(j-1)].text))])])}))}))])])]),_vm._v(" "),(_vm.full)?_c('div',{staticClass:"time-picker"},[_c('ul',{staticClass:"list"},_vm._l((_vm.times),function(time){return _c('li',{class:time === _vm.hour ? 'focus' : '',on:{"click":function($event){$event.stopPropagation();_vm.selectHour(time);}}},[_vm._v(_vm._s(time))])}))]):_vm._e()])])};
-  var __vue_staticRenderFns__$8 = [];
+  var __vue_render__$a = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-date-picker",on:{"click":_vm.showPicker}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.date),expression:"date"}],staticClass:"input",style:(_vm.inputStyle),attrs:{"name":_vm.name,"readonly":""},domProps:{"value":(_vm.date)},on:{"input":function($event){if($event.target.composing){ return; }_vm.date=$event.target.value;}}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowPicker),expression:"bShowPicker"}],ref:"container",staticClass:"picker-container",class:(_vm.pos + " " + _vm.open)},[_c('div',{staticClass:"date-picker"},[_c('div',{staticClass:"picker-filter"},[_c('div',{staticClass:"month-picker"},[_c('button',{staticClass:"btn-text",attrs:{"type":"button"},on:{"click":_vm.prevMonth}},[_vm._v("◀")]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.localeMonths[_vm.month - 1]))]),_vm._v(" "),_c('button',{staticClass:"btn-text",attrs:{"type":"button"},on:{"click":_vm.nextMonth}},[_vm._v("▶")])]),_vm._v(" "),_c('div',{staticClass:"year-picker"},[_c('v-pure-select',{attrs:{"source":_vm.years},model:{value:(_vm.year),callback:function ($$v) {_vm.year=$$v;},expression:"year"}})],1)]),_vm._v(" "),_c('div',{staticClass:"calendar"},[_c('table',[_c('thead',[_c('tr',_vm._l((_vm.localeWeeks),function(week){return _c('th',[_vm._v(_vm._s(week))])}))]),_vm._v(" "),_c('tbody',_vm._l((6),function(i){return _c('tr',_vm._l((7),function(j){return _c('td',{class:_vm.days[(i-1)*7+(j-1)].status,on:{"click":function($event){$event.stopPropagation();_vm.selectDay(i,j);}}},[_c('div',[_vm._v(_vm._s(_vm.days[(i-1)*7+(j-1)].text))])])}))}))])])]),_vm._v(" "),(_vm.full)?_c('div',{staticClass:"time-picker"},[_c('ul',{staticClass:"list"},_vm._l((_vm.times),function(time){return _c('li',{class:time === _vm.hour ? 'focus' : '',on:{"click":function($event){$event.stopPropagation();_vm.selectHour(time);}}},[_vm._v(_vm._s(time))])}))]):_vm._e()])])};
+  var __vue_staticRenderFns__$a = [];
 
     /* style */
-    const __vue_inject_styles__$8 = undefined;
+    const __vue_inject_styles__$a = undefined;
     /* scoped */
-    const __vue_scope_id__$8 = undefined;
+    const __vue_scope_id__$a = undefined;
     /* module identifier */
-    const __vue_module_identifier__$8 = undefined;
+    const __vue_module_identifier__$a = undefined;
     /* functional template */
-    const __vue_is_functional_template__$8 = false;
-    /* component normalizer */
-    function __vue_normalize__$8(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "DatePicker.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
+    const __vue_is_functional_template__$a = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var DatePicker = __vue_normalize__$8(
-      { render: __vue_render__$8, staticRenderFns: __vue_staticRenderFns__$8 },
-      __vue_inject_styles__$8,
-      __vue_script__$8,
-      __vue_scope_id__$8,
-      __vue_is_functional_template__$8,
-      __vue_module_identifier__$8,
-      undefined,
-      undefined
-    );
-
-  //
-  //
-  //
-
-  var script$9 = {
-    name: 'v-icon',
-    props: {
-      icon: String,
-      size: String
-    }
-  };
-
-  /* script */
-              const __vue_script__$9 = script$9;
-              
-  /* template */
-  var __vue_render__$9 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{class:("icon icon-" + _vm.icon),attrs:{"width":_vm.size || 20,"height":_vm.size || 20},on:{"click":function($event){_vm.$emit('click');}}},[_c('use',{attrs:{"xlink:href":("#icon-" + _vm.icon)}})])};
-  var __vue_staticRenderFns__$9 = [];
-
-    /* style */
-    const __vue_inject_styles__$9 = undefined;
-    /* scoped */
-    const __vue_scope_id__$9 = undefined;
-    /* module identifier */
-    const __vue_module_identifier__$9 = undefined;
-    /* functional template */
-    const __vue_is_functional_template__$9 = false;
-    /* component normalizer */
-    function __vue_normalize__$9(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Icon.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
-    /* style inject */
-    
-    /* style inject SSR */
-    
-
-    
-    var Icon = __vue_normalize__$9(
-      { render: __vue_render__$9, staticRenderFns: __vue_staticRenderFns__$9 },
-      __vue_inject_styles__$9,
-      __vue_script__$9,
-      __vue_scope_id__$9,
-      __vue_is_functional_template__$9,
-      __vue_module_identifier__$9,
+    var DatePicker = normalizeComponent(
+      { render: __vue_render__$a, staticRenderFns: __vue_staticRenderFns__$a },
+      __vue_inject_styles__$a,
+      __vue_script__$a,
+      __vue_scope_id__$a,
+      __vue_is_functional_template__$a,
+      __vue_module_identifier__$a,
       undefined,
       undefined
     );
@@ -1155,7 +1068,7 @@
   //
   //
 
-  var script$a = {
+  var script$b = {
     name: 'v-input',
     data() {
       return {
@@ -1202,123 +1115,42 @@
   };
 
   /* script */
-              const __vue_script__$a = script$a;
-              
+  const __vue_script__$b = script$b;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$b.__file = "D:\\workspace\\lovue\\src\\components\\Input.vue";
+
   /* template */
-  var __vue_render__$a = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-input",class:{effect: _vm.effect}},[(_vm.resize)?_c('div',{staticClass:"hidden-value"},[_vm._v(_vm._s(_vm.content))]):_vm._e(),_vm._v(" "),((_vm.type)==='checkbox')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.content)?_vm._i(_vm.content,null)>-1:(_vm.content)},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"change":function($event){var $$a=_vm.content,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.content=$$a.concat([$$v]));}else{$$i>-1&&(_vm.content=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.content=$$c;}}}}):((_vm.type)==='radio')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"type":"radio"},domProps:{"checked":_vm._q(_vm.content,null)},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"change":function($event){_vm.content=null;}}}):_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"type":_vm.type},domProps:{"value":(_vm.content)},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"input":function($event){if($event.target.composing){ return; }_vm.content=$event.target.value;}}}),_vm._v(" "),(_vm.effect)?_c('hr'):_vm._e()])};
-  var __vue_staticRenderFns__$a = [];
+  var __vue_render__$b = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-input",class:{effect: _vm.effect}},[(_vm.resize)?_c('div',{staticClass:"hidden-value"},[_vm._v(_vm._s(_vm.content))]):_vm._e(),_vm._v(" "),((_vm.type)==='checkbox')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.content)?_vm._i(_vm.content,null)>-1:(_vm.content)},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"change":function($event){var $$a=_vm.content,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.content=$$a.concat([$$v]));}else{$$i>-1&&(_vm.content=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.content=$$c;}}}}):((_vm.type)==='radio')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"type":"radio"},domProps:{"checked":_vm._q(_vm.content,null)},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"change":function($event){_vm.content=null;}}}):_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"type":_vm.type},domProps:{"value":(_vm.content)},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"input":function($event){if($event.target.composing){ return; }_vm.content=$event.target.value;}}}),_vm._v(" "),(_vm.effect)?_c('hr'):_vm._e()])};
+  var __vue_staticRenderFns__$b = [];
 
     /* style */
-    const __vue_inject_styles__$a = undefined;
+    const __vue_inject_styles__$b = undefined;
     /* scoped */
-    const __vue_scope_id__$a = undefined;
+    const __vue_scope_id__$b = undefined;
     /* module identifier */
-    const __vue_module_identifier__$a = undefined;
+    const __vue_module_identifier__$b = undefined;
     /* functional template */
-    const __vue_is_functional_template__$a = false;
-    /* component normalizer */
-    function __vue_normalize__$a(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Input.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
+    const __vue_is_functional_template__$b = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Input = __vue_normalize__$a(
-      { render: __vue_render__$a, staticRenderFns: __vue_staticRenderFns__$a },
-      __vue_inject_styles__$a,
-      __vue_script__$a,
-      __vue_scope_id__$a,
-      __vue_is_functional_template__$a,
-      __vue_module_identifier__$a,
+    var Input = normalizeComponent(
+      { render: __vue_render__$b, staticRenderFns: __vue_staticRenderFns__$b },
+      __vue_inject_styles__$b,
+      __vue_script__$b,
+      __vue_scope_id__$b,
+      __vue_is_functional_template__$b,
+      __vue_module_identifier__$b,
       undefined,
       undefined
     );
 
   //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
 
-  var script$b = {
+  var script$c = {
     name: 'v-menu',
     data() {
       return {
@@ -1332,6 +1164,9 @@
         type: String,
         'default': 'link'
       }
+    },
+    components: {
+      [Icon.name]: Icon
     },
     methods: {
       closeMenu(menu) {
@@ -1380,93 +1215,42 @@
   };
 
   /* script */
-              const __vue_script__$b = script$b;
-              
+  const __vue_script__$c = script$c;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$c.__file = "D:\\workspace\\lovue\\src\\components\\Menu.vue";
+
   /* template */
-  var __vue_render__$b = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"v-menu",class:{vertical: _vm.vertical}},_vm._l((_vm.menus),function(menu){return _c('li',{staticClass:"v-menu-item"},[(_vm.vertical)?[(menu.children)?[_c('div',{staticClass:"i-title",class:{focus: menu._focus},on:{"click":function($event){_vm.toggleMenu(menu);}}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))]),_vm._v(" "),_c('v-icon',{class:{up: menu._openIcon},attrs:{"icon":"down-wide"}})],1),_vm._v(" "),_c('ul',{directives:[{name:"show",rawName:"v-show",value:(menu._open),expression:"menu._open"}],staticClass:"m-sub",style:(("height: " + (menu.height || 0) + "px;"))},_vm._l((menu.children),function(child){return _c('li',{staticClass:"s-item"},[(_vm.mode === 'spa')?_c('router-link',{attrs:{"to":child.url}},[_vm._v(_vm._s(child.name))]):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_c('a',{class:{focus: child._focus},attrs:{"href":child.url}},[_vm._v(_vm._s(child.name))]):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_c('a',{class:{focus: child._focus},on:{"click":function($event){_vm.clickItem(child, menu);}}},[_vm._v(_vm._s(child.name))]):_vm._e()],1)}))]:[(_vm.mode === 'spa')?_c('router-link',{staticClass:"i-link",attrs:{"to":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},attrs:{"href":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},on:{"click":function($event){_vm.clickItem(menu);}}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e()]]:[(menu.children)?_c('div',{staticClass:"v-dropdown-wrap"},[_c('div',{staticClass:"d-trigger",class:{focus: menu._focus}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))]),_vm._v(" "),_c('v-icon',{attrs:{"icon":"down-wide"}})],1),_vm._v(" "),_c('div',{staticClass:"v-dropdown"},[(_vm.mode === 'spa')?_vm._l((menu.children),function(child,i){return _c('router-link',{key:i,staticClass:"d-item",attrs:{"to":child.url}},[_vm._v(_vm._s(child.name))])}):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_vm._l((menu.children),function(child){return _c('a',{staticClass:"d-item",class:{focus: child._focus},attrs:{"href":child.url}},[_vm._v(_vm._s(child.name))])}):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_vm._l((menu.children),function(child){return _c('a',{staticClass:"d-item",on:{"click":function($event){_vm.clickItem(child, menu);}}},[_vm._v(_vm._s(child.name))])}):_vm._e()],2)]):[(_vm.mode === 'spa')?_c('router-link',{staticClass:"i-link",attrs:{"to":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},attrs:{"href":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},on:{"click":function($event){_vm.clickItem(menu);}}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e()]]],2)}))};
-  var __vue_staticRenderFns__$b = [];
+  var __vue_render__$c = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"v-menu",class:{vertical: _vm.vertical}},_vm._l((_vm.menus),function(menu){return _c('li',{staticClass:"v-menu-item"},[(_vm.vertical)?[(menu.children)?[_c('div',{staticClass:"i-title",class:{focus: menu._focus},on:{"click":function($event){_vm.toggleMenu(menu);}}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))]),_vm._v(" "),_c('v-icon',{class:{up: menu._openIcon},attrs:{"icon":"down-wide"}})],1),_vm._v(" "),_c('ul',{directives:[{name:"show",rawName:"v-show",value:(menu._open),expression:"menu._open"}],staticClass:"m-sub",style:(("height: " + (menu.height || 0) + "px;"))},_vm._l((menu.children),function(child){return _c('li',{staticClass:"s-item"},[(_vm.mode === 'spa')?_c('router-link',{attrs:{"to":child.url}},[_vm._v(_vm._s(child.name))]):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_c('a',{class:{focus: child._focus},attrs:{"href":child.url}},[_vm._v(_vm._s(child.name))]):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_c('a',{class:{focus: child._focus},on:{"click":function($event){_vm.clickItem(child, menu);}}},[_vm._v(_vm._s(child.name))]):_vm._e()],1)}))]:[(_vm.mode === 'spa')?_c('router-link',{staticClass:"i-link",attrs:{"to":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},attrs:{"href":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},on:{"click":function($event){_vm.clickItem(menu);}}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e()]]:[(menu.children)?_c('div',{staticClass:"v-dropdown-wrap"},[_c('div',{staticClass:"d-trigger",class:{focus: menu._focus}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))]),_vm._v(" "),_c('v-icon',{attrs:{"icon":"down-wide"}})],1),_vm._v(" "),_c('div',{staticClass:"v-dropdown"},[(_vm.mode === 'spa')?_vm._l((menu.children),function(child,i){return _c('router-link',{key:i,staticClass:"d-item",attrs:{"to":child.url}},[_vm._v(_vm._s(child.name))])}):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_vm._l((menu.children),function(child){return _c('a',{staticClass:"d-item",class:{focus: child._focus},attrs:{"href":child.url}},[_vm._v(_vm._s(child.name))])}):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_vm._l((menu.children),function(child){return _c('a',{staticClass:"d-item",on:{"click":function($event){_vm.clickItem(child, menu);}}},[_vm._v(_vm._s(child.name))])}):_vm._e()],2)]):[(_vm.mode === 'spa')?_c('router-link',{staticClass:"i-link",attrs:{"to":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},attrs:{"href":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},on:{"click":function($event){_vm.clickItem(menu);}}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e()]]],2)}))};
+  var __vue_staticRenderFns__$c = [];
 
     /* style */
-    const __vue_inject_styles__$b = undefined;
+    const __vue_inject_styles__$c = undefined;
     /* scoped */
-    const __vue_scope_id__$b = undefined;
+    const __vue_scope_id__$c = undefined;
     /* module identifier */
-    const __vue_module_identifier__$b = undefined;
+    const __vue_module_identifier__$c = undefined;
     /* functional template */
-    const __vue_is_functional_template__$b = false;
-    /* component normalizer */
-    function __vue_normalize__$b(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Menu.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
+    const __vue_is_functional_template__$c = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Menu = __vue_normalize__$b(
-      { render: __vue_render__$b, staticRenderFns: __vue_staticRenderFns__$b },
-      __vue_inject_styles__$b,
-      __vue_script__$b,
-      __vue_scope_id__$b,
-      __vue_is_functional_template__$b,
-      __vue_module_identifier__$b,
+    var Menu = normalizeComponent(
+      { render: __vue_render__$c, staticRenderFns: __vue_staticRenderFns__$c },
+      __vue_inject_styles__$c,
+      __vue_script__$c,
+      __vue_scope_id__$c,
+      __vue_is_functional_template__$c,
+      __vue_module_identifier__$c,
       undefined,
       undefined
     );
 
   //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
 
-  var script$c = {
+  var script$d = {
     name: 'v-pagination',
     data() {
       return {
@@ -1486,6 +1270,10 @@
         'default': () => [10, 20, 50]
       },
       simple: Boolean
+    },
+    components: {
+      [Icon.name]: Icon,
+      [PureSelect.name]: PureSelect
     },
     computed: {
       pages() {
@@ -1547,83 +1335,42 @@
   };
 
   /* script */
-              const __vue_script__$c = script$c;
-              
+  const __vue_script__$d = script$d;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$d.__file = "D:\\workspace\\lovue\\src\\components\\Pagination.vue";
+
   /* template */
-  var __vue_render__$c = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-pagination"},[(_vm.simple)?[_c('span',[_vm._v(_vm._s(_vm.index)+"/"+_vm._s(_vm.pages)+"页")]),_vm._v(" "),_c('ul',{staticClass:"p-pages"},[_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.prev}},[_c('v-icon',{attrs:{"icon":"left","size":"16"}})],1)]),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.next}},[_c('v-icon',{attrs:{"icon":"right","size":"16"}})],1)])])]:[_c('div',{staticClass:"p-total"},[_vm._v("共 "+_vm._s(_vm.total)+" 条")]),_vm._v(" "),_c('div',{staticClass:"p-one"},[_c('span',[_vm._v("每页")]),_vm._v(" "),_c('v-pure-select',{attrs:{"source":_vm.pageCounts},model:{value:(_vm.per),callback:function ($$v) {_vm.per=$$v;},expression:"per"}}),_vm._v(" "),_c('span',[_vm._v("条")])],1),_vm._v(" "),_c('ul',{staticClass:"p-pages"},[_c('li',[_c('a',{staticClass:"link",on:{"click":function($event){_vm.index = 1;}}},[_vm._v("首页")])]),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.prev}},[_vm._v("上一页")])]),_vm._v(" "),_vm._l((_vm.showed),function(n){return _c('li',[_c('a',{staticClass:"link",class:{focus: _vm.index === n},on:{"click":function($event){_vm.index = n;}}},[_vm._v(_vm._s(n))])])}),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.next}},[_vm._v("下一页")])]),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":function($event){_vm.index = _vm.pages;}}},[_vm._v("末页")])])],2),_vm._v(" "),_c('div',{staticClass:"p-jump"},[_c('span',[_vm._v("前往")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.jumpPage),expression:"jumpPage"}],staticClass:"input",attrs:{"type":"number","min":"1","max":_vm.pages,"required":""},domProps:{"value":(_vm.jumpPage)},on:{"change":_vm.jump,"input":function($event){if($event.target.composing){ return; }_vm.jumpPage=$event.target.value;}}}),_vm._v(" "),_c('span',[_vm._v("页")])])]],2)};
-  var __vue_staticRenderFns__$c = [];
+  var __vue_render__$d = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-pagination"},[(_vm.simple)?[_c('span',[_vm._v(_vm._s(_vm.index)+"/"+_vm._s(_vm.pages)+"页")]),_vm._v(" "),_c('ul',{staticClass:"p-pages"},[_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.prev}},[_c('v-icon',{attrs:{"icon":"left","size":"16"}})],1)]),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.next}},[_c('v-icon',{attrs:{"icon":"right","size":"16"}})],1)])])]:[_c('div',{staticClass:"p-total"},[_vm._v("共 "+_vm._s(_vm.total)+" 条")]),_vm._v(" "),_c('div',{staticClass:"p-one"},[_c('span',[_vm._v("每页")]),_vm._v(" "),_c('v-pure-select',{attrs:{"source":_vm.pageCounts},model:{value:(_vm.per),callback:function ($$v) {_vm.per=$$v;},expression:"per"}}),_vm._v(" "),_c('span',[_vm._v("条")])],1),_vm._v(" "),_c('ul',{staticClass:"p-pages"},[_c('li',[_c('a',{staticClass:"link",on:{"click":function($event){_vm.index = 1;}}},[_vm._v("首页")])]),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.prev}},[_vm._v("上一页")])]),_vm._v(" "),_vm._l((_vm.showed),function(n){return _c('li',[_c('a',{staticClass:"link",class:{focus: _vm.index === n},on:{"click":function($event){_vm.index = n;}}},[_vm._v(_vm._s(n))])])}),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.next}},[_vm._v("下一页")])]),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":function($event){_vm.index = _vm.pages;}}},[_vm._v("末页")])])],2),_vm._v(" "),_c('div',{staticClass:"p-jump"},[_c('span',[_vm._v("前往")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.jumpPage),expression:"jumpPage"}],staticClass:"input",attrs:{"type":"number","min":"1","max":_vm.pages,"required":""},domProps:{"value":(_vm.jumpPage)},on:{"change":_vm.jump,"input":function($event){if($event.target.composing){ return; }_vm.jumpPage=$event.target.value;}}}),_vm._v(" "),_c('span',[_vm._v("页")])])]],2)};
+  var __vue_staticRenderFns__$d = [];
 
     /* style */
-    const __vue_inject_styles__$c = undefined;
+    const __vue_inject_styles__$d = undefined;
     /* scoped */
-    const __vue_scope_id__$c = undefined;
+    const __vue_scope_id__$d = undefined;
     /* module identifier */
-    const __vue_module_identifier__$c = undefined;
+    const __vue_module_identifier__$d = undefined;
     /* functional template */
-    const __vue_is_functional_template__$c = false;
-    /* component normalizer */
-    function __vue_normalize__$c(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Pagination.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
+    const __vue_is_functional_template__$d = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Pagination = __vue_normalize__$c(
-      { render: __vue_render__$c, staticRenderFns: __vue_staticRenderFns__$c },
-      __vue_inject_styles__$c,
-      __vue_script__$c,
-      __vue_scope_id__$c,
-      __vue_is_functional_template__$c,
-      __vue_module_identifier__$c,
+    var Pagination = normalizeComponent(
+      { render: __vue_render__$d, staticRenderFns: __vue_staticRenderFns__$d },
+      __vue_inject_styles__$d,
+      __vue_script__$d,
+      __vue_scope_id__$d,
+      __vue_is_functional_template__$d,
+      __vue_module_identifier__$d,
       undefined,
       undefined
     );
 
   //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
 
-  var script$d = {
+  var script$e = {
     name: 'v-popup',
     data() {
       return {
@@ -1640,7 +1387,12 @@
       confirm: Function,
       fixed: Boolean,
       okText: String,
-      cancelText: String
+      cancelText: String,
+      noFooter: Boolean
+    },
+    components: {
+      [Button.name]: Button,
+      [Icon.name]: Icon
     },
     computed: {
       transform() {
@@ -1685,56 +1437,35 @@
   };
 
   /* script */
-              const __vue_script__$d = script$d;
-              
+  const __vue_script__$e = script$e;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$e.__file = "D:\\workspace\\lovue\\src\\components\\Popup.vue";
+
   /* template */
-  var __vue_render__$d = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("content")],2),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_vm._t("footer",[_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText || '取消'))]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText || '确认'))])])],2)])])]):_vm._e()};
-  var __vue_staticRenderFns__$d = [];
+  var __vue_render__$e = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("content")],2),_vm._v(" "),(!_vm.noFooter)?_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_vm._t("footer",[_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText || '取消'))]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText || '确认'))])])],2)]):_vm._e()])]):_vm._e()};
+  var __vue_staticRenderFns__$e = [];
 
     /* style */
-    const __vue_inject_styles__$d = undefined;
+    const __vue_inject_styles__$e = undefined;
     /* scoped */
-    const __vue_scope_id__$d = undefined;
+    const __vue_scope_id__$e = undefined;
     /* module identifier */
-    const __vue_module_identifier__$d = undefined;
+    const __vue_module_identifier__$e = undefined;
     /* functional template */
-    const __vue_is_functional_template__$d = false;
-    /* component normalizer */
-    function __vue_normalize__$d(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Popup.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
+    const __vue_is_functional_template__$e = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Popup = __vue_normalize__$d(
-      { render: __vue_render__$d, staticRenderFns: __vue_staticRenderFns__$d },
-      __vue_inject_styles__$d,
-      __vue_script__$d,
-      __vue_scope_id__$d,
-      __vue_is_functional_template__$d,
-      __vue_module_identifier__$d,
+    var Popup = normalizeComponent(
+      { render: __vue_render__$e, staticRenderFns: __vue_staticRenderFns__$e },
+      __vue_inject_styles__$e,
+      __vue_script__$e,
+      __vue_scope_id__$e,
+      __vue_is_functional_template__$e,
+      __vue_module_identifier__$e,
       undefined,
       undefined
     );
@@ -1747,7 +1478,7 @@
   //
   //
 
-  var script$e = {
+  var script$f = {
     name: 'v-progress',
     data() {
       let style = {};
@@ -1781,140 +1512,12 @@
   };
 
   /* script */
-              const __vue_script__$e = script$e;
-              
+  const __vue_script__$f = script$f;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$f.__file = "D:\\workspace\\lovue\\src\\components\\Progress.vue";
+
   /* template */
-  var __vue_render__$e = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-progress",style:(_vm.style)},[_c('div',{staticClass:"layer-1"}),_vm._v(" "),_c('div',{staticClass:"layer-2",style:(("width:" + _vm.progress + "%; background-color: " + _vm.color))}),_vm._v(" "),_c('div',{staticClass:"layer-3"},[_vm._v(_vm._s(_vm.progress)+"%")])])};
-  var __vue_staticRenderFns__$e = [];
-
-    /* style */
-    const __vue_inject_styles__$e = undefined;
-    /* scoped */
-    const __vue_scope_id__$e = undefined;
-    /* module identifier */
-    const __vue_module_identifier__$e = undefined;
-    /* functional template */
-    const __vue_is_functional_template__$e = false;
-    /* component normalizer */
-    function __vue_normalize__$e(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Progress.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
-    /* style inject */
-    
-    /* style inject SSR */
-    
-
-    
-    var Progress = __vue_normalize__$e(
-      { render: __vue_render__$e, staticRenderFns: __vue_staticRenderFns__$e },
-      __vue_inject_styles__$e,
-      __vue_script__$e,
-      __vue_scope_id__$e,
-      __vue_is_functional_template__$e,
-      __vue_module_identifier__$e,
-      undefined,
-      undefined
-    );
-
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-
-  var script$f = {
-    name: 'v-pure-select',
-    data() {
-      return {
-        selfClicked: false,
-        current: this.value,
-        bShowDd: false,
-        open: '',
-        pos: ''
-      }
-    },
-    props: {
-      value: [String, Number],
-      name: String,
-      source: Array,
-      placeholder: String
-    },
-    computed: {
-      ddHeight() {
-        return Math.min(this.source.length * 32 + 16, 200)
-      }
-    },
-    watch: {
-      value(val) {
-        this.current = val;
-      },
-      current(val) {
-        this.$emit('input', val);
-      }
-    },
-    methods: {
-      updatePos() {
-        const bottomSpace = window.innerHeight - this.$el.getBoundingClientRect().bottom;
-        this.pos = bottomSpace < this.ddHeight ? 'top' : 'bottom';
-      },
-      showDd() {
-        this.selfClicked = true;
-        if (this.bShowDd) return
-
-        this.bShowDd = true;
-        this.updatePos();
-        setTimeout(() => this.open = 'open', 40);
-      },
-      hideDd() {
-        this.open = '';
-        setTimeout(() => {
-          this.pos = '';
-          this.bShowDd = false;
-        }, 400);
-      }
-    },
-    mounted() {
-      window.addEventListener('click', () => {
-        if (!this.selfClicked) this.hideDd();
-        this.selfClicked = false;
-      });
-    }
-  };
-
-  /* script */
-              const __vue_script__$f = script$f;
-              
-  /* template */
-  var __vue_render__$f = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dl',{staticClass:"v-pure-select",class:_vm.open,on:{"click":_vm.showDd}},[_c('dt',[(_vm.current === undefined)?_c('span',{staticClass:"placeholder"},[_vm._v(_vm._s(_vm.placeholder || '请选择'))]):_vm._e(),_vm._v(" "),_vm._l((_vm.source),function(elem,index){return [_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.current),expression:"current"}],attrs:{"id":("pure_radio_" + _vm._uid + "_" + index),"type":"radio","name":_vm.name},domProps:{"value":elem,"checked":_vm._q(_vm.current,elem)},on:{"change":function($event){_vm.current=elem;}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(elem))])]})],2),_vm._v(" "),_c('dd',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowDd),expression:"bShowDd"}],class:_vm.pos},_vm._l((_vm.source),function(elem,index){return _c('label',{class:{focus: _vm.current === elem},attrs:{"for":("pure_radio_" + _vm._uid + "_" + index)},on:{"click":_vm.hideDd}},[_vm._v(_vm._s(elem))])}))])};
+  var __vue_render__$f = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-progress",style:(_vm.style)},[_c('div',{staticClass:"layer-1"}),_vm._v(" "),_c('div',{staticClass:"layer-2",style:(("width:" + _vm.progress + "%; background-color: " + _vm.color))}),_vm._v(" "),_c('div',{staticClass:"layer-3"},[_vm._v(_vm._s(_vm.progress)+"%")])])};
   var __vue_staticRenderFns__$f = [];
 
     /* style */
@@ -1925,36 +1528,13 @@
     const __vue_module_identifier__$f = undefined;
     /* functional template */
     const __vue_is_functional_template__$f = false;
-    /* component normalizer */
-    function __vue_normalize__$f(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "PureSelect.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var PureSelect = __vue_normalize__$f(
+    var Progress = normalizeComponent(
       { render: __vue_render__$f, staticRenderFns: __vue_staticRenderFns__$f },
       __vue_inject_styles__$f,
       __vue_script__$f,
@@ -2019,8 +1599,10 @@
   };
 
   /* script */
-              const __vue_script__$g = script$g;
-              
+  const __vue_script__$g = script$g;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$g.__file = "D:\\workspace\\lovue\\src\\components\\PwdStrength.vue";
+
   /* template */
   var __vue_render__$g = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.password.length),expression:"password.length"}],staticClass:"v-pwd-strength"},[_c('div',{staticClass:"str-lines"},_vm._l((_vm.levelClasses),function(n){return _c('span',{class:n})})),_vm._v(" "),_c('div',{staticClass:"str-info"},[_vm._v(_vm._s(_vm.strengthInfo))])])};
   var __vue_staticRenderFns__$g = [];
@@ -2033,36 +1615,13 @@
     const __vue_module_identifier__$g = undefined;
     /* functional template */
     const __vue_is_functional_template__$g = false;
-    /* component normalizer */
-    function __vue_normalize__$g(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "PwdStrength.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var PwdStrength = __vue_normalize__$g(
+    var PwdStrength = normalizeComponent(
       { render: __vue_render__$g, staticRenderFns: __vue_staticRenderFns__$g },
       __vue_inject_styles__$g,
       __vue_script__$g,
@@ -2093,8 +1652,10 @@
   };
 
   /* script */
-              const __vue_script__$h = script$h;
-              
+  const __vue_script__$h = script$h;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$h.__file = "D:\\workspace\\lovue\\src\\components\\Radio.vue";
+
   /* template */
   var __vue_render__$h = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-radio",class:{reverse: _vm.reverse, disabled: _vm.disabled}},[_c('input',{attrs:{"type":"radio","name":_vm.name,"disabled":_vm.disabled},domProps:{"value":_vm.value}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])};
   var __vue_staticRenderFns__$h = [];
@@ -2107,36 +1668,13 @@
     const __vue_module_identifier__$h = undefined;
     /* functional template */
     const __vue_is_functional_template__$h = false;
-    /* component normalizer */
-    function __vue_normalize__$h(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Radio.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Radio = __vue_normalize__$h(
+    var Radio = normalizeComponent(
       { render: __vue_render__$h, staticRenderFns: __vue_staticRenderFns__$h },
       __vue_inject_styles__$h,
       __vue_script__$h,
@@ -2190,8 +1728,10 @@
   };
 
   /* script */
-              const __vue_script__$i = script$i;
-              
+  const __vue_script__$i = script$i;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$i.__file = "D:\\workspace\\lovue\\src\\components\\RadioGroup.vue";
+
   /* template */
   var __vue_render__$i = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-radio-group",class:{vertical: _vm.vertical}},_vm._l((_vm.source),function(item){return _c('div',{staticClass:"g-item"},[_c('label',{class:( _obj = { reverse: _vm.reverse, disabled: item.disabled}, _obj[_vm.lnfClass] = true, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"radio","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":_vm._q(_vm.checked,item.value)},on:{"change":function($event){_vm.checked=item.value;}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])])
   var _obj;}))};
@@ -2205,36 +1745,13 @@
     const __vue_module_identifier__$i = undefined;
     /* functional template */
     const __vue_is_functional_template__$i = false;
-    /* component normalizer */
-    function __vue_normalize__$i(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "RadioGroup.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var RadioGroup = __vue_normalize__$i(
+    var RadioGroup = normalizeComponent(
       { render: __vue_render__$i, staticRenderFns: __vue_staticRenderFns__$i },
       __vue_inject_styles__$i,
       __vue_script__$i,
@@ -2257,8 +1774,10 @@
   };
 
   /* script */
-              const __vue_script__$j = script$j;
-              
+  const __vue_script__$j = script$j;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$j.__file = "D:\\workspace\\lovue\\src\\components\\Row.vue";
+
   /* template */
   var __vue_render__$j = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-row"},[_vm._t("default")],2)};
   var __vue_staticRenderFns__$j = [];
@@ -2271,36 +1790,13 @@
     const __vue_module_identifier__$j = undefined;
     /* functional template */
     const __vue_is_functional_template__$j = false;
-    /* component normalizer */
-    function __vue_normalize__$j(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Row.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Row = __vue_normalize__$j(
+    var Row = normalizeComponent(
       { render: __vue_render__$j, staticRenderFns: __vue_staticRenderFns__$j },
       __vue_inject_styles__$j,
       __vue_script__$j,
@@ -2312,17 +1808,16 @@
     );
 
   //
-  //
-  //
-  //
-  //
-  //
-  //
 
   let timer;
 
   var script$k = {
     name: 'v-search',
+    data() {
+      return {
+        keywords: ''
+      }
+    },
     props: {
       auto: {
         type: Boolean,
@@ -2334,8 +1829,14 @@
         'default': 500
       }
     },
+    components: {
+      [Icon.name]: Icon,
+      [Input.name]: Input
+    },
     methods: {
       inputHandler(text) {
+        this.keywords = text;
+
         if (!this.auto) return
 
         if (timer) {
@@ -2349,8 +1850,10 @@
   };
 
   /* script */
-              const __vue_script__$k = script$k;
-              
+  const __vue_script__$k = script$k;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$k.__file = "D:\\workspace\\lovue\\src\\components\\Search.vue";
+
   /* template */
   var __vue_render__$k = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-search"},[_c('v-input',{attrs:{"placeholder":_vm.placeholder || '关键词'},on:{"input":_vm.inputHandler}}),_vm._v(" "),_c('v-icon',{attrs:{"icon":"search"},nativeOn:{"click":function($event){_vm.$emit('search', _vm.keywords);}}})],1)};
   var __vue_staticRenderFns__$k = [];
@@ -2363,36 +1866,13 @@
     const __vue_module_identifier__$k = undefined;
     /* functional template */
     const __vue_is_functional_template__$k = false;
-    /* component normalizer */
-    function __vue_normalize__$k(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Search.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Search = __vue_normalize__$k(
+    var Search = normalizeComponent(
       { render: __vue_render__$k, staticRenderFns: __vue_staticRenderFns__$k },
       __vue_inject_styles__$k,
       __vue_script__$k,
@@ -2403,37 +1883,6 @@
       undefined
     );
 
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
   //
 
   var script$l = {
@@ -2449,6 +1898,9 @@
         pos: '',
         open: ''
       }
+    },
+    components: {
+      [Icon.name]: Icon
     },
     computed: {
       filteredItems() {
@@ -2618,8 +2070,10 @@
   };
 
   /* script */
-              const __vue_script__$l = script$l;
-              
+  const __vue_script__$l = script$l;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$l.__file = "D:\\workspace\\lovue\\src\\components\\Select.vue";
+
   /* template */
   var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-select",on:{"click":_vm.showCandidates}},[_c('div',{staticClass:"selected layout-lr",attrs:{"disabled":_vm.disabled}},[(_vm.disabled)?_c('div',{staticClass:"layer-disabled"}):_vm._e(),_vm._v(" "),_c('div',{staticClass:"l"},[(_vm.multiple)?_vm._l((_vm.selected),function(s,i){return _c('span',{staticClass:"s-tag"},[_c('span',{staticClass:"tag-name"},[_vm._v(_vm._s(s.name))]),_vm._v(" "),_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){$event.stopPropagation();_vm.remove(s,i);}}})],1)}):_c('input',{staticClass:"input",attrs:{"placeholder":_vm.placeholder || '请选择',"readonly":""},domProps:{"value":_vm.selected.name}})],2),_vm._v(" "),_c('div',{staticClass:"r"},[_c('v-icon',{class:{reverse: !_vm.open},attrs:{"icon":"down-wide"}})],1)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowCandidates),expression:"bShowCandidates"}],class:("candidates " + _vm.pos + " " + _vm.open)},[(_vm.searchable)?_c('div',{staticClass:"item-search"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.filterText),expression:"filterText"}],staticClass:"input",attrs:{"placeholder":_vm.searchPlaceholder || '搜索'},domProps:{"value":(_vm.filterText)},on:{"input":function($event){if($event.target.composing){ return; }_vm.filterText=$event.target.value;}}})]):_vm._e(),_vm._v(" "),_c('ul',{staticClass:"list"},_vm._l((_vm.filteredItems),function(i){return _c('li',{attrs:{"title":i.name},on:{"click":function($event){$event.stopPropagation();_vm.toggle(i);}}},[_c('div',{staticClass:"i-title",class:{focus: i.selected}},[_c('span',{staticClass:"t-name"},[_vm._v(_vm._s(i.name))]),(i.selected)?_c('v-icon',{attrs:{"icon":"check"}}):_vm._e()],1),_vm._v(" "),(i.children && i.children.length)?_c('ul',{staticClass:"sub-list"},_vm._l((i.children),function(child){return _c('li',{attrs:{"title":child.name},on:{"click":function($event){$event.stopPropagation();_vm.toggle(child);}}},[_c('div',{staticClass:"i-title",class:{focus: child.selected}},[_c('span',{staticClass:"t-name"},[_vm._v(_vm._s(child.name))]),(child.selected)?_c('v-icon',{attrs:{"icon":"check"}}):_vm._e()],1)])})):_vm._e()])}))])])};
   var __vue_staticRenderFns__$l = [];
@@ -2632,36 +2086,13 @@
     const __vue_module_identifier__$l = undefined;
     /* functional template */
     const __vue_is_functional_template__$l = false;
-    /* component normalizer */
-    function __vue_normalize__$l(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Select.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Select = __vue_normalize__$l(
+    var Select = normalizeComponent(
       { render: __vue_render__$l, staticRenderFns: __vue_staticRenderFns__$l },
       __vue_inject_styles__$l,
       __vue_script__$l,
@@ -2690,8 +2121,10 @@
   };
 
   /* script */
-              const __vue_script__$m = script$m;
-              
+  const __vue_script__$m = script$m;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$m.__file = "D:\\workspace\\lovue\\src\\components\\Switch.vue";
+
   /* template */
   var __vue_render__$m = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-switch",class:{disabled: _vm.disabled}},[_c('input',{attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":_vm.value},on:{"change":function($event){_vm.$emit('input', $event.target.checked);}}}),_vm._v(" "),_c('span')])};
   var __vue_staticRenderFns__$m = [];
@@ -2704,36 +2137,13 @@
     const __vue_module_identifier__$m = undefined;
     /* functional template */
     const __vue_is_functional_template__$m = false;
-    /* component normalizer */
-    function __vue_normalize__$m(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Switch.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Switch = __vue_normalize__$m(
+    var Switch = normalizeComponent(
       { render: __vue_render__$m, staticRenderFns: __vue_staticRenderFns__$m },
       __vue_inject_styles__$m,
       __vue_script__$m,
@@ -2744,14 +2154,6 @@
       undefined
     );
 
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
   //
 
   var script$n = {
@@ -2772,6 +2174,9 @@
       value: Number,
       titles: Array,
       lock: Boolean
+    },
+    components: {
+      [Icon.name]: Icon
     },
     watch: {
       value(val) {
@@ -2848,8 +2253,10 @@
   };
 
   /* script */
-              const __vue_script__$n = script$n;
-              
+  const __vue_script__$n = script$n;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$n.__file = "D:\\workspace\\lovue\\src\\components\\Tab.vue";
+
   /* template */
   var __vue_render__$n = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-tab"},[_c('div',{ref:"tabs",staticClass:"tabs"},[_vm._l((_vm.titles_),function(title,i){return _c('div',{staticClass:"tab",on:{"click":function($event){_vm.clickTab(i);}}},[(title.icon)?_c('v-icon',{attrs:{"icon":title.icon,"size":"16"}}):_vm._e(),_vm._v(_vm._s(title.name))],1)}),_vm._v(" "),_c('div',{staticClass:"focus-line",style:(_vm.lineStyle)})],2)])};
   var __vue_staticRenderFns__$n = [];
@@ -2862,36 +2269,13 @@
     const __vue_module_identifier__$n = undefined;
     /* functional template */
     const __vue_is_functional_template__$n = false;
-    /* component normalizer */
-    function __vue_normalize__$n(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Tab.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Tab = __vue_normalize__$n(
+    var Tab = normalizeComponent(
       { render: __vue_render__$n, staticRenderFns: __vue_staticRenderFns__$n },
       __vue_inject_styles__$n,
       __vue_script__$n,
@@ -2902,66 +2286,6 @@
       undefined
     );
 
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
   //
 
   var script$o = {
@@ -3019,6 +2343,12 @@
       total: Number,
       emptyText: String,
       simplePagination: Boolean
+    },
+    components: {
+      [Checkbox.name]: Checkbox,
+      [Icon.name]: Icon,
+      [Pagination.name]: Pagination,
+      [Search.name]: Search
     },
     computed: {
       columnProps() {
@@ -3142,8 +2472,10 @@
   };
 
   /* script */
-              const __vue_script__$o = script$o;
-              
+  const __vue_script__$o = script$o;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$o.__file = "D:\\workspace\\lovue\\src\\components\\Table.vue";
+
   /* template */
   var __vue_render__$o = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-table"},[(!_vm.simple)?_c('header',{staticClass:"t-tools"},[_c('div',{staticClass:"l"},[_vm._t("tools-l")],2),_vm._v(" "),_c('div',{staticClass:"m"},[_vm._t("tools-m")],2),_vm._v(" "),_c('div',{staticClass:"r"},[_c('v-search',{attrs:{"delay":300},on:{"search":_vm.filter}})],1)]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"t-table",class:{'fixed-head': _vm.fixedHead}},[_c('div',{staticClass:"table-wrap"},[_c('table',{staticClass:"table"},[_c('colgroup',[(_vm.checkbox)?_c('col'):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(col){return _c('col',{class:("col-" + (col.prop))})})],2),_vm._v(" "),_c('thead',[_c('tr',[(_vm.checkbox && _vm.source.length)?_c('th',[_c('div',{staticClass:"t-title"},[_c('v-checkbox',{attrs:{"label":"全选"},model:{value:(_vm.selectAll),callback:function ($$v) {_vm.selectAll=$$v;},expression:"selectAll"}})],1)]):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(column,i){return _c('th',{class:column.cssClass},[_c('div',{staticClass:"t-title",class:column.cssClass},[_vm._v("\n              "+_vm._s(column.title)+"\n              "),(column.sortable)?_c('span',{staticClass:"sort-arrows",on:{"click":function($event){_vm.handleSortClick(i);}}},[_c('v-icon',{class:{'dir-up': true, focus: _vm.sortType[i] === 1},attrs:{"icon":"down-wide"}}),_vm._v(" "),_c('v-icon',{class:{focus: _vm.sortType[i] === -1},attrs:{"icon":"down-wide"}})],1):_vm._e()])])})],2)]),_vm._v(" "),_c('tbody',[(!_vm.source.length)?_c('tr',{staticClass:"no-data-row"},[_c('td',{attrs:{"colspan":_vm.columns.length}},[_vm._v(_vm._s(_vm.emptyText || '暂无数据'))])]):_vm._e(),_vm._v(" "),_vm._l((_vm.showed),function(row,i){return (_vm.simple || (i >= _vm.slice[0] && i < _vm.slice[1]))?_c('tr',{class:{focus: row.focused},on:{"click":function($event){_vm.$emit('click-row', row);},"dblclick":function($event){_vm.$emit('dbl-click-row', row);}}},[(_vm.checkbox)?_c('td',{on:{"click":function($event){$event.stopPropagation();}}},[_c('label',{staticClass:"v-checkbox"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.selected),expression:"selected"}],attrs:{"type":"checkbox"},domProps:{"value":i,"checked":Array.isArray(_vm.selected)?_vm._i(_vm.selected,i)>-1:(_vm.selected)},on:{"change":function($event){var $$a=_vm.selected,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=i,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.selected=$$a.concat([$$v]));}else{$$i>-1&&(_vm.selected=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.selected=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.checkboxColumn ? row[_vm.checkboxColumn] : (i + 1)))])])]):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(column){return _c('td',{class:column.cssClass},[_vm._t(column.prop,[_vm._v(_vm._s(_vm.filterSlot(row, column)))],{value:row})],2)})],2):_vm._e()})],2)])])]),_vm._v(" "),(!_vm.simple && _vm.source.length)?_c('div',{staticClass:"t-footer"},[_c('v-pagination',{attrs:{"total":_vm.total || _vm.showed.length,"page-counts":_vm.pageCounts,"count-of-page":_vm.countOfPage,"simple":_vm.simplePagination},on:{"update":_vm.updateTable}})],1):_vm._e()])};
   var __vue_staticRenderFns__$o = [];
@@ -3156,36 +2488,13 @@
     const __vue_module_identifier__$o = undefined;
     /* functional template */
     const __vue_is_functional_template__$o = false;
-    /* component normalizer */
-    function __vue_normalize__$o(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Table.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Table = __vue_normalize__$o(
+    var Table = normalizeComponent(
       { render: __vue_render__$o, staticRenderFns: __vue_staticRenderFns__$o },
       __vue_inject_styles__$o,
       __vue_script__$o,
@@ -3196,39 +2505,6 @@
       undefined
     );
 
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
   //
 
   var script$p = {
@@ -3255,6 +2531,10 @@
         type: String,
         'default': 'button'
       }
+    },
+    components: {
+      [Button.name]: Button,
+      [Icon.name]: Icon
     },
     methods: {
       selectFile(ev) {
@@ -3314,8 +2594,10 @@
   };
 
   /* script */
-              const __vue_script__$p = script$p;
-              
+  const __vue_script__$p = script$p;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$p.__file = "D:\\workspace\\lovue\\src\\components\\Upload.vue";
+
   /* template */
   var __vue_render__$p = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-upload"},[(_vm.shape === 'square')?_c('div',{staticClass:"u-thumbs"},[_vm._l((_vm.fileThumbs),function(thumb,i){return _c('div',{staticClass:"thumb-wrap",style:(("width: " + _vm.thumbSize + "px;height: " + _vm.thumbSize + "px;"))},[_c('img',{attrs:{"src":thumb}}),_vm._v(" "),_c('div',{staticClass:"del-mask",on:{"click":function($event){_vm.deleteFile(i);}}},[_c('v-icon',{attrs:{"icon":"delete"}})],1)])}),_vm._v(" "),_c('div',{staticClass:"btn-wrap",style:(("width: " + _vm.thumbSize + "px;height: " + _vm.thumbSize + "px;"))},[_c('v-icon',{attrs:{"icon":"plus","size":"30"}}),_vm._v(" "),_c('input',{attrs:{"type":"file","name":_vm.name,"multiple":_vm.multi,"required":_vm.required},on:{"change":_vm.selectFile}})],1)],2):[_c('div',{staticClass:"u-above"},[_c('div',{staticClass:"btn-wrap"},[_c('v-button',{attrs:{"icon":"upload"}},[_vm._v(_vm._s(_vm.text || '选择文件'))]),_vm._v(" "),_c('input',{attrs:{"type":"file","name":_vm.name,"multiple":_vm.multi,"required":_vm.required},on:{"change":_vm.selectFile}})],1),_vm._v(" "),(!_vm.upload && !_vm.thumbnail && _vm.fileNames.length)?_c('div',{staticClass:"u-file-names"},_vm._l((_vm.fileNames),function(name){return _c('span',[_vm._v(_vm._s(name))])})):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"u-below"},[(_vm.thumbnail)?_c('div',{staticClass:"u-thumbs"},_vm._l((_vm.fileThumbs),function(thumb){return _c('div',{staticClass:"thumb-wrap",style:(("width: " + _vm.thumbSize + "px;height: " + _vm.thumbSize + "px;"))},[_c('img',{attrs:{"src":thumb}})])})):_vm._e()])]],2)};
   var __vue_staticRenderFns__$p = [];
@@ -3323,41 +2605,18 @@
     /* style */
     const __vue_inject_styles__$p = undefined;
     /* scoped */
-    const __vue_scope_id__$p = "data-v-6db64ba9";
+    const __vue_scope_id__$p = "data-v-2d07ac7a";
     /* module identifier */
     const __vue_module_identifier__$p = undefined;
     /* functional template */
     const __vue_is_functional_template__$p = false;
-    /* component normalizer */
-    function __vue_normalize__$p(
-      template, style, script,
-      scope, functional, moduleIdentifier,
-      createInjector, createInjectorSSR
-    ) {
-      const component = (typeof script === 'function' ? script.options : script) || {};
-
-      // For security concerns, we use only base name in production mode.
-      component.__file = "Upload.vue";
-
-      if (!component.render) {
-        component.render = template.render;
-        component.staticRenderFns = template.staticRenderFns;
-        component._compiled = true;
-
-        if (functional) component.functional = true;
-      }
-
-      component._scopeId = scope;
-
-      return component
-    }
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Upload = __vue_normalize__$p(
+    var Upload = normalizeComponent(
       { render: __vue_render__$p, staticRenderFns: __vue_staticRenderFns__$p },
       __vue_inject_styles__$p,
       __vue_script__$p,
@@ -3368,112 +2627,100 @@
       undefined
     );
 
-  if (!NodeList.prototype.forEach) {
-    NodeList.prototype.forEach = Array.prototype.forEach;
-  }
-
-  const Components = [
-    Button,
-    ButtonGroup,
-    ButtonSend,
-    Checkbox,
-    CheckboxGroup,
-    Col,
-    DatePicker,
-    Icon,
-    Input,
-    Menu,
-    Pagination,
-    Popup,
-    Progress,
-    PureSelect,
-    PwdStrength,
-    Radio,
-    RadioGroup,
-    Row,
-    Search,
-    Select,
-    Switch,
-    Tab,
-    Table,
-    Upload
-  ];
-  Components.forEach(a => {
-    Vue.component(a.name, a);
-  });
-
-  const MessageConstructor = Vue.extend(Message);
-
-  const Msg = function (option) {
-    let instance;
-    option = option || {};
-
-    if (typeof option === 'string') {
-      option = {
-        message: option
-      };
+  if (typeof window !== 'undefined') {
+    if (!NodeList.prototype.forEach) {
+      NodeList.prototype.forEach = Array.prototype.forEach;
     }
 
-    instance = new MessageConstructor({
-      data: option
+    const Components = [
+      Button, ButtonGroup, ButtonSend,
+      Checkbox, CheckboxGroup, Col,
+      DatePicker,
+      Icon, Input,
+      Menu,
+      Pagination, Popup, Progress, PureSelect, PwdStrength,
+      Radio, RadioGroup, Row,
+      Search, Select, Switch,
+      Tab, Table,
+      Upload
+    ];
+    Components.forEach(a => {
+      Vue.component(a.name, a);
     });
-    instance.vm = instance.$mount();
-    document.body.appendChild(instance.vm.$el);
-    instance.vm.visible = true;
-  };
 
-  Object.defineProperties(Vue.prototype, {
-    $msg: {
-      value: Msg
-    },
-    success: {
-      value: msg => Msg(msg)
-    },
-    info: {
-      value: msg => {
-        Msg({
-          type: 'info',
-          message: msg
-        });
-      }
-    },
-    warn: {
-      value: msg => {
-        Msg({
-          type: 'warn',
-          message: msg
-        });
-      }
-    },
-    error: {
-      value: (msg, close) => {
-        if (close === undefined) close = true;
+    const MessageConstructor = Vue.extend(Message);
 
-        Msg({
-          type: 'error',
-          message: msg.msg || msg,
-          showClose: close
-        });
+    const Msg = function (option) {
+      let instance;
+      option = option || {};
+
+      if (typeof option === 'string') {
+        option = {
+          message: option
+        };
       }
-    },
-    $modal: {
-      value: function (option = {}) {
-        let instance;
-        if (typeof option === 'string') {
-          option = {
-            content: option
-          };
+
+      instance = new MessageConstructor({
+        data: option
+      });
+      instance.vm = instance.$mount();
+      document.body.appendChild(instance.vm.$el);
+      instance.vm.visible = true;
+    };
+
+    Object.defineProperties(Vue.prototype, {
+      $msg: {
+        value: Msg
+      },
+      success: {
+        value: msg => Msg(msg)
+      },
+      info: {
+        value: msg => {
+          Msg({
+            type: 'info',
+            message: msg
+          });
         }
+      },
+      warn: {
+        value: msg => {
+          Msg({
+            type: 'warn',
+            message: msg
+          });
+        }
+      },
+      error: {
+        value: (msg, close) => {
+          if (close === undefined) close = true;
 
-        const Constructor = Vue.extend(Modal);
-        instance = new Constructor({
-          data: option
-        });
-        instance.vm = instance.$mount();
-        document.body.appendChild(instance.vm.$el);
-        instance.vm.visible = true;
+          Msg({
+            type: 'error',
+            message: msg.msg || msg,
+            showClose: close
+          });
+        }
+      },
+      $modal: {
+        value: function (option = {}) {
+          let instance;
+          if (typeof option === 'string') {
+            option = {
+              content: option
+            };
+          }
+
+          const Constructor = Vue.extend(Modal);
+          instance = new Constructor({
+            data: option
+          });
+          instance.vm = instance.$mount();
+          document.body.appendChild(instance.vm.$el);
+          instance.vm.visible = true;
+        }
       }
-    }
-  });
+    });
+  }
 
 }(Vue));

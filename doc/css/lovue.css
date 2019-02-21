@@ -648,30 +648,30 @@ summary {
   width: 100%;
   text-align: center;
 }
-.v-date-picker .picker-container .date-picker .calendar table thead tr {
+.v-date-picker .picker-container .date-picker .calendar table > thead > tr {
   height: 34px;
 }
-.v-date-picker .picker-container .date-picker .calendar table thead tr th {
+.v-date-picker .picker-container .date-picker .calendar table > thead > tr > th {
   font-weight: 400;
 }
-.v-date-picker .picker-container .date-picker .calendar table tbody tr {
+.v-date-picker .picker-container .date-picker .calendar table > tbody > tr {
   height: 40px;
 }
-.v-date-picker .picker-container .date-picker .calendar table tbody tr td {
+.v-date-picker .picker-container .date-picker .calendar table > tbody > tr > td {
   cursor: pointer;
   line-height: 32px;
   padding: 4px;
 }
-.v-date-picker .picker-container .date-picker .calendar table tbody tr td:hover div {
-  background-color: var(--hover-blue);
-  border-radius: 50%;
-}
-.v-date-picker .picker-container .date-picker .calendar table tbody tr td.focus div {
+.v-date-picker .picker-container .date-picker .calendar table > tbody > tr > td.focus div {
   background-color: var(--blue-color);
   border-radius: 50%;
 }
-.v-date-picker .picker-container .date-picker .calendar table tbody tr td.calendar-last-month,
-.v-date-picker .picker-container .date-picker .calendar table tbody tr td.calendar-next-month {
+.v-date-picker .picker-container .date-picker .calendar table > tbody > tr > td:hover div {
+  background-color: var(--hover-blue);
+  border-radius: 50%;
+}
+.v-date-picker .picker-container .date-picker .calendar table > tbody > tr > td.calendar-last-month,
+.v-date-picker .picker-container .date-picker .calendar table > tbody > tr > td.calendar-next-month {
   color: var(--disabled-color);
 }
 .v-date-picker .picker-container .time-picker {
@@ -971,6 +971,11 @@ summary {
 }
 .v-message > .icon-close:hover {
   color: var(--pink-color);
+}
+.modal-enter,
+.modal-leave-active {
+  opacity: 0;
+  transform: translateY(-100%);
 }
 .v-modal .v-window {
   transition: opacity 0.2s, transform 0.3s;
@@ -1643,49 +1648,49 @@ summary {
   font-size: var(--small-font);
   border: 1px solid var(--border-color);
 }
-.table caption {
+.table > caption {
   margin-bottom: 10px;
   font-size: var(--normal-font);
 }
-.table thead {
+.table > thead {
   border-bottom: 1px solid var(--border-color);
   background-color: #F5F6FA;
 }
-.table thead tr {
+.table > thead > tr {
   height: 40px;
 }
-.table thead tr th {
+.table > thead > tr > th {
   padding: 0 15px;
   font-weight: normal;
   color: var(--second-color);
   white-space: nowrap;
 }
-.table tbody tr {
+.table > tbody > tr {
   height: 40px;
   transition: background-color 0.25s ease;
   border-bottom: 1px solid var(--border-color);
 }
-.table tbody tr:last-child {
+.table > tbody > tr:last-child {
   border-bottom: none;
 }
-.table tbody tr:hover {
+.table > tbody > tr:hover {
   background-color: var(--bg-color);
 }
-.table tbody tr.row-loading {
+.table > tbody > tr.row-loading {
   text-align: center;
 }
-.table tbody tr td {
+.table > tbody > tr > td {
   padding: 0 15px;
   white-space: nowrap;
 }
-.table tbody tr td.no-data-info {
+.table > tbody > tr > td.no-data-info {
   text-align: center;
   color: var(--second-color);
 }
-.table tbody .btn-text {
+.table > tbody .btn-text {
   color: var(--blue-color);
 }
-.table tbody .btn-text:hover {
+.table > tbody .btn-text:hover {
   color: var(--hover-blue);
 }
 .v-table > .t-tools {
@@ -1712,20 +1717,20 @@ summary {
   border-left: 0;
   border-right: 0;
 }
-.v-table .table > thead th {
+.v-table .table > thead > tr > th {
   color: #666;
   line-height: 28px;
 }
-.v-table .table > thead th.sticky {
+.v-table .table > thead > tr > th.sticky {
   position: -webkit-sticky;
   position: sticky;
   background-color: #f5f6fa;
 }
-.v-table .table > thead th.sticky.left {
+.v-table .table > thead > tr > th.sticky.left {
   left: 0;
   box-shadow: 1px 5px 8px rgba(0, 0, 0, 0.08);
 }
-.v-table .table > thead th.sticky.right {
+.v-table .table > thead > tr > th.sticky.right {
   right: 0;
   box-shadow: -1px 5px 8px rgba(0, 0, 0, 0.08);
 }
@@ -1754,37 +1759,37 @@ summary {
 .v-table .table > thead .sort-arrows .icon-down-wide.focus {
   color: var(--black);
 }
-.v-table .table tbody tr.no-data-row td {
-  text-align: center;
-  color: var(--second-color);
-}
-.v-table .table tbody tr.focus {
-  background-color: var(--table-highlight);
-}
-.v-table .table tbody tr.focus td.sticky {
-  background-color: var(--table-highlight);
-}
-.v-table .table tbody tr.focus:hover td.sticky {
-  background-color: var(--table-highlight);
-}
-.v-table .table tbody tr:hover td.sticky {
-  background-color: var(--bg-color);
-}
-.v-table .table tbody tr td {
+.v-table .table > tbody > tr > td {
   transition: background-color 0.2s ease;
 }
-.v-table .table tbody tr td.sticky {
+.v-table .table > tbody > tr > td.sticky {
   position: -webkit-sticky;
   position: sticky;
   background-color: var(--white);
 }
-.v-table .table tbody tr td.sticky.left {
+.v-table .table > tbody > tr > td.sticky.left {
   left: 0;
   box-shadow: 1px 5px 8px rgba(0, 0, 0, 0.08);
 }
-.v-table .table tbody tr td.sticky.right {
+.v-table .table > tbody > tr > td.sticky.right {
   right: 0;
   box-shadow: -1px 5px 8px rgba(0, 0, 0, 0.08);
+}
+.v-table .table > tbody > tr.no-data-row > td {
+  text-align: center;
+  color: var(--second-color);
+}
+.v-table .table > tbody > tr.focus {
+  background-color: var(--table-highlight);
+}
+.v-table .table > tbody > tr.focus > td.sticky {
+  background-color: var(--table-highlight);
+}
+.v-table .table > tbody > tr.focus:hover > td.sticky {
+  background-color: var(--table-highlight);
+}
+.v-table .table > tbody > tr:hover > td.sticky {
+  background-color: var(--bg-color);
 }
 .v-table .fixed-head {
   position: relative;
@@ -1805,10 +1810,10 @@ summary {
 .v-table .fixed-head .table > thead {
   border: none;
 }
-.v-table .fixed-head .table > thead tr {
+.v-table .fixed-head .table > thead > tr {
   height: 0;
 }
-.v-table .fixed-head .table > thead th {
+.v-table .fixed-head .table > thead > tr > th {
   height: 0;
   line-height: 0;
   padding: 0;
@@ -2001,10 +2006,3 @@ summary {
 .v-window .win-footer .right .v-btn-ghost {
   margin-right: var(--unit);
 }
-/* Animation Classes */
-.slide-fade-enter,
-.slide-fade-leave-active {
-  opacity: 0;
-  transform: translateY(-100%);
-}
-/* End Animation */

@@ -94,21 +94,30 @@
           text-align: center;
 
           > thead {
-            tr {
+            > tr {
               height: 34px;
-              th {
+
+              > th {
                 font-weight: 400;
               }
             }
           }
 
           > tbody {
-            tr {
+            > tr {
               height: 40px;
-              td {
+
+              > td {
                 cursor: pointer;
                 line-height: 32px;
                 padding: 4px;
+
+                &.focus {
+                  div {
+                    background-color: var(--blue-color);
+                    border-radius: 50%;
+                  }
+                }
 
                 &:hover {
                   div {
@@ -117,14 +126,9 @@
                   }
                 }
               }
-              td.focus {
-                div {
-                  background-color: var(--blue-color);
-                  border-radius: 50%;
-                }
-              }
-              td.calendar-last-month,
-              td.calendar-next-month {
+
+              > td.calendar-last-month,
+              > td.calendar-next-month {
                 color: var(--disabled-color);
               }
             }
