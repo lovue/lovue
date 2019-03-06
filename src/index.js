@@ -67,40 +67,31 @@ if (typeof window !== 'undefined') {
     instance.vm.visible = true
   }
 
-  Object.defineProperties(Vue.prototype, {
-    $msg: {
-      value: Msg
-    },
-    success: {
-      value: msg => Msg(msg)
-    },
-    info: {
-      value: msg => {
-        Msg({
-          type: 'info',
-          message: msg
-        })
-      }
-    },
-    warn: {
-      value: msg => {
-        Msg({
-          type: 'warn',
-          message: msg
-        })
-      }
-    },
-    error: {
-      value: (msg, close) => {
-        if (close === undefined) close = true
+  Vue.prototype.$msg = Msg
+  Vue.prototype.success = msg => Msg(msg)
+  Vue.prototype.info = msg => {
+    Msg({
+      type: 'info',
+      message: msg
+    })
+  }
+  Vue.prototype.warn = msg => {
+    Msg({
+      type: 'warn',
+      message: msg
+    })
+  }
+  Vue.prototype.error = (msg, close) => {
+    if (close === undefined) close = true
 
-        Msg({
-          type: 'error',
-          message: msg.msg || msg,
-          showClose: close
-        })
-      }
-    },
+    Msg({
+      type: 'error',
+      message: msg.msg || msg,
+      showClose: close
+    })
+  }
+
+  Object.defineProperties(Vue.prototype, {
     $modal: {
       value: function (option = {}) {
         let instance
