@@ -242,7 +242,7 @@
   script$2.__file = "D:\\workspace\\lovue\\src\\components\\Button.vue";
 
   /* template */
-  var __vue_render__$2 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"v-btn",class:_vm.customClass,attrs:{"type":_vm.submit || 'button',"disabled":_vm.disabled},on:{"click":_vm.click}},[(!!_vm.icon && !_vm.loading)?_c('v-icon',{attrs:{"icon":_vm.icon}}):_vm._e(),_vm._v(" "),(_vm.loading)?_c('v-icon',{class:{loading: _vm.loading},attrs:{"icon":"refresh"}}):_vm._e(),_vm._v(" "),_vm._t("default")],2)};
+  var __vue_render__$2 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"v-btn",class:_vm.customClass,attrs:{"type":_vm.submit || 'button',"disabled":_vm.disabled},on:{"click":_vm.click}},[(!!_vm.icon && !_vm.loading)?_c('v-icon',{attrs:{"icon":_vm.icon}}):_vm._e(),_vm._v(" "),(_vm.loading)?_c('v-icon',{class:{loading: _vm.loading},attrs:{"icon":"refresh"}}):_vm._e(),_vm._v(" "),_vm._t("default",[_vm._v("确定")])],2)};
   var __vue_staticRenderFns__$2 = [];
 
     /* style */
@@ -1442,7 +1442,7 @@
   script$e.__file = "D:\\workspace\\lovue\\src\\components\\Popup.vue";
 
   /* template */
-  var __vue_render__$e = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("content")],2),_vm._v(" "),(!_vm.noFooter)?_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_vm._t("footer",[_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText || '取消'))]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText || '确认'))])])],2)]):_vm._e()])]):_vm._e()};
+  var __vue_render__$e = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("default")],2),_vm._v(" "),(!_vm.noFooter)?_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_vm._t("footer",[_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText || '取消'))]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText || '确认'))])])],2)]):_vm._e()])]):_vm._e()};
   var __vue_staticRenderFns__$e = [];
 
     /* style */
@@ -2668,40 +2668,31 @@
       instance.vm.visible = true;
     };
 
-    Object.defineProperties(Vue.prototype, {
-      $msg: {
-        value: Msg
-      },
-      success: {
-        value: msg => Msg(msg)
-      },
-      info: {
-        value: msg => {
-          Msg({
-            type: 'info',
-            message: msg
-          });
-        }
-      },
-      warn: {
-        value: msg => {
-          Msg({
-            type: 'warn',
-            message: msg
-          });
-        }
-      },
-      error: {
-        value: (msg, close) => {
-          if (close === undefined) close = true;
+    Vue.prototype.$msg = Msg;
+    Vue.prototype.success = msg => Msg(msg);
+    Vue.prototype.info = msg => {
+      Msg({
+        type: 'info',
+        message: msg
+      });
+    };
+    Vue.prototype.warn = msg => {
+      Msg({
+        type: 'warn',
+        message: msg
+      });
+    };
+    Vue.prototype.error = (msg, close) => {
+      if (close === undefined) close = true;
 
-          Msg({
-            type: 'error',
-            message: msg.msg || msg,
-            showClose: close
-          });
-        }
-      },
+      Msg({
+        type: 'error',
+        message: msg.msg || msg,
+        showClose: close
+      });
+    };
+
+    Object.defineProperties(Vue.prototype, {
       $modal: {
         value: function (option = {}) {
           let instance;
