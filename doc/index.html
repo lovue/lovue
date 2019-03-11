@@ -14,7 +14,10 @@
       <strong>We're sorry but synth doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app">
-      <v-popup title="上传" v-model="isShowPopup"></v-popup>
+      <v-popup title="上传" v-model="isShowPopup">
+        <p>Content</p>
+        <div slot="footer">Footer</div>
+      </v-popup>
 
       <div class="container">
         <aside class="l aside"></aside>

@@ -6,7 +6,7 @@
         <v-button type="text" @click="close"><v-icon icon="close" size="18"></v-icon></v-button>
       </div>
       <div class="win-content">
-        <slot name="content"></slot>
+        <slot></slot>
       </div>
       <div class="win-footer" v-if="!noFooter">
         <div class="right">
