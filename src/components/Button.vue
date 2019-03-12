@@ -1,5 +1,5 @@
 <template>
-  <button class="v-btn" :class="customClass" :type="submit || 'button'" :disabled="disabled" @click="click">
+  <button class="v-btn" :class="customClass" :type="submit ? 'submit' : 'button'" :disabled="disabled" @click="click">
     <v-icon :icon="icon" v-if="!!icon && !loading"></v-icon>
     <v-icon icon="refresh" :class="{loading: loading}" v-if="loading"></v-icon>
     <slot>确定</slot>
