@@ -35,7 +35,8 @@ export default {
     globals: {
       vue: 'Vue',
       window: 'window'
-    }
+    },
+    preferConst: true
   },
   external: ['vue'],
   plugins

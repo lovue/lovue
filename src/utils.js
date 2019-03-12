@@ -28,6 +28,38 @@ import generateQueryString from './utils/generateQueryString'
 import getNumberArray from './utils/getNumberArray'
 import secondsToDuration from './utils/secondsToDuration'
 
+export {
+  adjustImgShape,
+  connectWS,
+  convertTableDataToString,
+  $fetch,
+  formatDate,
+  getAverageRGB,
+  getKeyByValue,
+  getScrollTop,
+  getSearchParam,
+  getTimeDiff,
+  getype,
+  isEmptyObject,
+  isFirefox,
+  isIE,
+  isMobile,
+  isMobileEx,
+  isSupportWebGL,
+  isWeixin,
+  isWeixinInIphone,
+  reload,
+  saveDataToFile,
+  smoothToTop,
+  sortObjectArray,
+  sleep,
+  browserType,
+  intlNumber,
+  generateQueryString,
+  getNumberArray,
+  secondsToDuration
+}
+
 export default {
   adjustImgShape,
   connectWS,

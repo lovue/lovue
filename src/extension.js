@@ -5,8 +5,10 @@ import SelectCity from './extension/SelectCity.vue'
 import Step from './extension/Step.vue'
 import Tag from './extension/Tag.vue'
 
-if (typeof window !== 'undefined' && window.Vue) {
-  const components = [
+const install = function (Vue) {
+  if (!Vue || install.installed) return
+
+  const Components = [
     Collapse,
     HtmlEditor,
     ImgReflex,
@@ -14,7 +16,19 @@ if (typeof window !== 'undefined' && window.Vue) {
     Tag
   ]
 
-  components.forEach(component => {
-    Vue.component(component.name, component)
-  })
+  Components.forEach(c => Vue.component(c.name, c))
 }
+
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
+
+export {
+  Collapse,
+  HtmlEditor,
+  ImgReflex,
+  SelectCity, Step,
+  Tag
+}
+
+export default { install }

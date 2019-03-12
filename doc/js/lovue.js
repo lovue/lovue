@@ -1,6 +1,6 @@
 
 (function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');
-(function (Vue) {
+const lovue = (function (exports, Vue) {
   'use strict';
 
   Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue;
@@ -9,7 +9,7 @@
   //
   //
 
-  var script = {
+  const script = {
     name: 'v-icon',
     props: {
       icon: String,
@@ -115,7 +115,7 @@
     
 
     
-    var Icon = normalizeComponent(
+    const Icon = normalizeComponent(
       { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
       __vue_inject_styles__,
       __vue_script__,
@@ -128,87 +128,7 @@
 
   //
 
-  var script$1 = {
-    data() {
-      return {
-        visible: false,
-        message: '',
-        showClose: document.visibilityState === 'hidden',
-        type: 'success',
-        duration: 2000,
-        timer: null
-      }
-    },
-    components: {
-      [Icon.name]: Icon
-    },
-    computed: {
-      iconType() {
-        let all = {
-          info: 'info',
-          success: 'check',
-          error: 'close',
-          warn: 'warn'
-        };
-        return all[this.type]
-      }
-    },
-    methods: {
-      close() {
-        this.visible = false;
-        this.$el.addEventListener('transitionend', this.destroy);
-      },
-      destroy() {
-        this.$el.removeEventListener('transitionend', this.destroy);
-        this.$destroy();
-        document.body.removeChild(this.$el);
-        clearTimeout(this.timer);
-      }
-    },
-    mounted() {
-      if (!this.showClose) {
-        this.timer = setTimeout(() => this.close(), this.duration);
-      }
-    }
-  };
-
-  /* script */
-  const __vue_script__$1 = script$1;
-  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$1.__file = "D:\\workspace\\lovue\\src\\components\\Message.vue";
-
-  /* template */
-  var __vue_render__$1 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"message"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-message"},[_c('div',{staticClass:"m-icon",class:("m-" + _vm.type)},[_c('v-icon',{attrs:{"icon":_vm.iconType}})],1),_vm._v(" "),_c('p',[_vm._v(_vm._s(_vm.message))]),_vm._v(" "),(_vm.showClose)?_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){return _vm.close($event)}}}):_vm._e()],1)])};
-  var __vue_staticRenderFns__$1 = [];
-
-    /* style */
-    const __vue_inject_styles__$1 = undefined;
-    /* scoped */
-    const __vue_scope_id__$1 = undefined;
-    /* module identifier */
-    const __vue_module_identifier__$1 = undefined;
-    /* functional template */
-    const __vue_is_functional_template__$1 = false;
-    /* style inject */
-    
-    /* style inject SSR */
-    
-
-    
-    var Message = normalizeComponent(
-      { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
-      __vue_inject_styles__$1,
-      __vue_script__$1,
-      __vue_scope_id__$1,
-      __vue_is_functional_template__$1,
-      __vue_module_identifier__$1,
-      undefined,
-      undefined
-    );
-
-  //
-
-  var script$2 = {
+  const script$1 = {
     name: 'v-button',
     props: {
       type: String,
@@ -237,12 +157,57 @@
   };
 
   /* script */
-  const __vue_script__$2 = script$2;
+  const __vue_script__$1 = script$1;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$2.__file = "D:\\workspace\\lovue\\src\\components\\Button.vue";
+  script$1.__file = "D:\\workspace\\lovue\\src\\components\\Button.vue";
 
   /* template */
-  var __vue_render__$2 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"v-btn",class:_vm.customClass,attrs:{"type":_vm.submit || 'button',"disabled":_vm.disabled},on:{"click":_vm.click}},[(!!_vm.icon && !_vm.loading)?_c('v-icon',{attrs:{"icon":_vm.icon}}):_vm._e(),_vm._v(" "),(_vm.loading)?_c('v-icon',{class:{loading: _vm.loading},attrs:{"icon":"refresh"}}):_vm._e(),_vm._v(" "),_vm._t("default",[_vm._v("确定")])],2)};
+  var __vue_render__$1 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"v-btn",class:_vm.customClass,attrs:{"type":_vm.submit || 'button',"disabled":_vm.disabled},on:{"click":_vm.click}},[(!!_vm.icon && !_vm.loading)?_c('v-icon',{attrs:{"icon":_vm.icon}}):_vm._e(),_vm._v(" "),(_vm.loading)?_c('v-icon',{class:{loading: _vm.loading},attrs:{"icon":"refresh"}}):_vm._e(),_vm._v(" "),_vm._t("default",[_vm._v("确定")])],2)};
+  var __vue_staticRenderFns__$1 = [];
+
+    /* style */
+    const __vue_inject_styles__$1 = undefined;
+    /* scoped */
+    const __vue_scope_id__$1 = undefined;
+    /* module identifier */
+    const __vue_module_identifier__$1 = undefined;
+    /* functional template */
+    const __vue_is_functional_template__$1 = false;
+    /* style inject */
+    
+    /* style inject SSR */
+    
+
+    
+    const Button = normalizeComponent(
+      { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
+      __vue_inject_styles__$1,
+      __vue_script__$1,
+      __vue_scope_id__$1,
+      __vue_is_functional_template__$1,
+      __vue_module_identifier__$1,
+      undefined,
+      undefined
+    );
+
+  //
+  //
+  //
+  //
+  //
+  //
+
+  const script$2 = {
+    name: 'v-button-group'
+  };
+
+  /* script */
+  const __vue_script__$2 = script$2;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$2.__file = "D:\\workspace\\lovue\\src\\components\\ButtonGroup.vue";
+
+  /* template */
+  var __vue_render__$2 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-btn-group"},[_vm._t("default")],2)};
   var __vue_staticRenderFns__$2 = [];
 
     /* style */
@@ -259,7 +224,7 @@
     
 
     
-    var Button = normalizeComponent(
+    const ButtonGroup = normalizeComponent(
       { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
       __vue_inject_styles__$2,
       __vue_script__$2,
@@ -272,137 +237,7 @@
 
   //
 
-  var script$3 = {
-    data() {
-      return {
-        visible: false,
-        title: '',
-        content: '',
-        loading: false,
-        noCancel: false,
-        fixed: false,
-        confirm: undefined,
-        okText: '确认',
-        cancelText: '取消'
-      }
-    },
-    components: {
-      [Button.name]: Button,
-      [Icon.name]: Icon
-    },
-    computed: {
-      customCls() {
-        let custom = '';
-        if (this.title === '') custom = 'no-title';
-        if (this.fixed) custom += ' fixed';
-        return custom
-      }
-    },
-    methods: {
-      close() {
-        this.visible = false;
-        this.$destroy();
-        document.body.removeChild(this.$el);
-      },
-      async handleConfirm() {
-        if (!this.confirm) {
-          this.close();
-          return
-        }
-
-        if (this.loading) return
-
-        this.loading = true;
-        if (await this.confirm()) {
-          this.close();
-        }
-        this.loading = false;
-      }
-    }
-  };
-
-  /* script */
-  const __vue_script__$3 = script$3;
-  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$3.__file = "D:\\workspace\\lovue\\src\\components\\Modal.vue";
-
-  /* template */
-  var __vue_render__$3 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-modal overlay",class:_vm.customCls},[_c('transition',{attrs:{"name":"modal"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-window"},[_c('div',{staticClass:"title-bar"},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content",domProps:{"innerHTML":_vm._s(_vm.content)}}),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[(!_vm.noCancel)?_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText))]):_vm._e(),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText))])],1)])])])],1)};
-  var __vue_staticRenderFns__$3 = [];
-
-    /* style */
-    const __vue_inject_styles__$3 = undefined;
-    /* scoped */
-    const __vue_scope_id__$3 = undefined;
-    /* module identifier */
-    const __vue_module_identifier__$3 = undefined;
-    /* functional template */
-    const __vue_is_functional_template__$3 = false;
-    /* style inject */
-    
-    /* style inject SSR */
-    
-
-    
-    var Modal = normalizeComponent(
-      { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
-      __vue_inject_styles__$3,
-      __vue_script__$3,
-      __vue_scope_id__$3,
-      __vue_is_functional_template__$3,
-      __vue_module_identifier__$3,
-      undefined,
-      undefined
-    );
-
-  //
-  //
-  //
-  //
-  //
-  //
-
-  var script$4 = {
-    name: 'v-button-group'
-  };
-
-  /* script */
-  const __vue_script__$4 = script$4;
-  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$4.__file = "D:\\workspace\\lovue\\src\\components\\ButtonGroup.vue";
-
-  /* template */
-  var __vue_render__$4 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-btn-group"},[_vm._t("default")],2)};
-  var __vue_staticRenderFns__$4 = [];
-
-    /* style */
-    const __vue_inject_styles__$4 = undefined;
-    /* scoped */
-    const __vue_scope_id__$4 = undefined;
-    /* module identifier */
-    const __vue_module_identifier__$4 = undefined;
-    /* functional template */
-    const __vue_is_functional_template__$4 = false;
-    /* style inject */
-    
-    /* style inject SSR */
-    
-
-    
-    var ButtonGroup = normalizeComponent(
-      { render: __vue_render__$4, staticRenderFns: __vue_staticRenderFns__$4 },
-      __vue_inject_styles__$4,
-      __vue_script__$4,
-      __vue_scope_id__$4,
-      __vue_is_functional_template__$4,
-      __vue_module_identifier__$4,
-      undefined,
-      undefined
-    );
-
-  //
-
-  var script$5 = {
+  const script$3 = {
     name: 'v-button-send',
     data() {
       return {
@@ -465,35 +300,35 @@
   };
 
   /* script */
-  const __vue_script__$5 = script$5;
+  const __vue_script__$3 = script$3;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$5.__file = "D:\\workspace\\lovue\\src\\components\\ButtonSend.vue";
+  script$3.__file = "D:\\workspace\\lovue\\src\\components\\ButtonSend.vue";
 
   /* template */
-  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-button',{attrs:{"loading":_vm.loading,"disabled":!_vm.canSend},on:{"click":_vm.send}},[_vm._v(_vm._s(_vm.text))])};
-  var __vue_staticRenderFns__$5 = [];
+  var __vue_render__$3 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-button',{attrs:{"loading":_vm.loading,"disabled":!_vm.canSend},on:{"click":_vm.send}},[_vm._v(_vm._s(_vm.text))])};
+  var __vue_staticRenderFns__$3 = [];
 
     /* style */
-    const __vue_inject_styles__$5 = undefined;
+    const __vue_inject_styles__$3 = undefined;
     /* scoped */
-    const __vue_scope_id__$5 = undefined;
+    const __vue_scope_id__$3 = undefined;
     /* module identifier */
-    const __vue_module_identifier__$5 = undefined;
+    const __vue_module_identifier__$3 = undefined;
     /* functional template */
-    const __vue_is_functional_template__$5 = false;
+    const __vue_is_functional_template__$3 = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var ButtonSend = normalizeComponent(
-      { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
-      __vue_inject_styles__$5,
-      __vue_script__$5,
-      __vue_scope_id__$5,
-      __vue_is_functional_template__$5,
-      __vue_module_identifier__$5,
+    const ButtonSend = normalizeComponent(
+      { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
+      __vue_inject_styles__$3,
+      __vue_script__$3,
+      __vue_scope_id__$3,
+      __vue_is_functional_template__$3,
+      __vue_module_identifier__$3,
       undefined,
       undefined
     );
@@ -506,7 +341,7 @@
   //
   //
 
-  var script$6 = {
+  const script$4 = {
     name: 'v-checkbox',
     data() {
       return {
@@ -534,36 +369,36 @@
   };
 
   /* script */
-  const __vue_script__$6 = script$6;
+  const __vue_script__$4 = script$4;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$6.__file = "D:\\workspace\\lovue\\src\\components\\Checkbox.vue";
+  script$4.__file = "D:\\workspace\\lovue\\src\\components\\Checkbox.vue";
 
   /* template */
-  var __vue_render__$6 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{class:( _obj = { reverse: _vm.reverse, disabled: _vm.disabled}, _obj[_vm.lnfClass] = true, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,null)>-1:(_vm.checked)},on:{"change":[function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}},function($event){_vm.$emit('input', _vm.checked);}]}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])
+  var __vue_render__$4 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{class:( _obj = { reverse: _vm.reverse, disabled: _vm.disabled}, _obj[_vm.lnfClass] = true, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,null)>-1:(_vm.checked)},on:{"change":[function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}},function($event){_vm.$emit('input', _vm.checked);}]}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])
   var _obj;};
-  var __vue_staticRenderFns__$6 = [];
+  var __vue_staticRenderFns__$4 = [];
 
     /* style */
-    const __vue_inject_styles__$6 = undefined;
+    const __vue_inject_styles__$4 = undefined;
     /* scoped */
-    const __vue_scope_id__$6 = undefined;
+    const __vue_scope_id__$4 = undefined;
     /* module identifier */
-    const __vue_module_identifier__$6 = undefined;
+    const __vue_module_identifier__$4 = undefined;
     /* functional template */
-    const __vue_is_functional_template__$6 = false;
+    const __vue_is_functional_template__$4 = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Checkbox = normalizeComponent(
-      { render: __vue_render__$6, staticRenderFns: __vue_staticRenderFns__$6 },
-      __vue_inject_styles__$6,
-      __vue_script__$6,
-      __vue_scope_id__$6,
-      __vue_is_functional_template__$6,
-      __vue_module_identifier__$6,
+    const Checkbox = normalizeComponent(
+      { render: __vue_render__$4, staticRenderFns: __vue_staticRenderFns__$4 },
+      __vue_inject_styles__$4,
+      __vue_script__$4,
+      __vue_scope_id__$4,
+      __vue_is_functional_template__$4,
+      __vue_module_identifier__$4,
       undefined,
       undefined
     );
@@ -580,7 +415,7 @@
   //
   //
 
-  var script$7 = {
+  const script$5 = {
     name: 'v-checkbox-group',
     data() {
       return {
@@ -611,36 +446,36 @@
   };
 
   /* script */
-  const __vue_script__$7 = script$7;
+  const __vue_script__$5 = script$5;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$7.__file = "D:\\workspace\\lovue\\src\\components\\CheckboxGroup.vue";
+  script$5.__file = "D:\\workspace\\lovue\\src\\components\\CheckboxGroup.vue";
 
   /* template */
-  var __vue_render__$7 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-checkbox-group",class:{vertical: _vm.vertical}},_vm._l((_vm.source),function(item){return _c('div',{staticClass:"g-item"},[_c('label',{class:( _obj = { reverse: _vm.reverse, disabled: item.disabled}, _obj[_vm.lnfClass] = true, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,item.value)>-1:(_vm.checked)},on:{"change":function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.value,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])])
+  var __vue_render__$5 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-checkbox-group",class:{vertical: _vm.vertical}},_vm._l((_vm.source),function(item){return _c('div',{staticClass:"g-item"},[_c('label',{class:( _obj = { reverse: _vm.reverse, disabled: item.disabled}, _obj[_vm.lnfClass] = true, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,item.value)>-1:(_vm.checked)},on:{"change":function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.value,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])])
   var _obj;}))};
-  var __vue_staticRenderFns__$7 = [];
+  var __vue_staticRenderFns__$5 = [];
 
     /* style */
-    const __vue_inject_styles__$7 = undefined;
+    const __vue_inject_styles__$5 = undefined;
     /* scoped */
-    const __vue_scope_id__$7 = undefined;
+    const __vue_scope_id__$5 = undefined;
     /* module identifier */
-    const __vue_module_identifier__$7 = undefined;
+    const __vue_module_identifier__$5 = undefined;
     /* functional template */
-    const __vue_is_functional_template__$7 = false;
+    const __vue_is_functional_template__$5 = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var CheckboxGroup = normalizeComponent(
-      { render: __vue_render__$7, staticRenderFns: __vue_staticRenderFns__$7 },
-      __vue_inject_styles__$7,
-      __vue_script__$7,
-      __vue_scope_id__$7,
-      __vue_is_functional_template__$7,
-      __vue_module_identifier__$7,
+    const CheckboxGroup = normalizeComponent(
+      { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
+      __vue_inject_styles__$5,
+      __vue_script__$5,
+      __vue_scope_id__$5,
+      __vue_is_functional_template__$5,
+      __vue_module_identifier__$5,
       undefined,
       undefined
     );
@@ -652,7 +487,7 @@
   //
   //
 
-  var script$8 = {
+  const script$6 = {
     name: 'v-col',
     props: {
       span: Number
@@ -660,35 +495,35 @@
   };
 
   /* script */
-  const __vue_script__$8 = script$8;
+  const __vue_script__$6 = script$6;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$8.__file = "D:\\workspace\\lovue\\src\\components\\Col.vue";
+  script$6.__file = "D:\\workspace\\lovue\\src\\components\\Col.vue";
 
   /* template */
-  var __vue_render__$8 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-col",class:("col-" + _vm.span)},[_vm._t("default")],2)};
-  var __vue_staticRenderFns__$8 = [];
+  var __vue_render__$6 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-col",class:("col-" + _vm.span)},[_vm._t("default")],2)};
+  var __vue_staticRenderFns__$6 = [];
 
     /* style */
-    const __vue_inject_styles__$8 = undefined;
+    const __vue_inject_styles__$6 = undefined;
     /* scoped */
-    const __vue_scope_id__$8 = undefined;
+    const __vue_scope_id__$6 = undefined;
     /* module identifier */
-    const __vue_module_identifier__$8 = undefined;
+    const __vue_module_identifier__$6 = undefined;
     /* functional template */
-    const __vue_is_functional_template__$8 = false;
+    const __vue_is_functional_template__$6 = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Col = normalizeComponent(
-      { render: __vue_render__$8, staticRenderFns: __vue_staticRenderFns__$8 },
-      __vue_inject_styles__$8,
-      __vue_script__$8,
-      __vue_scope_id__$8,
-      __vue_is_functional_template__$8,
-      __vue_module_identifier__$8,
+    const Col = normalizeComponent(
+      { render: __vue_render__$6, staticRenderFns: __vue_staticRenderFns__$6 },
+      __vue_inject_styles__$6,
+      __vue_script__$6,
+      __vue_scope_id__$6,
+      __vue_is_functional_template__$6,
+      __vue_module_identifier__$6,
       undefined,
       undefined
     );
@@ -709,7 +544,7 @@
   //
   //
 
-  var script$9 = {
+  const script$7 = {
     name: 'v-pure-select',
     data() {
       return {
@@ -769,42 +604,42 @@
   };
 
   /* script */
-  const __vue_script__$9 = script$9;
+  const __vue_script__$7 = script$7;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$9.__file = "D:\\workspace\\lovue\\src\\components\\PureSelect.vue";
+  script$7.__file = "D:\\workspace\\lovue\\src\\components\\PureSelect.vue";
 
   /* template */
-  var __vue_render__$9 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dl',{staticClass:"v-pure-select",class:_vm.open,on:{"click":_vm.showDd}},[_c('dt',[(_vm.current === undefined)?_c('span',{staticClass:"placeholder"},[_vm._v(_vm._s(_vm.placeholder || '请选择'))]):_vm._e(),_vm._v(" "),_vm._l((_vm.source),function(elem,index){return [_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.current),expression:"current"}],attrs:{"id":("pure_radio_" + _vm._uid + "_" + index),"type":"radio","name":_vm.name},domProps:{"value":elem,"checked":_vm._q(_vm.current,elem)},on:{"change":function($event){_vm.current=elem;}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(elem))])]})],2),_vm._v(" "),_c('dd',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowDd),expression:"bShowDd"}],class:_vm.pos},_vm._l((_vm.source),function(elem,index){return _c('label',{class:{focus: _vm.current === elem},attrs:{"for":("pure_radio_" + _vm._uid + "_" + index)},on:{"click":_vm.hideDd}},[_vm._v(_vm._s(elem))])}))])};
-  var __vue_staticRenderFns__$9 = [];
+  var __vue_render__$7 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('dl',{staticClass:"v-pure-select",class:_vm.open,on:{"click":_vm.showDd}},[_c('dt',[(_vm.current === undefined)?_c('span',{staticClass:"placeholder"},[_vm._v(_vm._s(_vm.placeholder || '请选择'))]):_vm._e(),_vm._v(" "),_vm._l((_vm.source),function(elem,index){return [_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.current),expression:"current"}],attrs:{"id":("pure_radio_" + _vm._uid + "_" + index),"type":"radio","name":_vm.name},domProps:{"value":elem,"checked":_vm._q(_vm.current,elem)},on:{"change":function($event){_vm.current=elem;}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(elem))])]})],2),_vm._v(" "),_c('dd',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowDd),expression:"bShowDd"}],class:_vm.pos},_vm._l((_vm.source),function(elem,index){return _c('label',{class:{focus: _vm.current === elem},attrs:{"for":("pure_radio_" + _vm._uid + "_" + index)},on:{"click":_vm.hideDd}},[_vm._v(_vm._s(elem))])}))])};
+  var __vue_staticRenderFns__$7 = [];
 
     /* style */
-    const __vue_inject_styles__$9 = undefined;
+    const __vue_inject_styles__$7 = undefined;
     /* scoped */
-    const __vue_scope_id__$9 = undefined;
+    const __vue_scope_id__$7 = undefined;
     /* module identifier */
-    const __vue_module_identifier__$9 = undefined;
+    const __vue_module_identifier__$7 = undefined;
     /* functional template */
-    const __vue_is_functional_template__$9 = false;
+    const __vue_is_functional_template__$7 = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var PureSelect = normalizeComponent(
-      { render: __vue_render__$9, staticRenderFns: __vue_staticRenderFns__$9 },
-      __vue_inject_styles__$9,
-      __vue_script__$9,
-      __vue_scope_id__$9,
-      __vue_is_functional_template__$9,
-      __vue_module_identifier__$9,
+    const PureSelect = normalizeComponent(
+      { render: __vue_render__$7, staticRenderFns: __vue_staticRenderFns__$7 },
+      __vue_inject_styles__$7,
+      __vue_script__$7,
+      __vue_scope_id__$7,
+      __vue_is_functional_template__$7,
+      __vue_module_identifier__$7,
       undefined,
       undefined
     );
 
   //
 
-  var script$a = {
+  const script$8 = {
     name: 'v-date-picker',
     data() {
       return {
@@ -843,7 +678,8 @@
       fixedWidth: Boolean
     },
     components: {
-      [PureSelect.name]: PureSelect
+      [PureSelect.name]: PureSelect,
+      [Icon.name]: Icon
     },
     computed: {
       inputStyle() {
@@ -1024,35 +860,35 @@
   }
 
   /* script */
-  const __vue_script__$a = script$a;
+  const __vue_script__$8 = script$8;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$a.__file = "D:\\workspace\\lovue\\src\\components\\DatePicker.vue";
+  script$8.__file = "D:\\workspace\\lovue\\src\\components\\DatePicker.vue";
 
   /* template */
-  var __vue_render__$a = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-date-picker",on:{"click":_vm.showPicker}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.date),expression:"date"}],staticClass:"input",style:(_vm.inputStyle),attrs:{"name":_vm.name,"readonly":""},domProps:{"value":(_vm.date)},on:{"input":function($event){if($event.target.composing){ return; }_vm.date=$event.target.value;}}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowPicker),expression:"bShowPicker"}],ref:"container",staticClass:"picker-container",class:(_vm.pos + " " + _vm.open)},[_c('div',{staticClass:"date-picker"},[_c('div',{staticClass:"picker-filter"},[_c('div',{staticClass:"month-picker"},[_c('button',{staticClass:"btn-text",attrs:{"type":"button"},on:{"click":_vm.prevMonth}},[_vm._v("◀")]),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.localeMonths[_vm.month - 1]))]),_vm._v(" "),_c('button',{staticClass:"btn-text",attrs:{"type":"button"},on:{"click":_vm.nextMonth}},[_vm._v("▶")])]),_vm._v(" "),_c('div',{staticClass:"year-picker"},[_c('v-pure-select',{attrs:{"source":_vm.years},model:{value:(_vm.year),callback:function ($$v) {_vm.year=$$v;},expression:"year"}})],1)]),_vm._v(" "),_c('div',{staticClass:"calendar"},[_c('table',[_c('thead',[_c('tr',_vm._l((_vm.localeWeeks),function(week){return _c('th',[_vm._v(_vm._s(week))])}))]),_vm._v(" "),_c('tbody',_vm._l((6),function(i){return _c('tr',_vm._l((7),function(j){return _c('td',{class:_vm.days[(i-1)*7+(j-1)].status,on:{"click":function($event){$event.stopPropagation();_vm.selectDay(i,j);}}},[_c('div',[_vm._v(_vm._s(_vm.days[(i-1)*7+(j-1)].text))])])}))}))])])]),_vm._v(" "),(_vm.full)?_c('div',{staticClass:"time-picker"},[_c('ul',{staticClass:"list"},_vm._l((_vm.times),function(time){return _c('li',{class:time === _vm.hour ? 'focus' : '',on:{"click":function($event){$event.stopPropagation();_vm.selectHour(time);}}},[_vm._v(_vm._s(time))])}))]):_vm._e()])])};
-  var __vue_staticRenderFns__$a = [];
+  var __vue_render__$8 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-date-picker",on:{"click":_vm.showPicker}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.date),expression:"date"}],staticClass:"input",style:(_vm.inputStyle),attrs:{"name":_vm.name,"readonly":""},domProps:{"value":(_vm.date)},on:{"input":function($event){if($event.target.composing){ return; }_vm.date=$event.target.value;}}}),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowPicker),expression:"bShowPicker"}],ref:"container",staticClass:"picker-container",class:(_vm.pos + " " + _vm.open)},[_c('div',{staticClass:"date-picker"},[_c('div',{staticClass:"picker-filter"},[_c('div',{staticClass:"month-picker"},[_c('button',{staticClass:"btn-text",attrs:{"type":"button"},on:{"click":_vm.prevMonth}},[_c('v-icon',{attrs:{"icon":"left","size":"16"}})],1),_vm._v(" "),_c('div',[_vm._v(_vm._s(_vm.localeMonths[_vm.month - 1]))]),_vm._v(" "),_c('button',{staticClass:"btn-text",attrs:{"type":"button"},on:{"click":_vm.nextMonth}},[_c('v-icon',{attrs:{"icon":"right","size":"16"}})],1)]),_vm._v(" "),_c('div',{staticClass:"year-picker"},[_c('v-pure-select',{attrs:{"source":_vm.years},model:{value:(_vm.year),callback:function ($$v) {_vm.year=$$v;},expression:"year"}})],1)]),_vm._v(" "),_c('div',{staticClass:"calendar"},[_c('table',[_c('thead',[_c('tr',_vm._l((_vm.localeWeeks),function(week){return _c('th',[_vm._v(_vm._s(week))])}))]),_vm._v(" "),_c('tbody',_vm._l((6),function(i){return _c('tr',_vm._l((7),function(j){return _c('td',{class:_vm.days[(i-1)*7+(j-1)].status,on:{"click":function($event){$event.stopPropagation();_vm.selectDay(i,j);}}},[_c('div',[_vm._v(_vm._s(_vm.days[(i-1)*7+(j-1)].text))])])}))}))])])]),_vm._v(" "),(_vm.full)?_c('div',{staticClass:"time-picker"},[_c('ul',{staticClass:"list"},_vm._l((_vm.times),function(time){return _c('li',{class:time === _vm.hour ? 'focus' : '',on:{"click":function($event){$event.stopPropagation();_vm.selectHour(time);}}},[_vm._v(_vm._s(time))])}))]):_vm._e()])])};
+  var __vue_staticRenderFns__$8 = [];
 
     /* style */
-    const __vue_inject_styles__$a = undefined;
+    const __vue_inject_styles__$8 = undefined;
     /* scoped */
-    const __vue_scope_id__$a = undefined;
+    const __vue_scope_id__$8 = undefined;
     /* module identifier */
-    const __vue_module_identifier__$a = undefined;
+    const __vue_module_identifier__$8 = undefined;
     /* functional template */
-    const __vue_is_functional_template__$a = false;
+    const __vue_is_functional_template__$8 = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var DatePicker = normalizeComponent(
-      { render: __vue_render__$a, staticRenderFns: __vue_staticRenderFns__$a },
-      __vue_inject_styles__$a,
-      __vue_script__$a,
-      __vue_scope_id__$a,
-      __vue_is_functional_template__$a,
-      __vue_module_identifier__$a,
+    const DatePicker = normalizeComponent(
+      { render: __vue_render__$8, staticRenderFns: __vue_staticRenderFns__$8 },
+      __vue_inject_styles__$8,
+      __vue_script__$8,
+      __vue_scope_id__$8,
+      __vue_is_functional_template__$8,
+      __vue_module_identifier__$8,
       undefined,
       undefined
     );
@@ -1068,7 +904,7 @@
   //
   //
 
-  var script$b = {
+  const script$9 = {
     name: 'v-input',
     data() {
       return {
@@ -1115,42 +951,42 @@
   };
 
   /* script */
-  const __vue_script__$b = script$b;
+  const __vue_script__$9 = script$9;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$b.__file = "D:\\workspace\\lovue\\src\\components\\Input.vue";
+  script$9.__file = "D:\\workspace\\lovue\\src\\components\\Input.vue";
 
   /* template */
-  var __vue_render__$b = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-input",class:{effect: _vm.effect}},[(_vm.resize)?_c('div',{staticClass:"hidden-value"},[_vm._v(_vm._s(_vm.content))]):_vm._e(),_vm._v(" "),((_vm.type)==='checkbox')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.content)?_vm._i(_vm.content,null)>-1:(_vm.content)},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"change":function($event){var $$a=_vm.content,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.content=$$a.concat([$$v]));}else{$$i>-1&&(_vm.content=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.content=$$c;}}}}):((_vm.type)==='radio')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"type":"radio"},domProps:{"checked":_vm._q(_vm.content,null)},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"change":function($event){_vm.content=null;}}}):_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"type":_vm.type},domProps:{"value":(_vm.content)},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"input":function($event){if($event.target.composing){ return; }_vm.content=$event.target.value;}}}),_vm._v(" "),(_vm.effect)?_c('hr'):_vm._e()])};
-  var __vue_staticRenderFns__$b = [];
+  var __vue_render__$9 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-input",class:{effect: _vm.effect}},[(_vm.resize)?_c('div',{staticClass:"hidden-value"},[_vm._v(_vm._s(_vm.content))]):_vm._e(),_vm._v(" "),((_vm.type)==='checkbox')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.content)?_vm._i(_vm.content,null)>-1:(_vm.content)},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"change":function($event){var $$a=_vm.content,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.content=$$a.concat([$$v]));}else{$$i>-1&&(_vm.content=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.content=$$c;}}}}):((_vm.type)==='radio')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"type":"radio"},domProps:{"checked":_vm._q(_vm.content,null)},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"change":function($event){_vm.content=null;}}}):_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"type":_vm.type},domProps:{"value":(_vm.content)},on:{"keypress":function($event){if(!('button' in $event)&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"input":function($event){if($event.target.composing){ return; }_vm.content=$event.target.value;}}}),_vm._v(" "),(_vm.effect)?_c('hr'):_vm._e()])};
+  var __vue_staticRenderFns__$9 = [];
 
     /* style */
-    const __vue_inject_styles__$b = undefined;
+    const __vue_inject_styles__$9 = undefined;
     /* scoped */
-    const __vue_scope_id__$b = undefined;
+    const __vue_scope_id__$9 = undefined;
     /* module identifier */
-    const __vue_module_identifier__$b = undefined;
+    const __vue_module_identifier__$9 = undefined;
     /* functional template */
-    const __vue_is_functional_template__$b = false;
+    const __vue_is_functional_template__$9 = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Input = normalizeComponent(
-      { render: __vue_render__$b, staticRenderFns: __vue_staticRenderFns__$b },
-      __vue_inject_styles__$b,
-      __vue_script__$b,
-      __vue_scope_id__$b,
-      __vue_is_functional_template__$b,
-      __vue_module_identifier__$b,
+    const Input = normalizeComponent(
+      { render: __vue_render__$9, staticRenderFns: __vue_staticRenderFns__$9 },
+      __vue_inject_styles__$9,
+      __vue_script__$9,
+      __vue_scope_id__$9,
+      __vue_is_functional_template__$9,
+      __vue_module_identifier__$9,
       undefined,
       undefined
     );
 
   //
 
-  var script$c = {
+  const script$a = {
     name: 'v-menu',
     data() {
       return {
@@ -1215,42 +1051,42 @@
   };
 
   /* script */
-  const __vue_script__$c = script$c;
+  const __vue_script__$a = script$a;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$c.__file = "D:\\workspace\\lovue\\src\\components\\Menu.vue";
+  script$a.__file = "D:\\workspace\\lovue\\src\\components\\Menu.vue";
 
   /* template */
-  var __vue_render__$c = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"v-menu",class:{vertical: _vm.vertical}},_vm._l((_vm.menus),function(menu){return _c('li',{staticClass:"v-menu-item"},[(_vm.vertical)?[(menu.children)?[_c('div',{staticClass:"i-title",class:{focus: menu._focus},on:{"click":function($event){_vm.toggleMenu(menu);}}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))]),_vm._v(" "),_c('v-icon',{class:{up: menu._openIcon},attrs:{"icon":"down-wide"}})],1),_vm._v(" "),_c('ul',{directives:[{name:"show",rawName:"v-show",value:(menu._open),expression:"menu._open"}],staticClass:"m-sub",style:(("height: " + (menu.height || 0) + "px;"))},_vm._l((menu.children),function(child){return _c('li',{staticClass:"s-item"},[(_vm.mode === 'spa')?_c('router-link',{attrs:{"to":child.url}},[_vm._v(_vm._s(child.name))]):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_c('a',{class:{focus: child._focus},attrs:{"href":child.url}},[_vm._v(_vm._s(child.name))]):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_c('a',{class:{focus: child._focus},on:{"click":function($event){_vm.clickItem(child, menu);}}},[_vm._v(_vm._s(child.name))]):_vm._e()],1)}))]:[(_vm.mode === 'spa')?_c('router-link',{staticClass:"i-link",attrs:{"to":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},attrs:{"href":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},on:{"click":function($event){_vm.clickItem(menu);}}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e()]]:[(menu.children)?_c('div',{staticClass:"v-dropdown-wrap"},[_c('div',{staticClass:"d-trigger",class:{focus: menu._focus}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))]),_vm._v(" "),_c('v-icon',{attrs:{"icon":"down-wide"}})],1),_vm._v(" "),_c('div',{staticClass:"v-dropdown"},[(_vm.mode === 'spa')?_vm._l((menu.children),function(child,i){return _c('router-link',{key:i,staticClass:"d-item",attrs:{"to":child.url}},[_vm._v(_vm._s(child.name))])}):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_vm._l((menu.children),function(child){return _c('a',{staticClass:"d-item",class:{focus: child._focus},attrs:{"href":child.url}},[_vm._v(_vm._s(child.name))])}):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_vm._l((menu.children),function(child){return _c('a',{staticClass:"d-item",on:{"click":function($event){_vm.clickItem(child, menu);}}},[_vm._v(_vm._s(child.name))])}):_vm._e()],2)]):[(_vm.mode === 'spa')?_c('router-link',{staticClass:"i-link",attrs:{"to":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},attrs:{"href":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},on:{"click":function($event){_vm.clickItem(menu);}}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e()]]],2)}))};
-  var __vue_staticRenderFns__$c = [];
+  var __vue_render__$a = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',{staticClass:"v-menu",class:{vertical: _vm.vertical}},_vm._l((_vm.menus),function(menu){return _c('li',{staticClass:"v-menu-item"},[(_vm.vertical)?[(menu.children)?[_c('div',{staticClass:"i-title",class:{focus: menu._focus},on:{"click":function($event){_vm.toggleMenu(menu);}}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))]),_vm._v(" "),_c('v-icon',{class:{up: menu._openIcon},attrs:{"icon":"down-wide"}})],1),_vm._v(" "),_c('ul',{directives:[{name:"show",rawName:"v-show",value:(menu._open),expression:"menu._open"}],staticClass:"m-sub",style:(("height: " + (menu.height || 0) + "px;"))},_vm._l((menu.children),function(child){return _c('li',{staticClass:"s-item"},[(_vm.mode === 'spa')?_c('router-link',{attrs:{"to":child.url}},[_vm._v(_vm._s(child.name))]):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_c('a',{class:{focus: child._focus},attrs:{"href":child.url}},[_vm._v(_vm._s(child.name))]):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_c('a',{class:{focus: child._focus},on:{"click":function($event){_vm.clickItem(child, menu);}}},[_vm._v(_vm._s(child.name))]):_vm._e()],1)}))]:[(_vm.mode === 'spa')?_c('router-link',{staticClass:"i-link",attrs:{"to":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},attrs:{"href":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},on:{"click":function($event){_vm.clickItem(menu);}}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e()]]:[(menu.children)?_c('div',{staticClass:"v-dropdown-wrap"},[_c('div',{staticClass:"d-trigger",class:{focus: menu._focus}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))]),_vm._v(" "),_c('v-icon',{attrs:{"icon":"down-wide"}})],1),_vm._v(" "),_c('div',{staticClass:"v-dropdown"},[(_vm.mode === 'spa')?_vm._l((menu.children),function(child,i){return _c('router-link',{key:i,staticClass:"d-item",attrs:{"to":child.url}},[_vm._v(_vm._s(child.name))])}):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_vm._l((menu.children),function(child){return _c('a',{staticClass:"d-item",class:{focus: child._focus},attrs:{"href":child.url}},[_vm._v(_vm._s(child.name))])}):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_vm._l((menu.children),function(child){return _c('a',{staticClass:"d-item",on:{"click":function($event){_vm.clickItem(child, menu);}}},[_vm._v(_vm._s(child.name))])}):_vm._e()],2)]):[(_vm.mode === 'spa')?_c('router-link',{staticClass:"i-link",attrs:{"to":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'link')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},attrs:{"href":menu.url}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e(),_vm._v(" "),(_vm.mode === 'nonLink')?_c('a',{staticClass:"i-link",class:{focus: menu._focus},on:{"click":function($event){_vm.clickItem(menu);}}},[(menu.icon)?_c('v-icon',{attrs:{"icon":menu.icon,"size":"16"}}):_vm._e(),_c('span',[_vm._v(_vm._s(menu.name))])],1):_vm._e()]]],2)}))};
+  var __vue_staticRenderFns__$a = [];
 
     /* style */
-    const __vue_inject_styles__$c = undefined;
+    const __vue_inject_styles__$a = undefined;
     /* scoped */
-    const __vue_scope_id__$c = undefined;
+    const __vue_scope_id__$a = undefined;
     /* module identifier */
-    const __vue_module_identifier__$c = undefined;
+    const __vue_module_identifier__$a = undefined;
     /* functional template */
-    const __vue_is_functional_template__$c = false;
+    const __vue_is_functional_template__$a = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Menu = normalizeComponent(
-      { render: __vue_render__$c, staticRenderFns: __vue_staticRenderFns__$c },
-      __vue_inject_styles__$c,
-      __vue_script__$c,
-      __vue_scope_id__$c,
-      __vue_is_functional_template__$c,
-      __vue_module_identifier__$c,
+    const Menu = normalizeComponent(
+      { render: __vue_render__$a, staticRenderFns: __vue_staticRenderFns__$a },
+      __vue_inject_styles__$a,
+      __vue_script__$a,
+      __vue_scope_id__$a,
+      __vue_is_functional_template__$a,
+      __vue_module_identifier__$a,
       undefined,
       undefined
     );
 
   //
 
-  var script$d = {
+  const script$b = {
     name: 'v-pagination',
     data() {
       return {
@@ -1335,42 +1171,42 @@
   };
 
   /* script */
-  const __vue_script__$d = script$d;
+  const __vue_script__$b = script$b;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$d.__file = "D:\\workspace\\lovue\\src\\components\\Pagination.vue";
+  script$b.__file = "D:\\workspace\\lovue\\src\\components\\Pagination.vue";
 
   /* template */
-  var __vue_render__$d = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-pagination"},[(_vm.simple)?[_c('span',[_vm._v(_vm._s(_vm.index)+"/"+_vm._s(_vm.pages)+"页")]),_vm._v(" "),_c('ul',{staticClass:"p-pages"},[_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.prev}},[_c('v-icon',{attrs:{"icon":"left","size":"16"}})],1)]),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.next}},[_c('v-icon',{attrs:{"icon":"right","size":"16"}})],1)])])]:[_c('div',{staticClass:"p-total"},[_vm._v("共 "+_vm._s(_vm.total)+" 条")]),_vm._v(" "),_c('div',{staticClass:"p-one"},[_c('span',[_vm._v("每页")]),_vm._v(" "),_c('v-pure-select',{attrs:{"source":_vm.pageCounts},model:{value:(_vm.per),callback:function ($$v) {_vm.per=$$v;},expression:"per"}}),_vm._v(" "),_c('span',[_vm._v("条")])],1),_vm._v(" "),_c('ul',{staticClass:"p-pages"},[_c('li',[_c('a',{staticClass:"link",on:{"click":function($event){_vm.index = 1;}}},[_vm._v("首页")])]),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.prev}},[_vm._v("上一页")])]),_vm._v(" "),_vm._l((_vm.showed),function(n){return _c('li',[_c('a',{staticClass:"link",class:{focus: _vm.index === n},on:{"click":function($event){_vm.index = n;}}},[_vm._v(_vm._s(n))])])}),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.next}},[_vm._v("下一页")])]),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":function($event){_vm.index = _vm.pages;}}},[_vm._v("末页")])])],2),_vm._v(" "),_c('div',{staticClass:"p-jump"},[_c('span',[_vm._v("前往")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.jumpPage),expression:"jumpPage"}],staticClass:"input",attrs:{"type":"number","min":"1","max":_vm.pages,"required":""},domProps:{"value":(_vm.jumpPage)},on:{"change":_vm.jump,"input":function($event){if($event.target.composing){ return; }_vm.jumpPage=$event.target.value;}}}),_vm._v(" "),_c('span',[_vm._v("页")])])]],2)};
-  var __vue_staticRenderFns__$d = [];
+  var __vue_render__$b = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-pagination"},[(_vm.simple)?[_c('span',[_vm._v(_vm._s(_vm.index)+"/"+_vm._s(_vm.pages)+"页")]),_vm._v(" "),_c('ul',{staticClass:"p-pages"},[_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.prev}},[_c('v-icon',{attrs:{"icon":"left","size":"16"}})],1)]),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.next}},[_c('v-icon',{attrs:{"icon":"right","size":"16"}})],1)])])]:[_c('div',{staticClass:"p-total"},[_vm._v("共 "+_vm._s(_vm.total)+" 条")]),_vm._v(" "),_c('div',{staticClass:"p-one"},[_c('span',[_vm._v("每页")]),_vm._v(" "),_c('v-pure-select',{attrs:{"source":_vm.pageCounts},model:{value:(_vm.per),callback:function ($$v) {_vm.per=$$v;},expression:"per"}}),_vm._v(" "),_c('span',[_vm._v("条")])],1),_vm._v(" "),_c('ul',{staticClass:"p-pages"},[_c('li',[_c('a',{staticClass:"link",on:{"click":function($event){_vm.index = 1;}}},[_vm._v("首页")])]),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.prev}},[_vm._v("上一页")])]),_vm._v(" "),_vm._l((_vm.showed),function(n){return _c('li',[_c('a',{staticClass:"link",class:{focus: _vm.index === n},on:{"click":function($event){_vm.index = n;}}},[_vm._v(_vm._s(n))])])}),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":_vm.next}},[_vm._v("下一页")])]),_vm._v(" "),_c('li',[_c('a',{staticClass:"link",on:{"click":function($event){_vm.index = _vm.pages;}}},[_vm._v("末页")])])],2),_vm._v(" "),_c('div',{staticClass:"p-jump"},[_c('span',[_vm._v("前往")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.jumpPage),expression:"jumpPage"}],staticClass:"input",attrs:{"type":"number","min":"1","max":_vm.pages,"required":""},domProps:{"value":(_vm.jumpPage)},on:{"change":_vm.jump,"input":function($event){if($event.target.composing){ return; }_vm.jumpPage=$event.target.value;}}}),_vm._v(" "),_c('span',[_vm._v("页")])])]],2)};
+  var __vue_staticRenderFns__$b = [];
 
     /* style */
-    const __vue_inject_styles__$d = undefined;
+    const __vue_inject_styles__$b = undefined;
     /* scoped */
-    const __vue_scope_id__$d = undefined;
+    const __vue_scope_id__$b = undefined;
     /* module identifier */
-    const __vue_module_identifier__$d = undefined;
+    const __vue_module_identifier__$b = undefined;
     /* functional template */
-    const __vue_is_functional_template__$d = false;
+    const __vue_is_functional_template__$b = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Pagination = normalizeComponent(
-      { render: __vue_render__$d, staticRenderFns: __vue_staticRenderFns__$d },
-      __vue_inject_styles__$d,
-      __vue_script__$d,
-      __vue_scope_id__$d,
-      __vue_is_functional_template__$d,
-      __vue_module_identifier__$d,
+    const Pagination = normalizeComponent(
+      { render: __vue_render__$b, staticRenderFns: __vue_staticRenderFns__$b },
+      __vue_inject_styles__$b,
+      __vue_script__$b,
+      __vue_scope_id__$b,
+      __vue_is_functional_template__$b,
+      __vue_module_identifier__$b,
       undefined,
       undefined
     );
 
   //
 
-  var script$e = {
+  const script$c = {
     name: 'v-popup',
     data() {
       return {
@@ -1437,35 +1273,35 @@
   };
 
   /* script */
-  const __vue_script__$e = script$e;
+  const __vue_script__$c = script$c;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$e.__file = "D:\\workspace\\lovue\\src\\components\\Popup.vue";
+  script$c.__file = "D:\\workspace\\lovue\\src\\components\\Popup.vue";
 
   /* template */
-  var __vue_render__$e = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("default")],2),_vm._v(" "),(!_vm.noFooter)?_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_vm._t("footer",[_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText || '取消'))]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText || '确认'))])])],2)]):_vm._e()])]):_vm._e()};
-  var __vue_staticRenderFns__$e = [];
+  var __vue_render__$c = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("default")],2),_vm._v(" "),(!_vm.noFooter)?_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_vm._t("footer",[_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText || '取消'))]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText || '确认'))])])],2)]):_vm._e()])]):_vm._e()};
+  var __vue_staticRenderFns__$c = [];
 
     /* style */
-    const __vue_inject_styles__$e = undefined;
+    const __vue_inject_styles__$c = undefined;
     /* scoped */
-    const __vue_scope_id__$e = undefined;
+    const __vue_scope_id__$c = undefined;
     /* module identifier */
-    const __vue_module_identifier__$e = undefined;
+    const __vue_module_identifier__$c = undefined;
     /* functional template */
-    const __vue_is_functional_template__$e = false;
+    const __vue_is_functional_template__$c = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Popup = normalizeComponent(
-      { render: __vue_render__$e, staticRenderFns: __vue_staticRenderFns__$e },
-      __vue_inject_styles__$e,
-      __vue_script__$e,
-      __vue_scope_id__$e,
-      __vue_is_functional_template__$e,
-      __vue_module_identifier__$e,
+    const Popup = normalizeComponent(
+      { render: __vue_render__$c, staticRenderFns: __vue_staticRenderFns__$c },
+      __vue_inject_styles__$c,
+      __vue_script__$c,
+      __vue_scope_id__$c,
+      __vue_is_functional_template__$c,
+      __vue_module_identifier__$c,
       undefined,
       undefined
     );
@@ -1478,7 +1314,7 @@
   //
   //
 
-  var script$f = {
+  const script$d = {
     name: 'v-progress',
     data() {
       let style = {};
@@ -1512,35 +1348,35 @@
   };
 
   /* script */
-  const __vue_script__$f = script$f;
+  const __vue_script__$d = script$d;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$f.__file = "D:\\workspace\\lovue\\src\\components\\Progress.vue";
+  script$d.__file = "D:\\workspace\\lovue\\src\\components\\Progress.vue";
 
   /* template */
-  var __vue_render__$f = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-progress",style:(_vm.style)},[_c('div',{staticClass:"layer-1"}),_vm._v(" "),_c('div',{staticClass:"layer-2",style:(("width:" + _vm.progress + "%; background-color: " + _vm.color))}),_vm._v(" "),_c('div',{staticClass:"layer-3"},[_vm._v(_vm._s(_vm.progress)+"%")])])};
-  var __vue_staticRenderFns__$f = [];
+  var __vue_render__$d = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-progress",style:(_vm.style)},[_c('div',{staticClass:"layer-1"}),_vm._v(" "),_c('div',{staticClass:"layer-2",style:(("width:" + _vm.progress + "%; background-color: " + _vm.color))}),_vm._v(" "),_c('div',{staticClass:"layer-3"},[_vm._v(_vm._s(_vm.progress)+"%")])])};
+  var __vue_staticRenderFns__$d = [];
 
     /* style */
-    const __vue_inject_styles__$f = undefined;
+    const __vue_inject_styles__$d = undefined;
     /* scoped */
-    const __vue_scope_id__$f = undefined;
+    const __vue_scope_id__$d = undefined;
     /* module identifier */
-    const __vue_module_identifier__$f = undefined;
+    const __vue_module_identifier__$d = undefined;
     /* functional template */
-    const __vue_is_functional_template__$f = false;
+    const __vue_is_functional_template__$d = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Progress = normalizeComponent(
-      { render: __vue_render__$f, staticRenderFns: __vue_staticRenderFns__$f },
-      __vue_inject_styles__$f,
-      __vue_script__$f,
-      __vue_scope_id__$f,
-      __vue_is_functional_template__$f,
-      __vue_module_identifier__$f,
+    const Progress = normalizeComponent(
+      { render: __vue_render__$d, staticRenderFns: __vue_staticRenderFns__$d },
+      __vue_inject_styles__$d,
+      __vue_script__$d,
+      __vue_scope_id__$d,
+      __vue_is_functional_template__$d,
+      __vue_module_identifier__$d,
       undefined,
       undefined
     );
@@ -1555,7 +1391,7 @@
   //
   //
 
-  var script$g = {
+  const script$e = {
     name: 'v-pwd-strength',
     data() {
       return {
@@ -1599,35 +1435,35 @@
   };
 
   /* script */
-  const __vue_script__$g = script$g;
+  const __vue_script__$e = script$e;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$g.__file = "D:\\workspace\\lovue\\src\\components\\PwdStrength.vue";
+  script$e.__file = "D:\\workspace\\lovue\\src\\components\\PwdStrength.vue";
 
   /* template */
-  var __vue_render__$g = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.password.length),expression:"password.length"}],staticClass:"v-pwd-strength"},[_c('div',{staticClass:"str-lines"},_vm._l((_vm.levelClasses),function(n){return _c('span',{class:n})})),_vm._v(" "),_c('div',{staticClass:"str-info"},[_vm._v(_vm._s(_vm.strengthInfo))])])};
-  var __vue_staticRenderFns__$g = [];
+  var __vue_render__$e = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.password.length),expression:"password.length"}],staticClass:"v-pwd-strength"},[_c('div',{staticClass:"str-lines"},_vm._l((_vm.levelClasses),function(n){return _c('span',{class:n})})),_vm._v(" "),_c('div',{staticClass:"str-info"},[_vm._v(_vm._s(_vm.strengthInfo))])])};
+  var __vue_staticRenderFns__$e = [];
 
     /* style */
-    const __vue_inject_styles__$g = undefined;
+    const __vue_inject_styles__$e = undefined;
     /* scoped */
-    const __vue_scope_id__$g = undefined;
+    const __vue_scope_id__$e = undefined;
     /* module identifier */
-    const __vue_module_identifier__$g = undefined;
+    const __vue_module_identifier__$e = undefined;
     /* functional template */
-    const __vue_is_functional_template__$g = false;
+    const __vue_is_functional_template__$e = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var PwdStrength = normalizeComponent(
-      { render: __vue_render__$g, staticRenderFns: __vue_staticRenderFns__$g },
-      __vue_inject_styles__$g,
-      __vue_script__$g,
-      __vue_scope_id__$g,
-      __vue_is_functional_template__$g,
-      __vue_module_identifier__$g,
+    const PwdStrength = normalizeComponent(
+      { render: __vue_render__$e, staticRenderFns: __vue_staticRenderFns__$e },
+      __vue_inject_styles__$e,
+      __vue_script__$e,
+      __vue_scope_id__$e,
+      __vue_is_functional_template__$e,
+      __vue_module_identifier__$e,
       undefined,
       undefined
     );
@@ -1640,7 +1476,7 @@
   //
   //
 
-  var script$h = {
+  const script$f = {
     name: 'v-radio',
     props: {
       value: [String, Number],
@@ -1652,35 +1488,35 @@
   };
 
   /* script */
-  const __vue_script__$h = script$h;
+  const __vue_script__$f = script$f;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$h.__file = "D:\\workspace\\lovue\\src\\components\\Radio.vue";
+  script$f.__file = "D:\\workspace\\lovue\\src\\components\\Radio.vue";
 
   /* template */
-  var __vue_render__$h = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-radio",class:{reverse: _vm.reverse, disabled: _vm.disabled}},[_c('input',{attrs:{"type":"radio","name":_vm.name,"disabled":_vm.disabled},domProps:{"value":_vm.value}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])};
-  var __vue_staticRenderFns__$h = [];
+  var __vue_render__$f = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-radio",class:{reverse: _vm.reverse, disabled: _vm.disabled}},[_c('input',{attrs:{"type":"radio","name":_vm.name,"disabled":_vm.disabled},domProps:{"value":_vm.value}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])};
+  var __vue_staticRenderFns__$f = [];
 
     /* style */
-    const __vue_inject_styles__$h = undefined;
+    const __vue_inject_styles__$f = undefined;
     /* scoped */
-    const __vue_scope_id__$h = undefined;
+    const __vue_scope_id__$f = undefined;
     /* module identifier */
-    const __vue_module_identifier__$h = undefined;
+    const __vue_module_identifier__$f = undefined;
     /* functional template */
-    const __vue_is_functional_template__$h = false;
+    const __vue_is_functional_template__$f = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Radio = normalizeComponent(
-      { render: __vue_render__$h, staticRenderFns: __vue_staticRenderFns__$h },
-      __vue_inject_styles__$h,
-      __vue_script__$h,
-      __vue_scope_id__$h,
-      __vue_is_functional_template__$h,
-      __vue_module_identifier__$h,
+    const Radio = normalizeComponent(
+      { render: __vue_render__$f, staticRenderFns: __vue_staticRenderFns__$f },
+      __vue_inject_styles__$f,
+      __vue_script__$f,
+      __vue_scope_id__$f,
+      __vue_is_functional_template__$f,
+      __vue_module_identifier__$f,
       undefined,
       undefined
     );
@@ -1697,7 +1533,7 @@
   //
   //
 
-  var script$i = {
+  const script$g = {
     name: 'v-radio-group',
     data() {
       return {
@@ -1728,36 +1564,36 @@
   };
 
   /* script */
-  const __vue_script__$i = script$i;
+  const __vue_script__$g = script$g;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$i.__file = "D:\\workspace\\lovue\\src\\components\\RadioGroup.vue";
+  script$g.__file = "D:\\workspace\\lovue\\src\\components\\RadioGroup.vue";
 
   /* template */
-  var __vue_render__$i = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-radio-group",class:{vertical: _vm.vertical}},_vm._l((_vm.source),function(item){return _c('div',{staticClass:"g-item"},[_c('label',{class:( _obj = { reverse: _vm.reverse, disabled: item.disabled}, _obj[_vm.lnfClass] = true, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"radio","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":_vm._q(_vm.checked,item.value)},on:{"change":function($event){_vm.checked=item.value;}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])])
+  var __vue_render__$g = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-radio-group",class:{vertical: _vm.vertical}},_vm._l((_vm.source),function(item){return _c('div',{staticClass:"g-item"},[_c('label',{class:( _obj = { reverse: _vm.reverse, disabled: item.disabled}, _obj[_vm.lnfClass] = true, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"radio","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":_vm._q(_vm.checked,item.value)},on:{"change":function($event){_vm.checked=item.value;}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])])
   var _obj;}))};
-  var __vue_staticRenderFns__$i = [];
+  var __vue_staticRenderFns__$g = [];
 
     /* style */
-    const __vue_inject_styles__$i = undefined;
+    const __vue_inject_styles__$g = undefined;
     /* scoped */
-    const __vue_scope_id__$i = undefined;
+    const __vue_scope_id__$g = undefined;
     /* module identifier */
-    const __vue_module_identifier__$i = undefined;
+    const __vue_module_identifier__$g = undefined;
     /* functional template */
-    const __vue_is_functional_template__$i = false;
+    const __vue_is_functional_template__$g = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var RadioGroup = normalizeComponent(
-      { render: __vue_render__$i, staticRenderFns: __vue_staticRenderFns__$i },
-      __vue_inject_styles__$i,
-      __vue_script__$i,
-      __vue_scope_id__$i,
-      __vue_is_functional_template__$i,
-      __vue_module_identifier__$i,
+    const RadioGroup = normalizeComponent(
+      { render: __vue_render__$g, staticRenderFns: __vue_staticRenderFns__$g },
+      __vue_inject_styles__$g,
+      __vue_script__$g,
+      __vue_scope_id__$g,
+      __vue_is_functional_template__$g,
+      __vue_module_identifier__$g,
       undefined,
       undefined
     );
@@ -1769,40 +1605,40 @@
   //
   //
 
-  var script$j = {
+  const script$h = {
     name: 'v-row'
   };
 
   /* script */
-  const __vue_script__$j = script$j;
+  const __vue_script__$h = script$h;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$j.__file = "D:\\workspace\\lovue\\src\\components\\Row.vue";
+  script$h.__file = "D:\\workspace\\lovue\\src\\components\\Row.vue";
 
   /* template */
-  var __vue_render__$j = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-row"},[_vm._t("default")],2)};
-  var __vue_staticRenderFns__$j = [];
+  var __vue_render__$h = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-row"},[_vm._t("default")],2)};
+  var __vue_staticRenderFns__$h = [];
 
     /* style */
-    const __vue_inject_styles__$j = undefined;
+    const __vue_inject_styles__$h = undefined;
     /* scoped */
-    const __vue_scope_id__$j = undefined;
+    const __vue_scope_id__$h = undefined;
     /* module identifier */
-    const __vue_module_identifier__$j = undefined;
+    const __vue_module_identifier__$h = undefined;
     /* functional template */
-    const __vue_is_functional_template__$j = false;
+    const __vue_is_functional_template__$h = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Row = normalizeComponent(
-      { render: __vue_render__$j, staticRenderFns: __vue_staticRenderFns__$j },
-      __vue_inject_styles__$j,
-      __vue_script__$j,
-      __vue_scope_id__$j,
-      __vue_is_functional_template__$j,
-      __vue_module_identifier__$j,
+    const Row = normalizeComponent(
+      { render: __vue_render__$h, staticRenderFns: __vue_staticRenderFns__$h },
+      __vue_inject_styles__$h,
+      __vue_script__$h,
+      __vue_scope_id__$h,
+      __vue_is_functional_template__$h,
+      __vue_module_identifier__$h,
       undefined,
       undefined
     );
@@ -1811,7 +1647,7 @@
 
   let timer;
 
-  var script$k = {
+  const script$i = {
     name: 'v-search',
     data() {
       return {
@@ -1850,42 +1686,42 @@
   };
 
   /* script */
-  const __vue_script__$k = script$k;
+  const __vue_script__$i = script$i;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$k.__file = "D:\\workspace\\lovue\\src\\components\\Search.vue";
+  script$i.__file = "D:\\workspace\\lovue\\src\\components\\Search.vue";
 
   /* template */
-  var __vue_render__$k = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-search"},[_c('v-input',{attrs:{"placeholder":_vm.placeholder || '关键词'},on:{"input":_vm.inputHandler}}),_vm._v(" "),_c('v-icon',{attrs:{"icon":"search"},nativeOn:{"click":function($event){_vm.$emit('search', _vm.keywords);}}})],1)};
-  var __vue_staticRenderFns__$k = [];
+  var __vue_render__$i = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-search"},[_c('v-input',{attrs:{"placeholder":_vm.placeholder || '关键词'},on:{"input":_vm.inputHandler}}),_vm._v(" "),_c('v-icon',{attrs:{"icon":"search"},nativeOn:{"click":function($event){_vm.$emit('search', _vm.keywords);}}})],1)};
+  var __vue_staticRenderFns__$i = [];
 
     /* style */
-    const __vue_inject_styles__$k = undefined;
+    const __vue_inject_styles__$i = undefined;
     /* scoped */
-    const __vue_scope_id__$k = undefined;
+    const __vue_scope_id__$i = undefined;
     /* module identifier */
-    const __vue_module_identifier__$k = undefined;
+    const __vue_module_identifier__$i = undefined;
     /* functional template */
-    const __vue_is_functional_template__$k = false;
+    const __vue_is_functional_template__$i = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Search = normalizeComponent(
-      { render: __vue_render__$k, staticRenderFns: __vue_staticRenderFns__$k },
-      __vue_inject_styles__$k,
-      __vue_script__$k,
-      __vue_scope_id__$k,
-      __vue_is_functional_template__$k,
-      __vue_module_identifier__$k,
+    const Search = normalizeComponent(
+      { render: __vue_render__$i, staticRenderFns: __vue_staticRenderFns__$i },
+      __vue_inject_styles__$i,
+      __vue_script__$i,
+      __vue_scope_id__$i,
+      __vue_is_functional_template__$i,
+      __vue_module_identifier__$i,
       undefined,
       undefined
     );
 
   //
 
-  var script$l = {
+  const script$j = {
     name: 'v-select',
     data() {
       return {
@@ -2070,35 +1906,35 @@
   };
 
   /* script */
-  const __vue_script__$l = script$l;
+  const __vue_script__$j = script$j;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$l.__file = "D:\\workspace\\lovue\\src\\components\\Select.vue";
+  script$j.__file = "D:\\workspace\\lovue\\src\\components\\Select.vue";
 
   /* template */
-  var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-select",on:{"click":_vm.showCandidates}},[_c('div',{staticClass:"selected layout-lr",attrs:{"disabled":_vm.disabled}},[(_vm.disabled)?_c('div',{staticClass:"layer-disabled"}):_vm._e(),_vm._v(" "),_c('div',{staticClass:"l"},[(_vm.multiple)?_vm._l((_vm.selected),function(s,i){return _c('span',{staticClass:"s-tag"},[_c('span',{staticClass:"tag-name"},[_vm._v(_vm._s(s.name))]),_vm._v(" "),_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){$event.stopPropagation();_vm.remove(s,i);}}})],1)}):_c('input',{staticClass:"input",attrs:{"placeholder":_vm.placeholder || '请选择',"readonly":""},domProps:{"value":_vm.selected.name}})],2),_vm._v(" "),_c('div',{staticClass:"r"},[_c('v-icon',{class:{reverse: !_vm.open},attrs:{"icon":"down-wide"}})],1)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowCandidates),expression:"bShowCandidates"}],class:("candidates " + _vm.pos + " " + _vm.open)},[(_vm.searchable)?_c('div',{staticClass:"item-search"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.filterText),expression:"filterText"}],staticClass:"input",attrs:{"placeholder":_vm.searchPlaceholder || '搜索'},domProps:{"value":(_vm.filterText)},on:{"input":function($event){if($event.target.composing){ return; }_vm.filterText=$event.target.value;}}})]):_vm._e(),_vm._v(" "),_c('ul',{staticClass:"list"},_vm._l((_vm.filteredItems),function(i){return _c('li',{attrs:{"title":i.name},on:{"click":function($event){$event.stopPropagation();_vm.toggle(i);}}},[_c('div',{staticClass:"i-title",class:{focus: i.selected}},[_c('span',{staticClass:"t-name"},[_vm._v(_vm._s(i.name))]),(i.selected)?_c('v-icon',{attrs:{"icon":"check"}}):_vm._e()],1),_vm._v(" "),(i.children && i.children.length)?_c('ul',{staticClass:"sub-list"},_vm._l((i.children),function(child){return _c('li',{attrs:{"title":child.name},on:{"click":function($event){$event.stopPropagation();_vm.toggle(child);}}},[_c('div',{staticClass:"i-title",class:{focus: child.selected}},[_c('span',{staticClass:"t-name"},[_vm._v(_vm._s(child.name))]),(child.selected)?_c('v-icon',{attrs:{"icon":"check"}}):_vm._e()],1)])})):_vm._e()])}))])])};
-  var __vue_staticRenderFns__$l = [];
+  var __vue_render__$j = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-select",on:{"click":_vm.showCandidates}},[_c('div',{staticClass:"selected layout-lr",attrs:{"disabled":_vm.disabled}},[(_vm.disabled)?_c('div',{staticClass:"layer-disabled"}):_vm._e(),_vm._v(" "),_c('div',{staticClass:"l"},[(_vm.multiple)?_vm._l((_vm.selected),function(s,i){return _c('span',{staticClass:"s-tag"},[_c('span',{staticClass:"tag-name"},[_vm._v(_vm._s(s.name))]),_vm._v(" "),_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){$event.stopPropagation();_vm.remove(s,i);}}})],1)}):_c('input',{staticClass:"input",attrs:{"placeholder":_vm.placeholder || '请选择',"readonly":""},domProps:{"value":_vm.selected.name}})],2),_vm._v(" "),_c('div',{staticClass:"r"},[_c('v-icon',{class:{reverse: !_vm.open},attrs:{"icon":"down-wide"}})],1)]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.bShowCandidates),expression:"bShowCandidates"}],class:("candidates " + _vm.pos + " " + _vm.open)},[(_vm.searchable)?_c('div',{staticClass:"item-search"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.filterText),expression:"filterText"}],staticClass:"input",attrs:{"placeholder":_vm.searchPlaceholder || '搜索'},domProps:{"value":(_vm.filterText)},on:{"input":function($event){if($event.target.composing){ return; }_vm.filterText=$event.target.value;}}})]):_vm._e(),_vm._v(" "),_c('ul',{staticClass:"list"},_vm._l((_vm.filteredItems),function(i){return _c('li',{attrs:{"title":i.name},on:{"click":function($event){$event.stopPropagation();_vm.toggle(i);}}},[_c('div',{staticClass:"i-title",class:{focus: i.selected}},[_c('span',{staticClass:"t-name"},[_vm._v(_vm._s(i.name))]),(i.selected)?_c('v-icon',{attrs:{"icon":"check"}}):_vm._e()],1),_vm._v(" "),(i.children && i.children.length)?_c('ul',{staticClass:"sub-list"},_vm._l((i.children),function(child){return _c('li',{attrs:{"title":child.name},on:{"click":function($event){$event.stopPropagation();_vm.toggle(child);}}},[_c('div',{staticClass:"i-title",class:{focus: child.selected}},[_c('span',{staticClass:"t-name"},[_vm._v(_vm._s(child.name))]),(child.selected)?_c('v-icon',{attrs:{"icon":"check"}}):_vm._e()],1)])})):_vm._e()])}))])])};
+  var __vue_staticRenderFns__$j = [];
 
     /* style */
-    const __vue_inject_styles__$l = undefined;
+    const __vue_inject_styles__$j = undefined;
     /* scoped */
-    const __vue_scope_id__$l = undefined;
+    const __vue_scope_id__$j = undefined;
     /* module identifier */
-    const __vue_module_identifier__$l = undefined;
+    const __vue_module_identifier__$j = undefined;
     /* functional template */
-    const __vue_is_functional_template__$l = false;
+    const __vue_is_functional_template__$j = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Select = normalizeComponent(
-      { render: __vue_render__$l, staticRenderFns: __vue_staticRenderFns__$l },
-      __vue_inject_styles__$l,
-      __vue_script__$l,
-      __vue_scope_id__$l,
-      __vue_is_functional_template__$l,
-      __vue_module_identifier__$l,
+    const Select = normalizeComponent(
+      { render: __vue_render__$j, staticRenderFns: __vue_staticRenderFns__$j },
+      __vue_inject_styles__$j,
+      __vue_script__$j,
+      __vue_scope_id__$j,
+      __vue_is_functional_template__$j,
+      __vue_module_identifier__$j,
       undefined,
       undefined
     );
@@ -2111,7 +1947,7 @@
   //
   //
 
-  var script$m = {
+  const script$k = {
     name: 'v-switch',
     props: {
       value: Boolean,
@@ -2121,42 +1957,42 @@
   };
 
   /* script */
-  const __vue_script__$m = script$m;
+  const __vue_script__$k = script$k;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$m.__file = "D:\\workspace\\lovue\\src\\components\\Switch.vue";
+  script$k.__file = "D:\\workspace\\lovue\\src\\components\\Switch.vue";
 
   /* template */
-  var __vue_render__$m = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-switch",class:{disabled: _vm.disabled}},[_c('input',{attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":_vm.value},on:{"change":function($event){_vm.$emit('input', $event.target.checked);}}}),_vm._v(" "),_c('span')])};
-  var __vue_staticRenderFns__$m = [];
+  var __vue_render__$k = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-switch",class:{disabled: _vm.disabled}},[_c('input',{attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":_vm.value},on:{"change":function($event){_vm.$emit('input', $event.target.checked);}}}),_vm._v(" "),_c('span')])};
+  var __vue_staticRenderFns__$k = [];
 
     /* style */
-    const __vue_inject_styles__$m = undefined;
+    const __vue_inject_styles__$k = undefined;
     /* scoped */
-    const __vue_scope_id__$m = undefined;
+    const __vue_scope_id__$k = undefined;
     /* module identifier */
-    const __vue_module_identifier__$m = undefined;
+    const __vue_module_identifier__$k = undefined;
     /* functional template */
-    const __vue_is_functional_template__$m = false;
+    const __vue_is_functional_template__$k = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Switch = normalizeComponent(
-      { render: __vue_render__$m, staticRenderFns: __vue_staticRenderFns__$m },
-      __vue_inject_styles__$m,
-      __vue_script__$m,
-      __vue_scope_id__$m,
-      __vue_is_functional_template__$m,
-      __vue_module_identifier__$m,
+    const Switch = normalizeComponent(
+      { render: __vue_render__$k, staticRenderFns: __vue_staticRenderFns__$k },
+      __vue_inject_styles__$k,
+      __vue_script__$k,
+      __vue_scope_id__$k,
+      __vue_is_functional_template__$k,
+      __vue_module_identifier__$k,
       undefined,
       undefined
     );
 
   //
 
-  var script$n = {
+  const script$l = {
     name: 'v-tab',
     data() {
       return {
@@ -2253,42 +2089,42 @@
   };
 
   /* script */
-  const __vue_script__$n = script$n;
+  const __vue_script__$l = script$l;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$n.__file = "D:\\workspace\\lovue\\src\\components\\Tab.vue";
+  script$l.__file = "D:\\workspace\\lovue\\src\\components\\Tab.vue";
 
   /* template */
-  var __vue_render__$n = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-tab"},[_c('div',{ref:"tabs",staticClass:"tabs"},[_vm._l((_vm.titles_),function(title,i){return _c('div',{staticClass:"tab",on:{"click":function($event){_vm.clickTab(i);}}},[(title.icon)?_c('v-icon',{attrs:{"icon":title.icon,"size":"16"}}):_vm._e(),_vm._v(_vm._s(title.name))],1)}),_vm._v(" "),_c('div',{staticClass:"focus-line",style:(_vm.lineStyle)})],2)])};
-  var __vue_staticRenderFns__$n = [];
+  var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-tab"},[_c('div',{ref:"tabs",staticClass:"tabs"},[_vm._l((_vm.titles_),function(title,i){return _c('div',{staticClass:"tab",on:{"click":function($event){_vm.clickTab(i);}}},[(title.icon)?_c('v-icon',{attrs:{"icon":title.icon,"size":"16"}}):_vm._e(),_vm._v(_vm._s(title.name))],1)}),_vm._v(" "),_c('div',{staticClass:"focus-line",style:(_vm.lineStyle)})],2)])};
+  var __vue_staticRenderFns__$l = [];
 
     /* style */
-    const __vue_inject_styles__$n = undefined;
+    const __vue_inject_styles__$l = undefined;
     /* scoped */
-    const __vue_scope_id__$n = undefined;
+    const __vue_scope_id__$l = undefined;
     /* module identifier */
-    const __vue_module_identifier__$n = undefined;
+    const __vue_module_identifier__$l = undefined;
     /* functional template */
-    const __vue_is_functional_template__$n = false;
+    const __vue_is_functional_template__$l = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Tab = normalizeComponent(
-      { render: __vue_render__$n, staticRenderFns: __vue_staticRenderFns__$n },
-      __vue_inject_styles__$n,
-      __vue_script__$n,
-      __vue_scope_id__$n,
-      __vue_is_functional_template__$n,
-      __vue_module_identifier__$n,
+    const Tab = normalizeComponent(
+      { render: __vue_render__$l, staticRenderFns: __vue_staticRenderFns__$l },
+      __vue_inject_styles__$l,
+      __vue_script__$l,
+      __vue_scope_id__$l,
+      __vue_is_functional_template__$l,
+      __vue_module_identifier__$l,
       undefined,
       undefined
     );
 
   //
 
-  var script$o = {
+  const script$m = {
     name: 'v-table',
     data() {
       return {
@@ -2472,42 +2308,42 @@
   };
 
   /* script */
-  const __vue_script__$o = script$o;
+  const __vue_script__$m = script$m;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$o.__file = "D:\\workspace\\lovue\\src\\components\\Table.vue";
+  script$m.__file = "D:\\workspace\\lovue\\src\\components\\Table.vue";
 
   /* template */
-  var __vue_render__$o = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-table"},[(!_vm.simple)?_c('header',{staticClass:"t-tools"},[_c('div',{staticClass:"l"},[_vm._t("tools-l")],2),_vm._v(" "),_c('div',{staticClass:"m"},[_vm._t("tools-m")],2),_vm._v(" "),_c('div',{staticClass:"r"},[_c('v-search',{attrs:{"delay":300},on:{"search":_vm.filter}})],1)]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"t-table",class:{'fixed-head': _vm.fixedHead}},[_c('div',{staticClass:"table-wrap"},[_c('table',{staticClass:"table"},[_c('colgroup',[(_vm.checkbox)?_c('col'):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(col){return _c('col',{class:("col-" + (col.prop))})})],2),_vm._v(" "),_c('thead',[_c('tr',[(_vm.checkbox && _vm.source.length)?_c('th',[_c('div',{staticClass:"t-title"},[_c('v-checkbox',{attrs:{"label":"全选"},model:{value:(_vm.selectAll),callback:function ($$v) {_vm.selectAll=$$v;},expression:"selectAll"}})],1)]):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(column,i){return _c('th',{class:column.cssClass},[_c('div',{staticClass:"t-title",class:column.cssClass},[_vm._v("\n              "+_vm._s(column.title)+"\n              "),(column.sortable)?_c('span',{staticClass:"sort-arrows",on:{"click":function($event){_vm.handleSortClick(i);}}},[_c('v-icon',{class:{'dir-up': true, focus: _vm.sortType[i] === 1},attrs:{"icon":"down-wide"}}),_vm._v(" "),_c('v-icon',{class:{focus: _vm.sortType[i] === -1},attrs:{"icon":"down-wide"}})],1):_vm._e()])])})],2)]),_vm._v(" "),_c('tbody',[(!_vm.source.length)?_c('tr',{staticClass:"no-data-row"},[_c('td',{attrs:{"colspan":_vm.columns.length}},[_vm._v(_vm._s(_vm.emptyText || '暂无数据'))])]):_vm._e(),_vm._v(" "),_vm._l((_vm.showed),function(row,i){return (_vm.simple || (i >= _vm.slice[0] && i < _vm.slice[1]))?_c('tr',{class:{focus: row.focused},on:{"click":function($event){_vm.$emit('click-row', row);},"dblclick":function($event){_vm.$emit('dbl-click-row', row);}}},[(_vm.checkbox)?_c('td',{on:{"click":function($event){$event.stopPropagation();}}},[_c('label',{staticClass:"v-checkbox"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.selected),expression:"selected"}],attrs:{"type":"checkbox"},domProps:{"value":i,"checked":Array.isArray(_vm.selected)?_vm._i(_vm.selected,i)>-1:(_vm.selected)},on:{"change":function($event){var $$a=_vm.selected,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=i,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.selected=$$a.concat([$$v]));}else{$$i>-1&&(_vm.selected=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.selected=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.checkboxColumn ? row[_vm.checkboxColumn] : (i + 1)))])])]):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(column){return _c('td',{class:column.cssClass},[_vm._t(column.prop,[_vm._v(_vm._s(_vm.filterSlot(row, column)))],{value:row})],2)})],2):_vm._e()})],2)])])]),_vm._v(" "),(!_vm.simple && _vm.source.length)?_c('div',{staticClass:"t-footer"},[_c('v-pagination',{attrs:{"total":_vm.total || _vm.showed.length,"page-counts":_vm.pageCounts,"count-of-page":_vm.countOfPage,"simple":_vm.simplePagination},on:{"update":_vm.updateTable}})],1):_vm._e()])};
-  var __vue_staticRenderFns__$o = [];
+  var __vue_render__$m = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-table"},[(!_vm.simple)?_c('header',{staticClass:"t-tools"},[_c('div',{staticClass:"l"},[_vm._t("tools-l")],2),_vm._v(" "),_c('div',{staticClass:"m"},[_vm._t("tools-m")],2),_vm._v(" "),_c('div',{staticClass:"r"},[_c('v-search',{attrs:{"delay":300},on:{"search":_vm.filter}})],1)]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"t-table",class:{'fixed-head': _vm.fixedHead}},[_c('div',{staticClass:"table-wrap"},[_c('table',{staticClass:"table"},[_c('colgroup',[(_vm.checkbox)?_c('col'):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(col){return _c('col',{class:("col-" + (col.prop))})})],2),_vm._v(" "),_c('thead',[_c('tr',[(_vm.checkbox && _vm.source.length)?_c('th',[_c('div',{staticClass:"t-title"},[_c('v-checkbox',{attrs:{"label":"全选"},model:{value:(_vm.selectAll),callback:function ($$v) {_vm.selectAll=$$v;},expression:"selectAll"}})],1)]):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(column,i){return _c('th',{class:column.cssClass},[_c('div',{staticClass:"t-title",class:column.cssClass},[_vm._v("\n              "+_vm._s(column.title)+"\n              "),(column.sortable)?_c('span',{staticClass:"sort-arrows",on:{"click":function($event){_vm.handleSortClick(i);}}},[_c('v-icon',{class:{'dir-up': true, focus: _vm.sortType[i] === 1},attrs:{"icon":"down-wide"}}),_vm._v(" "),_c('v-icon',{class:{focus: _vm.sortType[i] === -1},attrs:{"icon":"down-wide"}})],1):_vm._e()])])})],2)]),_vm._v(" "),_c('tbody',[(!_vm.source.length)?_c('tr',{staticClass:"no-data-row"},[_c('td',{attrs:{"colspan":_vm.columns.length}},[_vm._v(_vm._s(_vm.emptyText || '暂无数据'))])]):_vm._e(),_vm._v(" "),_vm._l((_vm.showed),function(row,i){return (_vm.simple || (i >= _vm.slice[0] && i < _vm.slice[1]))?_c('tr',{class:{focus: row.focused},on:{"click":function($event){_vm.$emit('click-row', row);},"dblclick":function($event){_vm.$emit('dbl-click-row', row);}}},[(_vm.checkbox)?_c('td',{on:{"click":function($event){$event.stopPropagation();}}},[_c('label',{staticClass:"v-checkbox"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.selected),expression:"selected"}],attrs:{"type":"checkbox"},domProps:{"value":i,"checked":Array.isArray(_vm.selected)?_vm._i(_vm.selected,i)>-1:(_vm.selected)},on:{"change":function($event){var $$a=_vm.selected,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=i,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.selected=$$a.concat([$$v]));}else{$$i>-1&&(_vm.selected=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.selected=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.checkboxColumn ? row[_vm.checkboxColumn] : (i + 1)))])])]):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(column){return _c('td',{class:column.cssClass},[_vm._t(column.prop,[_vm._v(_vm._s(_vm.filterSlot(row, column)))],{value:row})],2)})],2):_vm._e()})],2)])])]),_vm._v(" "),(!_vm.simple && _vm.source.length)?_c('div',{staticClass:"t-footer"},[_c('v-pagination',{attrs:{"total":_vm.total || _vm.showed.length,"page-counts":_vm.pageCounts,"count-of-page":_vm.countOfPage,"simple":_vm.simplePagination},on:{"update":_vm.updateTable}})],1):_vm._e()])};
+  var __vue_staticRenderFns__$m = [];
 
     /* style */
-    const __vue_inject_styles__$o = undefined;
+    const __vue_inject_styles__$m = undefined;
     /* scoped */
-    const __vue_scope_id__$o = undefined;
+    const __vue_scope_id__$m = undefined;
     /* module identifier */
-    const __vue_module_identifier__$o = undefined;
+    const __vue_module_identifier__$m = undefined;
     /* functional template */
-    const __vue_is_functional_template__$o = false;
+    const __vue_is_functional_template__$m = false;
     /* style inject */
     
     /* style inject SSR */
     
 
     
-    var Table = normalizeComponent(
-      { render: __vue_render__$o, staticRenderFns: __vue_staticRenderFns__$o },
-      __vue_inject_styles__$o,
-      __vue_script__$o,
-      __vue_scope_id__$o,
-      __vue_is_functional_template__$o,
-      __vue_module_identifier__$o,
+    const Table = normalizeComponent(
+      { render: __vue_render__$m, staticRenderFns: __vue_staticRenderFns__$m },
+      __vue_inject_styles__$m,
+      __vue_script__$m,
+      __vue_scope_id__$m,
+      __vue_is_functional_template__$m,
+      __vue_module_identifier__$m,
       undefined,
       undefined
     );
 
   //
 
-  var script$p = {
+  const script$n = {
     name: 'v-upload',
     data() {
       return {
@@ -2594,18 +2430,183 @@
   };
 
   /* script */
-  const __vue_script__$p = script$p;
+  const __vue_script__$n = script$n;
   // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
-  script$p.__file = "D:\\workspace\\lovue\\src\\components\\Upload.vue";
+  script$n.__file = "D:\\workspace\\lovue\\src\\components\\Upload.vue";
 
   /* template */
-  var __vue_render__$p = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-upload"},[(_vm.shape === 'square')?_c('div',{staticClass:"u-thumbs"},[_vm._l((_vm.fileThumbs),function(thumb,i){return _c('div',{staticClass:"thumb-wrap",style:(("width: " + _vm.thumbSize + "px;height: " + _vm.thumbSize + "px;"))},[_c('img',{attrs:{"src":thumb}}),_vm._v(" "),_c('div',{staticClass:"del-mask",on:{"click":function($event){_vm.deleteFile(i);}}},[_c('v-icon',{attrs:{"icon":"delete"}})],1)])}),_vm._v(" "),_c('div',{staticClass:"btn-wrap",style:(("width: " + _vm.thumbSize + "px;height: " + _vm.thumbSize + "px;"))},[_c('v-icon',{attrs:{"icon":"plus","size":"30"}}),_vm._v(" "),_c('input',{attrs:{"type":"file","name":_vm.name,"multiple":_vm.multi,"required":_vm.required},on:{"change":_vm.selectFile}})],1)],2):[_c('div',{staticClass:"u-above"},[_c('div',{staticClass:"btn-wrap"},[_c('v-button',{attrs:{"icon":"upload"}},[_vm._v(_vm._s(_vm.text || '选择文件'))]),_vm._v(" "),_c('input',{attrs:{"type":"file","name":_vm.name,"multiple":_vm.multi,"required":_vm.required},on:{"change":_vm.selectFile}})],1),_vm._v(" "),(!_vm.upload && !_vm.thumbnail && _vm.fileNames.length)?_c('div',{staticClass:"u-file-names"},_vm._l((_vm.fileNames),function(name){return _c('span',[_vm._v(_vm._s(name))])})):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"u-below"},[(_vm.thumbnail)?_c('div',{staticClass:"u-thumbs"},_vm._l((_vm.fileThumbs),function(thumb){return _c('div',{staticClass:"thumb-wrap",style:(("width: " + _vm.thumbSize + "px;height: " + _vm.thumbSize + "px;"))},[_c('img',{attrs:{"src":thumb}})])})):_vm._e()])]],2)};
+  var __vue_render__$n = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-upload"},[(_vm.shape === 'square')?_c('div',{staticClass:"u-thumbs"},[_vm._l((_vm.fileThumbs),function(thumb,i){return _c('div',{staticClass:"thumb-wrap",style:(("width: " + _vm.thumbSize + "px;height: " + _vm.thumbSize + "px;"))},[_c('img',{attrs:{"src":thumb}}),_vm._v(" "),_c('div',{staticClass:"del-mask",on:{"click":function($event){_vm.deleteFile(i);}}},[_c('v-icon',{attrs:{"icon":"delete"}})],1)])}),_vm._v(" "),_c('div',{staticClass:"btn-wrap",style:(("width: " + _vm.thumbSize + "px;height: " + _vm.thumbSize + "px;"))},[_c('v-icon',{attrs:{"icon":"plus","size":"30"}}),_vm._v(" "),_c('input',{attrs:{"type":"file","name":_vm.name,"multiple":_vm.multi,"required":_vm.required},on:{"change":_vm.selectFile}})],1)],2):[_c('div',{staticClass:"u-above"},[_c('div',{staticClass:"btn-wrap"},[_c('v-button',{attrs:{"icon":"upload"}},[_vm._v(_vm._s(_vm.text || '选择文件'))]),_vm._v(" "),_c('input',{attrs:{"type":"file","name":_vm.name,"multiple":_vm.multi,"required":_vm.required},on:{"change":_vm.selectFile}})],1),_vm._v(" "),(!_vm.upload && !_vm.thumbnail && _vm.fileNames.length)?_c('div',{staticClass:"u-file-names"},_vm._l((_vm.fileNames),function(name){return _c('span',[_vm._v(_vm._s(name))])})):_vm._e()]),_vm._v(" "),_c('div',{staticClass:"u-below"},[(_vm.thumbnail)?_c('div',{staticClass:"u-thumbs"},_vm._l((_vm.fileThumbs),function(thumb){return _c('div',{staticClass:"thumb-wrap",style:(("width: " + _vm.thumbSize + "px;height: " + _vm.thumbSize + "px;"))},[_c('img',{attrs:{"src":thumb}})])})):_vm._e()])]],2)};
+  var __vue_staticRenderFns__$n = [];
+
+    /* style */
+    const __vue_inject_styles__$n = undefined;
+    /* scoped */
+    const __vue_scope_id__$n = "data-v-2d07ac7a";
+    /* module identifier */
+    const __vue_module_identifier__$n = undefined;
+    /* functional template */
+    const __vue_is_functional_template__$n = false;
+    /* style inject */
+    
+    /* style inject SSR */
+    
+
+    
+    const Upload = normalizeComponent(
+      { render: __vue_render__$n, staticRenderFns: __vue_staticRenderFns__$n },
+      __vue_inject_styles__$n,
+      __vue_script__$n,
+      __vue_scope_id__$n,
+      __vue_is_functional_template__$n,
+      __vue_module_identifier__$n,
+      undefined,
+      undefined
+    );
+
+  //
+
+  const script$o = {
+    data() {
+      return {
+        visible: false,
+        message: '',
+        showClose: document.visibilityState === 'hidden',
+        type: 'success',
+        duration: 2000,
+        timer: null
+      }
+    },
+    components: {
+      [Icon.name]: Icon
+    },
+    computed: {
+      iconType() {
+        let all = {
+          info: 'info',
+          success: 'check',
+          error: 'close',
+          warn: 'warn'
+        };
+        return all[this.type]
+      }
+    },
+    methods: {
+      close() {
+        this.visible = false;
+        this.$el.addEventListener('transitionend', this.destroy);
+      },
+      destroy() {
+        this.$el.removeEventListener('transitionend', this.destroy);
+        this.$destroy();
+        document.body.removeChild(this.$el);
+        clearTimeout(this.timer);
+      }
+    },
+    mounted() {
+      if (!this.showClose) {
+        this.timer = setTimeout(() => this.close(), this.duration);
+      }
+    }
+  };
+
+  /* script */
+  const __vue_script__$o = script$o;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$o.__file = "D:\\workspace\\lovue\\src\\components\\Message.vue";
+
+  /* template */
+  var __vue_render__$o = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('transition',{attrs:{"name":"message"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-message"},[_c('div',{staticClass:"m-icon",class:("m-" + _vm.type)},[_c('v-icon',{attrs:{"icon":_vm.iconType}})],1),_vm._v(" "),_c('p',[_vm._v(_vm._s(_vm.message))]),_vm._v(" "),(_vm.showClose)?_c('v-icon',{attrs:{"icon":"close"},nativeOn:{"click":function($event){return _vm.close($event)}}}):_vm._e()],1)])};
+  var __vue_staticRenderFns__$o = [];
+
+    /* style */
+    const __vue_inject_styles__$o = undefined;
+    /* scoped */
+    const __vue_scope_id__$o = undefined;
+    /* module identifier */
+    const __vue_module_identifier__$o = undefined;
+    /* functional template */
+    const __vue_is_functional_template__$o = false;
+    /* style inject */
+    
+    /* style inject SSR */
+    
+
+    
+    const Message = normalizeComponent(
+      { render: __vue_render__$o, staticRenderFns: __vue_staticRenderFns__$o },
+      __vue_inject_styles__$o,
+      __vue_script__$o,
+      __vue_scope_id__$o,
+      __vue_is_functional_template__$o,
+      __vue_module_identifier__$o,
+      undefined,
+      undefined
+    );
+
+  //
+
+  const script$p = {
+    data() {
+      return {
+        visible: false,
+        title: '',
+        content: '',
+        loading: false,
+        noCancel: false,
+        fixed: false,
+        confirm: undefined,
+        okText: '确认',
+        cancelText: '取消'
+      }
+    },
+    components: {
+      [Button.name]: Button,
+      [Icon.name]: Icon
+    },
+    computed: {
+      customCls() {
+        let custom = '';
+        if (this.title === '') custom = 'no-title';
+        if (this.fixed) custom += ' fixed';
+        return custom
+      }
+    },
+    methods: {
+      close() {
+        this.visible = false;
+        this.$destroy();
+        document.body.removeChild(this.$el);
+      },
+      async handleConfirm() {
+        if (!this.confirm) {
+          this.close();
+          return
+        }
+
+        if (this.loading) return
+
+        this.loading = true;
+        if (await this.confirm()) {
+          this.close();
+        }
+        this.loading = false;
+      }
+    }
+  };
+
+  /* script */
+  const __vue_script__$p = script$p;
+  // For security concerns, we use only base name in production mode. See https://github.com/vuejs/rollup-plugin-vue/issues/258
+  script$p.__file = "D:\\workspace\\lovue\\src\\components\\Modal.vue";
+
+  /* template */
+  var __vue_render__$p = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-modal overlay",class:_vm.customCls},[_c('transition',{attrs:{"name":"modal"}},[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.visible),expression:"visible"}],staticClass:"v-window"},[_c('div',{staticClass:"title-bar"},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content",domProps:{"innerHTML":_vm._s(_vm.content)}}),_vm._v(" "),_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[(!_vm.noCancel)?_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText))]):_vm._e(),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText))])],1)])])])],1)};
   var __vue_staticRenderFns__$p = [];
 
     /* style */
     const __vue_inject_styles__$p = undefined;
     /* scoped */
-    const __vue_scope_id__$p = "data-v-2d07ac7a";
+    const __vue_scope_id__$p = undefined;
     /* module identifier */
     const __vue_module_identifier__$p = undefined;
     /* functional template */
@@ -2616,7 +2617,7 @@
     
 
     
-    var Upload = normalizeComponent(
+    const Modal = normalizeComponent(
       { render: __vue_render__$p, staticRenderFns: __vue_staticRenderFns__$p },
       __vue_inject_styles__$p,
       __vue_script__$p,
@@ -2627,10 +2628,67 @@
       undefined
     );
 
-  if (typeof window !== 'undefined') {
-    if (!NodeList.prototype.forEach) {
-      NodeList.prototype.forEach = Array.prototype.forEach;
+  const MessageConstructor = Vue.extend(Message);
+
+  const Msg = function (option) {
+    let instance;
+    option = option || {};
+
+    if (typeof option === 'string') {
+      option = {
+        message: option
+      };
     }
+
+    instance = new MessageConstructor({
+      data: option
+    });
+    instance.vm = instance.$mount();
+    document.body.appendChild(instance.vm.$el);
+    instance.vm.visible = true;
+  };
+
+  const success = msg => Msg(msg);
+  const info = msg => {
+    Msg({
+      type: 'info',
+      message: msg
+    });
+  };
+  const warn = msg => {
+    Msg({
+      type: 'warn',
+      message: msg
+    });
+  };
+  const error = (msg, close) => {
+    if (close === undefined) close = true;
+
+    Msg({
+      type: 'error',
+      message: msg.msg || msg,
+      showClose: close
+    });
+  };
+  const modal = function (option = {}) {
+    let instance;
+    if (typeof option === 'string') {
+      option = {
+        content: option
+      };
+    }
+
+    const Constructor = Vue.extend(Modal);
+    instance = new Constructor({
+      data: option
+    });
+    instance.vm = instance.$mount();
+    document.body.appendChild(instance.vm.$el);
+    instance.vm.visible = true;
+  };
+
+  const install = function (Vue$$1) {
+    if (!Vue$$1 || install.installed) return
 
     const Components = [
       Button, ButtonGroup, ButtonSend,
@@ -2644,74 +2702,55 @@
       Tab, Table,
       Upload
     ];
-    Components.forEach(a => {
-      Vue.component(a.name, a);
-    });
 
-    const MessageConstructor = Vue.extend(Message);
+    Components.forEach(c => Vue$$1.component(c.name, c));
 
-    const Msg = function (option) {
-      let instance;
-      option = option || {};
+    Vue$$1.prototype.msg = Msg;
+    Vue$$1.prototype.success = success;
+    Vue$$1.prototype.info = info;
+    Vue$$1.prototype.warn = warn;
+    Vue$$1.prototype.error = error;
+    Vue$$1.prototype.modal = modal;
+  };
 
-      if (typeof option === 'string') {
-        option = {
-          message: option
-        };
-      }
-
-      instance = new MessageConstructor({
-        data: option
-      });
-      instance.vm = instance.$mount();
-      document.body.appendChild(instance.vm.$el);
-      instance.vm.visible = true;
-    };
-
-    Vue.prototype.$msg = Msg;
-    Vue.prototype.success = msg => Msg(msg);
-    Vue.prototype.info = msg => {
-      Msg({
-        type: 'info',
-        message: msg
-      });
-    };
-    Vue.prototype.warn = msg => {
-      Msg({
-        type: 'warn',
-        message: msg
-      });
-    };
-    Vue.prototype.error = (msg, close) => {
-      if (close === undefined) close = true;
-
-      Msg({
-        type: 'error',
-        message: msg.msg || msg,
-        showClose: close
-      });
-    };
-
-    Object.defineProperties(Vue.prototype, {
-      $modal: {
-        value: function (option = {}) {
-          let instance;
-          if (typeof option === 'string') {
-            option = {
-              content: option
-            };
-          }
-
-          const Constructor = Vue.extend(Modal);
-          instance = new Constructor({
-            data: option
-          });
-          instance.vm = instance.$mount();
-          document.body.appendChild(instance.vm.$el);
-          instance.vm.visible = true;
-        }
-      }
-    });
+  if (typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
   }
 
-}(Vue));
+  const index = { install };
+
+  exports.Button = Button;
+  exports.ButtonGroup = ButtonGroup;
+  exports.ButtonSend = ButtonSend;
+  exports.Checkbox = Checkbox;
+  exports.CheckboxGroup = CheckboxGroup;
+  exports.Col = Col;
+  exports.DatePicker = DatePicker;
+  exports.Icon = Icon;
+  exports.Input = Input;
+  exports.Menu = Menu;
+  exports.Pagination = Pagination;
+  exports.Popup = Popup;
+  exports.Progress = Progress;
+  exports.PureSelect = PureSelect;
+  exports.PwdStrength = PwdStrength;
+  exports.Radio = Radio;
+  exports.RadioGroup = RadioGroup;
+  exports.Row = Row;
+  exports.Search = Search;
+  exports.Select = Select;
+  exports.Switch = Switch;
+  exports.Tab = Tab;
+  exports.Table = Table;
+  exports.Upload = Upload;
+  exports.Msg = Msg;
+  exports.success = success;
+  exports.info = info;
+  exports.warn = warn;
+  exports.error = error;
+  exports.modal = modal;
+  exports.default = index;
+
+  return exports;
+
+}({}, Vue));

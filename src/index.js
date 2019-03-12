@@ -1,6 +1,3 @@
-import Vue from 'vue'
-import Message from './components/Message.vue'
-import Modal from './components/Modal.vue'
 import Button from './components/Button.vue'
 import ButtonGroup from './components/ButtonGroup.vue'
 import ButtonSend from './components/ButtonSend.vue'
@@ -25,11 +22,10 @@ import Switch from './components/Switch.vue'
 import Tab from './components/Tab.vue'
 import Table from './components/Table.vue'
 import Upload from './components/Upload.vue'
+import {Msg, success, info, warn, error, modal} from './components/prototypes'
 
-if (typeof window !== 'undefined') {
-  if (!NodeList.prototype.forEach) {
-    NodeList.prototype.forEach = Array.prototype.forEach
-  }
+const install = function (Vue) {
+  if (!Vue || install.installed) return
 
   const Components = [
     Button, ButtonGroup, ButtonSend,
@@ -43,72 +39,33 @@ if (typeof window !== 'undefined') {
     Tab, Table,
     Upload
   ]
-  Components.forEach(a => {
-    Vue.component(a.name, a)
-  })
 
-  const MessageConstructor = Vue.extend(Message)
+  Components.forEach(c => Vue.component(c.name, c))
 
-  const Msg = function (option) {
-    let instance
-    option = option || {}
-
-    if (typeof option === 'string') {
-      option = {
-        message: option
-      }
-    }
-
-    instance = new MessageConstructor({
-      data: option
-    })
-    instance.vm = instance.$mount()
-    document.body.appendChild(instance.vm.$el)
-    instance.vm.visible = true
-  }
-
-  Vue.prototype.$msg = Msg
-  Vue.prototype.success = msg => Msg(msg)
-  Vue.prototype.info = msg => {
-    Msg({
-      type: 'info',
-      message: msg
-    })
-  }
-  Vue.prototype.warn = msg => {
-    Msg({
-      type: 'warn',
-      message: msg
-    })
-  }
-  Vue.prototype.error = (msg, close) => {
-    if (close === undefined) close = true
-
-    Msg({
-      type: 'error',
-      message: msg.msg || msg,
-      showClose: close
-    })
-  }
-
-  Object.defineProperties(Vue.prototype, {
-    $modal: {
-      value: function (option = {}) {
-        let instance
-        if (typeof option === 'string') {
-          option = {
-            content: option
-          }
-        }
-
-        const Constructor = Vue.extend(Modal)
-        instance = new Constructor({
-          data: option
-        })
-        instance.vm = instance.$mount()
-        document.body.appendChild(instance.vm.$el)
-        instance.vm.visible = true
-      }
-    }
-  })
+  Vue.prototype.msg = Msg
+  Vue.prototype.success = success
+  Vue.prototype.info = info
+  Vue.prototype.warn = warn
+  Vue.prototype.error = error
+  Vue.prototype.modal = modal
 }
+
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
+
+export {
+  Button, ButtonGroup, ButtonSend,
+  Checkbox, CheckboxGroup, Col,
+  DatePicker,
+  Icon, Input,
+  Menu,
+  Pagination, Popup, Progress, PureSelect, PwdStrength,
+  Radio, RadioGroup, Row,
+  Search, Select, Switch,
+  Tab, Table,
+  Upload,
+  Msg, success, info, warn, error, modal
+}
+
+export default { install }

@@ -414,28 +414,6 @@ new Vue({
       if (this.currentStep === this.allSteps.length - 1) return
       this.currentStep++
     },
-    alertOne() {
-      this.$refs.alert.show('这是提示内容')
-    },
-    alertTwo() {
-      this.$refs.alert.show({
-        text: '这是提示内容',
-        type: 'confirm'
-      })
-    },
-    toggleEv(ev) {
-      console.log(ev.target.checked)
-    },
-    uploadFile(file) {
-      const form = new FormData()
-      form.append('evFile', file)
-    },
-    getSlice(slice) {
-      console.log(slice)
-    },
-    getSelectedBuildings(rows) {
-      console.log(rows)
-    },
     msgSuccess() {
       this.success('成功')
     },
@@ -449,22 +427,22 @@ new Vue({
       this.error('错误')
     },
     showModal() {
-      this.$modal({
+      this.modal({
         title: '标题',
         content: '内容'
       })
     },
     showSimpleModal() {
-      this.$modal('内容')
+      this.modal('内容')
     },
     showFixedModal() {
-      this.$modal({
+      this.modal({
         content: '内容',
         fixed: true
       })
     },
     showAsyncModal() {
-      this.$modal({
+      this.modal({
         title: '标题',
         content: '内容',
         async: true,
@@ -473,17 +451,6 @@ new Vue({
           return true
         }
       })
-    },
-    getCars(cars) {
-      console.log(cars)
-    },
-    selectItem(items) {
-      console.log(items)
-      this.trigger = !this.trigger
-    },
-    unselectItem(items) {
-      console.log(items)
-      this.trigger = !this.trigger
     },
     startSearch(text) {
       this.info(`searching ${text}`)

@@ -5,9 +5,9 @@
       <div class="date-picker">
         <div class="picker-filter">
           <div class="month-picker">
-            <button class="btn-text" type="button" @click="prevMonth">◀</button>
+            <button class="btn-text" type="button" @click="prevMonth"><v-icon icon="left" size="16"></v-icon></button>
             <div>{{localeMonths[month - 1]}}</div>
-            <button class="btn-text" type="button" @click="nextMonth">▶</button>
+            <button class="btn-text" type="button" @click="nextMonth"><v-icon icon="right" size="16"></v-icon></button>
           </div>
           <div class="year-picker">
             <v-pure-select :source="years" v-model="year"></v-pure-select>
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+  import Icon from './Icon.vue'
   import PureSelect from './PureSelect.vue'
 
   export default {
@@ -81,7 +82,8 @@
       fixedWidth: Boolean
     },
     components: {
-      [PureSelect.name]: PureSelect
+      [PureSelect.name]: PureSelect,
+      [Icon.name]: Icon
     },
     computed: {
       inputStyle() {
