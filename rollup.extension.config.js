@@ -36,7 +36,8 @@ export default {
       vue: 'Vue',
       window: 'window'
     },
-    preferConst: true
+    preferConst: true,
+    exports: 'named'
   },
   external: ['vue'],
   plugins

@@ -30,9 +30,9 @@
     "jsExtension": "rollup -c rollup.extension.config.js --environment production",
     "minExtension": "terser dist/lovue.extension.js -o dist/lovue.extension.min.js -c",
     "buildExtension": "npm run lessExtension && npm run esmExtension && npm run jsExtension && npm run minExtension",
-    "cjsUtils": "rollup src/utils.js --o dist/utils.common.js --f cjs --no-strict --preferConst",
+    "cjsUtils": "rollup src/utils.js --o dist/utils.common.js --f cjs --no-strict --preferConst --exports named",
     "esmUtils": "rollup src/utils.js --o dist/utils.esm.js --f esm --no-strict --preferConst",
-    "jsUtils": "rollup src/utils.js --o dist/utils.js --f iife -n utils --no-strict",
+    "jsUtils": "rollup src/utils.js --o dist/utils.js --f iife -n utils --no-strict --exports named",
     "buildUtils": "npm run cjsUtils && npm run esmUtils && npm run jsUtils",
     "build": "npm run buildLovue && npm run buildExtension && npm run buildUtils"
   },
