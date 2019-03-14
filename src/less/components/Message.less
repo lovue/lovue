@@ -1,10 +1,5 @@
 @import (reference) "../Mixins";
 
-.message-enter, .message-leave-active {
-  opacity: 0;
-  transform: translate(-50%, -100%);
-}
-
 .v-message {
   .shadow;
   min-width: 300px;
@@ -78,4 +73,9 @@
       color: var(--pink-color);
     }
   }
+}
+
+.message-enter, .message-leave-active {
+  opacity: 0;
+  transform: translate(-50%, -100%);
 }
