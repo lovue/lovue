@@ -33,14 +33,14 @@
   }
 
   .win-content {
-    max-height: calc(85vh - var(--bar-height));
+    max-height: calc(85vh - 2 * var(--bar-height));
     max-width: 80vw;
     min-width: 520px;
     padding: var(--unit) var(--2unit);
     overflow-y: auto;
 
     @media (max-height: 800px) {
-      max-height: calc(95vh - var(--bar-height));
+      max-height: calc(95vh - 2 * var(--bar-height));
     }
 
     .table-wrap {
