@@ -37,7 +37,7 @@
     "build": "npm run buildLovue && npm run buildExtension && npm run buildUtils"
   },
   "author": "loliconer",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "devDependencies": {
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
