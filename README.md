@@ -1,4 +1,4 @@
-<h3 align="center" style="margin: 30px 0 35px;">Lovue</h3>
+<h1 align="center" style="margin: 30px 0 35px;">Lovue</h3>
 
 <p align="center">
     <img src="https://img.shields.io/npm/dt/lovue.svg?style=flat-square" alt="downloads" />
@@ -7,9 +7,8 @@
     <img src="https://img.badgesize.io/https://unpkg.com/lovue/dist/lovue.min.css?compression=gzip&style=flat-square&label=CSS%20gzip%20size" alt="CSS Gzip Size" />
 </p>
 
-- .vue单文件形式的组件，可直接导入使用
 - 包含一些纯CSS控件
-- 优点：每个组件都是一个.vue格式的单文件，并且尽量减少代码量，结构简单，方便阅读和理解以及自行修改源码
+- 每个组件都是一个.vue格式的单文件，并且尽量减少代码量，结构简单，方便阅读和理解以及自行修改源码
 - 尽量使用最新的技术实现
 
 [Demo](https://lovue.now.sh)
