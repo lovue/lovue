@@ -193,7 +193,8 @@ new Vue({
       { prop: 'maxYear', desc: '最大年份', type: 'Number', deft: '2050' },
       { prop: 'weeks', desc: '显示的星期列表', type: 'Array', deft: "['日', '一', '二', '三', '四', '五', '六']" },
       { prop: 'months', desc: '显示的月份列表', type: 'Array', deft: "['1月', '2月', ... '11月', '12月']" },
-      { prop: 'fixedWidth', desc: '是否固定宽度不变', type: 'Boolean', deft: "无" }
+      { prop: 'fixedWidth', desc: '是否固定宽度不变', type: 'Boolean', deft: "无" },
+      { prop: 'yearsDesc', desc: '年份选择列表是否倒序', type: 'Boolean', deft: "无" }
     ],
     sourceModal: [
       { prop: 'title', desc: '标题，没有，则不显示标题栏', type: 'String', deft: '无' },

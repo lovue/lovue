@@ -642,9 +642,12 @@ const lovue = (function (exports, Vue) {
   const script$8 = {
     name: 'v-date-picker',
     data() {
+      const years = new Array(this.maxYear - this.minYear + 1).fill(0).map((item, i) => this.minYear + i);
+      if (this.yearsDesc) years.reverse();
+
       return {
         selfClicked: false,
-        years: new Array(this.maxYear - this.minYear + 1).fill(0).map((item, i) => this.minYear + i),
+        years,
         localeWeeks: this.weeks || ['日', '一', '二', '三', '四', '五', '六'],
         localeMonths: this.months || ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
         year: 0,
@@ -675,7 +678,8 @@ const lovue = (function (exports, Vue) {
       },
       weeks: Array,
       months: Array,
-      fixedWidth: Boolean
+      fixedWidth: Boolean,
+      yearsDesc: Boolean
     },
     components: {
       [PureSelect.name]: PureSelect,
@@ -2441,7 +2445,7 @@ const lovue = (function (exports, Vue) {
     /* style */
     const __vue_inject_styles__$n = undefined;
     /* scoped */
-    const __vue_scope_id__$n = "data-v-2d07ac7a";
+    const __vue_scope_id__$n = undefined;
     /* module identifier */
     const __vue_module_identifier__$n = undefined;
     /* functional template */
