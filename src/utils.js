@@ -2,6 +2,7 @@ import adjustImgShape from './utils/adjustImgShape'
 import connectWS from './utils/connectWS'
 import convertTableDataToString from './utils/convertTableDataToString'
 import $fetch from './utils/fetch'
+import fillDateNumber from './utils/fillDateNumber'
 import formatDate from './utils/formatDate'
 import getAverageRGB from './utils/getAverageRGB'
 import getKeyByValue from './utils/getKeyByValue'
@@ -33,6 +34,7 @@ export {
   connectWS,
   convertTableDataToString,
   $fetch,
+  fillDateNumber,
   formatDate,
   getAverageRGB,
   getKeyByValue,
@@ -65,6 +67,7 @@ export default {
   connectWS,
   convertTableDataToString,
   fetch: $fetch,
+  fillDateNumber,
   formatDate,
   getAverageRGB,
   getKeyByValue,
