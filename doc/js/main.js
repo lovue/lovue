@@ -164,6 +164,7 @@ new Vue({
       { prop: 'steps', desc: '选项数据，支持属性：title, icon', type: 'Array', deft: '无' },
       { prop: 'max', desc: '多选时最多可选择的数量，没有则不限制', type: 'Number', deft: '无' },
       { prop: 'emitItem', desc: '是否emit整个item，是，则v-model绑定的是选中项的整个对象，否，则绑定选中项的value值', type: 'Boolean', deft: '无' },
+      { prop: 'clearable', desc: '单选模式下是否可以清除选中', type: 'Boolean', deft: '无' },
     ],
     sourcePureSelect: [
       { prop: 'v-model', desc: '组件双向绑定的值', type: 'String, Number', deft: '无' },
@@ -297,7 +298,7 @@ new Vue({
       }
     ],
     bought2: '',
-    bought3: ['Bugatti', 'Ferrari'],
+    bought3: [],
     items: {
       name: 'IT',
       children: [
@@ -504,7 +505,7 @@ new Vue({
     }, 400)
 
     setTimeout(() => {
-      this.bought2 = 'Aventador'
+      // this.bought2 = 'Aventador'
       this.pureSelectValue = '高中'
       this.datePickerValue = '2019-03-15'
       this.tabValue = 2

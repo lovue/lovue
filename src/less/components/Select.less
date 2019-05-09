@@ -79,6 +79,23 @@
       background-color: var(--light-pink);
     }
 
+    .placeholder {
+      color: var(--placeholder-color);
+    }
+
+    .icon-clear {
+      position: absolute;
+      top: 8px;
+      right: 52px;
+      color: var(--second-color);
+      transition: color .2s;
+      display: none;
+
+      &:hover {
+        color: var(--error-color);
+      }
+    }
+
     .input {
       height: 30px;
       padding-left: 4px;
@@ -101,6 +118,10 @@
 
     &:not([disabled]):hover {
       border-color: var(--blue-color);
+
+      .icon-clear {
+        display: block;
+      }
     }
   }
 

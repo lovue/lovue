@@ -1484,6 +1484,20 @@ summary {
 .v-select .selected .s-tag-custom {
   background-color: var(--light-pink);
 }
+.v-select .selected .placeholder {
+  color: var(--placeholder-color);
+}
+.v-select .selected .icon-clear {
+  position: absolute;
+  top: 8px;
+  right: 52px;
+  color: var(--second-color);
+  transition: color 0.2s;
+  display: none;
+}
+.v-select .selected .icon-clear:hover {
+  color: var(--error-color);
+}
 .v-select .selected .input {
   height: 30px;
   padding-left: 4px;
@@ -1504,6 +1518,9 @@ summary {
 }
 .v-select .selected:not([disabled]):hover {
   border-color: var(--blue-color);
+}
+.v-select .selected:not([disabled]):hover .icon-clear {
+  display: block;
 }
 .v-select .candidates {
   position: absolute;

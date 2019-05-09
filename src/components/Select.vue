@@ -5,11 +5,15 @@
       <div class="l">
         <template v-if="multiple">
           <span class="s-tag" v-for="(s,i) of selected">
-          <span class="tag-name">{{s.name}}</span>
-          <v-icon icon="close" @click.native.stop="remove(s,i)"></v-icon>
-        </span>
+            <span class="tag-name">{{s.name}}</span>
+            <v-icon icon="close" @click.native.stop="remove(s,i)"></v-icon>
+          </span>
+          <span class="placeholder" v-if="!selected.length">{{placeholder || '请选择'}}</span>
         </template>
-        <input class="input" :value="selected.name" v-else :placeholder="placeholder || '请选择'" readonly>
+        <template v-else>
+          <input class="input" :value="selected.name" :placeholder="placeholder || '请选择'" readonly>
+          <v-icon class="icon-clear" icon="close" size="14" @click.native.stop="clearSelected" v-if="clearable && selected.name"></v-icon>
+        </template>
       </div>
       <div class="r">
         <v-icon icon="down-wide" :class="{reverse: !open}"></v-icon>
@@ -65,7 +69,8 @@
       placeholder: String,
       searchPlaceholder: String,
       max: Number,
-      emitItem: Boolean
+      emitItem: Boolean,
+      clearable: Boolean
     },
     watch: {
       source(val) {
@@ -188,6 +193,10 @@
           this.innerUpdate = true
           this.$emit('input', this.emitItem ? this.selected : this.selected.value)
         }
+      },
+      clearSelected() {
+        this.selected = {}
+        this.$emit('input', this.emitItem ? this.selected : this.selected.value)
       },
       remove(select, index) {
         this.selected.splice(index, 1)
