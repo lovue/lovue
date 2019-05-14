@@ -138,6 +138,7 @@ new Vue({
       { prop: 'upload', desc: '是否选择文件后立即上传，是，则选择文件后不显示文件名；否，则显示', type: 'Boolean', deft: '无' },
       { prop: 'multi', desc: '是否可多选文件', type: 'Boolean', deft: '无' },
       { prop: 'required', desc: 'input的required值', type: 'Boolean', deft: '无' },
+      { prop: 'accept', desc: 'input的accept值', type: 'String', deft: '无' },
       { prop: 'text', desc: '按钮显示的文本', type: 'String', deft: '选择文件' },
       { prop: 'thumbnail', desc: '选择图片后是否显示缩略图', type: 'Boolean', deft: '无' },
       { prop: 'thumbSize', desc: '缩略图的大小', type: 'Number', deft: '100' },

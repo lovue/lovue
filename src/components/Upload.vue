@@ -7,14 +7,14 @@
       </div>
       <div class="btn-wrap" :style="`width: ${thumbSize}px;height: ${thumbSize}px;`">
         <v-icon icon="plus" size="30"></v-icon>
-        <input type="file" :name="name" @change="selectFile" :multiple="multi" :required="required">
+        <input type="file" :name="name" @change="selectFile" :multiple="multi" :required="required" :accept="accept">
       </div>
     </div>
     <template v-else>
       <div class="u-above">
         <div class="btn-wrap">
           <v-button icon="upload">{{text || '选择文件'}}</v-button>
-          <input type="file" :name="name" @change="selectFile" :multiple="multi" :required="required">
+          <input type="file" :name="name" @change="selectFile" :multiple="multi" :required="required" :accept="accept">
         </div>
         <div class="u-file-names" v-if="!upload && !thumbnail && fileNames.length">
           <span v-for="name of fileNames">{{name}}</span>
@@ -50,6 +50,7 @@
       upload: Boolean,
       multi: Boolean,
       required: Boolean,
+      accept: String,
       text: String,
       thumbnail: Boolean,
       thumbSize: {
