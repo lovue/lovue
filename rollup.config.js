@@ -1,9 +1,11 @@
 import vue from 'rollup-plugin-vue'
 import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
+import commonjs from 'rollup-plugin-commonjs'
 
 const production = process.env.production, esm = process.env.esm
 let plugins = [
+  commonjs(),
   vue({
     template: {
       isProduction: true

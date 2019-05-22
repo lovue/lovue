@@ -1,4 +1,4 @@
-<h1 align="center" style="margin: 30px 0 35px;">Lovue</h3>
+<h1 align="center" style="margin: 30px 0 35px;">Lovue</h1>
 
 <p align="center">
     <img src="https://img.shields.io/npm/dt/lovue.svg?style=flat-square" alt="downloads" />

@@ -1,7 +1,9 @@
 import vue from 'rollup-plugin-vue'
+import commonjs from 'rollup-plugin-commonjs'
 
 const production = process.env.production, cjs = process.env.cjs, esm = process.env.esm
 let plugins = [
+  commonjs(),
   vue({
     template: {
       isProduction: true
