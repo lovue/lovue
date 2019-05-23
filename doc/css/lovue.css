@@ -2007,6 +2007,10 @@ summary {
 .v-tooltip.pos-right:hover:after {
   transform: translate(10px, -50%);
 }
+.v-tooltip.t-width-limited:after {
+  white-space: normal;
+  width: var(--content-width);
+}
 .v-upload .u-above {
   display: flex;
   flex-wrap: wrap;

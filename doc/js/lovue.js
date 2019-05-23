@@ -2326,11 +2326,21 @@ const lovue = (function (exports, Vue) {
     name: 'v-tooltip',
     props: {
       pos: String,
-      text: String
+      text: String,
+      width: [Number, String]
     },
     computed: {
-      posClass() {
-        return this.pos ? `pos-${this.pos}` : ''
+      customClass() {
+        let str = this.pos ? `pos-${this.pos}` : '';
+        if (this.width) str += ' t-width-limited';
+        return str
+      }
+    },
+    mounted() {
+      let {width} = this;
+      if (width) {
+        width = typeof width === 'string' ? width : `${width}px`;
+        this.$el.style.setProperty('--content-width', width);
       }
     }
   };
@@ -2339,7 +2349,7 @@ const lovue = (function (exports, Vue) {
   const __vue_script__$n = script$n;
 
   /* template */
-  var __vue_render__$n = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-tooltip",class:_vm.posClass,attrs:{"aria-label":_vm.text}},[_vm._t("default")],2)};
+  var __vue_render__$n = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-tooltip",class:_vm.customClass,attrs:{"aria-label":_vm.text}},[_vm._t("default")],2)};
   var __vue_staticRenderFns__$n = [];
 
     /* style */

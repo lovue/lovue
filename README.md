@@ -87,6 +87,8 @@ new Vue({
 - Tab页：Tab.vue
 - 表格：Table.vue
 - 选择文件按钮：Upload.vue
+- 徽标（CSS）：v-badge
+- Tooltip：Tooltip.vue
 
 #### Extension
 - 收缩菜单：Collapse.vue

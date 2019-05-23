@@ -152,7 +152,8 @@ new Vue({
     ],
     sourceTooltip: [
       { prop: 'text', desc: '提示内容', type: 'String', deft: '无' },
-      { prop: 'pos', desc: '提示显示的位置，有：right, bottom, left，默认为 top', type: 'String', deft: '无' }
+      { prop: 'pos', desc: '提示显示的位置，有：right, bottom, left，默认为 top', type: 'String', deft: '无' },
+      { prop: 'width', desc: '提示内容的宽度', type: 'String, Number', deft: '无' }
     ],
     sourceSteps: [
       { prop: 'steps', desc: '选项数据，支持属性：title, icon', type: 'Array', deft: '无' },

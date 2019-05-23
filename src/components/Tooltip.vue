@@ -1,5 +1,5 @@
 <template>
-  <div class="v-tooltip" :class="posClass" :aria-label="text"><slot></slot></div>
+  <div class="v-tooltip" :class="customClass" :aria-label="text"><slot></slot></div>
 </template>
 
 <script>
@@ -7,11 +7,21 @@
     name: 'v-tooltip',
     props: {
       pos: String,
-      text: String
+      text: String,
+      width: [Number, String]
     },
     computed: {
-      posClass() {
-        return this.pos ? `pos-${this.pos}` : ''
+      customClass() {
+        let str = this.pos ? `pos-${this.pos}` : ''
+        if (this.width) str += ' t-width-limited'
+        return str
+      }
+    },
+    mounted() {
+      let {width} = this
+      if (width) {
+        width = typeof width === 'string' ? width : `${width}px`
+        this.$el.style.setProperty('--content-width', width)
       }
     }
   }
