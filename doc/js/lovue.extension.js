@@ -45,10 +45,10 @@ const lovueEx = (function (exports) {
         if (i < 0) return
 
         const item = this.items[i];
-        item._show = true;
+        item.show_ = true;
         this.$forceUpdate();
         setTimeout(() => {
-          item._open = true;
+          item.open_ = true;
           this.$forceUpdate();
         }, 0);
       },
@@ -56,10 +56,10 @@ const lovueEx = (function (exports) {
         if (i < 0) return
 
         const item = this.items[i];
-        item._open = false;
+        item.open_ = false;
         this.$forceUpdate();
         setTimeout(() => {
-          item._show = false;
+          item.show_ = false;
           this.$forceUpdate();
         }, 500);
       }
@@ -155,7 +155,7 @@ const lovueEx = (function (exports) {
   const __vue_script__ = script;
 
   /* template */
-  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-collapse"},_vm._l((_vm.items),function(item,i){return _c('div',{staticClass:"c-item",class:{open: item._open}},[_c('div',{staticClass:"c-head",on:{"click":function($event){_vm.select(i);}}},[_vm._v(_vm._s(item.title))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(item._show),expression:"item._show"}],staticClass:"c-body"},[_vm._v(_vm._s(item.content))])])}))};
+  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-collapse"},_vm._l((_vm.items),function(item,i){return _c('div',{staticClass:"c-item",class:{open: item.open_}},[_c('div',{staticClass:"c-head",on:{"click":function($event){_vm.select(i);}}},[_vm._v(_vm._s(item.title))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(item.show_),expression:"item.show_"}],staticClass:"c-body"},[_vm._v(_vm._s(item.content))])])}))};
   var __vue_staticRenderFns__ = [];
 
     /* style */
