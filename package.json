@@ -33,7 +33,8 @@
     "cjsUtils": "rollup src/utils.js --o dist/utils.common.js --f cjs --no-strict --preferConst --exports named",
     "esmUtils": "rollup src/utils.js --o dist/utils.esm.js --f esm --no-strict --preferConst",
     "jsUtils": "rollup src/utils.js --o dist/utils.js --f iife -n utils --no-strict --exports named",
-    "buildUtils": "npm run cjsUtils && npm run esmUtils && npm run jsUtils",
+    "minUtils": "terser dist/utils.js -o dist/utils.min.js -c",
+    "buildUtils": "npm run esmUtils && npm run jsUtils && npm run minUtils",
     "build": "npm run buildLovue && npm run buildExtension && npm run buildUtils"
   },
   "author": "loliconer",
