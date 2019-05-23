@@ -511,5 +511,7 @@ new Vue({
       this.datePickerValue = '2019-03-15'
       this.tabValue = 2
     }, 2000)
+
+    Prism.highlightAll()
   }
 })

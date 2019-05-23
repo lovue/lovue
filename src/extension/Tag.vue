@@ -1,10 +1,10 @@
 <template>
   <div class="v-tag" @click.stop>
     <input class="input" v-model.trim="tag" @focus="isShowCandidates = true" @keydown.enter="addCustom">
-    <div class="t-selected">
+    <div class="t-selected tag-list">
       <a class="tag tag-black" v-for="(t, i) of value" @click="remove(t, i)">{{t.name}}</a>
     </div>
-    <div class="t-candidates" v-show="isShowCandidates" v-if="tags.length">
+    <div class="t-candidates tag-list" v-show="isShowCandidates" v-if="tags.length">
       <a class="tag tag-white" v-for="(t, i) of tags" @click="add(t, i)">{{t.name}}</a>
       <v-icon icon="close" @click.native="isShowCandidates = false"></v-icon>
     </div>

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <!--<link rel="icon" href="<%= BASE_URL %>favicon.ico">-->
+    <link rel="stylesheet" href="css/prism.css">
     <link rel="stylesheet" href="css/lovue.css">
     <link rel="stylesheet" href="css/lovue.extension.css">
     <link rel="stylesheet" href="css/style.css">
@@ -472,6 +473,60 @@
             </div>
           </div>
 
+          <div class="panel" id="toBadge">
+            <div class="title">徽标</div>
+            <div class="content">
+              <div class="controls">
+                <div class="control control-source">
+                  <div class="c-demo">
+                    <div class="v-badge">
+                      <v-icon icon="bells"></v-icon>
+                    </div>
+                  </div>
+                  <div class="c-code">
+                    <pre class="language-html"><code>&lt;div class=&quot;v-badge&quot;&gt;
+  &lt;v-icon icon=&quot;bells&quot;&gt;&lt;/v-icon&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+
+                <div class="control control-source">
+                  <div class="c-demo">
+                    <div class="v-badge">邮件</div>
+                  </div>
+                  <div class="c-code">
+                    <pre class="language-html"><code>&lt;div class=&quot;v-badge&quot;&gt;邮件&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <div class="controls">
+                <div class="control control-source">
+                  <div class="c-demo">
+                    <div class="v-badge" data-count="20">
+                      <v-icon icon="bells"></v-icon>
+                    </div>
+                  </div>
+                  <div class="c-code">
+                    <pre class="language-html"><code>&lt;div class=&quot;v-badge&quot; data-count=&quot;20&quot;&gt;
+  &lt;v-icon icon=&quot;bells&quot;&gt;&lt;/v-icon&gt;
+&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+
+                <div class="control control-source">
+                  <div class="c-demo">
+                    <div class="v-badge" data-count="99">邮件</div>
+                  </div>
+                  <div class="c-code">
+                    <pre
+                      class="language-html"><code>&lt;div class=&quot;v-badge&quot; data-count=&quot;99&quot;&gt;邮件&lt;/div&gt;</code></pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="panel" id="toSteps">
             <div class="title">【扩展】步骤条</div>
             <div class="usage">【v-step】</div>
@@ -541,6 +596,7 @@
     </div>
     <script src="js/vue.js"></script>
     <script src="js/iconfont.js"></script>
+    <script src="js/prism.js"></script>
     <script src="js/lovue.js"></script>
     <script src="js/lovue.extension.js"></script>
     <script src="js/main.js"></script>

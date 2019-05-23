@@ -309,6 +309,32 @@ summary {
   --grey-9: #404040;
   --grey-10: #222222;
 }
+.v-badge {
+  position: relative;
+}
+.v-badge:after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: var(--error-color);
+  border-radius: 50%;
+}
+.v-badge[data-count]:after {
+  content: attr(data-count);
+  top: -8px;
+  right: 2px;
+  transform: translateX(100%);
+  font-size: var(--tiny-font);
+  color: var(--white);
+  width: auto;
+  height: auto;
+  padding: 2px 4px;
+  border-radius: 10px;
+}
 .input,
 .textarea,
 .select {
@@ -347,6 +373,7 @@ summary {
 .v-btn .icon {
   width: 14px;
   height: 14px;
+  margin-top: -2px;
 }
 .v-btn.v-btn-ghost {
   border-color: var(--border-color);
@@ -1862,18 +1889,18 @@ summary {
 .v-table > .t-footer {
   margin-top: var(--unit);
 }
-.tag {
+.tag-list .tag {
   padding: var(--unit) var(--2unit);
   font-size: var(--tiny-font);
   cursor: pointer;
   border-radius: 20px;
   line-height: 14px;
 }
-.tag.tag-black {
+.tag-list .tag.tag-black {
   background-color: var(--main-color);
   color: var(--white);
 }
-.tag.tag-white {
+.tag-list .tag.tag-white {
   border: 1px dashed var(--border-color);
 }
 .v-upload .u-above {

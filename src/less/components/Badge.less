@@ -1,0 +1,30 @@
+.v-badge {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: -6px;
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--error-color);
+    border-radius: 50%;
+  }
+
+  &[data-count] {
+    &:after {
+      content: attr(data-count);
+      top: -8px;
+      right: 2px;
+      transform: translateX(100%);
+      font-size: var(--tiny-font);
+      color: var(--white);
+      width: auto;
+      height: auto;
+      padding: 2px 4px;
+      border-radius: 10px;
+    }
+  }
+}
