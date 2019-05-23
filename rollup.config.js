@@ -23,7 +23,8 @@ if (!production) {
   plugins.push(serve('doc'))
   plugins.push(livereload({
     watch: 'doc',
-    delay: 100
+    delay: 100,
+    port: 35730
   }))
   file = 'doc/js/lovue.js'
   format = 'iife'

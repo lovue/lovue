@@ -70,7 +70,7 @@ new Vue({
       { title: '默认值', prop: 'deft' },
     ],
     sourceButton: [
-      { prop: 'type', desc: '样式，内置：primary, ghost, text，可自定义', type: 'String', deft: 'primary' },
+      { prop: 'type', desc: '样式，内置：primary, danger, ghost, text，可自定义', type: 'String', deft: 'primary' },
       { prop: 'size', desc: '大小，支持：lg, sm', type: 'String', deft: '无' },
       { prop: 'disabled', desc: '是否禁用', type: 'Boolean', deft: '无' },
       { prop: 'icon', desc: '图标', type: 'String', deft: '无' },
@@ -149,6 +149,10 @@ new Vue({
       { prop: 'v-model', desc: '组件双向绑定的值', type: 'Number', deft: '无' },
       { prop: 'titles', desc: '选项数据，数据项可以是对象：{name, icon}，也可以是原始值：String/Number', type: 'Array', deft: '无' },
       { prop: 'lock', desc: '是否锁定，锁定时无法切换tab', type: 'Boolean', deft: '无' }
+    ],
+    sourceTooltip: [
+      { prop: 'text', desc: '提示内容', type: 'String', deft: '无' },
+      { prop: 'pos', desc: '提示显示的位置，有：right, bottom, left，默认为 top', type: 'String', deft: '无' }
     ],
     sourceSteps: [
       { prop: 'steps', desc: '选项数据，支持属性：title, icon', type: 'Array', deft: '无' },

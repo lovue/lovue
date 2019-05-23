@@ -26,14 +26,10 @@
           <div class="panel" id="toRowCol">
             <div class="title">栅格布局</div>
             <div class="usage">
-              <pre>
-                <code>
-&lt;v-row&gt;
+              <pre class="language-html"><code>&lt;v-row&gt;
   &lt;v-col :span=&quot;12&quot;&gt;&lt;/v-col&gt;
   &lt;v-col :span=&quot;12&quot;&gt;&lt;/v-col&gt;
-&lt;/v-row&gt;
-                </code>
-              </pre>
+&lt;/v-row&gt;</code></pre>
             </div>
             <div class="content">
               <v-row>
@@ -58,14 +54,10 @@
             <div class="title">左右布局</div>
             <p>左边固定宽度，右边全宽且自适应的布局</p>
             <div class="usage">
-              <pre>
-                <code>
-&lt;div class=&quot;layout-lr&quot;&gt;
+              <pre class="language-html"><code>&lt;div class=&quot;layout-lr&quot;&gt;
   &lt;div class=&quot;l&quot;&gt;&lt;/div&gt;
   &lt;div class=&quot;r&quot;&gt;&lt;/div&gt;
-&lt;/div&gt;
-                </code>
-              </pre>
+&lt;/div&gt;</code></pre>
             </div>
             <div class="content">
               <div class="content-cell">
@@ -104,7 +96,8 @@
                   <v-button size="lg" icon="download">普通按钮</v-button>
                 </div>
                 <div class="controls">
-                  <v-button :loading="true">加载按钮</v-button>
+                  <v-button loading>加载按钮</v-button>
+                  <v-button loading></v-button>
                   <v-button :loading="loading" icon="download" @click="loading = !loading">点击看效果</v-button>
                   <v-button :loading="loading2" @click="loading2 = !loading2">点击看效果</v-button>
                 </div>
@@ -524,6 +517,28 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div class="panel" id="toTooltip">
+            <div class="title">Tooltip</div>
+            <div class="usage">【v-tooltip】</div>
+            <div class="content">
+              <div class="controls" style="align-items: center;">
+                <v-tooltip text="这是提示内容">提示在上面</v-tooltip>
+                <v-tooltip text="这是提示内容" pos="bottom">
+                  <v-button>提示在下面</v-button>
+                </v-tooltip>
+                <v-tooltip text="这是提示内容" pos="left">
+                  <v-icon icon="tip"></v-icon>
+                </v-tooltip>
+                <v-tooltip text="这是提示内容" pos="right">
+                  <v-input placeholder="提示在右边"></v-input>
+                </v-tooltip>
+              </div>
+            </div>
+            <div class="content">
+              <v-table :source="sourceTooltip" :columns="columns" simple></v-table>
             </div>
           </div>
 

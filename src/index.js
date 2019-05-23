@@ -21,6 +21,7 @@ import Select from './components/Select.vue'
 import Switch from './components/Switch.vue'
 import Tab from './components/Tab.vue'
 import Table from './components/Table.vue'
+import Tooltip from './components/Tooltip.vue'
 import Upload from './components/Upload.vue'
 import {Msg, success, info, warn, error, modal} from './components/prototypes'
 
@@ -36,7 +37,7 @@ const install = function (Vue) {
     Pagination, Popup, Progress, PureSelect, PwdStrength,
     Radio, RadioGroup, Row,
     Search, Select, Switch,
-    Tab, Table,
+    Tab, Table, Tooltip,
     Upload
   ]
 
@@ -63,7 +64,7 @@ export {
   Pagination, Popup, Progress, PureSelect, PwdStrength,
   Radio, RadioGroup, Row,
   Search, Select, Switch,
-  Tab, Table,
+  Tab, Table, Tooltip,
   Upload,
   Msg, success, info, warn, error, modal
 }

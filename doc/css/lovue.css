@@ -1903,6 +1903,110 @@ summary {
 .tag-list .tag.tag-white {
   border: 1px dashed var(--border-color);
 }
+.v-tooltip {
+  --theme-color: #383838;
+  position: relative;
+  cursor: pointer;
+}
+.v-tooltip:before,
+.v-tooltip:after {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+}
+.v-tooltip:before {
+  content: '';
+  display: block;
+  transform: translate(-50%, 10px);
+  border: 5px solid transparent;
+  border-top-color: var(--theme-color);
+}
+.v-tooltip:after {
+  content: attr(aria-label);
+  display: block;
+  line-height: 1em;
+  background: var(--theme-color);
+  color: var(--white);
+  border-radius: var(--border-radius);
+  padding: 0.5em 1em;
+  font-size: var(--tiny-font);
+  white-space: nowrap;
+  transform: translate(-50%, 0);
+}
+.v-tooltip:hover:before,
+.v-tooltip:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+.v-tooltip:hover:before {
+  transform: translate(-50%, 0);
+}
+.v-tooltip:hover:after {
+  transform: translate(-50%, -10px);
+}
+.v-tooltip.pos-bottom:before,
+.v-tooltip.pos-bottom:after {
+  top: 100%;
+  bottom: initial;
+}
+.v-tooltip.pos-bottom:before {
+  transform: translate(-50%, -10px);
+  border-top-color: transparent;
+  border-bottom-color: var(--theme-color);
+}
+.v-tooltip.pos-bottom:hover:before {
+  transform: translate(-50%, 0);
+}
+.v-tooltip.pos-bottom:hover:after {
+  transform: translate(-50%, 10px);
+}
+.v-tooltip.pos-left:before,
+.v-tooltip.pos-left:after {
+  top: 50%;
+  left: initial;
+  bottom: initial;
+  right: 100%;
+}
+.v-tooltip.pos-left:before {
+  transform: translate(10px, -50%);
+  border-top-color: transparent;
+  border-left-color: var(--theme-color);
+}
+.v-tooltip.pos-left:after {
+  transform: translate(0, -50%);
+}
+.v-tooltip.pos-left:hover:before {
+  transform: translate(0, -50%);
+}
+.v-tooltip.pos-left:hover:after {
+  transform: translate(-10px, -50%);
+}
+.v-tooltip.pos-right:before,
+.v-tooltip.pos-right:after {
+  top: 50%;
+  left: 100%;
+  bottom: initial;
+  right: initial;
+}
+.v-tooltip.pos-right:before {
+  transform: translate(-10px, -50%);
+  border-top-color: transparent;
+  border-right-color: var(--theme-color);
+}
+.v-tooltip.pos-right:after {
+  transform: translate(0, -50%);
+}
+.v-tooltip.pos-right:hover:before {
+  transform: translate(0, -50%);
+}
+.v-tooltip.pos-right:hover:after {
+  transform: translate(10px, -50%);
+}
 .v-upload .u-above {
   display: flex;
   flex-wrap: wrap;
