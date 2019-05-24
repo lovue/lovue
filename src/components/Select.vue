@@ -12,7 +12,7 @@
         </template>
         <template v-else>
           <input class="input" :value="selected.name" :placeholder="placeholder || '请选择'" readonly>
-          <v-icon class="icon-clear" icon="close" size="14" @click.native.stop="clearSelected" v-if="clearable && selected.name"></v-icon>
+          <v-icon class="icon-clear" icon="close" size="16" @click.native.stop="clearSelected" v-if="clearable && selected.name"></v-icon>
         </template>
       </div>
       <div class="r">
