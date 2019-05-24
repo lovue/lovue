@@ -10,6 +10,29 @@ const lovueEx = (function (exports) {
   //
   //
   //
+  //
+  //
+
+  function getElemHeight(el) {
+    const elStyle = getComputedStyle(el);
+    const elDisplay = elStyle.display;
+    const elPosition = elStyle.position;
+    const elVisibility = elStyle.visibility;
+
+    if (elDisplay !== 'none') return el.offsetHeight
+
+    el.style.position = 'absolute';
+    el.style.visibility = 'hidden';
+    el.style.display = 'block';
+
+    const elHeight = el.offsetHeight;
+
+    el.style.display = elDisplay;
+    el.style.position = elPosition;
+    el.style.visibility = elVisibility;
+
+    return elHeight
+  }
 
   const script = {
     name: 'v-collapse',
@@ -18,15 +41,18 @@ const lovueEx = (function (exports) {
         items: [
           {
             title: 'First',
-            content: ''
+            content: 'First',
+            show_: false
           },
           {
             title: 'Second',
-            content: ''
+            content: 'Second',
+            show_: false
           },
           {
             title: 'Third',
-            content: 'Third'
+            content: 'Third',
+            show_: false
           }
         ],
         index: -1,
@@ -34,6 +60,13 @@ const lovueEx = (function (exports) {
       }
     },
     methods: {
+      calculateElementsHeight() {
+        this.$el.querySelectorAll('.c-body').forEach((elem, i) => {
+          this.items[i].height = getElemHeight(elem);
+          this.items[i].elem = elem;
+          elem.style.height = '0px';
+        });
+      },
       select(i) {
         if (this.index === i) return
 
@@ -46,23 +79,22 @@ const lovueEx = (function (exports) {
 
         const item = this.items[i];
         item.show_ = true;
-        this.$forceUpdate();
         setTimeout(() => {
-          item.open_ = true;
-          this.$forceUpdate();
+          item.elem.style.height = `${item.height}px`;
         }, 0);
       },
       close(i) {
         if (i < 0) return
 
         const item = this.items[i];
-        item.open_ = false;
-        this.$forceUpdate();
+        item.elem.style.height = '0px';
         setTimeout(() => {
           item.show_ = false;
-          this.$forceUpdate();
         }, 500);
       }
+    },
+    mounted() {
+      this.calculateElementsHeight();
     }
   };
 
@@ -155,7 +187,7 @@ const lovueEx = (function (exports) {
   const __vue_script__ = script;
 
   /* template */
-  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-collapse"},_vm._l((_vm.items),function(item,i){return _c('div',{staticClass:"c-item",class:{open: item.open_}},[_c('div',{staticClass:"c-head",on:{"click":function($event){_vm.select(i);}}},[_vm._v(_vm._s(item.title))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(item.show_),expression:"item.show_"}],staticClass:"c-body"},[_vm._v(_vm._s(item.content))])])}))};
+  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-collapse"},_vm._l((_vm.items),function(item,i){return _c('div',{staticClass:"c-item",class:{open: item.open_}},[_c('div',{staticClass:"c-head",on:{"click":function($event){_vm.select(i);}}},[_vm._v(_vm._s(item.title))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(item.show_),expression:"item.show_"}],staticClass:"c-body"},[_c('div',{staticClass:"b-content",style:(("height: " + (100 * (i + 1)) + "px"))},[_vm._v(_vm._s(item.content))])])])}))};
   var __vue_staticRenderFns__ = [];
 
     /* style */

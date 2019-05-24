@@ -13,13 +13,9 @@
   border-bottom: 1px solid var(--border-color);
 }
 .v-collapse .c-item .c-body {
-  height: 0;
   background-color: var(--bg-color);
   overflow: hidden;
   transition: height 0.2s ease-out;
-}
-.v-collapse .c-item.open .c-body {
-  height: 200px;
 }
 @keyframes rotate-reverse {
   100% {
@@ -537,7 +533,7 @@
   border: 1px solid var(--disabled-color);
   width: 32px;
   height: 32px;
-  line-height: 32px;
+  line-height: 30px;
   text-align: center;
   border-radius: 32px;
   font-size: var(--normal-font);
