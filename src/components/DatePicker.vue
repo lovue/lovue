@@ -42,6 +42,7 @@
 <script>
   import Icon from './Icon.vue'
   import PureSelect from './PureSelect.vue'
+  import fillDateNumber from '../utils/fillDateNumber'
 
   export default {
     name: 'v-date-picker',
@@ -96,9 +97,10 @@
         }
       },
       date() {
-        return this.full
-          ? this.year + '-' + this.month + '-' + this.day + ' ' + this.hour
-          : this.year + '-' + this.month + '-' + this.day
+        const month = fillDateNumber(this.month), day = fillDateNumber(this.day)
+        let result = `${this.year}-${month}-${day}`
+        this.full && (result += ` ${this.hour}`)
+        return result
       },
       days() {
         let firstDay, lastDay, arr = []
@@ -141,11 +143,8 @@
     },
     watch: {
       value(val) {
-        if (this.innerUpdate) {
-          this.innerUpdate = false
-          return
-        }
-        this.init(new Date(val))
+        if (this.innerUpdate) return this.innerUpdate = false
+        this.init(val)
       },
       date(val) {
         const date = new Date(val)
@@ -154,7 +153,13 @@
       }
     },
     methods: {
-      init(date) {
+      normalizeDateString(str) {
+        if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str
+        return str.split('-').map(i => fillDateNumber(+i)).join('-')
+      },
+      init(str) {
+        const date = str ? new Date(this.normalizeDateString(str)) : new Date
+
         this.year = date.getFullYear()
         this.month = date.getMonth() + 1
         this.day = date.getDate()
@@ -234,7 +239,7 @@
       }
     },
     created() {
-      this.init(this.value ? new Date(this.value) : new Date)
+      this.init(this.value ? this.value : undefined)
 
       if (this.full) {
         this.times = getTimeArray(this.interval)

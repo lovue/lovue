@@ -513,7 +513,7 @@ new Vue({
     setTimeout(() => {
       // this.bought2 = 'Aventador'
       this.pureSelectValue = '高中'
-      this.datePickerValue = '2019-03-15'
+      this.datePickerValue = '2019-3-15'
       this.tabValue = 2
     }, 2000)
 
