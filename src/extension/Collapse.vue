@@ -1,81 +1,61 @@
 <template>
   <div class="v-collapse">
     <div class="c-item" :class="{open: item.open_}" v-for="(item, i) of items">
-      <div class="c-head" @click="select(i)">{{item.title}}</div>
+      <div class="c-head" @click="toggle(i)">
+        <v-icon icon="down-wide" size="14"></v-icon>
+        <span>{{item.title}}</span>
+      </div>
       <div class="c-body" v-show="item.show_">
-        <div class="b-content" :style="`height: ${100 * (i + 1)}px`">{{item.content}}</div>
+        <slot :name="item.slot"></slot>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  function getElemHeight(el) {
-    const elStyle = getComputedStyle(el)
-    const elDisplay = elStyle.display
-    const elPosition = elStyle.position
-    const elVisibility = elStyle.visibility
-
-    if (elDisplay !== 'none') return el.offsetHeight
-
-    el.style.position = 'absolute'
-    el.style.visibility = 'hidden'
-    el.style.display = 'block'
-
-    const elHeight = el.offsetHeight
-
-    el.style.display = elDisplay
-    el.style.position = elPosition
-    el.style.visibility = elVisibility
-
-    return elHeight
-  }
+  import getElemHeight from '../utils/getElemHeight'
 
   export default {
     name: 'v-collapse',
     data() {
       return {
-        items: [
-          {
-            title: 'First',
-            content: 'First',
-            show_: false
-          },
-          {
-            title: 'Second',
-            content: 'Second',
-            show_: false
-          },
-          {
-            title: 'Third',
-            content: 'Third',
-            show_: false
-          }
-        ],
-        index: -1,
-        itemIndex: -1
+        items: [],
+        index: -1
       }
+    },
+    props: {
+      panels: Array,
+      independent: Boolean
     },
     methods: {
       calculateElementsHeight() {
         this.$el.querySelectorAll('.c-body').forEach((elem, i) => {
-          this.items[i].height = getElemHeight(elem)
+          const height = getElemHeight(elem)
+          this.items[i].height = height
           this.items[i].elem = elem
-          elem.style.height = '0px'
+          elem.style.height = this.items[i].show_ ? `${height}px` : '0px'
         })
       },
-      select(i) {
-        if (this.index === i) return
+      toggle(i) {
+        const item = this.items[i]
 
-        this.close(this.index)
-        this.open(i)
-        this.index = i
+        if (this.independent) {
+          item.show_ ? this.close(i) : this.open(i)
+        } else {
+          if (item.show_) return this.close(i)
+
+          this.items.forEach(($item, i) => {
+            $item.show_ && this.close(i)
+          })
+          this.open(i)
+        }
       },
       open(i) {
         if (i < 0) return
 
         const item = this.items[i]
         item.show_ = true
+        item.open_ = true
         setTimeout(() => {
           item.elem.style.height = `${item.height}px`
         }, 0)
@@ -85,10 +65,22 @@
 
         const item = this.items[i]
         item.elem.style.height = '0px'
+        item.open_ = false
         setTimeout(() => {
           item.show_ = false
         }, 500)
       }
+    },
+    created() {
+      if (!this.panels) return this.items = []
+
+      this.items = this.panels.map(panel => {
+        const $panel = Object.assign({}, panel)
+        $panel.show_ = panel.show || false
+        $panel.open_ = panel.show || false
+        delete $panel.show
+        return $panel
+      })
     },
     mounted() {
       this.calculateElementsHeight()

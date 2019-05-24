@@ -5,6 +5,7 @@ import $fetch from './utils/fetch'
 import fillDateNumber from './utils/fillDateNumber'
 import formatDate from './utils/formatDate'
 import getAverageRGB from './utils/getAverageRGB'
+import getElemHeight from './utils/getElemHeight'
 import getKeyByValue from './utils/getKeyByValue'
 import getScrollTop from './utils/getScrollTop'
 import getSearchParam from './utils/getSearchParam'
@@ -37,6 +38,7 @@ export {
   fillDateNumber,
   formatDate,
   getAverageRGB,
+  getElemHeight,
   getKeyByValue,
   getScrollTop,
   getSearchParam,
@@ -70,6 +72,7 @@ export default {
   fillDateNumber,
   formatDate,
   getAverageRGB,
+  getElemHeight,
   getKeyByValue,
   getScrollTop,
   getSearchParam,

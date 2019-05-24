@@ -1,5 +1,5 @@
 .v-collapse {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
 }
 .v-collapse .c-item .c-head {
   -webkit-user-select: none;
@@ -12,10 +12,18 @@
   cursor: pointer;
   border-bottom: 1px solid var(--border-color);
 }
+.v-collapse .c-item .c-head .icon-down-wide {
+  margin-right: var(--unit);
+  transition: transform 0.25s ease-out;
+  transform: rotateZ(-90deg);
+}
 .v-collapse .c-item .c-body {
   background-color: var(--bg-color);
   overflow: hidden;
   transition: height 0.2s ease-out;
+}
+.v-collapse .c-item.open .icon-down-wide {
+  transform: rotateZ(0);
 }
 @keyframes rotate-reverse {
   100% {

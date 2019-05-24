@@ -1,7 +1,7 @@
 @import (reference) "../Mixins";
 
 .v-collapse {
-  .shadow;
+  border: 1px solid var(--border-color);
 
   .c-item {
     .c-head {
@@ -11,12 +11,24 @@
       line-height: var(--5unit);
       cursor: pointer;
       border-bottom: 1px solid var(--border-color);
+
+      .icon-down-wide {
+        margin-right: var(--unit);
+        transition: transform .25s ease-out;
+        transform: rotateZ(-90deg);
+      }
     }
 
     .c-body {
       background-color: var(--bg-color);
       overflow: hidden;
       transition: height .2s ease-out;
+    }
+
+    &.open {
+      .icon-down-wide {
+        transform: rotateZ(0);
+      }
     }
   }
 }

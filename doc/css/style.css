@@ -222,3 +222,7 @@ body.overhidden {
 .v-radio-group.vertical .g-item {
   padding: 10px 0;
 }
+
+.v-collapse .c-panel {
+  padding: var(--2unit);
+}

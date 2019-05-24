@@ -1,19 +1,7 @@
 const lovueEx = (function (exports) {
   'use strict';
 
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-
-  function getElemHeight(el) {
+  function getElemHeight (el) {
     const elStyle = getComputedStyle(el);
     const elDisplay = elStyle.display;
     const elPosition = elStyle.position;
@@ -34,51 +22,49 @@ const lovueEx = (function (exports) {
     return elHeight
   }
 
+  //
+
   const script = {
     name: 'v-collapse',
     data() {
       return {
-        items: [
-          {
-            title: 'First',
-            content: 'First',
-            show_: false
-          },
-          {
-            title: 'Second',
-            content: 'Second',
-            show_: false
-          },
-          {
-            title: 'Third',
-            content: 'Third',
-            show_: false
-          }
-        ],
-        index: -1,
-        itemIndex: -1
+        items: [],
+        index: -1
       }
+    },
+    props: {
+      panels: Array,
+      independent: Boolean
     },
     methods: {
       calculateElementsHeight() {
         this.$el.querySelectorAll('.c-body').forEach((elem, i) => {
-          this.items[i].height = getElemHeight(elem);
+          const height = getElemHeight(elem);
+          this.items[i].height = height;
           this.items[i].elem = elem;
-          elem.style.height = '0px';
+          elem.style.height = this.items[i].show_ ? `${height}px` : '0px';
         });
       },
-      select(i) {
-        if (this.index === i) return
+      toggle(i) {
+        const item = this.items[i];
 
-        this.close(this.index);
-        this.open(i);
-        this.index = i;
+        if (this.independent) {
+          item.show_ ? this.close(i) : this.open(i);
+        } else {
+          if (item.show_) return this.close(i)
+
+          this.items.forEach(($item, i) => {
+            $item.show_ && this.close(i);
+          });
+          this.open(i);
+        }
       },
       open(i) {
         if (i < 0) return
 
         const item = this.items[i];
         item.show_ = true;
+        item.open_ = true;
         setTimeout(() => {
           item.elem.style.height = `${item.height}px`;
         }, 0);
@@ -88,10 +74,22 @@ const lovueEx = (function (exports) {
 
         const item = this.items[i];
         item.elem.style.height = '0px';
+        item.open_ = false;
         setTimeout(() => {
           item.show_ = false;
         }, 500);
       }
+    },
+    created() {
+      if (!this.panels) return this.items = []
+
+      this.items = this.panels.map(panel => {
+        const $panel = Object.assign({}, panel);
+        $panel.show_ = panel.show || false;
+        $panel.open_ = panel.show || false;
+        delete $panel.show;
+        return $panel
+      });
     },
     mounted() {
       this.calculateElementsHeight();
@@ -187,7 +185,7 @@ const lovueEx = (function (exports) {
   const __vue_script__ = script;
 
   /* template */
-  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-collapse"},_vm._l((_vm.items),function(item,i){return _c('div',{staticClass:"c-item",class:{open: item.open_}},[_c('div',{staticClass:"c-head",on:{"click":function($event){_vm.select(i);}}},[_vm._v(_vm._s(item.title))]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(item.show_),expression:"item.show_"}],staticClass:"c-body"},[_c('div',{staticClass:"b-content",style:(("height: " + (100 * (i + 1)) + "px"))},[_vm._v(_vm._s(item.content))])])])}))};
+  var __vue_render__ = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-collapse"},_vm._l((_vm.items),function(item,i){return _c('div',{staticClass:"c-item",class:{open: item.open_}},[_c('div',{staticClass:"c-head",on:{"click":function($event){_vm.toggle(i);}}},[_c('v-icon',{attrs:{"icon":"down-wide","size":"14"}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.title))])],1),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(item.show_),expression:"item.show_"}],staticClass:"c-body"},[_vm._t(item.slot)],2)])}))};
   var __vue_staticRenderFns__ = [];
 
     /* style */

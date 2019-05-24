@@ -242,6 +242,10 @@ new Vue({
       { prop: '@click-row', desc: '单击行时触发该事件', type: '无', deft: '无' },
       { prop: '@dbl-click-row', desc: '双击行时触发该事件', type: '无', deft: '无' }
     ],
+    sourceCollapse: [
+      { prop: 'panels', desc: '数据源', type: 'Array', deft: '无' },
+      { prop: 'independent', desc: '各个panel打开关闭是否独立', type: 'Boolean', deft: '无' },
+    ],
     provinceCity: ['江西省', '抚州市'],
     diploma: ['初中', '高中', '本科', '硕士', '博士'],
     pureSelectValue: undefined,
@@ -410,7 +414,12 @@ new Vue({
     radioValue: 'vue',
     datePickerValue: '2018-11-11',
     tabValue: 1,
-    pageCounts: [10, 20, 30, 40, 50]
+    pageCounts: [10, 20, 30, 40, 50],
+    collapsePanels: [
+      { title: 'First', slot: 'first', show: false },
+      { title: 'Second', slot: 'second', show: true },
+      { title: 'Third', slot: 'third', show: false }
+    ]
   },
   methods: {
     sleep(delay = 1000) {
