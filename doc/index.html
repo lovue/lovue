@@ -399,7 +399,9 @@
             <div class="usage">【v-pagination】</div>
             <div class="content">
               <v-pagination :total="100"></v-pagination>
+              <v-pagination :total="100" no-border></v-pagination>
               <v-pagination :total="100" simple></v-pagination>
+              <v-pagination :total="100" simple no-border></v-pagination>
             </div>
             <div class="content">
               <v-table :source="sourcePagination" :columns="columns" simple></v-table>

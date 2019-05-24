@@ -1,5 +1,5 @@
 <template>
-  <div class="v-pagination">
+  <div class="v-pagination" :class="{'no-border': noBorder}">
     <template v-if="simple">
       <span>{{index}}/{{pages}}页</span>
       <ul class="p-pages">
@@ -52,7 +52,8 @@
         type: Array,
         'default': () => [10, 20, 50]
       },
-      simple: Boolean
+      simple: Boolean,
+      noBorder: Boolean
     },
     components: {
       [Icon.name]: Icon,

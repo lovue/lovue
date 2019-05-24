@@ -189,7 +189,8 @@ new Vue({
       { prop: 'total', desc: '总数', type: 'Number', deft: '无' },
       { prop: 'countOfPage', desc: '每页数目', type: 'Number', deft: '10' },
       { prop: 'pageCounts', desc: '可选的每页数目', type: 'Array', deft: '[10, 20, 50]' },
-      { prop: 'simple', desc: '是否简易模式', type: 'Boolean', deft: '无' }
+      { prop: 'simple', desc: '是否简易模式', type: 'Boolean', deft: '无' },
+      { prop: 'noBorder', desc: '按钮是否有border', type: 'Boolean', deft: '无' }
     ],
     sourceDatePicker: [
       { prop: 'v-model', desc: '组件双向绑定的值', type: 'String', deft: '无' },
@@ -236,6 +237,7 @@ new Vue({
       { prop: 'total', desc: '数据总数量，显示在分页组件上', type: 'Number', deft: '无' },
       { prop: 'emptyText', desc: '没有数据时表格显示的内容', type: 'String', deft: '暂无数据' },
       { prop: 'simplePagination', desc: '分页组件是否简易模式', type: 'Boolean', deft: '无' },
+      { prop: 'paginationNoBorder', desc: '分页组件按钮是否有border', type: 'Boolean', deft: '无' },
       { prop: '@check', desc: '勾选复选框时触发该事件', type: '无', deft: '无' },
       { prop: '@click-row', desc: '单击行时触发该事件', type: '无', deft: '无' },
       { prop: '@dbl-click-row', desc: '双击行时触发该事件', type: '无', deft: '无' }

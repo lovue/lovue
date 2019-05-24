@@ -1100,6 +1100,9 @@ summary {
 .v-pagination > .p-jump .input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+.v-pagination.no-border > .p-pages .link {
+  border: none;
+}
 .v-popup .title-bar {
   -webkit-user-select: none;
   -moz-user-select: none;

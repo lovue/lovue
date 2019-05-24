@@ -55,7 +55,7 @@
     </div>
 
     <div class="t-footer" v-if="!simple && source.length">
-      <v-pagination :total="total || showed.length" :page-counts="pageCounts" :count-of-page="countOfPage" @update="updateTable" :simple="simplePagination"></v-pagination>
+      <v-pagination :total="total || showed.length" :page-counts="pageCounts" :count-of-page="countOfPage" @update="updateTable" :simple="simplePagination" :no-border="paginationNoBorder"></v-pagination>
     </div>
   </div>
 </template>
@@ -119,7 +119,8 @@
       },
       total: Number,
       emptyText: String,
-      simplePagination: Boolean
+      simplePagination: Boolean,
+      paginationNoBorder: Boolean
     },
     components: {
       [Checkbox.name]: Checkbox,
