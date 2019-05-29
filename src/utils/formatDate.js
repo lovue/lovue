@@ -29,6 +29,6 @@ export default (date, type) => {
     case 'YYYY-MM-DD hh:mm:ss':
       return `${year}-${fillDateNumber(month)}-${fillDateNumber(day)} ${fillDateNumber(hour % 12)}:${fillDateNumber(minute)}:${fillDateNumber(second)}`
     default:
-      return `${year}-${month}-${day} ${hour}:${minute}:${second}`
+      return `${year}-${fillDateNumber(month)}-${fillDateNumber(day)}`
   }
 }
