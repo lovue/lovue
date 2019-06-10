@@ -1,4 +1,3 @@
 export default () => {
-  let userAgent = navigator.userAgent.toLowerCase()
-  return userAgent.match(/micromessenger/)
+  return /MicroMessenger/i.test(navigator.userAgent)
 }

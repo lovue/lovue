@@ -1,6 +1,6 @@
 export default time => {
   const d = new Date()
-  let diff = Math.floor(d.getTime() / 1000) - time
+  let diff = Math.trunc(d.getTime() / 1000) - time
 
   let thisDate = new Date(time * 1000),
     thisYear = thisDate.getFullYear(),
