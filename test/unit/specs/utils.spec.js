@@ -13,6 +13,8 @@ import {
   whichBrowser
 } from '../../../src/utils'
 
+Object.defineProperty(window.navigator, 'userAgent', { value: '', writable: true })
+
 test('getype', () => {
   expect(getype(null)).toBe('null')
   expect(getype(undefined)).toBe('undefined')
