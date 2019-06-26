@@ -1,6 +1,6 @@
 <template>
   <label :class="{[lnfClass]: true, reverse, disabled}">
-    <input type="checkbox" v-model="checked" :name="name" :disabled="disabled" @change="$emit('input', checked)">
+    <input type="checkbox" v-model="checked" :name="name" :disabled="disabled" @change="toggle">
     <span>{{label}}</span>
   </label>
 </template>
@@ -10,11 +10,11 @@
     name: 'v-checkbox',
     data() {
       return {
-        checked: this.value
+        checked: Boolean(this.value)
       }
     },
     props: {
-      value: Boolean,
+      value: [Boolean, Number],
       label: String,
       name: String,
       disabled: Boolean,
@@ -28,7 +28,13 @@
     },
     watch: {
       value(val) {
-        this.checked = val
+        this.checked = Boolean(val)
+      }
+    },
+    methods: {
+      toggle() {
+        const result = typeof this.value === 'number' ? Number(this.checked) : this.checked
+        this.$emit('input', result)
       }
     }
   }
