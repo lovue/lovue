@@ -89,10 +89,13 @@ new Vue({
       { prop: 'name', desc: 'input的name值', type: 'String', deft: '无' },
       { prop: 'placeholder', desc: 'input的placeholder值', type: 'String', deft: '无' },
       { prop: 'required', desc: 'input的required值', type: 'Boolean', deft: '无' },
+      { prop: 'pattern', desc: 'input的pattern值', type: 'String', deft: '无' },
       { prop: 'disabled', desc: '是否禁用', type: 'Boolean', deft: '无' },
       { prop: 'step', desc: 'number类型的input的step值', type: 'String', deft: '无' },
-      { prop: 'min', desc: 'number类型的input的min值', type: 'String', deft: '无' },
-      { prop: 'max', desc: 'number类型的input的max值', type: 'String', deft: '无' },
+      { prop: 'min', desc: 'number类型的input的min值', type: 'String, Number', deft: '无' },
+      { prop: 'max', desc: 'number类型的input的max值', type: 'String, Number', deft: '无' },
+      { prop: 'minlength', desc: 'input的minlength值', type: 'String, Number', deft: '无' },
+      { prop: 'maxlength', desc: 'input的minlength值', type: 'String, Number', deft: '无' },
       { prop: 'focus', desc: '是否自动获得焦点', type: 'Boolean', deft: '无' },
       { prop: 'resize', desc: '是否自动调整宽度', type: 'Boolean', deft: '无' },
       { prop: 'readonly', desc: 'input的readonly值', type: 'Boolean', deft: '无' },
@@ -107,7 +110,7 @@ new Vue({
       { prop: 'lnf', desc: 'Look And Feel，支持：button', type: 'String', deft: '无' }
     ],
     sourceCheckbox: [
-      { prop: 'v-model', desc: '组件双向绑定的值', type: 'Boolean', deft: '无' },
+      { prop: 'v-model', desc: '组件双向绑定的值', type: 'Boolean, Number', deft: '无' },
       { prop: 'label', desc: '显示的文本', type: 'String', deft: '无' },
       { prop: 'name', desc: 'checkbox的name值', type: 'String', deft: '无' },
       { prop: 'disabled', desc: '是否禁用', type: 'Boolean', deft: '无' },
@@ -123,7 +126,7 @@ new Vue({
       { prop: 'lnf', desc: 'Look And Feel，支持：button', type: 'String', deft: '无' }
     ],
     sourceSwitch: [
-      { prop: 'v-model', desc: '组件双向绑定的值', type: 'Boolean', deft: '无' },
+      { prop: 'v-model', desc: '组件双向绑定的值', type: 'Boolean, Number', deft: '无' },
       { prop: 'name', desc: 'checkbox的name值', type: 'String', deft: '无' },
       { prop: 'disabled', desc: '是否禁用', type: 'Boolean', deft: '无' }
     ],
@@ -136,6 +139,7 @@ new Vue({
     sourceUpload: [
       { prop: 'name', desc: 'input的name值', type: 'String', deft: '' },
       { prop: 'upload', desc: '是否选择文件后立即上传，是，则选择文件后不显示文件名；否，则显示', type: 'Boolean', deft: '无' },
+      { prop: 'loading', desc: '是否显示loading', type: 'Boolean', deft: '无' },
       { prop: 'multi', desc: '是否可多选文件', type: 'Boolean', deft: '无' },
       { prop: 'required', desc: 'input的required值', type: 'Boolean', deft: '无' },
       { prop: 'accept', desc: 'input的accept值', type: 'String', deft: '无' },
