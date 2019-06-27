@@ -85,19 +85,18 @@
     },
     methods: {
       updateSelected(val) {
-        if (this.innerUpdate) {
-          this.innerUpdate = false
-          return
-        }
+        if (this.innerUpdate) return this.innerUpdate = false
 
-        let match
+        let selected
         if (Array.isArray(val)) {
-          match = []
+          const externalValue = this.emitItem ? val.map(row => row.value) : val
+
+          selected = []
           this.items.forEach(item => {
             item.selected = false
-            if (val.includes(item.value)) {
+            if (externalValue.includes(item.value)) {
               item.selected = true
-              match.push({
+              selected.push({
                 name: item.name,
                 value: item.value
               })
@@ -106,9 +105,9 @@
             if (item.children) {
               item.children.forEach(child => {
                 child.selected = false
-                if (val.includes(child.value)) {
+                if (externalValue.includes(child.value)) {
                   child.selected = true
-                  match.push({
+                  selected.push({
                     name: child.name,
                     value: child.value
                   })
@@ -117,26 +116,28 @@
             }
           })
         } else {
-          match = {}
+          const externalValue = this.emitItem ? val.value : val
+
+          selected = {}
           this.items.forEach(item => {
             item.selected = false
-            if (item.value === val) {
+            if (item.value === externalValue) {
               item.selected = true
-              match = { name: item.name, value: item.value }
+              selected = { name: item.name, value: item.value }
             }
 
             if (item.children) {
               item.children.forEach(child => {
                 child.selected = false
-                if (child.value === val) {
+                if (child.value === externalValue) {
                   child.selected = true
-                  match = { name: child.name, value: child.value }
+                  selected = { name: child.name, value: child.value }
                 }
               })
             }
           })
         }
-        this.selected = JSON.parse(JSON.stringify(match))
+        this.selected = selected
       },
       showCandidates() {
         this.selfClicked = true

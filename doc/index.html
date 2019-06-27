@@ -368,8 +368,8 @@
             <div class="usage">【v-select】【v-pure-select】</div>
             <div class="content">
               <v-select :source="cars" v-model="bought2"></v-select>
-              <v-select :source="cars" v-model="bought3" multiple></v-select>
-              <v-select :source="cars" v-model="bought2" searchable clearable></v-select>
+              <v-select :source="cars" v-model="bought3" multiple emit-item></v-select>
+              <v-select :source="cars" v-model="bought4" emit-item searchable clearable></v-select>
               <v-select :source="cars" disabled></v-select>
               <v-pure-select v-model="pureSelectValue" :source="diploma"></v-pure-select>
             </div>

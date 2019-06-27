@@ -45,14 +45,17 @@ test('switch', () => {
   expect(wrapper.props('value')).toBeFalsy()
   expect(wrapper.props('name')).toBe('lock')
   expect(wrapper.props('disabled')).toBeFalsy()
+  expect(wrapper.vm.checked).toBeFalsy()
 
   const checkboxInput = wrapper.find('input[type="checkbox"]')
   checkboxInput.setChecked()
+  expect(wrapper.vm.checked).toBeTruthy()
   expect(wrapper.emitted('input')).toBeTruthy()
   expect(wrapper.emitted().input.length).toBe(1)
   expect(wrapper.emitted('input')[0]).toEqual([true])
 
   checkboxInput.setChecked(false)
+  expect(wrapper.vm.checked).toBeFalsy()
   expect(wrapper.emitted('input')).toBeTruthy()
   expect(wrapper.emitted().input.length).toBe(2)
   expect(wrapper.emitted('input')[1]).toEqual([false])
@@ -60,4 +63,7 @@ test('switch', () => {
   wrapper.setProps({ disabled: true })
   expect(wrapper.props('disabled')).toBeTruthy()
   expect(wrapper.classes()).toContain('disabled')
+
+  wrapper.setProps({ value: 1 })
+  expect(wrapper.vm.checked).toBeTruthy()
 })

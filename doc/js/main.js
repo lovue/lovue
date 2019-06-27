@@ -315,6 +315,7 @@ new Vue({
     ],
     bought2: '',
     bought3: [],
+    bought4: {},
     items: {
       name: 'IT',
       children: [
@@ -526,7 +527,21 @@ new Vue({
     }, 400)
 
     setTimeout(() => {
-      // this.bought2 = 'Aventador'
+      this.bought2 = 'Aventador'
+      this.bought3 = [
+        {
+          name: '布加迪',
+          value: 'Bugatti'
+        },
+        {
+          name: '法拉利',
+          value: 'Ferrari'
+        }
+      ]
+      this.bought4 = {
+        name: '布加迪',
+        value: 'Bugatti'
+      }
       this.pureSelectValue = '高中'
       this.datePickerValue = '2019-3-15'
       this.tabValue = 2
