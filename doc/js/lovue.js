@@ -1768,6 +1768,8 @@ const lovue = (function (exports, Vue) {
       updateSelected(val) {
         if (this.innerUpdate) return this.innerUpdate = false
 
+        if (this.multiple && val === undefined) val = [];
+
         let selected;
         if (Array.isArray(val)) {
           const externalValue = this.emitItem ? val.map(row => row.value) : val;

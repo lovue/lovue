@@ -1102,6 +1102,7 @@ summary {
 }
 .v-pagination.no-border > .p-pages .link {
   border: none;
+  line-height: 32px;
 }
 .v-popup .title-bar {
   -webkit-user-select: none;
@@ -1446,7 +1447,7 @@ summary {
 }
 .v-select {
   position: relative;
-  width: 300px;
+  min-width: 300px;
   display: inline-block;
   font-size: var(--small-font);
 }
