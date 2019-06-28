@@ -16,7 +16,6 @@ import isMobile from './utils/isMobile'
 import isSupportWebGL from './utils/isSupportWebGL'
 import isWeixin from './utils/isWeixin'
 import isWeixinInIphone from './utils/isWeixinInIphone'
-import reload from './utils/reload'
 import saveDataToFile from './utils/saveDataToFile'
 import smoothToTop from './utils/smoothToTop'
 import sortObjectArray from './utils/sortObjectArray'
@@ -46,7 +45,6 @@ export {
   isSupportWebGL,
   isWeixin,
   isWeixinInIphone,
-  reload,
   saveDataToFile,
   smoothToTop,
   sortObjectArray,
@@ -77,7 +75,6 @@ export default {
   isSupportWebGL,
   isWeixin,
   isWeixinInIphone,
-  reload,
   saveDataToFile,
   smoothToTop,
   sortObjectArray,
