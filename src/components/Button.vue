@@ -8,6 +8,7 @@
 
 <script>
   import Icon from './Icon.vue'
+  import '../less/components/Button.less'
 
   export default {
     name: 'v-button',

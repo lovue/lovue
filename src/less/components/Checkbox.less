@@ -72,3 +72,48 @@
     }
   }
 }
+
+.v-checkbox-button {
+  input {
+    display: none;
+
+    &:checked + span {
+      background-color: var(--blue-color);
+      color: var(--white);
+      border-color: transparent;
+
+      &:hover {
+        background-color: var(--hover-blue);
+      }
+
+      &:active {
+        background-color: var(--active-blue);
+      }
+    }
+  }
+
+  span {
+    .mixin-button;
+    .mixin-button-ghost;
+    .flex-start;
+  }
+
+  &.disabled {
+    span {
+      cursor: not-allowed;
+      color: var(--disabled-color);
+      border-color: var(--disabled-color);
+    }
+
+    input {
+      &:checked + span {
+        opacity: .5;
+        cursor: not-allowed;
+
+        &:hover {
+          background-color: var(--blue-color);
+        }
+      }
+    }
+  }
+}

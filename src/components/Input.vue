@@ -9,6 +9,8 @@
 </template>
 
 <script>
+  import '../less/components/Input.less'
+
   export default {
     name: 'v-input',
     data() {

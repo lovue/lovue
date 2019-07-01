@@ -6,6 +6,7 @@
 </template>
 
 <script>
+  import '../less/components/Search.less'
   import Icon from './Icon.vue'
   import Input from './Input.vue'
 

@@ -6,6 +6,8 @@
 </template>
 
 <script>
+  import '../less/components/Radio.less'
+
   export default {
     name: 'v-radio',
     props: {

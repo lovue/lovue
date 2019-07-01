@@ -11,14 +11,16 @@
 </template>
 
 <script>
-export default {
-  name: 'v-img-reflex',
-  props: {
-    src: String,
-    alt: String
-  },
-  mounted() {
-    this.$el.querySelector('.reflex-wrap .reflex').style.backgroundImage = `url(${this.src})`
+  import '../less/extension/ImgReflex.less'
+
+  export default {
+    name: 'v-img-reflex',
+    props: {
+      src: String,
+      alt: String
+    },
+    mounted() {
+      this.$el.querySelector('.reflex-wrap .reflex').style.backgroundImage = `url(${this.src})`
+    }
   }
-}
 </script>

@@ -6,6 +6,8 @@
 </template>
 
 <script>
+  import '../less/components/Switch.less'
+
   export default {
     name: 'v-switch',
     data() {

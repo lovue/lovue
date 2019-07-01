@@ -14,6 +14,8 @@
 </template>
 
 <script>
+  import '../less/components/PureSelect.less'
+
   export default {
     name: 'v-pure-select',
     data() {

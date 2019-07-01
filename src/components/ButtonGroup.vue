@@ -5,6 +5,8 @@
 </template>
 
 <script>
+  import '../less/components/ButtonGroup.less'
+
   export default {
     name: 'v-button-group'
   }

@@ -40,6 +40,7 @@
 </template>
 
 <script>
+  import '../less/components/DatePicker.less'
   import Icon from './Icon.vue'
   import PureSelect from './PureSelect.vue'
   import fillDateNumber from '../utils/fillDateNumber'

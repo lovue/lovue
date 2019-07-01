@@ -60,6 +60,7 @@
 </template>
 
 <script>
+  import '../less/components/Menu.less'
   import Icon from './Icon.vue'
 
   export default {

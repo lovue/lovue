@@ -6,6 +6,8 @@
 </template>
 
 <script>
+  import '../less/components/Checkbox.less'
+
   export default {
     name: 'v-checkbox',
     data() {

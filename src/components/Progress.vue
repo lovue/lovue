@@ -6,6 +6,8 @@
   </div>
 </template>
 <script>
+  import '../less/components/Progress.less'
+
   export default {
     name: 'v-progress',
     data() {

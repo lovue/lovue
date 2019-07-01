@@ -8,6 +8,8 @@
 </template>
 
 <script>
+  import '../less/components/PwdStrength.less'
+
   export default{
     name: 'v-pwd-strength',
     data() {

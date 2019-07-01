@@ -11,6 +11,7 @@
   </div>
 </template>
 <script>
+  import '../less/extension/Tag.less'
   import Icon from '../components/Icon.vue'
 
   export default {

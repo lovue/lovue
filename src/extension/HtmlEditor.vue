@@ -101,6 +101,7 @@
 </template>
 
 <script>
+  import '../less/extension/HtmlEditor.less'
   import EditorSvg from './EditorSvg.vue'
   import Button from '../components/Button.vue'
   import Popup from '../components/Popup.vue'

@@ -13,6 +13,7 @@
 </template>
 
 <script>
+  import '../less/extension/Collapse.less'
   import getElemHeight from '../utils/getElemHeight'
 
   export default {

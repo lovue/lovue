@@ -35,6 +35,7 @@
   </div>
 </template>
 <script>
+  import '../less/components/Select.less'
   import Icon from './Icon.vue'
 
   export default {

@@ -60,6 +60,7 @@
   </div>
 </template>
 <script>
+  import '../less/components/Table.less'
   import Checkbox from './Checkbox.vue'
   import Icon from './Icon.vue'
   import Pagination from './Pagination.vue'

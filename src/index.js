@@ -1,3 +1,4 @@
+import './less/normalize.less'
 import Button from './components/Button.vue'
 import ButtonGroup from './components/ButtonGroup.vue'
 import ButtonSend from './components/ButtonSend.vue'

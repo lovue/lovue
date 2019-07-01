@@ -6,6 +6,7 @@
 </template>
 
 <script>
+  import '../less/extension/SelectCity.less'
   import Select from '../components/Select.vue'
 
   const data = [

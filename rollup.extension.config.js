@@ -1,5 +1,6 @@
 import vue from 'rollup-plugin-vue'
 import commonjs from 'rollup-plugin-commonjs'
+import less from 'rollup-plugin-less'
 
 const production = process.env.production, cjs = process.env.cjs, esm = process.env.esm
 let plugins = [
@@ -24,8 +25,17 @@ if (esm) {
 }
 
 if (!production) {
+  plugins.push(less({
+    insert: true,
+    output: false
+  }))
   file = 'doc/js/lovue.extension.js'
   format = 'iife'
+} else {
+  plugins.push(less({
+    insert: false,
+    output: false
+  }))
 }
 
 export default {

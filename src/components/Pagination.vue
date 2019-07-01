@@ -30,6 +30,7 @@
   </div>
 </template>
 <script>
+  import '../less/components/Pagination.less'
   import Icon from './Icon.vue'
   import PureSelect from './PureSelect.vue'
 

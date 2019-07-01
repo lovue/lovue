@@ -10,6 +10,8 @@
 </template>
 
 <script>
+  import '../less/components/RadioGroup.less'
+
   export default {
     name: 'v-radio-group',
     data() {

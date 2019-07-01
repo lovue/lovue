@@ -14,6 +14,7 @@
 </template>
 
 <script>
+  import '../less/extension/Step.less'
   import Icon from '../components/Icon.vue'
 
   export default {

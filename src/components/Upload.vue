@@ -33,6 +33,7 @@
 </template>
 
 <script>
+  import '../less/components/Upload.less'
   import Button from './Button.vue'
   import Icon from './Icon.vue'
 

@@ -20,6 +20,7 @@
   </div>
 </template>
 <script>
+  import '../less/components/Popup.less'
   import Button from './Button.vue'
   import Icon from './Icon.vue'
 

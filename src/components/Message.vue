@@ -10,6 +10,7 @@
   </transition>
 </template>
 <script>
+  import '../less/components/Message.less'
   import Icon from './Icon.vue'
 
   export default {

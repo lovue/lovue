@@ -12,6 +12,7 @@
   </div>
 </template>
 <script>
+  import '../less/extension/Share.less'
   import Icon from '../components/Icon.vue'
   import VueQrcode from 'qrcode.vue'
 

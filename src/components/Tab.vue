@@ -8,6 +8,7 @@
 </template>
 
 <script>
+  import '../less/components/Tab.less'
   import Icon from './Icon.vue'
 
   export default {

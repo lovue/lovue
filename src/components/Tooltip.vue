@@ -3,6 +3,8 @@
 </template>
 
 <script>
+  import '../less/components/Tooltip.less'
+
   export default {
     name: 'v-tooltip',
     props: {

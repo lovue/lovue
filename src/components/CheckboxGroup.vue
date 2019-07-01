@@ -10,6 +10,8 @@
 </template>
 
 <script>
+  import '../less/components/CheckboxGroup.less'
+
   export default {
     name: 'v-checkbox-group',
     data() {

@@ -18,6 +18,7 @@
   </div>
 </template>
 <script>
+  import '../less/components/Modal.less'
   import Button from './Button.vue'
   import Icon from './Icon.vue'
 
