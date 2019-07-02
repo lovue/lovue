@@ -2,11 +2,11 @@
 
 .v-checkbox {
   .flex-between;
-  .mixin-non-select;
   position: relative;
   font-size: var(--small-font);
   height: var(--2unit);
   line-height: var(--2unit);
+  user-select: none;
   cursor: pointer;
 
   input {
@@ -93,8 +93,8 @@
   }
 
   span {
-    .mixin-button;
-    .mixin-button-ghost;
+    .btn;
+    .btn-ghost;
     .flex-start;
   }
 

@@ -356,10 +356,6 @@ summary {
   border-color: var(--blue-color);
 }
 .v-btn {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   touch-action: manipulation;
   border: 1px solid transparent;
   white-space: nowrap;
@@ -367,6 +363,7 @@ summary {
   font-size: var(--small-font);
   border-radius: var(--border-radius);
   height: var(--4unit);
+  user-select: none;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   cursor: pointer;
 }
@@ -465,14 +462,11 @@ summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   position: relative;
   font-size: var(--small-font);
   height: var(--2unit);
   line-height: var(--2unit);
+  user-select: none;
   cursor: pointer;
 }
 .v-checkbox input {
@@ -543,10 +537,6 @@ summary {
   background-color: var(--active-blue);
 }
 .v-checkbox-button span {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   touch-action: manipulation;
   border: 1px solid transparent;
   white-space: nowrap;
@@ -554,6 +544,7 @@ summary {
   font-size: var(--small-font);
   border-radius: var(--border-radius);
   height: var(--4unit);
+  user-select: none;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   cursor: pointer;
   border-color: var(--border-color);
@@ -608,16 +599,13 @@ summary {
   cursor: pointer;
 }
 .v-date-picker .picker-container {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   position: absolute;
   background-color: var(--white);
   border-top: 1px solid var(--border-color);
   margin-top: 2px;
   display: flex;
+  user-select: none;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
@@ -644,11 +632,11 @@ summary {
   padding: 4px;
 }
 .v-date-picker .picker-container .date-picker .picker-filter .month-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   flex-grow: 1;
   padding-right: 4px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 30px;
 }
 .v-date-picker .picker-container .date-picker .picker-filter .month-picker .btn-text {
@@ -1066,10 +1054,6 @@ summary {
   vertical-align: top;
 }
 .v-pagination > .p-pages .link {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   display: block;
   min-width: 30px;
   height: 30px;
@@ -1079,6 +1063,7 @@ summary {
   text-align: center;
   border: 1px solid var(--blue-color);
   border-radius: var(--border-radius);
+  user-select: none;
 }
 .v-pagination > .p-pages .link .icon {
   margin-top: -4px;
@@ -1105,9 +1090,6 @@ summary {
   line-height: 32px;
 }
 .v-popup .title-bar {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   cursor: move;
   font-size: var(--normal-font);
@@ -1281,14 +1263,11 @@ summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   position: relative;
   font-size: var(--small-font);
   height: var(--2unit);
   cursor: pointer;
+  user-select: none;
 }
 .v-radio input {
   -webkit-appearance: none;
@@ -1355,10 +1334,6 @@ summary {
   background-color: var(--active-blue);
 }
 .v-radio-button span {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   touch-action: manipulation;
   border: 1px solid transparent;
   white-space: nowrap;
@@ -1366,6 +1341,7 @@ summary {
   font-size: var(--small-font);
   border-radius: var(--border-radius);
   height: var(--4unit);
+  user-select: none;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   cursor: pointer;
   border-color: var(--border-color);
@@ -1485,6 +1461,9 @@ summary {
   cursor: pointer;
 }
 .v-select .selected .s-tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding-left: 4px;
   margin: 4px 4px 4px 0;
   background-color: var(--blue-color);
@@ -1492,9 +1471,6 @@ summary {
   font-size: var(--tiny-font);
   height: 20px;
   border-radius: var(--border-radius);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 .v-select .selected .s-tag .tag-name {
   max-width: 100%;
@@ -1759,8 +1735,8 @@ summary {
 }
 .v-table > .t-tools {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: var(--unit);
 }
 .v-table > .t-tools > .l .icon-bars {
@@ -1803,12 +1779,9 @@ summary {
   align-items: center;
 }
 .v-table .table > thead .sort-arrows {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   display: inline-block;
   vertical-align: bottom;
+  user-select: none;
   cursor: pointer;
 }
 .v-table .table > thead .sort-arrows .icon-down-wide {
@@ -2020,8 +1993,8 @@ summary {
 }
 .v-upload .u-above {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
+  flex-wrap: wrap;
 }
 .v-upload .u-above .btn-wrap {
   position: relative;

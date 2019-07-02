@@ -23,7 +23,10 @@ if (esm) {
 if (!production) {
   plugins.push(less({
     insert: true,
-    output: false
+    output: false,
+    option: {
+      strictMath: 'on'
+    }
   }))
   plugins.push(serve('doc'))
   plugins.push(livereload({
@@ -36,7 +39,10 @@ if (!production) {
 } else {
   plugins.push(less({
     insert: false,
-    output: false
+    output: false,
+    option: {
+      strictMath: 'on'
+    }
   }))
 }
 

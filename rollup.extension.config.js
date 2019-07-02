@@ -27,14 +27,20 @@ if (esm) {
 if (!production) {
   plugins.push(less({
     insert: true,
-    output: false
+    output: false,
+    option: {
+      strictMath: 'on'
+    }
   }))
   file = 'doc/js/lovue.extension.js'
   format = 'iife'
 } else {
   plugins.push(less({
     insert: false,
-    output: false
+    output: false,
+    option: {
+      strictMath: 'on'
+    }
   }))
 }
 

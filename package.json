@@ -49,6 +49,7 @@
     "babel-preset-env": "^1.7.0",
     "jest": "^24.8.0",
     "jest-serializer-vue": "^2.0.2",
+    "jest-transform-stub": "^2.0.0",
     "less": "^3.9.0",
     "less-plugin-clean-css": "^1.5.1",
     "qrcode.vue": "^1.6.1",
@@ -82,7 +83,8 @@
     ],
     "transform": {
       ".*\\.(vue)$": "vue-jest",
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(css|less)$": "jest-transform-stub"
     },
     "transformIgnorePatterns": [
       "/node_modules/(?!(vue-awesome)/)"

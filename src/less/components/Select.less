@@ -47,6 +47,7 @@
     cursor: pointer;
 
     .s-tag {
+      .flex-between;
       padding-left: 4px;
       margin: 4px 4px 4px 0;
       background-color: var(--blue-color);
@@ -54,16 +55,13 @@
       font-size: var(--tiny-font);
       height: 20px;
       border-radius: var(--border-radius);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
 
       .tag-name {
         .truncate;
       }
 
       .icon-close {
-        .mixin-transition(@property: color);
+        .transition(@property: color);
         flex-shrink: 0;
         width: 28px;
         height: 14px;
@@ -174,7 +172,7 @@
     }
 
     .list {
-      .mixin-light-scrollbar;
+      .light-scrollbar;
       padding: var(--unit) 0;
       max-height: 320px;
       overflow-y: auto;

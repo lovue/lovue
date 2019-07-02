@@ -15,13 +15,13 @@
   }
 
   .picker-container {
-    .mixin-non-select;
     .shadow-light;
     position: absolute;
     background-color: var(--white);
     border-top: 1px solid var(--border-color);
     margin-top: 2px;
     display: flex;
+    user-select: none;
     visibility: hidden;
     opacity: 0;
     transition: visibility .2s ease, opacity .2s ease, transform .2s ease;
@@ -51,11 +51,9 @@
         padding: 4px;
 
         .month-picker {
+          .flex-between;
           flex-grow: 1;
           padding-right: 4px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
           height: 30px;
 
           .btn-text {
@@ -137,6 +135,7 @@
       line-height: 24px;
       border-left: 1px solid var(--border-color);
       overflow-y: auto;
+
       .list {
         li {
           padding: 0 5px;

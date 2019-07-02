@@ -4,14 +4,12 @@
 @import "Search";
 
 .table {
-  .mixin-table();
+  .table();
 }
 
 .v-table {
   > .t-tools {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    .flex-between;
     margin-bottom: var(--unit);
 
     > .l {
@@ -67,9 +65,9 @@
       }
 
       .sort-arrows {
-        .mixin-non-select;
         display: inline-block;
         vertical-align: bottom;
+        user-select: none;
         cursor: pointer;
 
         .icon-down-wide {

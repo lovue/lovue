@@ -1,11 +1,10 @@
-@import (reference) "../Mixins";
 @import "Button";
 @import "Overlay";
 @import "Window";
 
 .v-popup {
   .title-bar {
-    .mixin-non-select;
+    user-select: none;
     cursor: move;
     font-size: var(--normal-font);
 

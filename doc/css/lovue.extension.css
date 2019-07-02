@@ -2,15 +2,12 @@
   border: 1px solid var(--border-color);
 }
 .v-collapse .c-item .c-head {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   padding: 0 var(--2unit);
   height: var(--5unit);
   line-height: var(--5unit);
   cursor: pointer;
   border-bottom: 1px solid var(--border-color);
+  user-select: none;
 }
 .v-collapse .c-item .c-head .icon-down-wide {
   margin-right: var(--unit);
@@ -34,10 +31,6 @@
   animation: rotate-reverse 2s linear infinite;
 }
 .v-btn {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   touch-action: manipulation;
   border: 1px solid transparent;
   white-space: nowrap;
@@ -45,6 +38,7 @@
   font-size: var(--small-font);
   border-radius: var(--border-radius);
   height: var(--4unit);
+  user-select: none;
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   cursor: pointer;
 }
@@ -188,9 +182,6 @@
   margin-right: var(--unit);
 }
 .v-popup .title-bar {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   cursor: move;
   font-size: var(--normal-font);
@@ -336,6 +327,9 @@
   cursor: pointer;
 }
 .v-select .selected .s-tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding-left: 4px;
   margin: 4px 4px 4px 0;
   background-color: var(--blue-color);
@@ -343,9 +337,6 @@
   font-size: var(--tiny-font);
   height: 20px;
   border-radius: var(--border-radius);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 .v-select .selected .s-tag .tag-name {
   max-width: 100%;

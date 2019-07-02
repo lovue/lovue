@@ -3,14 +3,11 @@
 @import "PureSelect";
 
 .v-pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .flex-center;
   font-size: var(--small-font);
 
   > .p-one {
-    display: flex;
-    align-items: center;
+    .flex-start;
     margin-left: var(--unit);
 
     .v-pure-select {
@@ -35,7 +32,6 @@
     }
 
     .link {
-      .mixin-non-select;
       display: block;
       min-width: 30px;
       height: 30px;
@@ -45,6 +41,7 @@
       text-align: center;
       border: 1px solid var(--blue-color);
       border-radius: var(--border-radius);
+      user-select: none;
 
       .icon {
         margin-top: -4px;
