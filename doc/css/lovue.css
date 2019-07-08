@@ -310,24 +310,21 @@ summary {
   --grey-10: #222222;
 }
 .v-badge {
-  position: relative;
+  --badge-bg: var(--error-color);
+  display: flex;
+  align-items: flex-start;
 }
-.v-badge:after {
-  content: '';
-  position: absolute;
+.v-badge .b-count {
+  position: relative;
   top: -4px;
-  right: -6px;
-  display: block;
+  right: 2px;
   width: 8px;
   height: 8px;
-  background-color: var(--error-color);
+  background-color: var(--badge-bg);
   border-radius: 50%;
 }
-.v-badge[data-count]:after {
-  content: attr(data-count);
+.v-badge .b-count[data-count] {
   top: -8px;
-  right: 2px;
-  transform: translateX(100%);
   font-size: var(--tiny-font);
   color: var(--white);
   width: auto;
@@ -770,6 +767,29 @@ summary {
 }
 .icon-refresh.loading {
   animation: rotate-reverse 2s linear infinite;
+}
+.indicator-enter,
+.indicator-leave-active {
+  opacity: 0;
+}
+.v-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  transition: opacity 0.2s linear;
+}
+.v-indicator .icon-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--border-radius);
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 14px;
 }
 .v-input {
   position: relative;
