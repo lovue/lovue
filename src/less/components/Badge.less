@@ -1,24 +1,20 @@
 .v-badge {
-  position: relative;
+  --badge-bg: var(--error-color);
 
-  &:after {
-    content: '';
-    position: absolute;
+  display: flex;
+  align-items: flex-start;
+
+  .b-count {
+    position: relative;
     top: -4px;
-    right: -6px;
-    display: block;
+    right: 2px;
     width: 8px;
     height: 8px;
-    background-color: var(--error-color);
+    background-color: var(--badge-bg);
     border-radius: 50%;
-  }
 
-  &[data-count] {
-    &:after {
-      content: attr(data-count);
+    &[data-count] {
       top: -8px;
-      right: 2px;
-      transform: translateX(100%);
       font-size: var(--tiny-font);
       color: var(--white);
       width: auto;

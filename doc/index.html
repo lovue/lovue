@@ -470,55 +470,17 @@
 
           <div class="panel" id="toBadge">
             <div class="title">徽标</div>
+            <div class="usage">【v-badge】</div>
             <div class="content">
-              <div class="controls">
-                <div class="control control-source">
-                  <div class="c-demo">
-                    <div class="v-badge">
-                      <v-icon icon="bells"></v-icon>
-                    </div>
-                  </div>
-                  <div class="c-code">
-                    <pre class="language-html"><code>&lt;div class=&quot;v-badge&quot;&gt;
-  &lt;v-icon icon=&quot;bells&quot;&gt;&lt;/v-icon&gt;
-&lt;/div&gt;</code></pre>
-                  </div>
-                </div>
-
-                <div class="control control-source">
-                  <div class="c-demo">
-                    <div class="v-badge">邮件</div>
-                  </div>
-                  <div class="c-code">
-                    <pre class="language-html"><code>&lt;div class=&quot;v-badge&quot;&gt;邮件&lt;/div&gt;</code></pre>
-                  </div>
-                </div>
+              <div class="controls" style="align-items: center;">
+                <v-badge icon="bells"></v-badge>
+                <v-badge text="邮件"></v-badge>
+                <v-badge icon="bells" :count="20" color="blue"></v-badge>
+                <v-badge text="邮件" :count="20"></v-badge>
               </div>
-
-              <div class="controls">
-                <div class="control control-source">
-                  <div class="c-demo">
-                    <div class="v-badge" data-count="20">
-                      <v-icon icon="bells"></v-icon>
-                    </div>
-                  </div>
-                  <div class="c-code">
-                    <pre class="language-html"><code>&lt;div class=&quot;v-badge&quot; data-count=&quot;20&quot;&gt;
-  &lt;v-icon icon=&quot;bells&quot;&gt;&lt;/v-icon&gt;
-&lt;/div&gt;</code></pre>
-                  </div>
-                </div>
-
-                <div class="control control-source">
-                  <div class="c-demo">
-                    <div class="v-badge" data-count="99">邮件</div>
-                  </div>
-                  <div class="c-code">
-                    <pre
-                      class="language-html"><code>&lt;div class=&quot;v-badge&quot; data-count=&quot;99&quot;&gt;邮件&lt;/div&gt;</code></pre>
-                  </div>
-                </div>
-              </div>
+            </div>
+            <div class="content">
+              <v-table :source="sourceBadge" :columns="columns" simple></v-table>
             </div>
           </div>
 

@@ -159,6 +159,11 @@ new Vue({
       { prop: 'pos', desc: '提示显示的位置，有：right, bottom, left，默认为 top', type: 'String', deft: '无' },
       { prop: 'width', desc: '提示内容的宽度', type: 'String, Number', deft: '无' }
     ],
+    sourceBadge: [
+      { prop: 'text', desc: '显示文字，有icon时优先显示图标', type: 'String', deft: '无' },
+      { prop: 'icon', desc: '显示图标', type: 'String', deft: '无' },
+      { prop: 'count', desc: '徽标显示的数字', type: 'String, Number', deft: '无' }
+    ],
     sourceSteps: [
       { prop: 'steps', desc: '选项数据，支持属性：title, icon', type: 'Array', deft: '无' },
       { prop: 'cur', desc: '当前选中的索引', type: 'Number', deft: '0' },

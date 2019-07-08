@@ -1,4 +1,5 @@
 import './less/normalize.less'
+import Badge from './components/Badge.vue'
 import Button from './components/Button.vue'
 import ButtonGroup from './components/ButtonGroup.vue'
 import ButtonSend from './components/ButtonSend.vue'
@@ -31,7 +32,7 @@ const install = function (Vue) {
   if (!Vue || install.installed) return
 
   const Components = [
-    Button, ButtonGroup, ButtonSend,
+    Badge, Button, ButtonGroup, ButtonSend,
     Checkbox, CheckboxGroup, Col,
     DatePicker,
     Icon, Input,
@@ -60,7 +61,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export {
-  Button, ButtonGroup, ButtonSend,
+  Badge, Button, ButtonGroup, ButtonSend,
   Checkbox, CheckboxGroup, Col,
   DatePicker,
   Icon, Input,
