@@ -504,6 +504,10 @@ new Vue({
     },
     pressenter(value) {
       this.success('input ' + value)
+    },
+    openIndicator() {
+      Indicator.open()
+      setTimeout(() => Indicator.close(), 1000)
     }
   },
   mounted() {

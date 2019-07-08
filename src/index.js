@@ -25,6 +25,7 @@ import Table from './components/Table.vue'
 import Tooltip from './components/Tooltip.vue'
 import Upload from './components/Upload.vue'
 import {Msg, success, info, warn, error, modal} from './components/prototypes'
+import Indicator from './components/indicator'
 
 const install = function (Vue) {
   if (!Vue || install.installed) return
@@ -50,6 +51,8 @@ const install = function (Vue) {
   Vue.prototype.warn = warn
   Vue.prototype.error = error
   Vue.prototype.modal = modal
+
+  window.Indicator = Indicator
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -67,7 +70,8 @@ export {
   Search, Select, Switch,
   Tab, Table, Tooltip,
   Upload,
-  Msg, success, info, warn, error, modal
+  Msg, success, info, warn, error, modal,
+  Indicator
 }
 
 export default { install }

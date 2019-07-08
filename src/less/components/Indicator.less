@@ -1,0 +1,24 @@
+.indicator-enter, .indicator-leave-active {
+  opacity: 0;
+}
+
+.v-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  transition: opacity .2s linear;
+
+  .icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--border-radius);
+    background-color: rgba(0, 0, 0, .7);
+    padding: 14px;
+  }
+}
