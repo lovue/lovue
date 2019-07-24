@@ -47,6 +47,7 @@
         items: JSON.parse(JSON.stringify(this.source)),
         filterText: '',
         bShowCandidates: false,
+        candidatesHeight: 0,
         innerUpdate: false,
         pos: '',
         open: ''
@@ -82,6 +83,11 @@
       value: {
         handler: 'updateSelected',
         immediate: true
+      },
+      filterText() {
+        setTimeout(() => {
+          this.calcCandidatesHeight()
+        }, 100)
       }
     },
     methods: {
@@ -142,20 +148,24 @@
         }
         this.selected = selected
       },
+      calcCandidatesHeight () {
+        const el = this.$el.querySelector('.candidates')
+        const notShowed = el.style.display === 'none'
+        if (notShowed) el.style.display = 'block'
+        const elHeight = el.offsetHeight
+        if (notShowed) el.style.display = 'none'
+
+        this.candidatesHeight = elHeight
+      },
       showCandidates() {
         this.selfClicked = true
         if (this.disabled) return
         if (this.bShowCandidates) return
-        this.bShowCandidates = true
 
-        let items = 0
-        this.filteredItems.forEach(item => {
-          items += item.children ? (item.children.length + 1) : 1
-        })
-        const candidatesHeight = Math.min((this.searchable ? (items + 1) : items) * 32, 320)
         const bottomSpace = window.innerHeight - this.$el.getBoundingClientRect().bottom
-        this.pos = bottomSpace < candidatesHeight ? 'top' : 'bottom'
+        this.pos = bottomSpace < this.candidatesHeight ? 'top' : 'bottom'
 
+        this.bShowCandidates = true
         setTimeout(() => this.open = 'open', 40)
       },
       hideCandidates() {
@@ -227,6 +237,8 @@
         if (!this.selfClicked) this.hideCandidates()
         this.selfClicked = false
       })
+
+      this.calcCandidatesHeight()
     }
   }
 </script>
