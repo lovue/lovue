@@ -23,10 +23,10 @@
       <div class="item-search" v-if="searchable"><input class="input" :placeholder="searchPlaceholder || '搜索'" v-model="filterText"></div>
       <ul class="list">
         <li v-for="i of filteredItems" :title="i.name" @click.stop="toggle(i)">
-          <div class="i-title" :class="{focus: i.selected}"><span class="t-name">{{i.name}}</span><v-icon icon="check" v-if="i.selected"></v-icon></div>
+          <div class="i-title" :class="{focus: i.selected_}"><span class="t-name">{{i.name}}</span><v-icon icon="check" v-if="i.selected_"></v-icon></div>
           <ul class="sub-list" v-if="i.children && i.children.length">
             <li v-for="child of i.children" :title="child.name" @click.stop="toggle(child)">
-              <div class="i-title" :class="{focus: child.selected}"><span class="t-name">{{child.name}}</span><v-icon icon="check" v-if="child.selected"></v-icon></div>
+              <div class="i-title" :class="{focus: child.selected_}"><span class="t-name">{{child.name}}</span><v-icon icon="check" v-if="child.selected_"></v-icon></div>
             </li>
           </ul>
         </li>
@@ -102,9 +102,9 @@
 
           selected = []
           this.items.forEach(item => {
-            item.selected = false
+            item.selected_ = false
             if (externalValue.includes(item.value)) {
-              item.selected = true
+              item.selected_ = true
               selected.push({
                 name: item.name,
                 value: item.value
@@ -113,9 +113,9 @@
 
             if (item.children) {
               item.children.forEach(child => {
-                child.selected = false
+                child.selected_ = false
                 if (externalValue.includes(child.value)) {
-                  child.selected = true
+                  child.selected_ = true
                   selected.push({
                     name: child.name,
                     value: child.value
@@ -129,17 +129,17 @@
 
           selected = {}
           this.items.forEach(item => {
-            item.selected = false
+            item.selected_ = false
             if (item.value === externalValue) {
-              item.selected = true
+              item.selected_ = true
               selected = { name: item.name, value: item.value }
             }
 
             if (item.children) {
               item.children.forEach(child => {
-                child.selected = false
+                child.selected_ = false
                 if (child.value === externalValue) {
-                  child.selected = true
+                  child.selected_ = true
                   selected = { name: child.name, value: child.value }
                 }
               })
@@ -177,12 +177,12 @@
       },
       toggle(item) {
         if (this.multiple) {
-          item.selected = !item.selected
+          item.selected_ = !item.selected_
 
-          if (item.selected) {
+          if (item.selected_) {
             if (this.max && this.selected.length >= this.max) {
               this.warn(`最多只能选择${this.max}个`)
-              item.selected = false
+              item.selected_ = false
             } else {
               this.selected.push(item)
             }
@@ -195,13 +195,13 @@
           this.$emit('input', this.emitItem ? this.selected : this.selected.map(s => s.value))
         } else {
           this.items.forEach(current => {
-            current.selected = false
+            current.selected_ = false
 
             if (current.children) {
-              current.children.forEach(child => child.selected = false)
+              current.children.forEach(child => child.selected_ = false)
             }
           })
-          item.selected = true
+          item.selected_ = true
           this.selected = item
           this.hideCandidates()
           this.innerUpdate = true
@@ -217,11 +217,11 @@
 
         this.items.forEach(item => {
           if (item.value === select.value) {
-            item.selected = false
+            item.selected_ = false
           } else if (item.children) {
             item.children.forEach(child => {
               if (child.value === select.value) {
-                child.selected = false
+                child.selected_ = false
               }
             })
           }

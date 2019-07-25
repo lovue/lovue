@@ -296,7 +296,12 @@ new Vue({
           { name: 'Aventador', value: 'Aventador' },
           { name: 'Sesto Elemento', value: 'SestoElemento' },
           { name: 'Veneno', value: 'Veneno' },
-          { name: 'Urus', value: 'Urus' }
+          { name: 'Urus', value: 'Urus' },
+          { name: 'Huracan', value: 'Huracan' },
+          { name: 'Reventon', value: 'Reventon' },
+          { name: 'Gallardo', value: 'Gallardo' },
+          { name: 'Murcielago', value: 'Murcielago' },
+          { name: 'Diablo', value: 'Diablo' }
         ]
       },
       {
@@ -536,7 +541,7 @@ new Vue({
     }, 400)
 
     setTimeout(() => {
-      this.bought2 = 'Aventador'
+      this.bought2 = 'Huracan'
       this.bought3 = [
         {
           name: '布加迪',
