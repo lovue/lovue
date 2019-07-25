@@ -1,16 +1,22 @@
 <template>
-  <dl class="v-pure-select" :class="open" @click="showDd">
-    <dt>
-      <span class="placeholder" v-if="current === undefined">{{placeholder || '请选择'}}</span>
-      <template v-for="(elem, index) of source">
-        <input :id="`pure_radio_${_uid}_${index}`" type="radio" :name="name" :value="elem" v-model="current">
-        <span>{{elem}}</span>
-      </template>
-    </dt>
-    <dd :class="pos" v-show="bShowDd">
-      <label :class="{focus: current === elem}" :for="`pure_radio_${_uid}_${index}`" v-for="(elem, index) of source" @click="hideDd">{{elem}}</label>
-    </dd>
-  </dl>
+  <div class="v-pure-select" @click="showCandidates">
+    <div class="ps-selected" :disabled="disabled">
+      <div class="ss-disabled" v-if="disabled"></div>
+      <div class="ss-l">
+        <span class="ss-value" v-if="current !== undefined">{{current}}</span>
+        <span class="placeholder" v-else>{{placeholder || '请选择'}}</span>
+      </div>
+      <div class="ss-r">
+        <v-icon icon="down-wide" :class="{reverse: !open}"></v-icon>
+      </div>
+    </div>
+    <div :class="`candidates ${pos} ${open}`" v-show="isShowCandidates">
+      <label class="c-item" :class="{focus: current === item}" v-for="item of source">
+        <input type="radio" :value="item" v-model="current" :name="name" :required="required">
+        <span>{{item}}</span>
+      </label>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -22,20 +28,24 @@
       return {
         selfClicked: false,
         current: this.value,
-        bShowDd: false,
+        isShowCandidates: false,
         open: '',
-        pos: ''
+        pos: '',
+        candidatesHeight: 0,
+        candidatesElem: null
       }
     },
     props: {
       value: [String, Number],
       name: String,
       source: Array,
-      placeholder: String
+      placeholder: String,
+      disabled: Boolean,
+      required: Boolean
     },
     computed: {
       ddHeight() {
-        return Math.min(this.source.length * 32 + 16, 200)
+        return Math.min(this.source.length * 32 + 16, 320)
       }
     },
     watch: {
@@ -43,35 +53,57 @@
         this.current = val
       },
       current(val) {
+        this.hideCandidates()
         this.$emit('input', val)
       }
     },
     methods: {
+      calcCandidatesHeight() {
+        const el = this.candidatesElem
+        const notShowed = el.style.display === 'none'
+        if (notShowed) el.style.display = 'block'
+        const elHeight = el.offsetHeight
+        if (notShowed) el.style.display = 'none'
+
+        this.candidatesHeight = elHeight
+      },
       updatePos() {
         const bottomSpace = window.innerHeight - this.$el.getBoundingClientRect().bottom
         this.pos = bottomSpace < this.ddHeight ? 'top' : 'bottom'
       },
-      showDd() {
+      showCandidates() {
         this.selfClicked = true
-        if (this.bShowDd) return
+        if (this.isShowCandidates) return
 
-        this.bShowDd = true
         this.updatePos()
+        this.isShowCandidates = true
+        this.updateScrollbar()
         setTimeout(() => this.open = 'open', 40)
       },
-      hideDd() {
+      hideCandidates() {
         this.open = ''
         setTimeout(() => {
           this.pos = ''
-          this.bShowDd = false
+          this.isShowCandidates = false
         }, 400)
-      }
+      },
+      async updateScrollbar() {
+        await this.$nextTick()
+        const focusElem = this.$el.querySelector('.candidates .c-item.focus')
+        if (focusElem === null) return
+
+        const y = focusElem.offsetTop - this.candidatesHeight / 2
+        this.candidatesElem.scrollTop = Math.max(y, 0)
+      },
     },
     mounted() {
       window.addEventListener('click', () => {
-        if (!this.selfClicked) this.hideDd()
+        if (!this.selfClicked) this.hideCandidates()
         this.selfClicked = false
       })
+
+      this.candidatesElem = this.$el.querySelector('.candidates')
+      this.calcCandidatesHeight()
     }
   }
 </script>

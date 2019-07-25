@@ -1,25 +1,28 @@
 <template>
   <div class="v-select" @click="showCandidates">
-    <div class="selected layout-lr" :disabled="disabled">
-      <div class="layer-disabled" v-if="disabled"></div>
-      <div class="l">
+    <div class="s-selected" :disabled="disabled">
+      <div class="s-disabled" v-if="disabled"></div>
+      <div class="s-l">
         <template v-if="multiple">
+          <input type="hidden" :value="selected.map(s => s.value).join(',')" :name="name" :required="required">
           <span class="s-tag" v-for="(s,i) of selected">
             <span class="tag-name">{{s.name}}</span>
             <v-icon icon="close" @click.native.stop="remove(s,i)"></v-icon>
           </span>
-          <span class="placeholder" v-if="!selected.length">{{placeholder || '请选择'}}</span>
+          <span class="s-placeholder" v-if="!selected.length">{{placeholder || '请选择'}}</span>
         </template>
         <template v-else>
-          <input class="input" :value="selected.name" :placeholder="placeholder || '请选择'" readonly>
+          <input type="hidden" :value="selected.value" :name="name" :required="required">
+          <span class="s-value" v-if="selected.name !== undefined">{{selected.name}}</span>
+          <span class="s-placeholder" v-else>{{placeholder || '请选择'}}</span>
           <v-icon class="icon-clear" icon="close" size="16" @click.native.stop="clearSelected" v-if="clearable && selected.name"></v-icon>
         </template>
       </div>
-      <div class="r">
+      <div class="s-r">
         <v-icon icon="down-wide" :class="{reverse: !open}"></v-icon>
       </div>
     </div>
-    <div :class="`candidates ${pos} ${open}`" v-show="bShowCandidates">
+    <div :class="`candidates ${pos} ${open}`" v-show="isShowCandidates">
       <div class="item-search" v-if="searchable"><input class="input" :placeholder="searchPlaceholder || '搜索'" v-model="filterText"></div>
       <ul class="list">
         <li v-for="i of filteredItems" :title="i.name" @click.stop="toggle(i)">
@@ -46,11 +49,12 @@
         selected: this.multiple ? [] : {},
         items: JSON.parse(JSON.stringify(this.source)),
         filterText: '',
-        bShowCandidates: false,
+        isShowCandidates: false,
         candidatesHeight: 0,
         innerUpdate: false,
         pos: '',
-        open: ''
+        open: '',
+        listElem: null
       }
     },
     components: {
@@ -72,7 +76,9 @@
       searchPlaceholder: String,
       max: Number,
       emitItem: Boolean,
-      clearable: Boolean
+      clearable: Boolean,
+      name: String,
+      required: Boolean
     },
     watch: {
       source(val) {
@@ -160,20 +166,29 @@
       showCandidates() {
         this.selfClicked = true
         if (this.disabled) return
-        if (this.bShowCandidates) return
+        if (this.isShowCandidates) return
 
         const bottomSpace = window.innerHeight - this.$el.getBoundingClientRect().bottom
         this.pos = bottomSpace < this.candidatesHeight ? 'top' : 'bottom'
 
-        this.bShowCandidates = true
+        this.isShowCandidates = true
+        this.updateScrollbar()
         setTimeout(() => this.open = 'open', 40)
       },
       hideCandidates() {
         this.open = ''
         setTimeout(() => {
           this.pos = ''
-          this.bShowCandidates = false
+          this.isShowCandidates = false
         }, 400)
+      },
+      async updateScrollbar() {
+        await this.$nextTick()
+        const focusElem = this.$el.querySelector('.candidates .i-title.focus')
+        if (focusElem === null) return
+
+        const y = focusElem.offsetTop - this.candidatesHeight / 2
+        this.listElem.scrollTop = Math.max(y, 0)
       },
       toggle(item) {
         if (this.multiple) {
@@ -238,6 +253,7 @@
         this.selfClicked = false
       })
 
+      this.listElem = this.$el.querySelector('.candidates .list')
       this.calcCandidatesHeight()
     }
   }

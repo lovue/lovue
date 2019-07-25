@@ -293,30 +293,33 @@
   display: inline-block;
   font-size: var(--small-font);
 }
-.v-select .layout-lr {
+.v-select .s-selected {
+  display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.v-select .layout-lr > .l {
+.v-select .s-selected .s-l {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  width: calc(100% - 40px);
+  flex-wrap: wrap;
   margin-right: 0;
+  padding-right: 20px;
 }
-.v-select .layout-lr > .r {
+.v-select .s-selected .s-r {
+  display: flex;
+  align-items: center;
   font-size: 0;
 }
-.v-select .layout-lr > .r .icon-down-wide {
-  width: 40px;
-  height: 20px;
+.v-select .s-selected .s-r .icon-down-wide {
+  width: 24px;
+  height: 16px;
   will-change: transform;
   transition: transform 0.25s ease-out;
 }
-.v-select .layout-lr > .r .icon-down-wide.reverse {
+.v-select .s-selected .s-r .icon-down-wide.reverse {
   transform: rotateX(180deg);
 }
-.v-select .selected {
+.v-select .s-selected {
   position: relative;
   padding: 0 4px;
   border: 1px solid var(--border-color);
@@ -325,8 +328,9 @@
   min-height: 32px;
   transition: border-color 0.2s;
   cursor: pointer;
+  z-index: 2;
 }
-.v-select .selected .s-tag {
+.v-select .s-selected .s-tag {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -338,51 +342,46 @@
   height: 20px;
   border-radius: var(--border-radius);
 }
-.v-select .selected .s-tag .tag-name {
+.v-select .s-selected .s-tag .tag-name {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.v-select .selected .s-tag .icon-close {
+.v-select .s-selected .s-tag .icon-close {
   transition: color 0.2s ease-out;
   flex-shrink: 0;
   width: 28px;
   height: 14px;
   cursor: pointer;
 }
-.v-select .selected .s-tag .icon-close:hover {
+.v-select .s-selected .s-tag .icon-close:hover {
   color: var(--pink-color);
 }
-.v-select .selected .s-tag-custom {
+.v-select .s-selected .s-tag-custom {
   background-color: var(--light-pink);
 }
-.v-select .selected .placeholder {
+.v-select .s-selected .s-value {
+  white-space: nowrap;
+}
+.v-select .s-selected .s-placeholder {
   color: var(--placeholder-color);
 }
-.v-select .selected .icon-clear {
+.v-select .s-selected .icon-clear {
   position: absolute;
   top: 7px;
-  right: 52px;
+  right: 28px;
   color: var(--white);
   transition: background-color 0.2s;
   display: none;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #B2B2B2;
   padding: 2px;
   border-radius: 50%;
 }
-.v-select .selected .icon-clear:hover {
-  background-color: rgba(0, 0, 0, 0.4);
+.v-select .s-selected .icon-clear:hover {
+  background-color: #999;
 }
-.v-select .selected .input {
-  height: 30px;
-  padding-left: 4px;
-  width: 100%;
-  overflow: visible;
-  border: none;
-  cursor: pointer;
-}
-.v-select .selected .layer-disabled {
+.v-select .s-selected .s-disabled {
   position: absolute;
   left: 0;
   width: 100%;
@@ -392,21 +391,21 @@
   z-index: 2;
   cursor: not-allowed;
 }
-.v-select .selected:not([disabled]):hover {
+.v-select .s-selected:not([disabled]):hover {
   border-color: var(--blue-color);
 }
-.v-select .selected:not([disabled]):hover .icon-clear {
+.v-select .s-selected:not([disabled]):hover .icon-clear {
   display: block;
 }
 .v-select .candidates {
   position: absolute;
-  width: 100%;
+  min-width: 100%;
   background-color: var(--white);
   border: 1px solid var(--border-color);
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
-  z-index: 10;
+  z-index: 1;
 }
 .v-select .candidates .item-search {
   padding: 0 8px;
@@ -437,8 +436,8 @@
   white-space: nowrap;
 }
 .v-select .candidates .icon-check {
-  width: 40px;
-  height: 20px;
+  width: 24px;
+  height: 16px;
   flex-shrink: 0;
 }
 .v-select .candidates .list {
@@ -467,12 +466,12 @@
   border-top: 1px dashed var(--second-color);
 }
 .v-select .candidates.top {
+  margin-bottom: -1px;
   bottom: 100%;
-  border-bottom: none;
   transform: translateY(1em);
 }
 .v-select .candidates.bottom {
-  border-top: none;
+  margin-top: -1px;
   transform: translateY(-1em);
 }
 .v-select .candidates.open {

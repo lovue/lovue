@@ -180,11 +180,14 @@ new Vue({
       { prop: 'max', desc: '多选时最多可选择的数量，没有则不限制', type: 'Number', deft: '无' },
       { prop: 'emitItem', desc: '是否emit整个item，是，则v-model绑定的是选中项的整个对象，否，则绑定选中项的value值', type: 'Boolean', deft: '无' },
       { prop: 'clearable', desc: '单选模式下是否可以清除选中', type: 'Boolean', deft: '无' },
+      { prop: 'name', desc: 'input的name值', type: 'String', deft: '无' },
+      { prop: 'required', desc: 'input的required值', type: 'Boolean', deft: '无' },
     ],
     sourcePureSelect: [
       { prop: 'v-model', desc: '组件双向绑定的值', type: 'String, Number', deft: '无' },
       { prop: 'source', desc: '选项数据，每个选项只能为String/Number的原始值', type: 'Array', deft: '无' },
       { prop: 'name', desc: 'radio的name值', type: 'String', deft: '无' },
+      { prop: 'required', desc: 'radio的required值', type: 'Boolean', deft: '无' },
       { prop: 'placeholder', desc: '占位符', type: 'String', deft: '请选择' }
     ],
     sourceProgress: [
@@ -256,7 +259,7 @@ new Vue({
       { prop: 'independent', desc: '各个panel打开关闭是否独立', type: 'Boolean', deft: '无' },
     ],
     provinceCity: ['江西省', '抚州市'],
-    diploma: ['初中', '高中', '本科', '硕士', '博士'],
+    diploma: ['幼儿园', '学前班幼儿园幼儿园幼儿园幼儿园', '小学', '初中', '高中', '本科', '硕士', '博士', '博士后', '教授'],
     pureSelectValue: undefined,
     buildings: buildings(),
     buildingColumns: [
@@ -296,12 +299,16 @@ new Vue({
           { name: 'Aventador', value: 'Aventador' },
           { name: 'Sesto Elemento', value: 'SestoElemento' },
           { name: 'Veneno', value: 'Veneno' },
+          { name: 'Veneno Roadster', value: 'Veneno Roadster' },
           { name: 'Urus', value: 'Urus' },
           { name: 'Huracan', value: 'Huracan' },
+          { name: 'Huracan EVO SpyderHuracan EVO SpyderHuracan EVO Spyder', value: 'Huracan EVO Spyder' },
           { name: 'Reventon', value: 'Reventon' },
           { name: 'Gallardo', value: 'Gallardo' },
           { name: 'Murcielago', value: 'Murcielago' },
-          { name: 'Diablo', value: 'Diablo' }
+          { name: 'Diablo', value: 'Diablo' },
+          { name: 'Asterion', value: 'Asterion' },
+          { name: 'Estoque', value: 'Estoque' }
         ]
       },
       {
@@ -541,7 +548,6 @@ new Vue({
     }, 400)
 
     setTimeout(() => {
-      this.bought2 = 'Huracan'
       this.bought3 = [
         {
           name: '布加迪',
