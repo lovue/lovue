@@ -24,7 +24,9 @@ const wrapFetch = function (request) {
     }).catch(reject)
   })
 }
-let urlPrefix = '/api', CSRFHeader = 'X-CSRFToken', CSRFValue = 'csrf'
+
+let urlPrefix = '/api'
+const headers = {}
 const requestUrl = function (url) {
   if (url.startsWith('/') || url.startsWith('http')) return url
   return `${urlPrefix}/${url}`
@@ -34,16 +36,15 @@ export default {
   prefix(prefix) {
     urlPrefix = prefix
   },
-  setCSRF(header, value) {
-    CSRFHeader = header
-    CSRFValue = value
+  setHeader(key, value) {
+    headers[key] = value
   },
   get(url) {
     return wrapFetch(new Request(requestUrl(url), {
       credentials: 'same-origin',
       headers: {
         'Accept': 'application/json',
-        'x-access-token': localStorage.token
+        ...headers
       }
     }))
   },
@@ -54,8 +55,7 @@ export default {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'x-access-token': localStorage.token,
-        [CSRFHeader]: sessionStorage[CSRFValue]
+        ...headers
       },
       body: JSON.stringify(params)
     }))
@@ -66,8 +66,7 @@ export default {
       credentials: 'same-origin',
       headers: {
         'Accept': 'application/json',
-        'x-access-token': localStorage.token,
-        [CSRFHeader]: sessionStorage[CSRFValue]
+        ...headers
       },
       body: params
     }))
@@ -79,8 +78,7 @@ export default {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'x-access-token': localStorage.token,
-        [CSRFHeader]: sessionStorage[CSRFValue]
+        ...headers
       },
       body: JSON.stringify(params)
     }))
@@ -91,8 +89,7 @@ export default {
       credentials: 'same-origin',
       headers: {
         'Accept': 'application/json',
-        'x-access-token': localStorage.token,
-        [CSRFHeader]: sessionStorage[CSRFValue]
+        ...headers
       },
       body: params
     }))
@@ -103,8 +100,7 @@ export default {
       credentials: 'same-origin',
       headers: {
         'Accept': 'application/json',
-        'x-access-token': localStorage.token,
-        [CSRFHeader]: sessionStorage[CSRFValue]
+        ...headers
       }
     }))
   }
