@@ -13,7 +13,7 @@ const wrapFetch = function (request) {
       // return res.text()
     }).then(body => {
       if (body.code === 0) {
-        resolve(body.data)
+        resolve(body.data === undefined ? 1 : body.data)
       } else {
         throw {
           status,
