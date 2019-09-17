@@ -645,15 +645,6 @@ summary {
   padding: 0;
   cursor: pointer;
 }
-.v-date-picker .picker-container .date-picker .picker-filter .month-picker div {
-  line-height: 32px;
-}
-.v-date-picker .picker-container .date-picker .picker-filter .year-picker .v-pure-select {
-  width: 60px;
-}
-.v-date-picker .picker-container .date-picker .picker-filter .year-picker .v-pure-select label {
-  line-height: 20px;
-}
 .v-date-picker .picker-container .date-picker .calendar table {
   width: 100%;
   text-align: center;
@@ -685,8 +676,8 @@ summary {
   color: var(--disabled-color);
 }
 .v-date-picker .picker-container .time-picker {
-  margin-left: 20px;
-  height: 314px;
+  margin-left: var(--2unit);
+  height: 320px;
   line-height: 24px;
   border-left: 1px solid var(--border-color);
   overflow-y: auto;
@@ -1166,7 +1157,6 @@ summary {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  width: calc(100% - 40px);
   margin-right: 0;
 }
 .v-pure-select .ps-selected .ss-r {

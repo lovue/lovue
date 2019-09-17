@@ -898,7 +898,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     }
   };
 
-  function getTimeArray(interval) {
+  function getTimeArray(interval = 1) {
     interval = interval < 1 ? 0.5 : Math.floor(interval);
     let num = 24 / interval;
     let hour = 0, minute = 0;
