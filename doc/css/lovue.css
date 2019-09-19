@@ -347,6 +347,7 @@ summary {
 }
 .input {
   height: var(--4unit);
+  line-height: var(--unit);
   padding: 4px var(--unit);
 }
 .input:focus {
@@ -1466,6 +1467,7 @@ summary {
   align-items: center;
   flex-wrap: wrap;
   margin-right: 0;
+  padding-left: 4px;
   padding-right: 20px;
 }
 .v-select .s-selected .s-r {
