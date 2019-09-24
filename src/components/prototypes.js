@@ -35,7 +35,7 @@ const warn = msg => {
     message: msg
   })
 }
-const error = (msg, close) => {
+const error = (msg = '', close) => {
   if (close === undefined) close = true
 
   Msg({
