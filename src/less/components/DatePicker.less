@@ -124,6 +124,7 @@
       line-height: 24px;
       border-left: 1px solid var(--border-color);
       overflow-y: auto;
+      overscroll-behavior: contain;
 
       .list {
         li {
@@ -144,6 +145,20 @@
 }
 
 @-moz-document url-prefix() {
+  .v-date-picker {
+    .picker-container {
+      .time-picker {
+        .list {
+          li {
+            padding-right: 22px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@supports (display: -ms-grid) {
   .v-date-picker {
     .picker-container {
       .time-picker {
