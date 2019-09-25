@@ -270,11 +270,14 @@
 }
 .input {
   height: var(--4unit);
-  line-height: var(--unit);
-  padding: 4px var(--unit);
+  line-height: var(--4unit);
+  padding: 0 var(--unit);
 }
 .input:focus {
   border-color: var(--blue-color);
+}
+.input[type=number] {
+  padding-right: 0;
 }
 .layout-lr {
   display: flex;
@@ -290,7 +293,7 @@
 }
 .v-select {
   position: relative;
-  min-width: 300px;
+  min-width: 200px;
   display: inline-block;
   font-size: var(--small-font);
 }

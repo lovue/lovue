@@ -25,6 +25,7 @@ body.overhidden {
   line-height: 42px;
   padding-left: 40px;
   transition: color 0.25s;
+  white-space: nowrap;
 }
 .aside .list li a:hover {
   color: #4ad3e8;

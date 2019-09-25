@@ -13,7 +13,7 @@
     <div :class="`candidates ${pos} ${open}`" v-show="isShowCandidates">
       <label class="c-item" :class="{focus: current === item}" v-for="item of source">
         <input type="radio" :value="item" v-model="current" :name="name" :required="required">
-        <span>{{item}}</span>
+        <span class="i-label">{{item}}</span>
       </label>
     </div>
   </div>

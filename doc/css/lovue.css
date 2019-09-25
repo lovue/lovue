@@ -347,11 +347,14 @@ summary {
 }
 .input {
   height: var(--4unit);
-  line-height: var(--unit);
-  padding: 4px var(--unit);
+  line-height: var(--4unit);
+  padding: 0 var(--unit);
 }
 .input:focus {
   border-color: var(--blue-color);
+}
+.input[type=number] {
+  padding-right: 0;
 }
 .v-btn {
   touch-action: manipulation;
@@ -685,6 +688,7 @@ summary {
 }
 .v-date-picker .picker-container .time-picker .list li {
   padding: 0 5px;
+  white-space: nowrap;
   cursor: pointer;
 }
 .v-date-picker .picker-container .time-picker .list li:hover {
@@ -692,6 +696,11 @@ summary {
 }
 .v-date-picker .picker-container .time-picker .list li.focus {
   background-color: var(--blue-color);
+}
+@-moz-document url-prefix() {
+  .v-date-picker .picker-container .time-picker .list li {
+    padding-right: 22px;
+  }
 }
 .v-dropdown {
   font-size: var(--small-font);
@@ -786,6 +795,7 @@ summary {
 .v-input {
   position: relative;
   display: inline-block;
+  min-width: 200px;
   font-size: var(--small-font);
 }
 .v-input .hidden-value {
@@ -1218,7 +1228,9 @@ summary {
   overflow-y: auto;
   overscroll-behavior: contain;
   transition: visibility 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
-  z-index: 1;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
 }
 .v-pure-select .candidates::-webkit-scrollbar {
   width: 6px;
@@ -1226,21 +1238,21 @@ summary {
 .v-pure-select .candidates::-webkit-scrollbar-track {
   box-shadow: none;
 }
-.v-pure-select .candidates .c-item input {
-  display: none;
-}
-.v-pure-select .candidates .c-item span {
-  display: block;
+.v-pure-select .candidates .c-item {
+  width: 100%;
   cursor: pointer;
   padding: 0 var(--unit);
   line-height: 32px;
   white-space: nowrap;
+  transition: background-color 0.2s;
 }
-.v-pure-select .candidates .c-item span:hover {
-  color: var(--main-color);
+.v-pure-select .candidates .c-item input {
+  display: none;
+}
+.v-pure-select .candidates .c-item:hover {
   background-color: var(--bg-color);
 }
-.v-pure-select .candidates .c-item.focus span {
+.v-pure-select .candidates .c-item.focus {
   background-color: var(--blue-color);
   color: var(--white);
 }
@@ -1257,6 +1269,11 @@ summary {
   transform: translateY(0);
   visibility: visible;
   opacity: 1;
+}
+@-moz-document url-prefix() {
+  .v-pure-select .candidates .c-item {
+    padding-right: 24px;
+  }
 }
 .v-pwd-strength {
   display: flex;
@@ -1437,6 +1454,7 @@ summary {
 }
 .v-search {
   position: relative;
+  min-width: 200px;
 }
 .v-search .v-input {
   width: 100%;
@@ -1453,7 +1471,7 @@ summary {
 }
 .v-select {
   position: relative;
-  min-width: 300px;
+  min-width: 200px;
   display: inline-block;
   font-size: var(--small-font);
 }

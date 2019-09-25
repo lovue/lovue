@@ -116,8 +116,10 @@
         }
       }
     }
+
     .time-picker {
       margin-left: var(--2unit);
+      //min-width: 62px;
       height: 320px;
       line-height: 24px;
       border-left: 1px solid var(--border-color);
@@ -126,6 +128,7 @@
       .list {
         li {
           padding: 0 5px;
+          white-space: nowrap;
           cursor: pointer;
 
           &:hover {
@@ -134,6 +137,20 @@
         }
         li.focus {
           background-color: var(--blue-color);
+        }
+      }
+    }
+  }
+}
+
+@-moz-document url-prefix() {
+  .v-date-picker {
+    .picker-container {
+      .time-picker {
+        .list {
+          li {
+            padding-right: 22px;
+          }
         }
       }
     }
