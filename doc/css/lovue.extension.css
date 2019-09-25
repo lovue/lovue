@@ -435,9 +435,6 @@
   color: var(--blue-color);
 }
 .v-select .candidates .t-name {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 .v-select .candidates .icon-check {
@@ -483,6 +480,16 @@
   transform: translateY(0);
   visibility: visible;
   opacity: 1;
+}
+@-moz-document url-prefix() {
+  .v-select .candidates .i-title {
+    padding-right: 22px;
+  }
+}
+@supports (display: -ms-grid) {
+  .v-select .candidates .i-title {
+    padding-right: 22px;
+  }
 }
 .v-share > div + div {
   margin-top: var(--unit);

@@ -158,7 +158,7 @@
     }
 
     .t-name {
-      .truncate;
+      white-space: nowrap;
     }
 
     .icon-check {
@@ -207,6 +207,26 @@
       transform: translateY(0);
       visibility: visible;
       opacity: 1;
+    }
+  }
+}
+
+@-moz-document url-prefix() {
+  .v-select {
+    .candidates {
+      .i-title {
+        padding-right: 22px;
+      }
+    }
+  }
+}
+
+@supports (display: -ms-grid) {
+  .v-select {
+    .candidates {
+      .i-title {
+        padding-right: 22px;
+      }
     }
   }
 }
