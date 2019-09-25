@@ -11,10 +11,14 @@
 
 .input {
   height: var(--4unit);
-  line-height: var(--unit);
-  padding: 4px var(--unit);
+  line-height: var(--4unit);
+  padding: 0 var(--unit);
 
   &:focus {
     border-color: var(--blue-color);
+  }
+
+  &[type=number] {
+    padding-right: 0;
   }
 }
