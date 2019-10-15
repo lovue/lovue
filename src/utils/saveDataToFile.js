@@ -1,9 +1,6 @@
 export default (data, filename, ext) => {
-  let blob = new Blob(['\ufeff' + data], { type: `text/${ext};charset=utf-8` }),
-    url = URL.createObjectURL(blob)
-
-  let link = document.createElement('a')
-  link.setAttribute('href', url)
+  const link = document.createElement('a')
+  link.setAttribute('href', 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(data))
   link.setAttribute('download', `${filename}.${ext}`)
 
   document.body.appendChild(link)
