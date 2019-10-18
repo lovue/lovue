@@ -424,9 +424,12 @@
 
           <div class="panel" id="toPwdStrength">
             <div class="title">密码强度</div>
-            <div class="usage">【v-pwd-strength】，未完善，不可用</div>
+            <div class="usage">【v-pwd-strength】</div>
             <div class="content">
               <v-pwd-strength password="hello"></v-pwd-strength>
+            </div>
+            <div class="content">
+              <v-table :source="sourcePwdStrength" :columns="columns" simple></v-table>
             </div>
           </div>
 

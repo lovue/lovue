@@ -12,23 +12,19 @@
 
   export default{
     name: 'v-pwd-strength',
-    data() {
-      return {
-        score: 0
-      }
-    },
     props: {
       password: {
         type: String,
         default: ''
+      },
+      score: {
+        type: Number,
+        default: 0,
+        validator(value) {
+          return value >= 0 && value <= 4
+        }
       }
     },
-    /*watch: {
-      password(val) {
-        if (val === '') return
-        this.score = zxcvbn(val).score
-      }
-    },*/
     computed: {
       strengthInfo() {
         let words = ['极弱', '弱', '中', '强', '极强']
@@ -44,12 +40,6 @@
         ]
         return classes[this.score]
       }
-    },
-    created() {
-      // if (this.password === '') return
-
-      // const zxcvbn = () => import('zxcvbn')
-      // this.score = zxcvbn(this.password).score
     }
   }
 </script>

@@ -216,6 +216,10 @@ new Vue({
       { prop: 'fixedWidth', desc: '是否固定宽度不变', type: 'Boolean', deft: "无" },
       { prop: 'yearsDesc', desc: '年份选择列表是否倒序', type: 'Boolean', deft: "无" }
     ],
+    sourcePwdStrength: [
+      { prop: 'password', desc: '密码', type: 'String', deft: '' },
+      { prop: 'score', desc: '密码强度', type: 'Number', deft: '0' }
+    ],
     sourceModal: [
       { prop: 'title', desc: '标题，没有，则不显示标题栏', type: 'String', deft: '无' },
       { prop: 'content', desc: '正文', type: 'String', deft: '无' },
