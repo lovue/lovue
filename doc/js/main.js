@@ -237,7 +237,8 @@ new Vue({
       { prop: 'confirm', desc: '点击确认时执行的异步请求，如果不提供，则点击确认直接关闭', type: 'Function', deft: 'undefined' },
       { prop: 'okText', desc: '确认按钮文本', type: 'String', deft: '确认' },
       { prop: 'cancelText', desc: '取消按钮文本', type: 'String', deft: '取消' },
-      { prop: 'noFooter', desc: '是否没有底部区域', type: 'Boolean', deft: 'false' }
+      { prop: 'noFooter', desc: '是否没有底部区域', type: 'Boolean', deft: 'false' },
+      { prop: 'slot: footer', desc: '底部插槽', type: '', deft: '' }
     ],
     sourceTable: [
       { prop: 'source', desc: '数据源', type: 'Array', deft: '[]' },
@@ -256,7 +257,10 @@ new Vue({
       { prop: 'paginationNoBorder', desc: '分页组件按钮是否有border', type: 'Boolean', deft: '无' },
       { prop: '@check', desc: '勾选复选框时触发该事件', type: '无', deft: '无' },
       { prop: '@click-row', desc: '单击行时触发该事件', type: '无', deft: '无' },
-      { prop: '@dbl-click-row', desc: '双击行时触发该事件', type: '无', deft: '无' }
+      { prop: '@dbl-click-row', desc: '双击行时触发该事件', type: '无', deft: '无' },
+      { prop: 'slot: [column.prop]', desc: '每列的插槽', type: '', deft: '' },
+      { prop: 'slot: tools-l', desc: '表格顶部左边插槽', type: '', deft: '' },
+      { prop: 'slot: tools-m', desc: '表格顶部中间插槽', type: '', deft: '' },
     ],
     sourceCollapse: [
       { prop: 'panels', desc: '数据源', type: 'Array', deft: '无' },
@@ -438,6 +442,7 @@ new Vue({
       { name: 'React', value: 'react' }
     ],
     radioValue: 'vue',
+    initDate: undefined,
     datePickerValue: '2018-11-11',
     tabValue: 1,
     pageCounts: [10, 20, 30, 40, 50],

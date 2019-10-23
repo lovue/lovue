@@ -413,9 +413,9 @@
             <div class="title">日期选择器</div>
             <div class="usage">【v-date-picker】</div>
             <div class="content">
-              <v-date-picker fixed-width years-desc></v-date-picker>
-              <v-date-picker @update="selectDate" full></v-date-picker>
-              <v-date-picker v-model="datePickerValue" @update="selectDate"></v-date-picker>
+              <v-date-picker v-model="initDate" fixed-width years-desc></v-date-picker>
+              <v-date-picker full></v-date-picker>
+              <v-date-picker v-model="datePickerValue"></v-date-picker>
             </div>
             <div class="content">
               <v-table :source="sourceDatePicker" :columns="columns" simple></v-table>
@@ -453,7 +453,6 @@
             <div class="content">
               <v-button @click="showPopup">显示</v-button>
             </div>
-            <h4 style="padding-left: 10px;">提供name=footer的slot，用于自定义底部按钮</h4>
             <div class="content">
               <v-table :source="sourcePopup" :columns="columns" simple></v-table>
             </div>
