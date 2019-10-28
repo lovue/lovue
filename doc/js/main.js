@@ -238,6 +238,7 @@ new Vue({
       { prop: 'okText', desc: '确认按钮文本', type: 'String', deft: '确认' },
       { prop: 'cancelText', desc: '取消按钮文本', type: 'String', deft: '取消' },
       { prop: 'noFooter', desc: '是否没有底部区域', type: 'Boolean', deft: 'false' },
+      { prop: 'visible', desc: 'content区域的overflow-y', type: 'Boolean', deft: 'false' },
       { prop: 'slot: footer', desc: '底部插槽', type: '', deft: '' }
     ],
     sourceTable: [

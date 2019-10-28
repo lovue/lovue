@@ -1,5 +1,5 @@
 <template>
-  <div class="v-popup overlay" :class="{fixed: fixed}" v-if="value" @mousemove="dragging" @mouseup="dragEnd">
+  <div class="v-popup overlay" :class="{fixed: fixed, visible: visible}" v-if="value" @mousemove="dragging" @mouseup="dragEnd">
     <div class="v-window" :style="transform">
       <div class="title-bar" @mousedown="dragStart">
         <div class="title-name">{{title}}</div>
@@ -42,7 +42,8 @@
       fixed: Boolean,
       okText: String,
       cancelText: String,
-      noFooter: Boolean
+      noFooter: Boolean,
+      visible: Boolean
     },
     components: {
       [Button.name]: Button,

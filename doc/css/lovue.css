@@ -1132,6 +1132,9 @@ summary {
 .v-popup.fixed .v-window {
   margin-top: 100px;
 }
+.v-popup.visible .v-window .win-content {
+  overflow-y: visible;
+}
 .v-progress {
   position: relative;
   text-align: center;
