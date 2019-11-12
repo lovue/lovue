@@ -29,6 +29,7 @@ test('getype', () => {
   expect(getype([])).toBe('array')
   expect(getype(new Date())).toBe('date')
   expect(getype(new Error('error'))).toBe('error')
+  expect(getype(Symbol('test'))).toBe('symbol')
 })
 
 test('fillDateNumber', () => {
