@@ -1,6 +1,7 @@
 /*
  * getype returns a string which represents the type of value.
- * undefined, null, number, string, boolean, symbol, array, function, date, error, regexp, object
+ * undefined, null, number, string, boolean, array, function, date, error, regexp, object
+ * ES2015: symbol, json, math, module, arraybuffer, dataview, map, promise, set, unit8array, weakmap, weakset, generator, generatorfunction
  *
  * @access public
  * @function getype
