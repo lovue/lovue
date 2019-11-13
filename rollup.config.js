@@ -1,48 +1,42 @@
-import vue from 'rollup-plugin-vue'
 import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
-import commonjs from 'rollup-plugin-commonjs'
+import lovueConfig from './rollup/lovue'
+import extensionConfig from './rollup/extension'
 
-const production = process.env.production, esm = process.env.esm
-let plugins = [
-  commonjs(),
-  vue({
-    template: {
-      isProduction: true
-    }
-  })
-], file = 'dist/lovue.js', format = 'iife', name = 'lovue'
-
-if (esm) {
-  format = 'esm'
-  file = 'dist/lovue.esm.js'
-  name = undefined
-}
+const production = process.env.production
 
 if (!production) {
-  plugins.push(serve('doc'))
-  plugins.push(livereload({
+  lovueConfig.push(serve('doc'))
+  lovueConfig.push(livereload({
     watch: 'doc',
     delay: 100,
     port: 35730
   }))
-  file = 'doc/js/lovue.js'
-  format = 'iife'
-}
-
-export default {
-  input: 'src/index.js',
-  output: {
-    format,
-    file,
-    name,
+  lovueConfig.output = {
+    format: 'iife',
+    file: 'doc/js/lovue.js',
+    name: 'lovue',
     globals: {
-      vue: 'Vue'
+      vue: 'Vue',
+      window: 'window'
     },
     preferConst: true,
     exports: 'named'
-  },
-  external: id => id === 'vue' || id.endsWith('.less'),
-  plugins
+  }
+
+  extensionConfig.output = {
+    format: 'iife',
+    file: 'doc/js/lovue.extension.js',
+    name: 'lovueEx',
+    globals: {
+      vue: 'Vue',
+      window: 'window'
+    },
+    preferConst: true,
+    exports: 'named'
+  }
 }
+
+
+export default [lovueConfig, extensionConfig]
 
