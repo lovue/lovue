@@ -96,90 +96,80 @@ const lovueEx = (function (exports) {
     }
   };
 
-  function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
-  /* server only */
-  , shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
-    if (typeof shadowMode !== 'boolean') {
-      createInjectorSSR = createInjector;
-      createInjector = shadowMode;
-      shadowMode = false;
-    } // Vue.extend constructor export interop.
-
-
-    var options = typeof script === 'function' ? script.options : script; // render functions
-
-    if (template && template.render) {
-      options.render = template.render;
-      options.staticRenderFns = template.staticRenderFns;
-      options._compiled = true; // functional template
-
-      if (isFunctionalTemplate) {
-        options.functional = true;
+  function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
+      if (typeof shadowMode !== 'boolean') {
+          createInjectorSSR = createInjector;
+          createInjector = shadowMode;
+          shadowMode = false;
       }
-    } // scopedId
-
-
-    if (scopeId) {
-      options._scopeId = scopeId;
-    }
-
-    var hook;
-
-    if (moduleIdentifier) {
-      // server build
-      hook = function hook(context) {
-        // 2.3 injection
-        context = context || // cached call
-        this.$vnode && this.$vnode.ssrContext || // stateful
-        this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext; // functional
-        // 2.2 with runInNewContext: true
-
-        if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-          context = __VUE_SSR_CONTEXT__;
-        } // inject component styles
-
-
-        if (style) {
-          style.call(this, createInjectorSSR(context));
-        } // register component module identifier for async chunk inference
-
-
-        if (context && context._registeredComponents) {
-          context._registeredComponents.add(moduleIdentifier);
-        }
-      }; // used by ssr in case component is cached and beforeCreate
-      // never gets called
-
-
-      options._ssrRegister = hook;
-    } else if (style) {
-      hook = shadowMode ? function () {
-        style.call(this, createInjectorShadow(this.$root.$options.shadowRoot));
-      } : function (context) {
-        style.call(this, createInjector(context));
-      };
-    }
-
-    if (hook) {
-      if (options.functional) {
-        // register for functional component in vue file
-        var originalRender = options.render;
-
-        options.render = function renderWithStyleInjection(h, context) {
-          hook.call(context);
-          return originalRender(h, context);
-        };
-      } else {
-        // inject component registration as beforeCreate hook
-        var existing = options.beforeCreate;
-        options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+      // Vue.extend constructor export interop.
+      const options = typeof script === 'function' ? script.options : script;
+      // render functions
+      if (template && template.render) {
+          options.render = template.render;
+          options.staticRenderFns = template.staticRenderFns;
+          options._compiled = true;
+          // functional template
+          if (isFunctionalTemplate) {
+              options.functional = true;
+          }
       }
-    }
-
-    return script;
+      // scopedId
+      if (scopeId) {
+          options._scopeId = scopeId;
+      }
+      let hook;
+      if (moduleIdentifier) {
+          // server build
+          hook = function (context) {
+              // 2.3 injection
+              context =
+                  context || // cached call
+                      (this.$vnode && this.$vnode.ssrContext) || // stateful
+                      (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
+              // 2.2 with runInNewContext: true
+              if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+                  context = __VUE_SSR_CONTEXT__;
+              }
+              // inject component styles
+              if (style) {
+                  style.call(this, createInjectorSSR(context));
+              }
+              // register component module identifier for async chunk inference
+              if (context && context._registeredComponents) {
+                  context._registeredComponents.add(moduleIdentifier);
+              }
+          };
+          // used by ssr in case component is cached and beforeCreate
+          // never gets called
+          options._ssrRegister = hook;
+      }
+      else if (style) {
+          hook = shadowMode
+              ? function (context) {
+                  style.call(this, createInjectorShadow(context, this.$root.$options.shadowRoot));
+              }
+              : function (context) {
+                  style.call(this, createInjector(context));
+              };
+      }
+      if (hook) {
+          if (options.functional) {
+              // register for functional component in vue file
+              const originalRender = options.render;
+              options.render = function renderWithStyleInjection(h, context) {
+                  hook.call(context);
+                  return originalRender(h, context);
+              };
+          }
+          else {
+              // inject component registration as beforeCreate hook
+              const existing = options.beforeCreate;
+              options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+          }
+      }
+      return script;
   }
-
-  var normalizeComponent_1 = normalizeComponent;
 
   /* script */
   const __vue_script__ = script;
@@ -200,15 +190,19 @@ const lovueEx = (function (exports) {
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Collapse = normalizeComponent_1(
+    const __vue_component__ = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
       __vue_inject_styles__,
       __vue_script__,
       __vue_scope_id__,
       __vue_is_functional_template__,
       __vue_module_identifier__,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -385,15 +379,19 @@ const lovueEx = (function (exports) {
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const EditorSvg = normalizeComponent_1(
+    const __vue_component__$1 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
       __vue_inject_styles__$1,
       __vue_script__$1,
       __vue_scope_id__$1,
       __vue_is_functional_template__$1,
       __vue_module_identifier__$1,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -427,15 +425,19 @@ const lovueEx = (function (exports) {
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Icon = normalizeComponent_1(
+    const __vue_component__$2 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
       __vue_inject_styles__$2,
       __vue_script__$2,
       __vue_scope_id__$2,
       __vue_is_functional_template__$2,
       __vue_module_identifier__$2,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -453,7 +455,7 @@ const lovueEx = (function (exports) {
       submit: Boolean
     },
     components: {
-      [Icon.name]: Icon
+      [__vue_component__$2.name]: __vue_component__$2
     },
     computed: {
       customClass() {
@@ -489,15 +491,19 @@ const lovueEx = (function (exports) {
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Button = normalizeComponent_1(
+    const __vue_component__$3 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
       __vue_inject_styles__$3,
       __vue_script__$3,
       __vue_scope_id__$3,
       __vue_is_functional_template__$3,
       __vue_module_identifier__$3,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -522,11 +528,12 @@ const lovueEx = (function (exports) {
       fixed: Boolean,
       okText: String,
       cancelText: String,
-      noFooter: Boolean
+      noFooter: Boolean,
+      visible: Boolean
     },
     components: {
-      [Button.name]: Button,
-      [Icon.name]: Icon
+      [__vue_component__$3.name]: __vue_component__$3,
+      [__vue_component__$2.name]: __vue_component__$2
     },
     computed: {
       transform() {
@@ -574,7 +581,7 @@ const lovueEx = (function (exports) {
   const __vue_script__$4 = script$4;
 
   /* template */
-  var __vue_render__$4 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("default")],2),_vm._v(" "),(!_vm.noFooter)?_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_vm._t("footer",[_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText || '取消'))]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText || '确认'))])])],2)]):_vm._e()])]):_vm._e()};
+  var __vue_render__$4 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed, visible: _vm.visible},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("default")],2),_vm._v(" "),(!_vm.noFooter)?_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_vm._t("footer",[_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText || '取消'))]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText || '确认'))])])],2)]):_vm._e()])]):_vm._e()};
   var __vue_staticRenderFns__$4 = [];
 
     /* style */
@@ -589,15 +596,19 @@ const lovueEx = (function (exports) {
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Popup = normalizeComponent_1(
+    const __vue_component__$4 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$4, staticRenderFns: __vue_staticRenderFns__$4 },
       __vue_inject_styles__$4,
       __vue_script__$4,
       __vue_scope_id__$4,
       __vue_is_functional_template__$4,
       __vue_module_identifier__$4,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -623,9 +634,9 @@ const lovueEx = (function (exports) {
       html: String
     },
     components: {
-      [EditorSvg.name]: EditorSvg,
-      [Button.name]: Button,
-      [Popup.name]: Popup
+      [__vue_component__$1.name]: __vue_component__$1,
+      [__vue_component__$3.name]: __vue_component__$3,
+      [__vue_component__$4.name]: __vue_component__$4
     },
     watch: {
       bShowOverlay(val) {
@@ -709,15 +720,19 @@ const lovueEx = (function (exports) {
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const HtmlEditor = normalizeComponent_1(
+    const __vue_component__$5 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
       __vue_inject_styles__$5,
       __vue_script__$5,
       __vue_scope_id__$5,
       __vue_is_functional_template__$5,
       __vue_module_identifier__$5,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -754,15 +769,19 @@ const lovueEx = (function (exports) {
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const ImgReflex = normalizeComponent_1(
+    const __vue_component__$6 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$6, staticRenderFns: __vue_staticRenderFns__$6 },
       __vue_inject_styles__$6,
       __vue_script__$6,
       __vue_scope_id__$6,
       __vue_is_functional_template__$6,
       __vue_module_identifier__$6,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -786,7 +805,7 @@ const lovueEx = (function (exports) {
       }
     },
     components: {
-      [Icon.name]: Icon
+      [__vue_component__$2.name]: __vue_component__$2
     },
     computed: {
       filteredItems() {
@@ -1005,15 +1024,19 @@ const lovueEx = (function (exports) {
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Select = normalizeComponent_1(
+    const __vue_component__$7 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$7, staticRenderFns: __vue_staticRenderFns__$7 },
       __vue_inject_styles__$7,
       __vue_script__$7,
       __vue_scope_id__$7,
       __vue_is_functional_template__$7,
       __vue_module_identifier__$7,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1110,7 +1133,7 @@ const lovueEx = (function (exports) {
       value: Array
     },
     components: {
-      [Select.name]: Select
+      [__vue_component__$7.name]: __vue_component__$7
     },
     watch: {
       currentProvince(val) {
@@ -1148,15 +1171,19 @@ const lovueEx = (function (exports) {
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const SelectCity = normalizeComponent_1(
+    const __vue_component__$8 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$8, staticRenderFns: __vue_staticRenderFns__$8 },
       __vue_inject_styles__$8,
       __vue_script__$8,
       __vue_scope_id__$8,
       __vue_is_functional_template__$8,
       __vue_module_identifier__$8,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1173,7 +1200,7 @@ const lovueEx = (function (exports) {
       steps: Array
     },
     components: {
-      [Icon.name]: Icon
+      [__vue_component__$2.name]: __vue_component__$2
     }
   };
 
@@ -1196,15 +1223,19 @@ const lovueEx = (function (exports) {
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Step = normalizeComponent_1(
+    const __vue_component__$9 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$9, staticRenderFns: __vue_staticRenderFns__$9 },
       __vue_inject_styles__$9,
       __vue_script__$9,
       __vue_scope_id__$9,
       __vue_is_functional_template__$9,
       __vue_module_identifier__$9,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1231,7 +1262,7 @@ const lovueEx = (function (exports) {
       }
     },
     components: {
-      [Icon.name]: Icon
+      [__vue_component__$2.name]: __vue_component__$2
     },
     methods: {
       addCustom(ev) {
@@ -1284,15 +1315,19 @@ const lovueEx = (function (exports) {
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Tag = normalizeComponent_1(
+    const __vue_component__$a = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$a, staticRenderFns: __vue_staticRenderFns__$a },
       __vue_inject_styles__$a,
       __vue_script__$a,
       __vue_scope_id__$a,
       __vue_is_functional_template__$a,
       __vue_module_identifier__$a,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1301,11 +1336,11 @@ const lovueEx = (function (exports) {
     if (!Vue || install.installed) return
 
     const Components = [
-      Collapse,
-      HtmlEditor,
-      ImgReflex,
-      SelectCity, Step,
-      Tag
+      __vue_component__,
+      __vue_component__$5,
+      __vue_component__$6,
+      __vue_component__$8, __vue_component__$9,
+      __vue_component__$a
     ];
 
     Components.forEach(c => Vue.component(c.name, c));
@@ -1317,12 +1352,12 @@ const lovueEx = (function (exports) {
 
   const extension = { install };
 
-  exports.Collapse = Collapse;
-  exports.HtmlEditor = HtmlEditor;
-  exports.ImgReflex = ImgReflex;
-  exports.SelectCity = SelectCity;
-  exports.Step = Step;
-  exports.Tag = Tag;
+  exports.Collapse = __vue_component__;
+  exports.HtmlEditor = __vue_component__$5;
+  exports.ImgReflex = __vue_component__$6;
+  exports.SelectCity = __vue_component__$8;
+  exports.Step = __vue_component__$9;
+  exports.Tag = __vue_component__$a;
   exports.default = extension;
 
   return exports;

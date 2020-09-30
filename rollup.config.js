@@ -6,8 +6,8 @@ import extensionConfig from './rollup/extension'
 const production = process.env.production
 
 if (!production) {
-  lovueConfig.push(serve('doc'))
-  lovueConfig.push(livereload({
+  lovueConfig.plugins.push(serve('doc'))
+  lovueConfig.plugins.push(livereload({
     watch: 'doc',
     delay: 100,
     port: 35730

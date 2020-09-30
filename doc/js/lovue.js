@@ -1,9 +1,11 @@
 
-(function(l, i, v, e) { v = l.createElement(i); v.async = 1; v.src = '//' + (location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; e = l.getElementsByTagName(i)[0]; e.parentNode.insertBefore(v, e)})(document, 'script');
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_less, ButtonGroup_less, Checkbox_less, CheckboxGroup_less, DatePicker_less, PureSelect_less, Input_less, Menu_less, Pagination_less, Popup_less, Progress_less, PwdStrength_less, Radio_less, RadioGroup_less, Row_less, Search_less, Select_less, Switch_less, Tab_less, Table_less, Tooltip_less, Upload_less, Vue) {
   'use strict';
 
-  Vue = Vue && Vue.hasOwnProperty('default') ? Vue['default'] : Vue;
+  function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+  const Vue__default = /*#__PURE__*/_interopDefaultLegacy(Vue);
 
   //
 
@@ -15,90 +17,80 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     }
   };
 
-  function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier
-  /* server only */
-  , shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
-    if (typeof shadowMode !== 'boolean') {
-      createInjectorSSR = createInjector;
-      createInjector = shadowMode;
-      shadowMode = false;
-    } // Vue.extend constructor export interop.
-
-
-    var options = typeof script === 'function' ? script.options : script; // render functions
-
-    if (template && template.render) {
-      options.render = template.render;
-      options.staticRenderFns = template.staticRenderFns;
-      options._compiled = true; // functional template
-
-      if (isFunctionalTemplate) {
-        options.functional = true;
+  function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
+      if (typeof shadowMode !== 'boolean') {
+          createInjectorSSR = createInjector;
+          createInjector = shadowMode;
+          shadowMode = false;
       }
-    } // scopedId
-
-
-    if (scopeId) {
-      options._scopeId = scopeId;
-    }
-
-    var hook;
-
-    if (moduleIdentifier) {
-      // server build
-      hook = function hook(context) {
-        // 2.3 injection
-        context = context || // cached call
-        this.$vnode && this.$vnode.ssrContext || // stateful
-        this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext; // functional
-        // 2.2 with runInNewContext: true
-
-        if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-          context = __VUE_SSR_CONTEXT__;
-        } // inject component styles
-
-
-        if (style) {
-          style.call(this, createInjectorSSR(context));
-        } // register component module identifier for async chunk inference
-
-
-        if (context && context._registeredComponents) {
-          context._registeredComponents.add(moduleIdentifier);
-        }
-      }; // used by ssr in case component is cached and beforeCreate
-      // never gets called
-
-
-      options._ssrRegister = hook;
-    } else if (style) {
-      hook = shadowMode ? function () {
-        style.call(this, createInjectorShadow(this.$root.$options.shadowRoot));
-      } : function (context) {
-        style.call(this, createInjector(context));
-      };
-    }
-
-    if (hook) {
-      if (options.functional) {
-        // register for functional component in vue file
-        var originalRender = options.render;
-
-        options.render = function renderWithStyleInjection(h, context) {
-          hook.call(context);
-          return originalRender(h, context);
-        };
-      } else {
-        // inject component registration as beforeCreate hook
-        var existing = options.beforeCreate;
-        options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+      // Vue.extend constructor export interop.
+      const options = typeof script === 'function' ? script.options : script;
+      // render functions
+      if (template && template.render) {
+          options.render = template.render;
+          options.staticRenderFns = template.staticRenderFns;
+          options._compiled = true;
+          // functional template
+          if (isFunctionalTemplate) {
+              options.functional = true;
+          }
       }
-    }
-
-    return script;
+      // scopedId
+      if (scopeId) {
+          options._scopeId = scopeId;
+      }
+      let hook;
+      if (moduleIdentifier) {
+          // server build
+          hook = function (context) {
+              // 2.3 injection
+              context =
+                  context || // cached call
+                      (this.$vnode && this.$vnode.ssrContext) || // stateful
+                      (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
+              // 2.2 with runInNewContext: true
+              if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+                  context = __VUE_SSR_CONTEXT__;
+              }
+              // inject component styles
+              if (style) {
+                  style.call(this, createInjectorSSR(context));
+              }
+              // register component module identifier for async chunk inference
+              if (context && context._registeredComponents) {
+                  context._registeredComponents.add(moduleIdentifier);
+              }
+          };
+          // used by ssr in case component is cached and beforeCreate
+          // never gets called
+          options._ssrRegister = hook;
+      }
+      else if (style) {
+          hook = shadowMode
+              ? function (context) {
+                  style.call(this, createInjectorShadow(context, this.$root.$options.shadowRoot));
+              }
+              : function (context) {
+                  style.call(this, createInjector(context));
+              };
+      }
+      if (hook) {
+          if (options.functional) {
+              // register for functional component in vue file
+              const originalRender = options.render;
+              options.render = function renderWithStyleInjection(h, context) {
+                  hook.call(context);
+                  return originalRender(h, context);
+              };
+          }
+          else {
+              // inject component registration as beforeCreate hook
+              const existing = options.beforeCreate;
+              options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+          }
+      }
+      return script;
   }
-
-  var normalizeComponent_1 = normalizeComponent;
 
   /* script */
   const __vue_script__ = script;
@@ -119,15 +111,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Icon = normalizeComponent_1(
+    const __vue_component__ = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
       __vue_inject_styles__,
       __vue_script__,
       __vue_scope_id__,
       __vue_is_functional_template__,
       __vue_module_identifier__,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -143,7 +139,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       color: String
     },
     components: {
-      [Icon.name]: Icon
+      [__vue_component__.name]: __vue_component__
     },
     computed: {
       countStyle() {
@@ -173,15 +169,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Badge = normalizeComponent_1(
+    const __vue_component__$1 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
       __vue_inject_styles__$1,
       __vue_script__$1,
       __vue_scope_id__$1,
       __vue_is_functional_template__$1,
       __vue_module_identifier__$1,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -199,7 +199,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       submit: Boolean
     },
     components: {
-      [Icon.name]: Icon
+      [__vue_component__.name]: __vue_component__
     },
     computed: {
       customClass() {
@@ -235,15 +235,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Button = normalizeComponent_1(
+    const __vue_component__$2 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
       __vue_inject_styles__$2,
       __vue_script__$2,
       __vue_scope_id__$2,
       __vue_is_functional_template__$2,
       __vue_module_identifier__$2,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -273,15 +277,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const ButtonGroup = normalizeComponent_1(
+    const __vue_component__$3 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
       __vue_inject_styles__$3,
       __vue_script__$3,
       __vue_scope_id__$3,
       __vue_is_functional_template__$3,
       __vue_module_identifier__$3,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -307,7 +315,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       url: String
     },
     components: {
-      [Button.name]: Button
+      [__vue_component__$2.name]: __vue_component__$2
     },
     methods: {
       async send() {
@@ -369,15 +377,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const ButtonSend = normalizeComponent_1(
+    const __vue_component__$4 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$4, staticRenderFns: __vue_staticRenderFns__$4 },
       __vue_inject_styles__$4,
       __vue_script__$4,
       __vue_scope_id__$4,
       __vue_is_functional_template__$4,
       __vue_module_identifier__$4,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -423,7 +435,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
   /* template */
   var __vue_render__$5 = function () {
   var _obj;
-  var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{class:( _obj = {}, _obj[_vm.lnfClass] = true, _obj.reverse = _vm.reverse, _obj.disabled = _vm.disabled, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,null)>-1:(_vm.checked)},on:{"change":[function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}},_vm.toggle]}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])};
+  var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{class:( _obj = {}, _obj[_vm.lnfClass] = true, _obj.reverse = _vm.reverse, _obj.disabled = _vm.disabled, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,null)>-1:(_vm.checked)},on:{"change":[function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else {$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else {_vm.checked=$$c;}},_vm.toggle]}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.label))])])};
   var __vue_staticRenderFns__$5 = [];
 
     /* style */
@@ -438,15 +450,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Checkbox = normalizeComponent_1(
+    const __vue_component__$5 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
       __vue_inject_styles__$5,
       __vue_script__$5,
       __vue_scope_id__$5,
       __vue_is_functional_template__$5,
       __vue_module_identifier__$5,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -489,7 +505,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
   /* template */
   var __vue_render__$6 = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-checkbox-group",class:{vertical: _vm.vertical}},_vm._l((_vm.source),function(item){
   var _obj;
-  return _c('div',{staticClass:"g-item"},[_c('label',{class:( _obj = {}, _obj[_vm.lnfClass] = true, _obj.reverse = _vm.reverse, _obj.disabled = item.disabled, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,item.value)>-1:(_vm.checked)},on:{"change":function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.value,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])])}),0)};
+  return _c('div',{staticClass:"g-item"},[_c('label',{class:( _obj = {}, _obj[_vm.lnfClass] = true, _obj.reverse = _vm.reverse, _obj.disabled = item.disabled, _obj )},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":item.disabled},domProps:{"value":item.value,"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,item.value)>-1:(_vm.checked)},on:{"change":function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=item.value,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else {$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else {_vm.checked=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(item.name))])])])}),0)};
   var __vue_staticRenderFns__$6 = [];
 
     /* style */
@@ -504,15 +520,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const CheckboxGroup = normalizeComponent_1(
+    const __vue_component__$6 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$6, staticRenderFns: __vue_staticRenderFns__$6 },
       __vue_inject_styles__$6,
       __vue_script__$6,
       __vue_scope_id__$6,
       __vue_is_functional_template__$6,
       __vue_module_identifier__$6,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -550,15 +570,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Col = normalizeComponent_1(
+    const __vue_component__$7 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$7, staticRenderFns: __vue_staticRenderFns__$7 },
       __vue_inject_styles__$7,
       __vue_script__$7,
       __vue_scope_id__$7,
       __vue_is_functional_template__$7,
       __vue_module_identifier__$7,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -669,15 +693,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const PureSelect = normalizeComponent_1(
+    const __vue_component__$8 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$8, staticRenderFns: __vue_staticRenderFns__$8 },
       __vue_inject_styles__$8,
       __vue_script__$8,
       __vue_scope_id__$8,
       __vue_is_functional_template__$8,
       __vue_module_identifier__$8,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -731,8 +759,8 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       yearsDesc: Boolean
     },
     components: {
-      [PureSelect.name]: PureSelect,
-      [Icon.name]: Icon
+      [__vue_component__$8.name]: __vue_component__$8,
+      [__vue_component__.name]: __vue_component__
     },
     computed: {
       inputStyle() {
@@ -935,15 +963,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const DatePicker = normalizeComponent_1(
+    const __vue_component__$9 = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$9, staticRenderFns: __vue_staticRenderFns__$9 },
       __vue_inject_styles__$9,
       __vue_script__$9,
       __vue_scope_id__$9,
       __vue_is_functional_template__$9,
       __vue_module_identifier__$9,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1003,7 +1035,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
   const __vue_script__$a = script$a;
 
   /* template */
-  var __vue_render__$a = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-input",class:{effect: _vm.effect}},[(_vm.resize)?_c('div',{staticClass:"hidden-value"},[_vm._v(_vm._s(_vm.content))]):_vm._e(),_vm._v(" "),((_vm.type)==='checkbox')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"pattern":_vm.pattern,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"minlength":_vm.minlength,"maxlength":_vm.maxlength,"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.content)?_vm._i(_vm.content,null)>-1:(_vm.content)},on:{"keypress":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"change":function($event){var $$a=_vm.content,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.content=$$a.concat([$$v]));}else{$$i>-1&&(_vm.content=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.content=$$c;}}}}):((_vm.type)==='radio')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"pattern":_vm.pattern,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"minlength":_vm.minlength,"maxlength":_vm.maxlength,"type":"radio"},domProps:{"checked":_vm._q(_vm.content,null)},on:{"keypress":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"change":function($event){_vm.content=null;}}}):_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"pattern":_vm.pattern,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"minlength":_vm.minlength,"maxlength":_vm.maxlength,"type":_vm.type},domProps:{"value":(_vm.content)},on:{"keypress":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"input":function($event){if($event.target.composing){ return; }_vm.content=$event.target.value;}}}),_vm._v(" "),(_vm.effect)?_c('hr'):_vm._e()])};
+  var __vue_render__$a = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-input",class:{effect: _vm.effect}},[(_vm.resize)?_c('div',{staticClass:"hidden-value"},[_vm._v(_vm._s(_vm.content))]):_vm._e(),_vm._v(" "),((_vm.type)==='checkbox')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"pattern":_vm.pattern,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"minlength":_vm.minlength,"maxlength":_vm.maxlength,"type":"checkbox"},domProps:{"checked":Array.isArray(_vm.content)?_vm._i(_vm.content,null)>-1:(_vm.content)},on:{"keypress":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"change":function($event){var $$a=_vm.content,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.content=$$a.concat([$$v]));}else {$$i>-1&&(_vm.content=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else {_vm.content=$$c;}}}}):((_vm.type)==='radio')?_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"pattern":_vm.pattern,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"minlength":_vm.minlength,"maxlength":_vm.maxlength,"type":"radio"},domProps:{"checked":_vm._q(_vm.content,null)},on:{"keypress":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"change":function($event){_vm.content=null;}}}):_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],staticClass:"input",style:(("min-width: " + _vm.width + "px;")),attrs:{"name":_vm.name,"step":_vm.step,"min":_vm.min,"max":_vm.max,"placeholder":_vm.placeholder,"pattern":_vm.pattern,"required":_vm.required,"autocomplete":"off","disabled":_vm.disabled,"readonly":_vm.readonly,"minlength":_vm.minlength,"maxlength":_vm.maxlength,"type":_vm.type},domProps:{"value":(_vm.content)},on:{"keypress":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.pressEnter($event)},"input":function($event){if($event.target.composing){ return; }_vm.content=$event.target.value;}}}),_vm._v(" "),(_vm.effect)?_c('hr'):_vm._e()])};
   var __vue_staticRenderFns__$a = [];
 
     /* style */
@@ -1018,15 +1050,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Input = normalizeComponent_1(
+    const __vue_component__$a = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$a, staticRenderFns: __vue_staticRenderFns__$a },
       __vue_inject_styles__$a,
       __vue_script__$a,
       __vue_scope_id__$a,
       __vue_is_functional_template__$a,
       __vue_module_identifier__$a,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1049,7 +1085,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       }
     },
     components: {
-      [Icon.name]: Icon
+      [__vue_component__.name]: __vue_component__
     },
     methods: {
       closeMenu(menu) {
@@ -1116,15 +1152,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Menu = normalizeComponent_1(
+    const __vue_component__$b = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$b, staticRenderFns: __vue_staticRenderFns__$b },
       __vue_inject_styles__$b,
       __vue_script__$b,
       __vue_scope_id__$b,
       __vue_is_functional_template__$b,
       __vue_module_identifier__$b,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1154,8 +1194,8 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       noBorder: Boolean
     },
     components: {
-      [Icon.name]: Icon,
-      [PureSelect.name]: PureSelect
+      [__vue_component__.name]: __vue_component__,
+      [__vue_component__$8.name]: __vue_component__$8
     },
     computed: {
       pages() {
@@ -1235,15 +1275,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Pagination = normalizeComponent_1(
+    const __vue_component__$c = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$c, staticRenderFns: __vue_staticRenderFns__$c },
       __vue_inject_styles__$c,
       __vue_script__$c,
       __vue_scope_id__$c,
       __vue_is_functional_template__$c,
       __vue_module_identifier__$c,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1268,11 +1312,12 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       fixed: Boolean,
       okText: String,
       cancelText: String,
-      noFooter: Boolean
+      noFooter: Boolean,
+      visible: Boolean
     },
     components: {
-      [Button.name]: Button,
-      [Icon.name]: Icon
+      [__vue_component__$2.name]: __vue_component__$2,
+      [__vue_component__.name]: __vue_component__
     },
     computed: {
       transform() {
@@ -1320,7 +1365,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
   const __vue_script__$d = script$d;
 
   /* template */
-  var __vue_render__$d = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("default")],2),_vm._v(" "),(!_vm.noFooter)?_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_vm._t("footer",[_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText || '取消'))]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText || '确认'))])])],2)]):_vm._e()])]):_vm._e()};
+  var __vue_render__$d = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.value)?_c('div',{staticClass:"v-popup overlay",class:{fixed: _vm.fixed, visible: _vm.visible},on:{"mousemove":_vm.dragging,"mouseup":_vm.dragEnd}},[_c('div',{staticClass:"v-window",style:(_vm.transform)},[_c('div',{staticClass:"title-bar",on:{"mousedown":_vm.dragStart}},[_c('div',{staticClass:"title-name"},[_vm._v(_vm._s(_vm.title))]),_vm._v(" "),_c('v-button',{attrs:{"type":"text"},on:{"click":_vm.close}},[_c('v-icon',{attrs:{"icon":"close","size":"18"}})],1)],1),_vm._v(" "),_c('div',{staticClass:"win-content"},[_vm._t("default")],2),_vm._v(" "),(!_vm.noFooter)?_c('div',{staticClass:"win-footer"},[_c('div',{staticClass:"right"},[_vm._t("footer",[_c('v-button',{attrs:{"type":"ghost"},on:{"click":_vm.close}},[_vm._v(_vm._s(_vm.cancelText || '取消'))]),_vm._v(" "),_c('v-button',{attrs:{"loading":_vm.loading},on:{"click":_vm.handleConfirm}},[_vm._v(_vm._s(_vm.okText || '确认'))])])],2)]):_vm._e()])]):_vm._e()};
   var __vue_staticRenderFns__$d = [];
 
     /* style */
@@ -1335,15 +1380,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Popup = normalizeComponent_1(
+    const __vue_component__$d = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$d, staticRenderFns: __vue_staticRenderFns__$d },
       __vue_inject_styles__$d,
       __vue_script__$d,
       __vue_scope_id__$d,
       __vue_is_functional_template__$d,
       __vue_module_identifier__$d,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1402,15 +1451,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Progress = normalizeComponent_1(
+    const __vue_component__$e = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$e, staticRenderFns: __vue_staticRenderFns__$e },
       __vue_inject_styles__$e,
       __vue_script__$e,
       __vue_scope_id__$e,
       __vue_is_functional_template__$e,
       __vue_module_identifier__$e,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1469,15 +1522,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const PwdStrength = normalizeComponent_1(
+    const __vue_component__$f = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$f, staticRenderFns: __vue_staticRenderFns__$f },
       __vue_inject_styles__$f,
       __vue_script__$f,
       __vue_scope_id__$f,
       __vue_is_functional_template__$f,
       __vue_module_identifier__$f,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1514,15 +1571,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Radio = normalizeComponent_1(
+    const __vue_component__$g = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$g, staticRenderFns: __vue_staticRenderFns__$g },
       __vue_inject_styles__$g,
       __vue_script__$g,
       __vue_scope_id__$g,
       __vue_is_functional_template__$g,
       __vue_module_identifier__$g,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1580,15 +1641,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const RadioGroup = normalizeComponent_1(
+    const __vue_component__$h = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$h, staticRenderFns: __vue_staticRenderFns__$h },
       __vue_inject_styles__$h,
       __vue_script__$h,
       __vue_scope_id__$h,
       __vue_is_functional_template__$h,
       __vue_module_identifier__$h,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1618,15 +1683,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Row = normalizeComponent_1(
+    const __vue_component__$i = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$i, staticRenderFns: __vue_staticRenderFns__$i },
       __vue_inject_styles__$i,
       __vue_script__$i,
       __vue_scope_id__$i,
       __vue_is_functional_template__$i,
       __vue_module_identifier__$i,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1654,8 +1723,8 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       }
     },
     components: {
-      [Icon.name]: Icon,
-      [Input.name]: Input
+      [__vue_component__.name]: __vue_component__,
+      [__vue_component__$a.name]: __vue_component__$a
     },
     methods: {
       inputHandler(text) {
@@ -1692,15 +1761,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Search = normalizeComponent_1(
+    const __vue_component__$j = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$j, staticRenderFns: __vue_staticRenderFns__$j },
       __vue_inject_styles__$j,
       __vue_script__$j,
       __vue_scope_id__$j,
       __vue_is_functional_template__$j,
       __vue_module_identifier__$j,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1724,7 +1797,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       }
     },
     components: {
-      [Icon.name]: Icon
+      [__vue_component__.name]: __vue_component__
     },
     computed: {
       filteredItems() {
@@ -1943,15 +2016,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Select = normalizeComponent_1(
+    const __vue_component__$k = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$k, staticRenderFns: __vue_staticRenderFns__$k },
       __vue_inject_styles__$k,
       __vue_script__$k,
       __vue_scope_id__$k,
       __vue_is_functional_template__$k,
       __vue_module_identifier__$k,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -1987,7 +2064,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
   const __vue_script__$l = script$l;
 
   /* template */
-  var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-switch",class:{disabled: _vm.disabled}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,null)>-1:(_vm.checked)},on:{"change":[function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else{$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.checked=$$c;}},_vm.toggle]}}),_vm._v(" "),_c('span')])};
+  var __vue_render__$l = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('label',{staticClass:"v-switch",class:{disabled: _vm.disabled}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.checked),expression:"checked"}],attrs:{"type":"checkbox","name":_vm.name,"disabled":_vm.disabled},domProps:{"checked":Array.isArray(_vm.checked)?_vm._i(_vm.checked,null)>-1:(_vm.checked)},on:{"change":[function($event){var $$a=_vm.checked,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.checked=$$a.concat([$$v]));}else {$$i>-1&&(_vm.checked=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else {_vm.checked=$$c;}},_vm.toggle]}}),_vm._v(" "),_c('span')])};
   var __vue_staticRenderFns__$l = [];
 
     /* style */
@@ -2002,15 +2079,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Switch = normalizeComponent_1(
+    const __vue_component__$l = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$l, staticRenderFns: __vue_staticRenderFns__$l },
       __vue_inject_styles__$l,
       __vue_script__$l,
       __vue_scope_id__$l,
       __vue_is_functional_template__$l,
       __vue_module_identifier__$l,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -2037,7 +2118,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       lock: Boolean
     },
     components: {
-      [Icon.name]: Icon
+      [__vue_component__.name]: __vue_component__
     },
     watch: {
       value(val) {
@@ -2132,15 +2213,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Tab = normalizeComponent_1(
+    const __vue_component__$m = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$m, staticRenderFns: __vue_staticRenderFns__$m },
       __vue_inject_styles__$m,
       __vue_script__$m,
       __vue_scope_id__$m,
       __vue_is_functional_template__$m,
       __vue_module_identifier__$m,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -2205,10 +2290,10 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       paginationNoBorder: Boolean
     },
     components: {
-      [Checkbox.name]: Checkbox,
-      [Icon.name]: Icon,
-      [Pagination.name]: Pagination,
-      [Search.name]: Search
+      [__vue_component__$5.name]: __vue_component__$5,
+      [__vue_component__.name]: __vue_component__,
+      [__vue_component__$c.name]: __vue_component__$c,
+      [__vue_component__$j.name]: __vue_component__$j
     },
     computed: {
       columnProps() {
@@ -2335,7 +2420,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
   const __vue_script__$n = script$n;
 
   /* template */
-  var __vue_render__$n = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-table"},[(!_vm.simple)?_c('header',{staticClass:"t-tools"},[_c('div',{staticClass:"l"},[_vm._t("tools-l")],2),_vm._v(" "),_c('div',{staticClass:"m"},[_vm._t("tools-m")],2),_vm._v(" "),_c('div',{staticClass:"r"},[_c('v-search',{attrs:{"delay":300},on:{"search":_vm.filter}})],1)]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"t-table",class:{'fixed-head': _vm.fixedHead}},[_c('div',{staticClass:"table-wrap"},[_c('table',{staticClass:"table"},[_c('colgroup',[(_vm.checkbox)?_c('col'):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(col){return _c('col',{class:("col-" + (col.prop))})})],2),_vm._v(" "),_c('thead',[_c('tr',[(_vm.checkbox && _vm.source.length)?_c('th',[_c('div',{staticClass:"t-title"},[_c('v-checkbox',{attrs:{"label":"全选"},model:{value:(_vm.selectAll),callback:function ($$v) {_vm.selectAll=$$v;},expression:"selectAll"}})],1)]):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(column,i){return _c('th',{class:column.cssClass},[_c('div',{staticClass:"t-title",class:column.cssClass},[_vm._v("\n              "+_vm._s(column.title)+"\n              "),(column.sortable)?_c('span',{staticClass:"sort-arrows",on:{"click":function($event){return _vm.handleSortClick(i)}}},[_c('v-icon',{class:{'dir-up': true, focus: _vm.sortType[i] === 1},attrs:{"icon":"down-wide"}}),_vm._v(" "),_c('v-icon',{class:{focus: _vm.sortType[i] === -1},attrs:{"icon":"down-wide"}})],1):_vm._e()])])})],2)]),_vm._v(" "),_c('tbody',[(!_vm.source.length)?_c('tr',{staticClass:"no-data-row"},[_c('td',{attrs:{"colspan":_vm.columns.length}},[_vm._v(_vm._s(_vm.emptyText || '暂无数据'))])]):_vm._e(),_vm._v(" "),_vm._l((_vm.showed),function(row,i){return (_vm.simple || (i >= _vm.slice[0] && i < _vm.slice[1]))?_c('tr',{class:{focus: row.focused},on:{"click":function($event){return _vm.$emit('click-row', row)},"dblclick":function($event){return _vm.$emit('dbl-click-row', row)}}},[(_vm.checkbox)?_c('td',{on:{"click":function($event){$event.stopPropagation();}}},[_c('label',{staticClass:"v-checkbox"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.selected),expression:"selected"}],attrs:{"type":"checkbox"},domProps:{"value":i,"checked":Array.isArray(_vm.selected)?_vm._i(_vm.selected,i)>-1:(_vm.selected)},on:{"change":function($event){var $$a=_vm.selected,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=i,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.selected=$$a.concat([$$v]));}else{$$i>-1&&(_vm.selected=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else{_vm.selected=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.checkboxColumn ? row[_vm.checkboxColumn] : (i + 1)))])])]):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(column){return _c('td',{class:column.cssClass},[_vm._t(column.prop,[_vm._v(_vm._s(_vm.filterSlot(row, column)))],{"value":row})],2)})],2):_vm._e()})],2)])])]),_vm._v(" "),(!_vm.simple && _vm.source.length)?_c('div',{staticClass:"t-footer"},[_c('v-pagination',{attrs:{"total":_vm.total || _vm.showed.length,"page-counts":_vm.pageCounts,"count-of-page":_vm.countOfPage,"simple":_vm.simplePagination,"no-border":_vm.paginationNoBorder},on:{"update":_vm.updateTable}})],1):_vm._e()])};
+  var __vue_render__$n = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"v-table"},[(!_vm.simple)?_c('header',{staticClass:"t-tools"},[_c('div',{staticClass:"l"},[_vm._t("tools-l")],2),_vm._v(" "),_c('div',{staticClass:"m"},[_vm._t("tools-m")],2),_vm._v(" "),_c('div',{staticClass:"r"},[_c('v-search',{attrs:{"delay":300},on:{"search":_vm.filter}})],1)]):_vm._e(),_vm._v(" "),_c('div',{staticClass:"t-table",class:{'fixed-head': _vm.fixedHead}},[_c('div',{staticClass:"table-wrap"},[_c('table',{staticClass:"table"},[_c('colgroup',[(_vm.checkbox)?_c('col'):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(col){return _c('col',{class:("col-" + (col.prop))})})],2),_vm._v(" "),_c('thead',[_c('tr',[(_vm.checkbox && _vm.source.length)?_c('th',[_c('div',{staticClass:"t-title"},[_c('v-checkbox',{attrs:{"label":"全选"},model:{value:(_vm.selectAll),callback:function ($$v) {_vm.selectAll=$$v;},expression:"selectAll"}})],1)]):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(column,i){return _c('th',{class:column.cssClass},[_c('div',{staticClass:"t-title",class:column.cssClass},[_vm._v("\n              "+_vm._s(column.title)+"\n              "),(column.sortable)?_c('span',{staticClass:"sort-arrows",on:{"click":function($event){return _vm.handleSortClick(i)}}},[_c('v-icon',{class:{'dir-up': true, focus: _vm.sortType[i] === 1},attrs:{"icon":"down-wide"}}),_vm._v(" "),_c('v-icon',{class:{focus: _vm.sortType[i] === -1},attrs:{"icon":"down-wide"}})],1):_vm._e()])])})],2)]),_vm._v(" "),_c('tbody',[(!_vm.source.length)?_c('tr',{staticClass:"no-data-row"},[_c('td',{attrs:{"colspan":_vm.columns.length}},[_vm._v(_vm._s(_vm.emptyText || '暂无数据'))])]):_vm._e(),_vm._v(" "),_vm._l((_vm.showed),function(row,i){return (_vm.simple || (i >= _vm.slice[0] && i < _vm.slice[1]))?_c('tr',{class:{focus: row.focused},on:{"click":function($event){return _vm.$emit('click-row', row)},"dblclick":function($event){return _vm.$emit('dbl-click-row', row)}}},[(_vm.checkbox)?_c('td',{on:{"click":function($event){$event.stopPropagation();}}},[_c('label',{staticClass:"v-checkbox"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.selected),expression:"selected"}],attrs:{"type":"checkbox"},domProps:{"value":i,"checked":Array.isArray(_vm.selected)?_vm._i(_vm.selected,i)>-1:(_vm.selected)},on:{"change":function($event){var $$a=_vm.selected,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=i,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.selected=$$a.concat([$$v]));}else {$$i>-1&&(_vm.selected=$$a.slice(0,$$i).concat($$a.slice($$i+1)));}}else {_vm.selected=$$c;}}}}),_vm._v(" "),_c('span',[_vm._v(_vm._s(_vm.checkboxColumn ? row[_vm.checkboxColumn] : (i + 1)))])])]):_vm._e(),_vm._v(" "),_vm._l((_vm.columns),function(column){return _c('td',{class:column.cssClass},[_vm._t(column.prop,[_vm._v(_vm._s(_vm.filterSlot(row, column)))],{"value":row})],2)})],2):_vm._e()})],2)])])]),_vm._v(" "),(!_vm.simple && _vm.source.length)?_c('div',{staticClass:"t-footer"},[_c('v-pagination',{attrs:{"total":_vm.total || _vm.showed.length,"page-counts":_vm.pageCounts,"count-of-page":_vm.countOfPage,"simple":_vm.simplePagination,"no-border":_vm.paginationNoBorder},on:{"update":_vm.updateTable}})],1):_vm._e()])};
   var __vue_staticRenderFns__$n = [];
 
     /* style */
@@ -2350,15 +2435,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Table = normalizeComponent_1(
+    const __vue_component__$n = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$n, staticRenderFns: __vue_staticRenderFns__$n },
       __vue_inject_styles__$n,
       __vue_script__$n,
       __vue_scope_id__$n,
       __vue_is_functional_template__$n,
       __vue_module_identifier__$n,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -2407,15 +2496,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Tooltip = normalizeComponent_1(
+    const __vue_component__$o = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$o, staticRenderFns: __vue_staticRenderFns__$o },
       __vue_inject_styles__$o,
       __vue_script__$o,
       __vue_scope_id__$o,
       __vue_is_functional_template__$o,
       __vue_module_identifier__$o,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -2450,8 +2543,8 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       }
     },
     components: {
-      [Button.name]: Button,
-      [Icon.name]: Icon
+      [__vue_component__$2.name]: __vue_component__$2,
+      [__vue_component__.name]: __vue_component__
     },
     methods: {
       selectFile(ev) {
@@ -2529,15 +2622,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Upload = normalizeComponent_1(
+    const __vue_component__$p = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$p, staticRenderFns: __vue_staticRenderFns__$p },
       __vue_inject_styles__$p,
       __vue_script__$p,
       __vue_scope_id__$p,
       __vue_is_functional_template__$p,
       __vue_module_identifier__$p,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -2556,7 +2653,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       }
     },
     components: {
-      [Icon.name]: Icon
+      [__vue_component__.name]: __vue_component__
     },
     computed: {
       iconType() {
@@ -2607,15 +2704,19 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Message = normalizeComponent_1(
+    const __vue_component__$q = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$q, staticRenderFns: __vue_staticRenderFns__$q },
       __vue_inject_styles__$q,
       __vue_script__$q,
       __vue_scope_id__$q,
       __vue_is_functional_template__$q,
       __vue_module_identifier__$q,
+      false,
+      undefined,
       undefined,
       undefined
     );
@@ -2637,8 +2738,8 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       }
     },
     components: {
-      [Button.name]: Button,
-      [Icon.name]: Icon
+      [__vue_component__$2.name]: __vue_component__$2,
+      [__vue_component__.name]: __vue_component__
     },
     computed: {
       customCls() {
@@ -2690,20 +2791,24 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const Modal = normalizeComponent_1(
+    const __vue_component__$r = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$r, staticRenderFns: __vue_staticRenderFns__$r },
       __vue_inject_styles__$r,
       __vue_script__$r,
       __vue_scope_id__$r,
       __vue_is_functional_template__$r,
       __vue_module_identifier__$r,
+      false,
+      undefined,
       undefined,
       undefined
     );
 
-  const MessageConstructor = Vue.extend(Message);
+  const MessageConstructor = Vue__default['default'].extend(__vue_component__$q);
 
   const Msg = function (option) {
     let instance;
@@ -2753,7 +2858,7 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       };
     }
 
-    const Constructor = Vue.extend(Modal);
+    const Constructor = Vue__default['default'].extend(__vue_component__$r);
     instance = new Constructor({
       data: option
     });
@@ -2792,21 +2897,25 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     
     /* style inject SSR */
     
+    /* style inject shadow dom */
+    
 
     
-    const options = normalizeComponent_1(
+    const __vue_component__$s = /*#__PURE__*/normalizeComponent(
       { render: __vue_render__$s, staticRenderFns: __vue_staticRenderFns__$s },
       __vue_inject_styles__$s,
       __vue_script__$s,
       __vue_scope_id__$s,
       __vue_is_functional_template__$s,
       __vue_module_identifier__$s,
+      false,
+      undefined,
       undefined,
       undefined
     );
 
   let instance;
-  const Indicator = Vue.extend(options);
+  const Indicator = Vue__default['default'].extend(__vue_component__$s);
 
   const Indicator$1 = {
     open() {
@@ -2828,16 +2937,16 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
     if (!Vue || install.installed) return
 
     const Components = [
-      Badge, Button, ButtonGroup, ButtonSend,
-      Checkbox, CheckboxGroup, Col,
-      DatePicker,
-      Icon, Input,
-      Menu,
-      Pagination, Popup, Progress, PureSelect, PwdStrength,
-      Radio, RadioGroup, Row,
-      Search, Select, Switch,
-      Tab, Table, Tooltip,
-      Upload
+      __vue_component__$1, __vue_component__$2, __vue_component__$3, __vue_component__$4,
+      __vue_component__$5, __vue_component__$6, __vue_component__$7,
+      __vue_component__$9,
+      __vue_component__, __vue_component__$a,
+      __vue_component__$b,
+      __vue_component__$c, __vue_component__$d, __vue_component__$e, __vue_component__$8, __vue_component__$f,
+      __vue_component__$g, __vue_component__$h, __vue_component__$i,
+      __vue_component__$j, __vue_component__$k, __vue_component__$l,
+      __vue_component__$m, __vue_component__$n, __vue_component__$o,
+      __vue_component__$p
     ];
 
     Components.forEach(c => Vue.component(c.name, c));
@@ -2858,34 +2967,34 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
 
   const index = { install };
 
-  exports.Badge = Badge;
-  exports.Button = Button;
-  exports.ButtonGroup = ButtonGroup;
-  exports.ButtonSend = ButtonSend;
-  exports.Checkbox = Checkbox;
-  exports.CheckboxGroup = CheckboxGroup;
-  exports.Col = Col;
-  exports.DatePicker = DatePicker;
-  exports.Icon = Icon;
+  exports.Badge = __vue_component__$1;
+  exports.Button = __vue_component__$2;
+  exports.ButtonGroup = __vue_component__$3;
+  exports.ButtonSend = __vue_component__$4;
+  exports.Checkbox = __vue_component__$5;
+  exports.CheckboxGroup = __vue_component__$6;
+  exports.Col = __vue_component__$7;
+  exports.DatePicker = __vue_component__$9;
+  exports.Icon = __vue_component__;
   exports.Indicator = Indicator$1;
-  exports.Input = Input;
-  exports.Menu = Menu;
+  exports.Input = __vue_component__$a;
+  exports.Menu = __vue_component__$b;
   exports.Msg = Msg;
-  exports.Pagination = Pagination;
-  exports.Popup = Popup;
-  exports.Progress = Progress;
-  exports.PureSelect = PureSelect;
-  exports.PwdStrength = PwdStrength;
-  exports.Radio = Radio;
-  exports.RadioGroup = RadioGroup;
-  exports.Row = Row;
-  exports.Search = Search;
-  exports.Select = Select;
-  exports.Switch = Switch;
-  exports.Tab = Tab;
-  exports.Table = Table;
-  exports.Tooltip = Tooltip;
-  exports.Upload = Upload;
+  exports.Pagination = __vue_component__$c;
+  exports.Popup = __vue_component__$d;
+  exports.Progress = __vue_component__$e;
+  exports.PureSelect = __vue_component__$8;
+  exports.PwdStrength = __vue_component__$f;
+  exports.Radio = __vue_component__$g;
+  exports.RadioGroup = __vue_component__$h;
+  exports.Row = __vue_component__$i;
+  exports.Search = __vue_component__$j;
+  exports.Select = __vue_component__$k;
+  exports.Switch = __vue_component__$l;
+  exports.Tab = __vue_component__$m;
+  exports.Table = __vue_component__$n;
+  exports.Tooltip = __vue_component__$o;
+  exports.Upload = __vue_component__$p;
   exports.default = index;
   exports.error = error;
   exports.info = info;
