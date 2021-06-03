@@ -55,8 +55,7 @@ new Vue({
 ```
 - 第三种：在js文件中导入单个vue文件，可以按需引用
 ```
-import 'lovue/src/less/normalize.less'
-import Table from 'lovue/src/components/Table.vue'
+import { Table } from 'lovue'
 
 Vue.component(Table.name, Table)
 

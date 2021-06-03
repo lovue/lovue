@@ -13,7 +13,7 @@ export default {
     preferConst: true,
     exports: 'named'
   }, {
-    format: 'esm',
+    format: 'es',
     file: 'dist/lovue.esm.js',
     globals: {
       vue: 'Vue',
