@@ -61,10 +61,16 @@
         if (tag.custom) return
 
         if (this.tags.findIndex(t => t.name === tag.name) < 0) this.tags.push(tag)
+      },
+      showCandidates() {
+        this.isShowCandidates = false
       }
     },
     mounted() {
-      window.addEventListener('click', () => this.isShowCandidates = false)
+      window.addEventListener('click', this.showCandidates)
+    },
+    beforeDestroy () {
+      window.removeEventListener('click', this.showCandidates)
     }
   }
 </script>

@@ -75,7 +75,7 @@
         this.triggerUpdate()
       },
       toggleAll() {
-        for (let group in this.source) {
+        for (let group of this.source) {
           if (!this.source.hasOwnProperty(group)) continue
 
           this.source[group].selected = this.selectAll
@@ -133,7 +133,7 @@
 //      检查是否全部勾选
       checkSelectAll() {
         let selectAll = true
-        for (let group in this.source) {
+        for (let group of this.source) {
           if (!this.source.hasOwnProperty(group)) continue
 
           if (!this.source[group].selected) {

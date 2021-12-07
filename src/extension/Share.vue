@@ -1,8 +1,8 @@
 <template>
   <div class="v-share">
-    <div class="s-wechat" title="分享至微信" @click.stop="showWechatQrcode = true">
+    <div class="s-wechat" title="分享至微信" @click.stop="isShowWechatQrcode = true">
       <v-icon icon="wechat-o"></v-icon>
-      <div class="qrcode-wrap" v-if="showWechatQrcode" @click.stop>
+      <div class="qrcode-wrap" v-if="isShowWechatQrcode" @click.stop>
         <vue-qrcode :value="url" :size="120" level="H"></vue-qrcode>
         <p class="tip-text">用微信扫码二维码，分享至好友和朋友圈</p>
       </div>
@@ -20,7 +20,7 @@
     name: 'v-share',
     data() {
       return {
-        showWechatQrcode: false
+        isShowWechatQrcode: false
       }
     },
     props: {
@@ -41,10 +41,16 @@
         const url = encodeURIComponent(this.url)
         const shareUrl = `https://connect.qq.com/widget/shareqq/index.html?url=${url}&title=${this.title}`
         window.open(shareUrl)
+      },
+      showWechatQrcode() {
+        this.isShowWechatQrcode = false
       }
     },
     mounted() {
-      window.addEventListener('click', () => this.showWechatQrcode = false)
+      window.addEventListener('click', this.showWechatQrcode)
+    },
+    beforeDestroy () {
+      window.removeEventListener('click', this.showWechatQrcode)
     }
   }
 </script>

@@ -182,6 +182,11 @@
           this.isShowCandidates = false
         }, 400)
       },
+      clickHandler() {
+        // 当点击组件之外的区域（包括其他Select组件）时，隐藏下拉列表；点击组件自身时不做任何处理
+        if (!this.selfClicked) this.hideCandidates()
+        this.selfClicked = false
+      },
       async updateScrollbar() {
         await this.$nextTick()
         const focusElem = this.$el.querySelector('.candidates .i-title.focus')
@@ -247,14 +252,13 @@
       }
     },
     mounted() {
-      window.addEventListener('click', () => {
-        // 当点击组件之外的区域（包括其他Select组件）时，隐藏下拉列表；点击组件自身时不做任何处理
-        if (!this.selfClicked) this.hideCandidates()
-        this.selfClicked = false
-      })
+      window.addEventListener('click', this.clickHandler)
 
       this.listElem = this.$el.querySelector('.candidates .list')
       this.calcCandidatesHeight()
+    },
+    beforeDestroy() {
+      window.removeEventListener('click', this.clickHandler)
     }
   }
 </script>

@@ -192,6 +192,11 @@
           this.bShowPicker = false
         }, 400)
       },
+      clickHandler() {
+        // 当点击组件之外的区域（包括其他DatePicker组件）时，隐藏日期选择框；点击组件自身时不做任何处理
+        if (!this.selfClicked) this.hidePicker()
+        this.selfClicked = false
+      },
       selectDay(i, j) {
         let d = this.days[(i - 1) * 7 + (j - 1)]
         if (d.month === 0 && d.text === this.day) return
@@ -247,11 +252,10 @@
       }
     },
     mounted() {
-      window.addEventListener('click', () => {
-        // 当点击组件之外的区域（包括其他DatePicker组件）时，隐藏日期选择框；点击组件自身时不做任何处理
-        if (!this.selfClicked) this.hidePicker()
-        this.selfClicked = false
-      })
+      window.addEventListener('click', this.clickHandler)
+    },
+    beforeDestroy() {
+      window.removeEventListener('click', this.clickHandler)
     }
   }
 

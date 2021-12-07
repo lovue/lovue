@@ -87,6 +87,10 @@
           this.isShowCandidates = false
         }, 400)
       },
+      clickHandler() {
+        if (!this.selfClicked) this.hideCandidates()
+        this.selfClicked = false
+      },
       async updateScrollbar() {
         await this.$nextTick()
         const focusElem = this.$el.querySelector('.candidates .c-item.focus')
@@ -97,13 +101,13 @@
       },
     },
     mounted() {
-      window.addEventListener('click', () => {
-        if (!this.selfClicked) this.hideCandidates()
-        this.selfClicked = false
-      })
+      window.addEventListener('click', this.clickHandler)
 
       this.candidatesElem = this.$el.querySelector('.candidates')
       this.calcCandidatesHeight()
+    },
+    beforeDestroy() {
+      window.removeEventListener('click', this.clickHandler)
     }
   }
 </script>

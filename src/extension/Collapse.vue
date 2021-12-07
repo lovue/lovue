@@ -73,7 +73,10 @@
       }
     },
     created() {
-      if (!this.panels) return this.items = []
+      if (!this.panels) {
+        this.items = []
+        return
+      }
 
       this.items = this.panels.map(panel => {
         const $panel = Object.assign({}, panel)
