@@ -81,7 +81,10 @@ const lovueEx = (function (exports) {
       }
     },
     created() {
-      if (!this.panels) return this.items = []
+      if (!this.panels) {
+        this.items = [];
+        return
+      }
 
       this.items = this.panels.map(panel => {
         const $panel = Object.assign({}, panel);
@@ -929,6 +932,11 @@ const lovueEx = (function (exports) {
           this.isShowCandidates = false;
         }, 400);
       },
+      clickHandler() {
+        // 当点击组件之外的区域（包括其他Select组件）时，隐藏下拉列表；点击组件自身时不做任何处理
+        if (!this.selfClicked) this.hideCandidates();
+        this.selfClicked = false;
+      },
       async updateScrollbar() {
         await this.$nextTick();
         const focusElem = this.$el.querySelector('.candidates .i-title.focus');
@@ -994,14 +1002,13 @@ const lovueEx = (function (exports) {
       }
     },
     mounted() {
-      window.addEventListener('click', () => {
-        // 当点击组件之外的区域（包括其他Select组件）时，隐藏下拉列表；点击组件自身时不做任何处理
-        if (!this.selfClicked) this.hideCandidates();
-        this.selfClicked = false;
-      });
+      window.addEventListener('click', this.clickHandler);
 
       this.listElem = this.$el.querySelector('.candidates .list');
       this.calcCandidatesHeight();
+    },
+    beforeDestroy() {
+      window.removeEventListener('click', this.clickHandler);
     }
   };
 
@@ -1289,10 +1296,16 @@ const lovueEx = (function (exports) {
         if (tag.custom) return
 
         if (this.tags.findIndex(t => t.name === tag.name) < 0) this.tags.push(tag);
+      },
+      showCandidates() {
+        this.isShowCandidates = false;
       }
     },
     mounted() {
-      window.addEventListener('click', () => this.isShowCandidates = false);
+      window.addEventListener('click', this.showCandidates);
+    },
+    beforeDestroy () {
+      window.removeEventListener('click', this.showCandidates);
     }
   };
 

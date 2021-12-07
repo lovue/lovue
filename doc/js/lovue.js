@@ -654,6 +654,10 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
           this.isShowCandidates = false;
         }, 400);
       },
+      clickHandler() {
+        if (!this.selfClicked) this.hideCandidates();
+        this.selfClicked = false;
+      },
       async updateScrollbar() {
         await this.$nextTick();
         const focusElem = this.$el.querySelector('.candidates .c-item.focus');
@@ -664,13 +668,13 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       },
     },
     mounted() {
-      window.addEventListener('click', () => {
-        if (!this.selfClicked) this.hideCandidates();
-        this.selfClicked = false;
-      });
+      window.addEventListener('click', this.clickHandler);
 
       this.candidatesElem = this.$el.querySelector('.candidates');
       this.calcCandidatesHeight();
+    },
+    beforeDestroy() {
+      window.removeEventListener('click', this.clickHandler);
     }
   };
 
@@ -863,6 +867,11 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
           this.bShowPicker = false;
         }, 400);
       },
+      clickHandler() {
+        // 当点击组件之外的区域（包括其他DatePicker组件）时，隐藏日期选择框；点击组件自身时不做任何处理
+        if (!this.selfClicked) this.hidePicker();
+        this.selfClicked = false;
+      },
       selectDay(i, j) {
         let d = this.days[(i - 1) * 7 + (j - 1)];
         if (d.month === 0 && d.text === this.day) return
@@ -918,11 +927,10 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       }
     },
     mounted() {
-      window.addEventListener('click', () => {
-        // 当点击组件之外的区域（包括其他DatePicker组件）时，隐藏日期选择框；点击组件自身时不做任何处理
-        if (!this.selfClicked) this.hidePicker();
-        this.selfClicked = false;
-      });
+      window.addEventListener('click', this.clickHandler);
+    },
+    beforeDestroy() {
+      window.removeEventListener('click', this.clickHandler);
     }
   };
 
@@ -1921,6 +1929,11 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
           this.isShowCandidates = false;
         }, 400);
       },
+      clickHandler() {
+        // 当点击组件之外的区域（包括其他Select组件）时，隐藏下拉列表；点击组件自身时不做任何处理
+        if (!this.selfClicked) this.hideCandidates();
+        this.selfClicked = false;
+      },
       async updateScrollbar() {
         await this.$nextTick();
         const focusElem = this.$el.querySelector('.candidates .i-title.focus');
@@ -1986,14 +1999,13 @@ const lovue = (function (exports, normalize_less, Icon_less, Badge_less, Button_
       }
     },
     mounted() {
-      window.addEventListener('click', () => {
-        // 当点击组件之外的区域（包括其他Select组件）时，隐藏下拉列表；点击组件自身时不做任何处理
-        if (!this.selfClicked) this.hideCandidates();
-        this.selfClicked = false;
-      });
+      window.addEventListener('click', this.clickHandler);
 
       this.listElem = this.$el.querySelector('.candidates .list');
       this.calcCandidatesHeight();
+    },
+    beforeDestroy() {
+      window.removeEventListener('click', this.clickHandler);
     }
   };
 
