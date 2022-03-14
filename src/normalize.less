@@ -1,0 +1,346 @@
+:root {
+  -moz-tab-size: 4;
+  tab-size: 4;
+
+  --border-radius: 4px;
+  --main-color: var(--grey-10);
+  --second-color: var(--grey-7);
+  --bg-color: var(--grey-3);
+  --border-color: var(--grey-4);
+  --disabled-color: var(--grey-5);
+  --blue-color: var(--blue-5);
+  --hover-blue: var(--blue-4);
+  --active-blue: var(--blue-6);
+  --placeholder-color: #757575;
+  --login-placeholder-color: var(--grey-6);
+  --table-highlight: var(--green-2);
+  --success-color: var(--green-6);
+  --warn-color: var(--yellow-6);
+  --error-color: var(--red-6);
+  --hover-error: var(--red-5);
+  --active-error: var(--red-7);
+  --pink-color: var(--pink-6);
+  --light-pink: var(--pink-4);
+  --black: #000;
+  --light-black: rgba(0, 0, 0, .65);
+  --white: #fff;
+  --light-white: rgba(255, 255, 255, .65);
+  --tiny-font: 1.2rem;
+  --small-font: 1.4rem;
+  --normal-font: 1.6rem;
+  --big-font: 1.8rem;
+  --title-font: 2em;
+  --code-font: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  --body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "PingFang SC Regular", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", SimSun, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --bar-height: 50px;
+  --min-width: 960px;
+
+  --unit: 8px;
+  --2unit: 16px;
+  --3unit: 24px;
+  --4unit: 32px;
+  --5unit: 40px;
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+  max-height: 999999px;
+}
+
+html {
+  background: var(--white);
+  font-family: var(--body-font);
+  font-size: 62.5%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  line-height: 1.15;
+}
+
+body {
+  margin: 0;
+}
+
+body {
+  color: var(--main-color);
+  font-size: var(--normal-font);
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+a {
+  //color: #00B5E5;
+  color: inherit;
+  cursor: pointer;
+}
+
+a,
+a:focus,
+a:hover,
+a:active {
+  outline: 0;
+  text-decoration: none;
+}
+
+p {
+  text-indent: 2em;
+}
+
+:focus {
+  outline: 0;
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 var(--black);
+}
+
+select,
+input[type=radio],
+input[type=checkbox] {
+  cursor: pointer;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type=number]:hover,
+input[type=number]:focus {
+  -moz-appearance: inherit;
+}
+
+/*input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}*/
+
+input,
+select,
+textarea,
+button,
+optgroup {
+  font-family: inherit;
+  outline: none;
+  margin: 0;
+}
+
+input:required:invalid,
+input:focus:invalid,
+textarea:required:invalid,
+textarea:focus:invalid {
+  box-shadow: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+textarea {
+  resize: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+pre, code, kbd, samp {
+  font-family: var(--code-font);
+  font-size: 1em;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+ul, ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+small {
+  color: var(--main-color);
+}
+
+svg {
+  color: inherit;
+  vertical-align: middle;
+  /* 通过设置 color 来改变 SVG 的颜色/fill */
+  fill: currentColor;
+  /* path 和 stroke 溢出 viewBox 部分在 IE 下会显示
+     normalize.css 中也包含这行 */
+  overflow: hidden;
+}
+
+legend {
+  padding: 0;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+summary {
+  display: list-item;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 4px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .2);
+  background: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .2);
+  background-color: var(--disabled-color);
+
+  &:hover {
+    background-color: var(--second-color);
+  }
+}
+
+:root {
+  //Ant Design Colors
+  --red-1: #fef0ef;
+  --red-2: #fcdbd9;
+  --red-3: #fabeb9;
+  --red-4: #f79992;
+  --red-5: #f46e65;
+  --red-6: #f04134;
+  --red-7: #d73435;
+  --red-8: #bd2636;
+  --red-9: #a31837;
+  --red-10: #880a38;
+  --green-1: #ebf8f2;
+  --green-2: #cfefdf;
+  --green-3: #a7e1c4;
+  --green-4: #76d0a3;
+  --green-5: #3dbd7d;
+  --green-6: #00a854;
+  --green-7: #00924c;
+  --green-8: #007b43;
+  --green-9: #00643b;
+  --green-10: #004c32;
+  --blue-1: #e5f9fc;
+  --blue-2: #c0f0f7;
+  --blue-3: #8ce3f0;
+  --blue-4: #4ad3e8;
+  --blue-5: #00c1de;
+  --blue-6: #00aac7;
+  --blue-7: #0092b0;
+  --blue-8: #007998;
+  --blue-9: #00607f;
+  --blue-10: #004766;
+  --pink-1: #feeff5;
+  --pink-2: #fdd8e7;
+  --pink-3: #fcb8d3;
+  --pink-4: #fa90ba;
+  --pink-5: #f7629e;
+  --pink-6: #f5317f;
+  --pink-7: #dc277d;
+  --pink-8: #c11c7b;
+  --pink-9: #a71278;
+  --pink-10: #8c0776;
+  --orange-1: #fef3eb;
+  --orange-2: #fde3cf;
+  --orange-3: #fccca7;
+  --orange-4: #faaf76;
+  --orange-5: #f78e3d;
+  --orange-6: #f56a00;
+  --orange-7: #d75000;
+  --orange-8: #b93600;
+  --orange-9: #991b00;
+  --orange-10: #7a0000;
+  --purple-1: #f4f3fd;
+  --purple-2: #e4e2fa;
+  --purple-3: #cfcaf6;
+  --purple-4: #b3acf2;
+  --purple-5: #948aec;
+  --purple-6: #7265e6;
+  --purple-7: #6252cd;
+  --purple-8: #533eb4;
+  --purple-9: #42299a;
+  --purple-10: #321580;
+  --yellow-1: #fffaeb;
+  --yellow-2: #fff3cf;
+  --yellow-3: #ffe9a7;
+  --yellow-4: #ffdd76;
+  --yellow-5: #ffce3d;
+  --yellow-6: #ffbf00;
+  --yellow-7: #e09a00;
+  --yellow-8: #c17500;
+  --yellow-9: #a04f00;
+  --yellow-10: #802800;
+  --cyan-1: #ebf8f9;
+  --cyan-2: #cfedf0;
+  --cyan-3: #a7dfe3;
+  --cyan-4: #76cdd3;
+  --cyan-5: #3db8c1;
+  --cyan-6: #00a2ae;
+  --cyan-7: #008997;
+  --cyan-8: #00707f;
+  --cyan-9: #005667;
+  --cyan-10: #003c4e;
+  --grey-1: #fbfbfb;
+  --grey-2: #f7f7f7;
+  --grey-3: #f5f5f5;
+  --grey-4: #e9e9e9;
+  --grey-5: #d9d9d9;
+  --grey-6: #bfbfbf;
+  --grey-7: #919191;
+  --grey-8: #5a5a5a;
+  --grey-9: #404040;
+  --grey-10: #222222;
+}

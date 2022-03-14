@@ -1,17 +1,34 @@
 {
   "name": "lovue",
-  "private": true,
   "version": "0.0.0",
+  "description": "Love Vue: UI components for Vue",
+  "types": "src/index.d.ts",
+  "module": "dist/lovue.es.js",
+  "repository": {
+    "url": "https://github.com/loliconer/lovue.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/loliconer/lovue/issues"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview"
   },
+  "author": "loliconer",
+  "license": "MIT",
   "dependencies": {
     "vue": "^3.2.25"
   },
   "devDependencies": {
+    "@types/node": "^17.0.21",
     "@vitejs/plugin-vue": "^2.2.0",
+    "less": "^4.1.2",
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vue-tsc": "^0.32.1"
