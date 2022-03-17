@@ -5,11 +5,13 @@ interface IconStyles {
   cursor?: string
 }
 
-const props = defineProps<{
+export interface IconProps {
   icon: string
-  size: string
-  cursor: boolean
-}>()
+  size?: string
+  cursor?: boolean
+}
+
+const props = defineProps<IconProps>()
 
 const styles = computed(() => {
   const __styles__: IconStyles = {}
@@ -23,7 +25,7 @@ const styles = computed(() => {
 </script>
 
 <template>
-  <svg :class="`v-icon v-icon-${icon}`" :style="styles" :width="size || 20" :height="size || 20" @click="$emit('click')">
+  <svg :class="`lv-icon lv-icon-${icon}`" :style="styles" :width="size || 20" :height="size || 20" @click="$emit('click')">
     <use :xlink:href="`#icon-${icon}`"></use>
   </svg>
 </template>
@@ -35,7 +37,7 @@ const styles = computed(() => {
   }
 }
 
-.v-icon-refresh {
+.lv-icon-refresh {
   &.loading {
     animation: rotate-reverse 2s linear infinite;
   }

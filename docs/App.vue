@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import ComponentIcon from "./ComponentIcon.vue"
+import ComponentButton from './ComponentButton.vue'
 </script>
 
 <template>
   <div class="container">
     <aside class="l aside"></aside>
     <div class="r main">
-      <ComponentIcon />
+      <ComponentIcon/>
+      <ComponentButton/>
     </div>
   </div>
 </template>
@@ -55,6 +57,7 @@ import ComponentIcon from "./ComponentIcon.vue"
 }
 
 pre {
+  display: inline-block;
   box-shadow: 1px 1px 0.5em black inset;
   padding: 1em;
   background: hsl(30, 20%, 25%);
