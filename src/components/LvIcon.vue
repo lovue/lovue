@@ -5,7 +5,7 @@ interface IconStyles {
   cursor?: string
 }
 
-export interface IconProps {
+interface IconProps {
   icon: string
   size?: string
   cursor?: boolean

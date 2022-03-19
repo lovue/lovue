@@ -10,10 +10,10 @@ const loading2 = ref(false)
 <ComponentDemo id="toButton" title="LvButton">
   <div class="usage">
       <pre><code>// Props
-  type?: undefined | 'submit' | 'reset' | 'menu'
-  theme?: undefined | 'ghost' | 'text'
-  size?: undefined | 'lg' | 'sm'
-  disable?: boolean
+  type?: 'submit' | 'reset' | undefined
+  theme?: 'ghost' | 'text' | undefined
+  size?: 'lg' | 'sm' | undefined
+  disabled?: boolean
   icon?: string
   loading?: boolean
   submit?: boolean
