@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ComponentDemo from './ComponentDemo.vue'
+import { DropdownItem } from '../src/components/LvDropdown.vue'
 
 const items = [
   { text: '个人中心', icon: 'home' },
@@ -8,7 +9,7 @@ const items = [
   { text: '退出登录', icon: 'logout' }
 ]
 
-function clickItem (item) {
+function clickItem (item: DropdownItem) {
   window.alert(item.text)
 }
 </script>
@@ -33,10 +34,10 @@ function clickItem (item) {
     </div>
 
     <div class="controls">
-      <LvDropdown title="左对齐" icon="tool" :items="items" @click-item="clickItem"/>
-      <LvDropdown style="margin-left: 100px;" title="右对齐" align="right" :items="items"/>
-      <LvDropdown style="margin-left: 100px;" title="底部对齐" align="bottom" :items="items"/>
-      <LvDropdown style="margin-left: 100px;" title="底部右对齐" align="bottom-right" :items="items"/>
+      <LvDropdown title="左对齐" icon="tool" :items="items" @click-item="clickItem" />
+      <LvDropdown style="margin-left: 100px;" title="右对齐" align="right" :items="items" />
+      <LvDropdown style="margin-left: 100px;" title="底部对齐" align="bottom" :items="items" />
+      <LvDropdown style="margin-left: 100px;" title="底部右对齐" align="bottom-right" :items="items" />
     </div>
   </ComponentDemo>
 </template>

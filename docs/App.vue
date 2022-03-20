@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import ComponentIcon from "./ComponentIcon.vue"
+import ComponentIcon from './ComponentIcon.vue'
 import ComponentButton from './ComponentButton.vue'
 import ComponentDropdown from './ComponentDropdown.vue'
 
@@ -31,24 +31,35 @@ function createMenu() {
   const list = document.createElement('ul')
   list.classList.add('list')
   const frag = document.createDocumentFragment()
-  const offsetTops = []
+  const offsetTops: number[] = []
 
   panels.forEach(panel => {
+    if (!(panel instanceof HTMLElement)) return
+
     offsetTops.push(panel.offsetTop)
 
     const li = document.createElement('li')
     const a = document.createElement('a')
     a.href = `#${panel.id}`
-    a.innerHTML = panel.firstChild.innerHTML
+
+    if (panel.firstElementChild !== null) {
+      a.innerHTML = panel.firstElementChild.innerHTML
+    }
+
     li.appendChild(a)
     frag.appendChild(li)
   })
   list.appendChild(frag)
-  aside.appendChild(list)
+
+  if (aside !== null) {
+    aside.appendChild(list)
+  }
+
   return offsetTops
 }
 
-function updateLinks(links) {
+// eslint-disable-next-line no-undef
+function updateLinks(links: NodeListOf<Element>) {
   let hash = location.hash
 
   links.forEach(link => {
@@ -62,11 +73,11 @@ function updateLinks(links) {
 
 <template>
   <div class="container">
-    <aside class="l aside"></aside>
+    <aside class="l aside" />
     <div class="r main">
-      <ComponentIcon/>
-      <ComponentButton/>
-      <ComponentDropdown/>
+      <ComponentIcon />
+      <ComponentButton />
+      <ComponentDropdown />
     </div>
   </div>
 </template>

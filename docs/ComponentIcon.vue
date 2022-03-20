@@ -13,7 +13,7 @@ import ComponentDemo from './ComponentDemo.vue'
 </code></pre>
     </div>
     <div class="controls">
-      <LvIcon icon="close" size="24" cursor/>
+      <LvIcon icon="close" size="24" cursor />
     </div>
   </ComponentDemo>
 </template>

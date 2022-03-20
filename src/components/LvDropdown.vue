@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import LvIcon from './LvIcon.vue'
 
-interface DropdownItem {
+export interface DropdownItem {
   type?: 'link' | 'divider'
   icon?: string
   text?: string
@@ -29,14 +29,14 @@ function clickItem (item: DropdownItem) {
 <template>
   <div class="lv-dropdown">
     <div class="lv-dropdown__trigger">
-      <LvIcon :icon="icon" v-if="icon"/>
+      <LvIcon :icon="icon" v-if="icon" />
       <span>{{ title }}</span>
     </div>
     <div class="lv-dropdown__items" :class="align ? `align-${align}` : ''">
-      <template v-for="item of items">
-        <div class="lv-dropdown__divider" v-if="item.type === 'divider'"></div>
-        <div class="lv-dropdown__item" v-else @click="clickItem(item)">
-          <LvIcon :icon="item.icon" v-if="item.icon"/>
+      <template v-for="(item, i) of items">
+        <div class="lv-dropdown__divider" :key="`item${i}`" v-if="item.type === 'divider'" />
+        <div class="lv-dropdown__item" :key="`item${i}`" v-else @click="clickItem(item)">
+          <LvIcon :icon="item.icon" v-if="item.icon" />
           <span>{{ item.text }}</span>
         </div>
       </template>

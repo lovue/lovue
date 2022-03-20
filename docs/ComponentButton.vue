@@ -43,7 +43,7 @@ const loading2 = ref(false)
     </div>
     <div class="controls">
       <LvButton loading>Loading Button</LvButton>
-      <LvButton loading></LvButton>
+      <LvButton loading />
       <LvButton :loading="loading1" icon="download" @click="loading1 = !loading1">Click to loading</LvButton>
       <LvButton :loading="loading2" @click="loading2 = !loading2">Click to loading</LvButton>
     </div>

@@ -12,6 +12,7 @@ interface IconProps {
 }
 
 const props = defineProps<IconProps>()
+defineEmits(['click'])
 
 const styles = computed(() => {
   const __styles__: IconStyles = {}
@@ -26,7 +27,7 @@ const styles = computed(() => {
 
 <template>
   <svg :class="`lv-icon lv-icon-${icon}`" :style="styles" :width="size || 20" :height="size || 20" @click="$emit('click')">
-    <use :xlink:href="`#icon-${icon}`"></use>
+    <use :href="`#icon-${icon}`" />
   </svg>
 </template>
 

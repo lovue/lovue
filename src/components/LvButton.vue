@@ -33,9 +33,9 @@ function click () {
 
 <template>
   <button class="lv-button" :class="customClass" :type="type" :disabled="disabled" @click="click">
-    <LvIcon :icon="icon" v-if="!!icon && !loading"/>
-    <LvIcon icon="refresh" :class="{loading: loading}" v-if="loading"/>
-    <slot></slot>
+    <LvIcon :icon="icon" v-if="!!icon && !loading" />
+    <LvIcon icon="refresh" :class="{loading: loading}" v-if="loading" />
+    <slot />
   </button>
 </template>
 
