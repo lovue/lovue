@@ -49,7 +49,7 @@ function click () {
   border-radius: var(--border-radius);
   height: var(--4unit);
   user-select: none;
-  transition: all .3s cubic-bezier(.645, .045, .355, 1);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   cursor: pointer;
 
   .lv-icon {
@@ -134,7 +134,7 @@ function click () {
   }
 
   &[disabled] {
-    opacity: .5;
+    opacity: 0.5;
     cursor: not-allowed;
   }
 }

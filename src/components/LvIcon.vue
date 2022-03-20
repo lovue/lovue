@@ -34,7 +34,7 @@ const styles = computed(() => {
 <style lang="less">
 @keyframes rotate-reverse {
   100% {
-    transform: rotate(-360deg)
+    transform: rotate(-360deg);
   }
 }
 

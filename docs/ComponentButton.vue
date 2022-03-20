@@ -49,6 +49,3 @@ const loading2 = ref(false)
     </div>
   </ComponentDemo>
 </template>
-
-<style lang="less" scoped>
-</style>

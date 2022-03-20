@@ -65,14 +65,14 @@ function clickItem (item: DropdownItem) {
     font-size: var(--small-font);
     line-height: 1.5;
     color: var(--light-black);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
     background-clip: padding-box;
     border-radius: var(--border-radius);
     padding: 4px 0;
     background-color: var(--white);
     opacity: 0;
     visibility: hidden;
-    transition: all .3s;
+    transition: all 0.3s;
     position: absolute;
 
     &.align-right {
@@ -99,7 +99,7 @@ function clickItem (item: DropdownItem) {
     white-space: nowrap;
     padding: 5px 12px;
     line-height: 22px;
-    transition: all .3s;
+    transition: all 0.3s;
     cursor: pointer;
 
     .lv-icon {

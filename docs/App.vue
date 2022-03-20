@@ -85,7 +85,7 @@ function updateLinks(links: NodeListOf<Element>) {
 <style lang="less">
 .container {
   > .l {
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%), 0 3px 1px -2px rgb(0 0 0 / 20%);
     position: fixed;
     top: 0;
     width: 300px;
@@ -129,8 +129,8 @@ pre {
   display: inline-block;
   box-shadow: 1px 1px 0.5em black inset;
   padding: 1em;
-  background: hsl(30, 20%, 25%);
-  color: hsl(350, 40%, 70%);
+  background: hsl(30deg 20% 25%);
+  color: hsl(350deg 40% 70%);
   border-radius: 0.5em;
 }
 </style>

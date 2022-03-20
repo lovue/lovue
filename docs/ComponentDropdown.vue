@@ -41,6 +41,3 @@ function clickItem (item: DropdownItem) {
     </div>
   </ComponentDemo>
 </template>
-
-<style lang="less" scoped>
-</style>
