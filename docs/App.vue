@@ -3,6 +3,7 @@ import { onMounted } from 'vue'
 import ComponentIcon from './ComponentIcon.vue'
 import ComponentButton from './ComponentButton.vue'
 import ComponentDropdown from './ComponentDropdown.vue'
+import ComponentInput from './ComponentInput.vue'
 
 onMounted(() => {
   setTimeout(() => {
@@ -78,6 +79,7 @@ function updateLinks(links: NodeListOf<Element>) {
       <ComponentIcon />
       <ComponentButton />
       <ComponentDropdown />
+      <ComponentInput />
     </div>
   </div>
 </template>

@@ -19,7 +19,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build && vue-docgen-web-types",
     "preview": "vite preview",
-    "update-web-types": "vue-docgen-web-types",
+    "web-types": "vue-docgen-web-types",
     "lint-css": "stylelint '**/*.vue'"
   },
   "author": "loliconer",
