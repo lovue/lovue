@@ -28,8 +28,8 @@ const model5 = ref(true)
 <template>
   <ComponentDemo id="toOptions" title="LvOptions">
     <div class="usage">
-      <pre><code>
-interface OptionItem {
+      <pre><code>// types
+export interface OptionItem {
   text: string
   value: number | string | undefined
   disabled?: boolean

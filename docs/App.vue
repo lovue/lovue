@@ -133,8 +133,10 @@ pre {
   display: inline-block;
   box-shadow: 1px 1px 0.5em black inset;
   padding: 1em;
-  background: hsl(30deg 20% 25%);
-  color: hsl(350deg 40% 70%);
+  //background: hsl(30deg 20% 25%);
+  //color: hsl(350deg 40% 70%);
+  background: #282c34;
+  color: #66d9ef;
   border-radius: 0.5em;
 }
 </style>

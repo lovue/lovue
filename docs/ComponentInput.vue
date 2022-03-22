@@ -14,7 +14,8 @@ function enter (value: string | number) {
 <template>
   <ComponentDemo id="toInput" title="LvInput">
     <div class="usage">
-      <pre><code>// Props
+      <pre><code>// types
+const props = defineProps&lt;{
   modelValue: string | number | null
   label?: string
   type?: string
@@ -32,9 +33,8 @@ function enter (value: string | number) {
   max?: number
   minlength?: number
   maxlength?: number
-
-// Emit
-  enter
+}&gt;()
+const emit = defineEmits(['update:modelValue', 'enter'])
       </code></pre>
     </div>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 
-interface OptionItem {
+export interface OptionItem {
   text: string
   value: number | string | undefined
   disabled?: boolean

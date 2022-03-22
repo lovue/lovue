@@ -1,21 +1,17 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-interface IconStyles {
-  cursor?: string
-}
-
-interface IconProps {
+const props = defineProps<{
   icon: string
   size?: string
   cursor?: boolean
-}
-
-const props = defineProps<IconProps>()
+}>()
 defineEmits(['click'])
 
 const styles = computed(() => {
-  const __styles__: IconStyles = {}
+  const __styles__: {
+    cursor?: string
+  } = {}
 
   if (props.cursor) {
     __styles__.cursor = 'pointer'

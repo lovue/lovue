@@ -17,19 +17,21 @@ function clickItem (item: DropdownItem) {
 <template>
   <ComponentDemo id="toDropdown" title="LvDropdown">
     <div class="usage">
-      <pre><code>// Props
+      <pre><code>// types
+export interface DropdownItem {
+  type?: 'link' | 'divider'
+  icon?: string
+  text?: string
+  url?: string
+}
+
+defineProps&lt;{
   title: string
   icon?: string
-  align?: 'right' | 'bottom' | undefined
-  items: {
-    type?: 'link' | 'divider'
-    icon?: string
-    text?: string
-    url?: string
-  }[]
-
-// Emit
-  click-item
+  align?: 'right' | 'bottom' | 'bottom-right' | undefined
+  items: DropdownItem[]
+}&gt;()
+const emit = defineEmits(['clickItem'])
       </code></pre>
     </div>
 

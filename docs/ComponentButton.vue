@@ -9,17 +9,19 @@ const loading2 = ref(false)
 <template>
   <ComponentDemo id="toButton" title="LvButton">
     <div class="usage">
-      <pre><code>// Props
-  type?: 'submit' | 'reset' | undefined
-  theme?: 'ghost' | 'text' | undefined
-  size?: 'lg' | 'sm' | undefined
+      <pre><code>// types
+type ButtonType = 'button' | 'submit' | 'reset' | undefined
+
+const props = defineProps&lt;{
+  type?: ButtonType
+  theme?: string
+  size?: string
   disabled?: boolean
   icon?: string
   loading?: boolean
   submit?: boolean
-
-// Emit
-  click
+}&gt;()
+const emit = defineEmits(['click'])
       </code></pre>
     </div>
 
