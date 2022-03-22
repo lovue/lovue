@@ -40,17 +40,10 @@ function click () {
 </template>
 
 <style lang="less">
+@import (reference) "../Mixins";
+
 .lv-button {
-  touch-action: manipulation;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 0 var(--2unit);
-  font-size: var(--small-font);
-  border-radius: var(--border-radius);
-  height: var(--4unit);
-  user-select: none;
-  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  cursor: pointer;
+  .btn;
 
   .lv-icon {
     width: 14px;
@@ -60,60 +53,19 @@ function click () {
   }
 
   &.lv-button-ghost {
-    border-color: var(--border-color);
-    background-color: var(--white);
-
-    &:hover {
-      color: var(--hover-blue);
-      border-color: var(--hover-blue);
-    }
-
-    &:active {
-      color: var(--active-blue);
-      border-color: var(--active-blue);
-    }
+    .btn-ghost;
   }
 
   &.lv-button-primary {
-    color: var(--white);
-    background-color: var(--blue-color);
-
-    &:hover {
-      background-color: var(--hover-blue);
-    }
-
-    &:active {
-      background-color: var(--active-blue);
-    }
+    .btn-primary;
   }
 
   &.lv-button-danger {
-    color: var(--white);
-    background-color: var(--error-color);
-    border-color: var(--error-color);
-
-    &:hover {
-      background-color: var(--hover-error);
-      border-color: var(--hover-error);
-    }
-
-    &:active {
-      background-color: var(--active-error);
-      border-color: var(--active-error);
-    }
+    .btn-danger;
   }
 
   &.lv-button-text {
-    background-color: transparent;
-    border: none;
-
-    &:hover {
-      color: var(--hover-blue);
-    }
-
-    &:active {
-      color: var(--active-blue);
-    }
+    .btn-text
   }
 
   &.lv-button-lg {
@@ -131,11 +83,6 @@ function click () {
     font-size: var(--tiny-font);
     padding: 0 var(--unit);
     height: var(--3unit);
-  }
-
-  &[disabled] {
-    opacity: 0.5;
-    cursor: not-allowed;
   }
 }
 </style>

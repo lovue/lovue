@@ -19,9 +19,13 @@ const items3 = [
 ]
 
 const model1 = ref('vue')
+const model12 = ref('angular')
 const model2 = ref(300)
-const model3 = ref(['vue', 'angular'])
-const model4 = ref([300])
+const model22 = ref(200)
+const model3 = ref(['vue', 'react'])
+const model32 = ref(['vue', 'angular'])
+const model4 = ref([100, 300])
+const model42 = ref([200, 300])
 const model5 = ref(true)
 </script>
 
@@ -51,26 +55,26 @@ const emit = defineEmits(['update:modelValue'])
     <div class="controls">
       <div class="option-value">{{ model1 }}</div>
       <LvOptions type="radio" :items="items1" name="framework" v-model="model1" />
-      <LvOptions type="radio" :items="items1" v-model="model1" reverse />
-      <LvOptions type="radio" :items="items1" v-model="model1" vertical />
+      <LvOptions type="radio" :items="items1" v-model="model12" reverse />
+      <LvOptions type="radio" :items="items1" v-model="model12" vertical />
       <LvOptions type="radio" :items="items1" v-model="model1" vertical reverse />
     </div>
     <div class="controls">
       <div class="option-value">{{ model2 }}</div>
       <LvOptions type="radio" :items="items2" v-model="model2" shape="button" />
-      <LvOptions type="radio" :items="items2" v-model="model2" shape="button" vertical />
+      <LvOptions type="radio" :items="items2" v-model="model22" shape="button" vertical />
     </div>
     <div class="controls">
       <div class="option-value">{{ model3 }}</div>
       <LvOptions type="checkbox" :items="items1" name="lib" v-model="model3" />
-      <LvOptions type="checkbox" :items="items1" v-model="model3" reverse />
+      <LvOptions type="checkbox" :items="items1" v-model="model32" reverse />
       <LvOptions type="checkbox" :items="items1" v-model="model3" vertical />
-      <LvOptions type="checkbox" :items="items1" v-model="model3" vertical reverse />
+      <LvOptions type="checkbox" :items="items1" v-model="model32" vertical reverse />
     </div>
     <div class="controls">
       <div class="option-value">{{ model4 }}</div>
       <LvOptions type="checkbox" :items="items2" v-model="model4" shape="button" />
-      <LvOptions type="checkbox" :items="items2" v-model="model4" shape="button" vertical />
+      <LvOptions type="checkbox" :items="items2" v-model="model42" shape="button" vertical />
     </div>
     <div class="controls">
       <div class="option-value">{{ model5 }}</div>

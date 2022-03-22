@@ -88,7 +88,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 .native-input, .native-textarea, .native-select {
   font-size: var(--small-font);
   border: 1px solid var(--border-color);

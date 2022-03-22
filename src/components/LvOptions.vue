@@ -75,7 +75,7 @@ function getItemClass (item: OptionItem) {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
 @import (reference) "../Mixins";
 
 .lv-options {
@@ -143,16 +143,8 @@ function getItemClass (item: OptionItem) {
   }
 
   &.lv-option--disabled {
+    opacity: 0.5;
     cursor: not-allowed;
-    color: var(--disabled-color);
-
-    .lv-option__input {
-      border-color: var(--disabled-color);
-
-      &:checked {
-        background-color: var(--disabled-color);
-      }
-    }
   }
 }
 
@@ -218,45 +210,36 @@ function getItemClass (item: OptionItem) {
 }
 
 .lv-option--button {
+  .lv-option__text {
+    .flex-start;
+    .btn;
+  }
+
   .lv-option__input {
     display: none;
 
-    &:checked + .lv-option__text {
-      background-color: var(--blue-color);
-      color: var(--white);
-      border-color: transparent;
-
-      &:hover {
-        background-color: var(--hover-blue);
-      }
-
-      &:active {
-        background-color: var(--active-blue);
-      }
+    &:not(:checked) + .lv-option__text {
+      .btn-ghost;
     }
-  }
 
-  .lv-option__text {
-    .btn;
-    .btn-ghost;
-    .flex-start;
+    &:checked + .lv-option__text {
+      .btn-primary;
+    }
   }
 
   &.lv-option--disabled {
     .lv-option__text {
       cursor: not-allowed;
-      color: var(--disabled-color);
-      border-color: var(--disabled-color);
     }
 
     .lv-option__input {
-      &:checked + .lv-option__text {
-        opacity: 0.5;
-        cursor: not-allowed;
+      &:not(:checked) + .lv-option__text {
+        border-color: var(--disabled-color);
+        color: var(--second-color);
+      }
 
-        &:hover {
-          background-color: var(--blue-color);
-        }
+      &:checked + .lv-option__text {
+        background-color: var(--disabled-blue);
       }
     }
   }

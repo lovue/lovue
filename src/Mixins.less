@@ -161,6 +161,27 @@
   user-select: none;
   transition: all .3s cubic-bezier(.645, .045, .355, 1);
   cursor: pointer;
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+.btn-primary() {
+  color: var(--white);
+  background-color: var(--blue-color);
+
+  &:hover {
+    background-color: var(--hover-blue);
+  }
+
+  &:active {
+    background-color: var(--active-blue);
+  }
+
+  &[disabled] {
+    background-color: var(--disabled-blue);
+  }
 }
 
 .btn-ghost() {
@@ -175,6 +196,44 @@
   &:active {
     color: var(--active-blue);
     border-color: var(--active-blue);
+  }
+
+  &[disabled] {
+    border-color: var(--disabled-color);
+    color: var(--second-color);
+  }
+}
+
+.btn-danger() {
+  color: var(--white);
+  background-color: var(--error-color);
+
+  &:hover {
+    background-color: var(--hover-error);
+  }
+
+  &:active {
+    background-color: var(--active-error);
+  }
+
+  &[disabled] {
+    background-color: var(--disabled-error);
+  }
+}
+
+.btn-text() {
+  background-color: transparent;
+
+  &:hover {
+    color: var(--hover-blue);
+  }
+
+  &:active {
+    color: var(--active-blue);
+  }
+
+  &[disabled] {
+    color: var(--second-color);
   }
 }
 

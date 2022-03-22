@@ -32,6 +32,9 @@ const emit = defineEmits(['click'])
       <LvButton theme="danger">Danger Button</LvButton>
       <LvButton theme="text">Text Button</LvButton>
       <LvButton disabled>Disabled Button</LvButton>
+      <LvButton theme="ghost" disabled>Ghost Disabled Button</LvButton>
+      <LvButton theme="danger" disabled>Danger Disabled Button</LvButton>
+      <LvButton theme="text" disabled>Text Disabled Button</LvButton>
     </div>
     <div class="controls">
       <LvButton size="lg">Large Button</LvButton>
