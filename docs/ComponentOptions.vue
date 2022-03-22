@@ -17,6 +17,9 @@ const items2 = [
 const items3 = [
   { text: 'all', value: undefined }
 ]
+const items4 = [
+  { text: 'all', value: undefined, disabled: true }
+]
 
 const model1 = ref('vue')
 const model12 = ref('angular')
@@ -27,6 +30,7 @@ const model32 = ref(['vue', 'angular'])
 const model4 = ref([100, 300])
 const model42 = ref([200, 300])
 const model5 = ref(true)
+const model6 = ref(false)
 </script>
 
 <template>
@@ -81,6 +85,21 @@ const emit = defineEmits(['update:modelValue'])
       <LvOptions type="checkbox" :items="items3" name="all" v-model="model5" />
       <LvOptions type="checkbox" :items="items3" name="all" v-model="model5" reverse />
       <LvOptions type="checkbox" :items="items3" name="all" v-model="model5" shape="button" />
+    </div>
+    <div class="controls">
+      <div class="option-value">{{ model5 }}</div>
+      <LvOptions type="switch" :items="items3" name="all" v-model="model5" />
+      <LvOptions type="switch" :items="items3" name="all" v-model="model5" reverse />
+      <LvOptions
+        type="switch"
+        :items="items3"
+        name="all"
+        v-model="model5"
+        reverse
+        shape="button"
+      />
+      <LvOptions type="switch" :items="items4" name="all" v-model="model5" />
+      <LvOptions type="switch" :items="items4" name="all" v-model="model6" />
     </div>
   </ComponentDemo>
 </template>
