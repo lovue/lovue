@@ -35,7 +35,7 @@ defineProps<{
     border-bottom: 1px solid #e9e9e9;
 
     > * {
-      margin-right: 20px;
+      margin-right: 64px;
     }
   }
 }

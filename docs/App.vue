@@ -4,7 +4,7 @@ import ComponentIcon from './ComponentIcon.vue'
 import ComponentButton from './ComponentButton.vue'
 import ComponentDropdown from './ComponentDropdown.vue'
 import ComponentInput from './ComponentInput.vue'
-import ComponentRadios from './ComponentRadios.vue'
+import ComponentOptions from './ComponentOptions.vue'
 
 onMounted(() => {
   setTimeout(() => {
@@ -81,7 +81,7 @@ function updateLinks(links: NodeListOf<Element>) {
       <ComponentButton />
       <ComponentDropdown />
       <ComponentInput />
-      <ComponentRadios />
+      <ComponentOptions />
     </div>
   </div>
 </template>

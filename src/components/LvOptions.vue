@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 
-interface RadioItem {
+interface OptionItem {
   text: string
-  value: number | string
+  value: number | string | undefined
   disabled?: boolean
 }
 
 const props = defineProps<{
-  modelValue: number | string
-  items: RadioItem[]
+  type: 'radio' | 'checkbox'
+  modelValue: number | string | boolean | []
+  items: OptionItem[]
   name?: string,
   reverse?: boolean
   vertical?: boolean
@@ -20,7 +21,7 @@ const emit = defineEmits(['update:modelValue'])
 const innerValue = ref(props.modelValue)
 
 const componentClass = computed(() => {
-  if (props.vertical) return 'lv-radios--vertical'
+  if (props.vertical) return 'lv-options--vertical'
   return ''
 })
 
@@ -31,21 +32,22 @@ watch(innerValue, value => {
   emit('update:modelValue', value)
 })
 
-function getItemClass (item: RadioItem) {
+function getItemClass (item: OptionItem) {
   const classes = []
 
   if (props.shape) {
-    classes.push(`lv-radio--${props.shape}`)
+    classes.push(`lv-option--${props.shape}`)
   } else {
-    classes.push('lv-radio')
+    classes.push('lv-option--default')
+    classes.push(`lv-option__${props.type}`)
   }
 
   if (props.reverse) {
-    classes.push('lv-radio--reverse')
+    classes.push('lv-option--reverse')
   }
 
   if (item.disabled) {
-    classes.push('lv-radio--disabled')
+    classes.push('lv-option--disabled')
   }
 
   return classes
@@ -53,22 +55,22 @@ function getItemClass (item: RadioItem) {
 </script>
 
 <template>
-  <div class="lv-radios" :class="componentClass">
+  <div class="lv-options" :class="componentClass">
     <label
-      class="lv-radios__item"
+      class="lv-option"
       v-for="(item, i) of items"
-      :key="`radio-item-${i}`"
+      :key="`option-item-${i}`"
       :class="getItemClass(item)"
     >
       <input
-        class="lv-radio__input"
-        type="radio"
+        class="lv-option__input"
+        :type="type"
         :value="item.value"
         :name="name"
         :disabled="item.disabled"
         v-model="innerValue"
       >
-      <span class="lv-radio__text">{{ item.text }}</span>
+      <span class="lv-option__text">{{ item.text }}</span>
     </label>
   </div>
 </template>
@@ -76,11 +78,11 @@ function getItemClass (item: RadioItem) {
 <style lang="less" scoped>
 @import (reference) "../Mixins";
 
-.lv-radios {
+.lv-options {
   display: flex;
   align-items: center;
 
-  &__item {
+  .lv-option {
     &:not(:first-child) {
       margin-left: var(--2unit);
     }
@@ -90,7 +92,7 @@ function getItemClass (item: RadioItem) {
     flex-direction: column;
     align-items: flex-start;
 
-    .lv-radios__item {
+    .lv-option {
       width: 100%;
 
       &:not(:first-child) {
@@ -101,7 +103,7 @@ function getItemClass (item: RadioItem) {
   }
 }
 
-.lv-radio {
+.lv-option--default {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -110,57 +112,41 @@ function getItemClass (item: RadioItem) {
   height: var(--2unit);
   cursor: pointer;
 
-  &__input {
+  .lv-option__input {
     appearance: none;
     width: var(--2unit);
     height: var(--2unit);
     box-shadow: none;
     border: 1px solid var(--second-color);
-    border-radius: 50%;
     margin: 0;
     margin-right: var(--unit);
-
-    &:checked {
-      border-color: var(--blue-color);
-
-      & + .lv-radio__text::after {
-        transform: scale(0.5);
-      }
-    }
   }
 
-  &__text::after {
+  .lv-option__text::after {
     content: "";
     position: absolute;
     left: 0;
-    top: 0;
-    width: var(--2unit);
-    height: var(--2unit);
-    border-radius: 50%;
-    background-color: var(--blue-color);
-    transform: scale(0);
     transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  &.lv-radio--reverse {
+  &.lv-option--reverse {
     flex-direction: row-reverse;
 
-    .lv-radio__input {
+    .lv-option__input {
       margin-right: 0;
       margin-left: var(--unit);
     }
 
-    .lv-radio__text::after {
+    .lv-option__text::after {
       left: inherit;
-      right: 0;
     }
   }
 
-  &.lv-radio--disabled {
+  &.lv-option--disabled {
     cursor: not-allowed;
     color: var(--disabled-color);
 
-    .lv-radio__input {
+    .lv-option__input {
       border-color: var(--disabled-color);
 
       &:checked {
@@ -170,11 +156,72 @@ function getItemClass (item: RadioItem) {
   }
 }
 
-.lv-radio--button {
-  .lv-radio__input {
+.lv-option__radio {
+  .lv-option__input {
+    border-radius: 50%;
+
+    &:checked {
+      border-color: var(--blue-color);
+
+      & + .lv-option__text::after {
+        transform: scale(0.5);
+      }
+    }
+  }
+
+  .lv-option__text::after {
+    top: 0;
+    width: var(--2unit);
+    height: var(--2unit);
+    border-radius: 50%;
+    background-color: var(--blue-color);
+    transform: scale(0);
+  }
+
+  &.lv-option--reverse {
+    .lv-option__text::after {
+      right: 0;
+    }
+  }
+}
+
+.lv-option__checkbox {
+  .lv-option__input {
+    border-radius: 2px;
+
+    &:checked {
+      border: none;
+      background-color: var(--blue-color);
+
+      & + .lv-option__text::after {
+        transform: scale(1) rotateZ(37deg);
+      }
+    }
+  }
+
+  .lv-option__text::after {
+    top: 2px;
+    width: 7px;
+    height: 12px;
+    border: 2px solid var(--white);
+    border-top-color: transparent;
+    border-left-color: transparent;
+    transform-origin: 120% 90%;
+    transform: scale(0) rotateZ(37deg);
+  }
+
+  &.lv-option--reverse {
+    .lv-option__text::after {
+      right: 9px;
+    }
+  }
+}
+
+.lv-option--button {
+  .lv-option__input {
     display: none;
 
-    &:checked + .lv-radio__text {
+    &:checked + .lv-option__text {
       background-color: var(--blue-color);
       color: var(--white);
       border-color: transparent;
@@ -189,21 +236,21 @@ function getItemClass (item: RadioItem) {
     }
   }
 
-  .lv-radio__text {
+  .lv-option__text {
     .btn;
     .btn-ghost;
     .flex-start;
   }
 
-  &.lv-radio--disabled {
-    .lv-radio__text {
+  &.lv-option--disabled {
+    .lv-option__text {
       cursor: not-allowed;
       color: var(--disabled-color);
       border-color: var(--disabled-color);
     }
 
-    .lv-radio__input {
-      &:checked + .lv-radio__text {
+    .lv-option__input {
+      &:checked + .lv-option__text {
         opacity: 0.5;
         cursor: not-allowed;
 
