@@ -34,7 +34,6 @@ function enter (value: string | number) {
   maxlength?: number
 
 // Emit
-  update:modelValue
   enter
       </code></pre>
     </div>
@@ -63,6 +62,3 @@ function enter (value: string | number) {
     </div>
   </ComponentDemo>
 </template>
-
-<style lang="less" scoped>
-</style>

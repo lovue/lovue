@@ -5,10 +5,12 @@ import LvIcon from './components/LvIcon.vue'
 import LvButton from './components/LvButton.vue'
 import LvDropdown from './components/LvDropdown.vue'
 import LvInput from './components/LvInput.vue'
+import LvRadios from './components/LvRadios.vue'
 
 export default function (app: App) {
   app.component('LvIcon', LvIcon)
   app.component('LvButton', LvButton)
   app.component('LvDropdown', LvDropdown)
   app.component('LvInput', LvInput)
+  app.component('LvRadios', LvRadios)
 }

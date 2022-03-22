@@ -1,0 +1,213 @@
+.hvcenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  margin: auto;
+}
+
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.shadow-2 {
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-3 {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-4 {
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-5 {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+.hoverable {
+  transition: box-shadow .25s;
+
+  &:hover {
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+
+.table(@line-height: 40px; @bordered: false; @striped: false) {
+  width: 100%;
+  text-align: left;
+  font-size: var(--small-font);
+  border: 1px solid var(--border-color);
+
+  > caption {
+    margin-bottom: 10px;
+    font-size: var(--normal-font);
+  }
+
+  > thead {
+    border-bottom: 1px solid var(--border-color);
+    background-color: #F5F6FA;
+
+    > tr {
+      height: @line-height;
+
+      > th {
+        padding: 0 15px;
+        font-weight: normal;
+        color: var(--second-color);
+        white-space: nowrap;
+
+        & when (@bordered = true) {
+          border-right: 1px solid var(--border-color);
+
+          &:last-child {
+            border-right: none;
+          }
+        }
+      }
+    }
+  }
+
+  > tbody {
+    & when (@striped = true) {
+      tr:nth-child(odd) {
+        background-color: var(--bg-color);
+      }
+    }
+
+    > tr {
+      height: @line-height;
+      transition: background-color .25s ease;
+      border-bottom: 1px solid var(--border-color);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: var(--bg-color);
+      }
+
+      &.row-loading {
+        text-align: center;
+      }
+
+      > td {
+        padding: 0 15px;
+        white-space: nowrap;
+
+        & when (@bordered = true) {
+          border-right: 1px solid var(--border-color);
+
+          &:last-child {
+            border-right: none;
+          }
+        }
+
+        &.no-data-info {
+          text-align: center;
+          color: var(--second-color);
+        }
+      }
+    }
+
+    .btn-text {
+      color: var(--blue-color);
+
+      &:hover {
+        color: var(--hover-blue);
+      }
+    }
+  }
+}
+
+.transition(@property, @time: .2s, @function: ease-out) {
+  transition: @property @time @function;
+}
+
+.hyphenate() {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.truncate() {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shadow() {
+  //box-shadow: 0 2px 2px 0 hsla(0, 0%, 0%, 0.14), 0 1px 5px 0 hsla(0, 0%, 0%, 0.12), 0 3px 1px -2px hsla(0, 0%, 0%, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-light() {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+}
+
+.btn() {
+  touch-action: manipulation;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 0 var(--2unit);
+  font-size: var(--small-font);
+  border-radius: var(--border-radius);
+  height: var(--4unit);
+  user-select: none;
+  transition: all .3s cubic-bezier(.645, .045, .355, 1);
+  cursor: pointer;
+}
+
+.btn-ghost() {
+  border-color: var(--border-color);
+  background-color: var(--white);
+
+  &:hover {
+    color: var(--hover-blue);
+    border-color: var(--hover-blue);
+  }
+
+  &:active {
+    color: var(--active-blue);
+    border-color: var(--active-blue);
+  }
+}
+
+.flex() {
+  display: flex;
+}
+
+.flex-start() {
+  .flex();
+  align-items: center;
+}
+
+.flex-between() {
+  .flex-start();
+  justify-content: space-between;
+}
+
+.flex-center() {
+  .flex-start();
+  justify-content: center;
+}
+
+.flex-around() {
+  .flex-start();
+  justify-content: space-around;
+}
+
+.light-scrollbar() {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: none;
+  }
+}
