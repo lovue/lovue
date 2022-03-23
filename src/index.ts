@@ -6,6 +6,7 @@ import LvButton from './components/LvButton.vue'
 import LvDropdown from './components/LvDropdown.vue'
 import LvInput from './components/LvInput.vue'
 import LvOptions from './components/LvOptions.vue'
+import LvSearch from './components/LvSearch.vue'
 
 export default function (app: App) {
   app.component('LvIcon', LvIcon)
@@ -13,4 +14,5 @@ export default function (app: App) {
   app.component('LvDropdown', LvDropdown)
   app.component('LvInput', LvInput)
   app.component('LvOptions', LvOptions)
+  app.component('LvSearch', LvSearch)
 }

@@ -5,6 +5,7 @@ import ComponentButton from './ComponentButton.vue'
 import ComponentDropdown from './ComponentDropdown.vue'
 import ComponentInput from './ComponentInput.vue'
 import ComponentOptions from './ComponentOptions.vue'
+import ComponentSearch from './ComponentSearch.vue'
 
 onMounted(() => {
   setTimeout(() => {
@@ -82,6 +83,7 @@ function updateLinks(links: NodeListOf<Element>) {
       <ComponentDropdown />
       <ComponentInput />
       <ComponentOptions />
+      <ComponentSearch />
     </div>
   </div>
 </template>
