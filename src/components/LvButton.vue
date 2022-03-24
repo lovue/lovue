@@ -65,7 +65,7 @@ function click () {
   }
 
   &.lv-button-text {
-    .btn-text
+    .btn-text;
   }
 
   &.lv-button-lg {

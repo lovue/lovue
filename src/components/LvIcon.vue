@@ -3,7 +3,7 @@ import { computed } from 'vue'
 
 const props = defineProps<{
   icon: string
-  size?: string
+  size?: string | number
   cursor?: boolean
 }>()
 defineEmits(['click'])

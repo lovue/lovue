@@ -28,6 +28,7 @@ module.exports = {
     'vue/attributes-order': 'off',
     'vue/max-attributes-per-line': ['error', {
       'singleline': 5
-    }]
+    }],
+    'vue/require-default-prop': 'off'
   }
 }

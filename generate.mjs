@@ -15,7 +15,7 @@ const emit = defineEmits([])
 </template>
 
 <style lang="less">
-
+@import (reference) "../Mixins";
 </style>
 `
 

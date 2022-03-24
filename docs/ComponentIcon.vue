@@ -9,7 +9,7 @@ import ComponentDemo from './ComponentDemo.vue'
       <pre><code>// types
 const props = defineProps&lt;{
   icon: string
-  size?: string
+  size?: string | number
   cursor?: boolean
 }&gt;()
 defineEmits(['click'])
