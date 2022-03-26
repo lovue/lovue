@@ -8,6 +8,7 @@ import LvInput from './components/LvInput.vue'
 import LvOptions from './components/LvOptions.vue'
 import LvSearch from './components/LvSearch.vue'
 import LvUpload from './components/LvUpload.vue'
+import LvTabs from './components/LvTabs.vue'
 
 export default function (app: App) {
   app.component('LvIcon', LvIcon)
@@ -17,4 +18,5 @@ export default function (app: App) {
   app.component('LvOptions', LvOptions)
   app.component('LvSearch', LvSearch)
   app.component('LvUpload', LvUpload)
+  app.component('LvTabs', LvTabs)
 }
