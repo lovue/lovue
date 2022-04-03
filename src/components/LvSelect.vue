@@ -277,8 +277,8 @@ function cloneItems (items: OptionItem[]) {
       </div>
     </div>
     <div class="lv-select__dropdown" :class="dropdownClass">
-      <div class="lv-select__search">
-        <LvSearch v-model="searchKeywords" v-if="searchable" :placeholder="searchPlaceholder" :delay="100" />
+      <div class="lv-select__search" v-if="searchable">
+        <LvSearch v-model="searchKeywords" :placeholder="searchPlaceholder" :delay="100" />
       </div>
       <ul class="lv-select__options">
         <li v-for="option of filteredOptions" :key="option.value" :title="option.text" @click.stop="clickOption(option)">

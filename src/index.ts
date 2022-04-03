@@ -10,6 +10,7 @@ import LvSearch from './components/LvSearch.vue'
 import LvUpload from './components/LvUpload.vue'
 import LvTabs from './components/LvTabs.vue'
 import LvSelect from './components/LvSelect.vue'
+import LvDialog from './components/LvDialog.vue'
 
 export default function (app: App) {
   app.component('LvIcon', LvIcon)
@@ -21,4 +22,5 @@ export default function (app: App) {
   app.component('LvUpload', LvUpload)
   app.component('LvTabs', LvTabs)
   app.component('LvSelect', LvSelect)
+  app.component('LvDialog', LvDialog)
 }
