@@ -43,7 +43,6 @@ const emit = defineEmits(['update:modelValue', 'enter'])
         placeholder="Please input something"
         name="username"
         label="username"
-        focus
         :minlength="2"
         :maxlength="5"
         v-model="bindValue1"

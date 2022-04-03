@@ -1,6 +1,6 @@
 import './normalize.less'
 import 'https://at.alicdn.com/t/font_712012_e58cglk9ys6.js?url'
-import { App } from 'vue'
+import type { App } from 'vue'
 import LvIcon from './components/LvIcon.vue'
 import LvButton from './components/LvButton.vue'
 import LvDropdown from './components/LvDropdown.vue'
@@ -9,6 +9,7 @@ import LvOptions from './components/LvOptions.vue'
 import LvSearch from './components/LvSearch.vue'
 import LvUpload from './components/LvUpload.vue'
 import LvTabs from './components/LvTabs.vue'
+import LvSelect from './components/LvSelect.vue'
 
 export default function (app: App) {
   app.component('LvIcon', LvIcon)
@@ -19,4 +20,5 @@ export default function (app: App) {
   app.component('LvSearch', LvSearch)
   app.component('LvUpload', LvUpload)
   app.component('LvTabs', LvTabs)
+  app.component('LvSelect', LvSelect)
 }

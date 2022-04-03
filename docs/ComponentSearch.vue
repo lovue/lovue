@@ -11,15 +11,16 @@ function search (text: string) {
     <div class="usage">
       <pre><code>// types
 const props = withDefaults(defineProps&lt;{
+  modelValue?: string
   placeholder?: string
   auto?: boolean
   delay?: number
 }&gt;(), {
   placeholder: '关键词',
   auto: true,
-  delay: 500
+  delay: 300
 })
-const emit = defineEmits(['search'])
+const emit = defineEmits(['search', 'update:modelValue'])
       </code></pre>
     </div>
 

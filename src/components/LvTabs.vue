@@ -26,6 +26,19 @@ const lineStyle = ref<{
   transition?: string
 }>({})
 
+watch(() => props.modelValue, setTab)
+
+onMounted(() => {
+  calculateTabsWidth()
+  setTab(props.modelValue || 0)
+
+  window.addEventListener('resize', resizeHandler)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', resizeHandler)
+})
+
 function calculateTabsWidth () {
   if (!tabsElem.value) return
 
@@ -44,15 +57,15 @@ function calculateTabsWidth () {
 }
 
 function refreshLinePosition (index?: number) {
-  const __index__ = index === undefined ? currentIndex.value : index
+  const _index = index === undefined ? currentIndex.value : index
 
   let leftWidth = 0
   let rightWidth = 0
 
-  for (let i = 0; i < __index__; i++) {
+  for (let i = 0; i < _index; i++) {
     leftWidth += tabsWidth.value[i]
   }
-  rightWidth = componentWidth.value - leftWidth - tabsWidth.value[__index__]
+  rightWidth = componentWidth.value - leftWidth - tabsWidth.value[_index]
 
   lineStyle.value = {
     left: `${leftWidth}px`,
@@ -86,19 +99,6 @@ function resizeHandler () {
   calculateTabsWidth()
   refreshLinePosition()
 }
-
-watch(() => props.modelValue, setTab)
-
-onMounted(() => {
-  calculateTabsWidth()
-  setTab(props.modelValue || 0)
-
-  window.addEventListener('resize', resizeHandler)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', resizeHandler)
-})
 </script>
 
 <template>

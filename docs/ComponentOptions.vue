@@ -15,10 +15,10 @@ const items2 = [
 ]
 
 const items3 = [
-  { text: 'all', value: undefined }
+  { text: 'all', value: null }
 ]
 const items4 = [
-  { text: 'all', value: undefined, disabled: true }
+  { text: 'all', value: null, disabled: true }
 ]
 
 const model1 = ref('vue')
@@ -39,7 +39,7 @@ const model6 = ref(false)
       <pre><code>// types
 export interface OptionItem {
   text: string
-  value: number | string | undefined
+  value: number | string | null
   disabled?: boolean
 }
 

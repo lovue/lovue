@@ -3,7 +3,7 @@ import { computed, ref, watch } from 'vue'
 
 export interface OptionItem {
   text: string
-  value: number | string | undefined
+  value: number | string | null
   disabled?: boolean
 }
 

@@ -6,23 +6,22 @@ const props = defineProps<{
   size?: string | number
   cursor?: boolean
 }>()
-defineEmits(['click'])
 
 const styles = computed(() => {
-  const __styles__: {
+  const _styles: {
     cursor?: string
   } = {}
 
   if (props.cursor) {
-    __styles__.cursor = 'pointer'
+    _styles.cursor = 'pointer'
   }
 
-  return __styles__
+  return _styles
 })
 </script>
 
 <template>
-  <svg :class="`lv-icon lv-icon-${icon}`" :style="styles" :width="size || 20" :height="size || 20" @click="$emit('click')">
+  <svg :class="`lv-icon lv-icon-${icon}`" :style="styles" :width="size || 20" :height="size || 20">
     <use :href="`#icon-${icon}`" />
   </svg>
 </template>

@@ -64,7 +64,7 @@ onMounted(() => {
 <template>
   <div class="lv-input" :class="componentClass">
     <div class="hidden-value" ref="hiddenValueElem" v-if="resize">{{ innerValue }}</div>
-    <label class="lv-input__label">{{ label }}</label>
+    <label class="lv-input__label" v-if="label">{{ label }}</label>
     <input
       class="native-input"
       autocomplete="off"
