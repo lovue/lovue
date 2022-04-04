@@ -41,7 +41,6 @@ const position = ref('bottom')
 const year = ref(0)
 const month = ref(0)
 const day = ref(0)
-const containerWidth = ref(0)
 const rootElem = ref<HTMLDivElement | null>(null)
 
 const days = computed(() => {
@@ -122,15 +121,23 @@ function calculateContainerPosition () {
   const containerElem = rootElem.value.querySelector('.lv-date-picker__container')
   if (!(containerElem instanceof HTMLDivElement)) return
 
-  position.value = bottomSpace < containerElem.offsetHeight ? 'top' : 'bottom'
-  containerWidth.value = containerElem.offsetWidth
+  const newPosition = bottomSpace < containerElem.offsetHeight ? 'top' : 'bottom'
+  const positionChanged = newPosition !== position.value
+  position.value = newPosition
+
+  return positionChanged
 }
 
 function showContainer () {
-  calculateContainerPosition()
-
   isComponentClicked.value = true
-  isShowContainer.value = true
+
+  const positionChanged = calculateContainerPosition()
+
+  if (positionChanged) {
+    setTimeout(() => isShowContainer.value = true, 100)
+  } else {
+    isShowContainer.value = true
+  }
 }
 
 function hideContainer () {

@@ -59,22 +59,14 @@ const dropdownClass = computed(() => {
   return _class
 })
 
-watch(() => props.items, (items, oldItems) => {
+watch(() => props.items, items => {
   originalOptions.value = cloneItems(items)
   updateSelected(props.modelValue)
-
-  if (items.length !== oldItems?.length) {
-    calculateDropdownPosition()
-  }
 }, {
   immediate: true
 })
 watch(() => props.modelValue, updateSelected, {
   immediate: true
-})
-
-onMounted(() => {
-  setTimeout(calculateDropdownPosition, 200)
 })
 
 function updateSelected (outerValue: modelValueType) {
@@ -150,15 +142,24 @@ function calculateDropdownPosition () {
   const dropdownElem = rootElem.value.querySelector('.lv-select__dropdown')
   if (!(dropdownElem instanceof HTMLDivElement)) return
 
-  position.value = bottomSpace < dropdownElem.offsetHeight ? 'top' : 'bottom'
+  const newPosition = bottomSpace < dropdownElem.offsetHeight ? 'top' : 'bottom'
+  const positionChanged = newPosition !== position.value
+  position.value = newPosition
+
+  return positionChanged
 }
 
 function showDropdown () {
-  calculateDropdownPosition()
+  isComponentClicked.value = true
+
+  const positionChanged = calculateDropdownPosition()
   updateScrollbar()
 
-  isComponentClicked.value = true
-  isShowDropdown.value = true
+  if (positionChanged) {
+    setTimeout(() => isShowDropdown.value = true, 100)
+  } else {
+    isShowDropdown.value = true
+  }
 }
 
 function hideDropdown () {
