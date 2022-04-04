@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ComponentDemo from './ComponentDemo.vue'
-import LvDialog from '../src/components/LvDialog.vue'
-import LvButton from '../src/components/LvButton.vue'
-import LvSelect from '../src/components/LvSelect.vue'
 
 const model1 = ref(false)
 const model2 = ref(false)

@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ComponentDemo from './ComponentDemo.vue'
-import LvTooltip from '../src/components/LvTooltip.vue'
-import LvIcon from '../src/components/LvIcon.vue'
-import LvButton from '../src/components/LvButton.vue'
-import LvInput from '../src/components/LvInput.vue'
 
 const model1 = ref(null)
 </script>

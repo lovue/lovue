@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ComponentDemo from './ComponentDemo.vue'
-import LvDatePicker from '../src/components/LvDatePicker.vue'
 
 const model1 = ref('2022-04-01')
 const model2 = ref('')

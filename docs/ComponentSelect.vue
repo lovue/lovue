@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ComponentDemo from './ComponentDemo.vue'
-import LvSelect from '../src/components/LvSelect.vue'
 
 const cars = [
   {
