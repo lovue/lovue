@@ -20,7 +20,7 @@ const props = defineProps<{
   minlength?: number
   maxlength?: number
 }>()
-const emit = defineEmits(['update:modelValue', 'enter'])
+const emit = defineEmits(['update:modelValue', 'enter', 'blur'])
 
 const hiddenValueElem = ref<HTMLDivElement | null>(null)
 const inputElem = ref<HTMLInputElement | null>(null)
@@ -84,6 +84,7 @@ onMounted(() => {
       :maxlength="maxlength"
       v-model="innerValue"
       @keypress.enter="$emit('enter', innerValue)"
+      @blur="$emit('blur', innerValue)"
     >
   </div>
 </template>

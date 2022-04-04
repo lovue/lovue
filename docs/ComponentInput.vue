@@ -34,7 +34,7 @@ const props = defineProps&lt;{
   minlength?: number
   maxlength?: number
 }&gt;()
-const emit = defineEmits(['update:modelValue', 'enter'])
+const emit = defineEmits(['update:modelValue', 'enter', 'blur'])
       </code></pre>
     </div>
 
