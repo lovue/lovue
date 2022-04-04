@@ -69,6 +69,10 @@ watch(() => props.modelValue, updateSelected, {
   immediate: true
 })
 
+onMounted(() => {
+  setTimeout(calculateDropdownPosition, 200)
+})
+
 function updateSelected (outerValue: modelValueType) {
   if (innerUpdate.value) return innerUpdate.value = false
 

@@ -12,6 +12,7 @@ import LvTabs from './components/LvTabs.vue'
 import LvSelect from './components/LvSelect.vue'
 import LvDialog from './components/LvDialog.vue'
 import LvDatePicker from './components/LvDatePicker.vue'
+import LvTooltip from './components/LvTooltip.vue'
 
 export default function (app: App) {
   app.component('LvIcon', LvIcon)
@@ -25,4 +26,5 @@ export default function (app: App) {
   app.component('LvSelect', LvSelect)
   app.component('LvDialog', LvDialog)
   app.component('LvDatePicker', LvDatePicker)
+  app.component('LvTooltip', LvTooltip)
 }
