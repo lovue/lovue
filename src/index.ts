@@ -14,6 +14,7 @@ import LvDialog from './components/LvDialog.vue'
 import LvDatePicker from './components/LvDatePicker.vue'
 import LvTooltip from './components/LvTooltip.vue'
 import LvPagination from './components/LvPagination.vue'
+import LvTable from './components/LvTable.vue'
 
 export default function (app: App) {
   app.component('LvIcon', LvIcon)
@@ -29,4 +30,5 @@ export default function (app: App) {
   app.component('LvDatePicker', LvDatePicker)
   app.component('LvTooltip', LvTooltip)
   app.component('LvPagination', LvPagination)
+  app.component('LvTable', LvTable)
 }

@@ -13,6 +13,7 @@ import ComponentDialog from './ComponentDialog.vue'
 import ComponentDatePicker from './ComponentDatePicker.vue'
 import ComponentTooltip from './ComponentTooltip.vue'
 import ComponentPagination from './ComponentPagination.vue'
+import ComponentTable from './ComponentTable.vue'
 
 onMounted(() => {
   setTimeout(() => {
@@ -98,6 +99,7 @@ function updateLinks(links: NodeListOf<Element>) {
       <ComponentDatePicker />
       <ComponentTooltip />
       <ComponentPagination />
+      <ComponentTable />
     </div>
   </div>
 </template>

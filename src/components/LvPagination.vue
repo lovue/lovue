@@ -4,6 +4,11 @@ import LvInput from './LvInput.vue'
 import LvButton from './LvButton.vue'
 import LvSelect from './LvSelect.vue'
 
+export interface Pagination {
+  index: number
+  pageSize: number
+}
+
 const props = withDefaults(defineProps<{
   total: number
   pageSize?: number
@@ -49,7 +54,11 @@ watch(pagesQuantity, value => {
   if (index.value > value) index.value = value
 })
 watchEffect(() => {
-  emit('update', { index: index.value, pageSize: _pageSize.value })
+  const _pagination: Pagination = {
+    index: index.value,
+    pageSize: _pageSize.value
+  }
+  emit('update', _pagination)
 })
 
 function prev () {
