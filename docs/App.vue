@@ -14,6 +14,7 @@ import ComponentDatePicker from './ComponentDatePicker.vue'
 import ComponentTooltip from './ComponentTooltip.vue'
 import ComponentPagination from './ComponentPagination.vue'
 import ComponentTable from './ComponentTable.vue'
+import ComponentGlobals from './ComponentGlobals.vue'
 
 onMounted(() => {
   setTimeout(() => {
@@ -100,6 +101,7 @@ function updateLinks(links: NodeListOf<Element>) {
       <ComponentTooltip />
       <ComponentPagination />
       <ComponentTable />
+      <ComponentGlobals />
     </div>
   </div>
 </template>

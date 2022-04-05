@@ -16,6 +16,8 @@ import LvTooltip from './components/LvTooltip.vue'
 import LvPagination from './components/LvPagination.vue'
 import LvTable from './components/LvTable.vue'
 
+import indicator from './components/indicator'
+
 export default function (app: App) {
   app.component('LvIcon', LvIcon)
   app.component('LvButton', LvButton)
@@ -31,4 +33,6 @@ export default function (app: App) {
   app.component('LvTooltip', LvTooltip)
   app.component('LvPagination', LvPagination)
   app.component('LvTable', LvTable)
+
+  window.Indicator = indicator
 }
