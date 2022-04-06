@@ -60,12 +60,12 @@ function refreshLinePosition (index?: number) {
   const _index = index === undefined ? currentIndex.value : index
 
   let leftWidth = 0
-  let rightWidth = 0
 
   for (let i = 0; i < _index; i++) {
     leftWidth += tabsWidth.value[i]
   }
-  rightWidth = componentWidth.value - leftWidth - tabsWidth.value[_index]
+
+  const rightWidth = componentWidth.value - leftWidth - tabsWidth.value[_index]
 
   lineStyle.value = {
     left: `${leftWidth}px`,

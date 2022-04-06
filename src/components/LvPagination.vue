@@ -23,7 +23,7 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits(['update'])
 
 const _sizeOptions = props.sizeOptions.map(option => ({
-  text: option,
+  text: '' + option,
   value: option
 }))
 

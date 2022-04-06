@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, computed, nextTick } from 'vue'
+import { ref, watch, onMounted, computed } from 'vue'
 import LvIcon from './LvIcon.vue'
 import LvSearch from './LvSearch.vue'
 import { useClickOutside } from '../hooks/useClickOutside'

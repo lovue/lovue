@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<{
   okText?: string
   cancelText?: string
   noFooter?: boolean
-  confirm?: () => boolean
+  confirm?: () => Promise<boolean>
 }>(), {
   okText: '确认',
   cancelText: '取消'

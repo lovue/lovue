@@ -29,7 +29,7 @@ const yearOptions = new Array(props.maxYear - props.minYear + 1).fill(0).map((it
   const _year = props.minYear + i
 
   return {
-    text: _year,
+    text: '' + _year,
     value: _year
   }
 })
@@ -229,11 +229,6 @@ function nextMonth () {
           </template>
         </div>
       </div>
-<!--      <div class="lv-date-picker__time-picker" v-if="full">
-        <ul class="picker-list">
-          <li v-for="(time, i) of times" :key="`time-${i}`" :class="time === hour ? 'focus' : ''" @click.stop="selectHour(time)">{{ time }}</li>
-        </ul>
-      </div>-->
     </div>
   </div>
 </template>
