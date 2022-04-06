@@ -1,27 +1,27 @@
 import { VNode, render, h } from 'vue'
-import Indicator from './Indicator.vue'
+import LvIndicator from './LvIndicator.vue'
 
-let app: VNode
+let indicator: VNode
 
 export default {
   open () {
-    if (!app) {
-      app = h(Indicator)
+    if (!indicator) {
+      indicator = h(LvIndicator)
       const elem = document.createElement('div')
-      render(app, elem)
+      render(indicator, elem)
     }
 
-    if (app.component) {
+    if (indicator.component) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      app.component.setupState.visible = true
+      indicator.component.setupState.visible = true
     }
   },
   close () {
-    if (app.component) {
+    if (indicator.component) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      app.component.setupState.visible = false
+      indicator.component.setupState.visible = false
     }
   }
 }

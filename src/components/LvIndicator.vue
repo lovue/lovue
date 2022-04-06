@@ -6,8 +6,8 @@ const visible = ref(false)
 
 <template>
   <!-- eslint-disable vue/max-attributes-per-line, vue/html-self-closing -->
-  <teleport to="body">
-    <transition name="indicator">
+  <Teleport to="body">
+    <Transition name="indicator">
       <div class="lv-indicator" v-show="visible">
         <div class="icon-wrap">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" width="32" height="32">
@@ -30,8 +30,8 @@ const visible = ref(false)
 
         </div>
       </div>
-    </transition>
-  </teleport>
+    </Transition>
+  </Teleport>
 </template>
 
 <style lang="less">

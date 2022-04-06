@@ -51,14 +51,18 @@ function confirmDialog () {
   <ComponentDemo id="toDialog" title="LvDialog">
     <div class="usage">
       <pre><code>// types
-const props = withDefaults(defineProps&lt;{
-  modelValue: boolean
-  title: string
+export interface Props {
+  modelValue?: boolean
+  title?: string
+  body?: string
   okText?: string
   cancelText?: string
   noFooter?: boolean
-  confirm?: () => boolean
-}&gt;(), {
+  simple?: boolean
+  fixed?: boolean
+  confirm?: () => Promise&lt;boolean&gt;
+}
+const props = withDefaults(defineProps&lt;Props&gt;(), {
   okText: '确认',
   cancelText: '取消'
 })

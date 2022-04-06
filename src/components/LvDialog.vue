@@ -1,22 +1,41 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import LvButton from './LvButton.vue'
 import LvIcon from './LvIcon.vue'
 
-const props = withDefaults(defineProps<{
-  modelValue: boolean
-  title: string
+export interface Props {
+  modelValue?: boolean
+  title?: string
+  body?: string
   okText?: string
   cancelText?: string
   noFooter?: boolean
+  simple?: boolean
+  fixed?: boolean
   confirm?: () => Promise<boolean>
-}>(), {
+}
+
+const props = withDefaults(defineProps<Props>(), {
   okText: '确认',
   cancelText: '取消'
 })
 const emit = defineEmits(['update:modelValue'])
 
 const loading = ref(false)
+
+const componentClass = computed(() => {
+  const _class = []
+
+  if (props.simple) {
+    _class.push('status--simple')
+  }
+
+  if (props.fixed) {
+    _class.push('status--fixed')
+  }
+
+  return _class
+})
 
 function close () {
   emit('update:modelValue', false)
@@ -38,25 +57,27 @@ async function clickOK () {
 </script>
 
 <template>
-  <div class="lv-dialog" v-if="modelValue" @click="close">
-    <div class="lv-dialog__window" @click.stop>
-      <div class="lv-dialog__head">
-        <div class="title-text">{{ title }}</div>
-        <div class="lv-dialog__close" @click="close">
-          <LvIcon icon="close" :size="18" />
+  <Teleport to="body">
+    <div class="lv-dialog" :class="componentClass" v-if="modelValue" @click="close">
+      <div class="lv-dialog__window" @click.stop>
+        <div class="lv-dialog__head">
+          <div class="title-text">{{ title }}</div>
+          <div class="lv-dialog__close" @click="close">
+            <LvIcon icon="close" :size="18" />
+          </div>
+        </div>
+        <div class="lv-dialog__body">
+          <slot>{{ body }}</slot>
+        </div>
+        <div class="lv-dialog__footer" v-if="!noFooter">
+          <slot name="footer">
+            <LvButton theme="ghost" @click="close">{{ cancelText }}</LvButton>
+            <LvButton :loading="loading" @click="clickOK">{{ okText }}</LvButton>
+          </slot>
         </div>
       </div>
-      <div class="lv-dialog__body">
-        <slot />
-      </div>
-      <div class="lv-dialog__footer" v-if="!noFooter">
-        <slot name="footer">
-          <LvButton theme="ghost" @click="close">{{ cancelText }}</LvButton>
-          <LvButton :loading="loading" @click="clickOK">{{ okText }}</LvButton>
-        </slot>
-      </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <style lang="less">
@@ -75,6 +96,28 @@ async function clickOK () {
   justify-content: center;
   overflow: auto;
   overscroll-behavior: contain;
+
+  &.status--simple {
+    .lv-dialog__head {
+      display: none;
+    }
+
+    .lv-dialog__body {
+      padding: var(--4unit) var(--3unit);
+    }
+
+    .lv-dialog__footer {
+      border-top: none;
+    }
+  }
+
+  &.status--fixed {
+    align-items: flex-start;
+
+    .lv-dialog__window {
+      margin-top: 100px;
+    }
+  }
 }
 
 .lv-dialog__window {
@@ -91,7 +134,7 @@ async function clickOK () {
   position: relative;
   line-height: var(--bar-height);
   border-bottom: 1px solid var(--border-color);
-  padding-left: var(--3unit);
+  padding-left: var(--2unit);
   display: flex;
   justify-content: space-between;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
