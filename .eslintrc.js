@@ -3,7 +3,7 @@ module.exports = {
   env: {
     browser: true,
     es2022: true,
-    'vue/setup-compiler-macros': true
+    'vue/setup-compiler-macros': true // enable global defineProps, defineEmits
   },
   extends: [
     'eslint:recommended',

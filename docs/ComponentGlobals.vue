@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ComponentDemo from './ComponentDemo.vue'
-import { Indicator, Dialog } from '../src/index'
+import { Indicator, Dialog, Toast } from '../src/index'
+import { ToastType } from '../src/components/LvToast.vue'
 
 function sleep (delay: number) {
   return new Promise(resolve => setTimeout(resolve, delay))
@@ -55,6 +56,27 @@ function showDialog5 () {
     fixed: true
   })
 }
+
+function showToast (type: ToastType) {
+  Toast({
+    text: 'hello world',
+    type
+  })
+}
+
+function showToast2 (type: ToastType) {
+  Toast[type]({
+    text: 'hello world'
+  })
+}
+
+function showClosableToast (type: ToastType) {
+  Toast({
+    text: 'hello world',
+    type,
+    showClose: true
+  })
+}
 </script>
 
 <template>
@@ -89,12 +111,38 @@ Dialog({
 })
       </code></pre>
     </div>
+
     <div class="controls">
       <LvButton @click="showDialog">Dialog</LvButton>
       <LvButton @click="showDialog2">No Footer Dialog</LvButton>
       <LvButton @click="showDialog3">Async Dialog</LvButton>
       <LvButton @click="showDialog4">Simple Dialog</LvButton>
       <LvButton @click="showDialog5">Fixed Dialog</LvButton>
+    </div>
+
+    <div class="usage">
+      <pre><code>// call
+import { Toast } from 'lovue'
+
+Toast({
+  text: 'hello world',
+  type: 'success',
+  showClose: true
+})
+
+Toast.success({
+  text: 'hello world',
+  showClose: true
+})
+      </code></pre>
+    </div>
+
+    <div class="controls">
+      <LvButton @click="showToast('success')">Success Toast</LvButton>
+      <LvButton @click="showToast2('info')">Info Toast</LvButton>
+      <LvButton @click="showToast('warn')">Warn Toast</LvButton>
+      <LvButton @click="showToast('error')">Error Toast</LvButton>
+      <LvButton @click="showClosableToast('error')">Closable Toast</LvButton>
     </div>
   </ComponentDemo>
 </template>
