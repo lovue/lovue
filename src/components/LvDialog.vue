@@ -58,25 +58,27 @@ async function clickOK () {
 
 <template>
   <Teleport to="body">
-    <div class="lv-dialog" :class="componentClass" v-if="modelValue" @click="close">
-      <div class="lv-dialog__window" @click.stop>
-        <div class="lv-dialog__head">
-          <div class="title-text">{{ title }}</div>
-          <div class="lv-dialog__close" @click="close">
-            <LvIcon icon="close" :size="18" />
+    <Transition name="dialog">
+      <div class="lv-dialog" :class="componentClass" v-if="modelValue" @click="close">
+        <div class="lv-dialog__window" @click.stop>
+          <div class="lv-dialog__head">
+            <div class="title-text">{{ title }}</div>
+            <div class="lv-dialog__close" @click="close">
+              <LvIcon icon="close" :size="18" />
+            </div>
+          </div>
+          <div class="lv-dialog__body">
+            <slot>{{ body }}</slot>
+          </div>
+          <div class="lv-dialog__footer" v-if="!noFooter">
+            <slot name="footer">
+              <LvButton theme="ghost" @click="close">{{ cancelText }}</LvButton>
+              <LvButton :loading="loading" @click="clickOK">{{ okText }}</LvButton>
+            </slot>
           </div>
         </div>
-        <div class="lv-dialog__body">
-          <slot>{{ body }}</slot>
-        </div>
-        <div class="lv-dialog__footer" v-if="!noFooter">
-          <slot name="footer">
-            <LvButton theme="ghost" @click="close">{{ cancelText }}</LvButton>
-            <LvButton :loading="loading" @click="clickOK">{{ okText }}</LvButton>
-          </slot>
-        </div>
       </div>
-    </div>
+    </Transition>
   </Teleport>
 </template>
 
@@ -172,5 +174,15 @@ async function clickOK () {
   .lv-button-ghost {
     margin-right: var(--unit);
   }
+}
+
+.dialog-enter-active,
+.dialog-leave-active {
+  transition: opacity 0.3s;
+}
+
+.dialog-enter-from,
+.dialog-leave-to {
+  opacity: 0;
 }
 </style>

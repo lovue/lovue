@@ -34,9 +34,7 @@ const iconType = computed(() => {
 })
 
 onMounted(() => {
-  setTimeout(() => {
-    visible.value = true
-  }, 100)
+  visible.value = true
 
   if (!props.showClose) {
     setTimeout(close, props.duration || 2000)
@@ -45,6 +43,7 @@ onMounted(() => {
 
 function close () {
   visible.value = false
+
   setTimeout(() => {
     emit('close')
   }, 400)

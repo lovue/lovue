@@ -8,7 +8,7 @@ const visible = ref(false)
   <!-- eslint-disable vue/max-attributes-per-line, vue/html-self-closing -->
   <Teleport to="body">
     <Transition name="indicator">
-      <div class="lv-indicator" v-show="visible">
+      <div class="lv-indicator" v-if="visible">
         <div class="icon-wrap">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" width="32" height="32">
             <g fill="#eee">
@@ -35,10 +35,6 @@ const visible = ref(false)
 </template>
 
 <style lang="less">
-.indicator-enter, .indicator-leave-active {
-  opacity: 0;
-}
-
 .lv-indicator {
   position: fixed;
   top: 0;
@@ -49,7 +45,6 @@ const visible = ref(false)
   justify-content: center;
   align-items: center;
   z-index: 999;
-  transition: opacity 0.2s linear;
 
   .icon-wrap {
     width: 60px;
@@ -58,5 +53,15 @@ const visible = ref(false)
     background-color: rgb(0 0 0 / 70%);
     padding: 14px;
   }
+}
+
+.indicator-enter-active,
+.indicator-leave-active {
+  transition: opacity 0.2s linear;
+}
+
+.indicator-enter-from,
+.indicator-leave-to {
+  opacity: 0;
 }
 </style>
