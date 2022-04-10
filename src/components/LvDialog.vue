@@ -22,6 +22,13 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['update:modelValue'])
 
 const loading = ref(false)
+const position = ref({
+  x: 0,
+  y: 0
+})
+const startX = ref(0)
+const startY = ref(0)
+const dragFlag = ref(false)
 
 const componentClass = computed(() => {
   const _class = []
@@ -35,6 +42,11 @@ const componentClass = computed(() => {
   }
 
   return _class
+})
+const windowStyle = computed(() => {
+  return {
+    transform: `translateX(${position.value.x}px) translateY(${position.value.y}px)`
+  }
 })
 
 function close () {
@@ -54,14 +66,38 @@ async function clickOK () {
   loading.value = false
   if (result) close()
 }
+
+function dragStart (ev: MouseEvent) {
+  startX.value = ev.pageX - position.value.x
+  startY.value = ev.pageY - position.value.y
+  dragFlag.value = true
+}
+
+function dragging(ev: MouseEvent) {
+  if (!dragFlag.value) return
+
+  position.value.x = ev.pageX - startX.value
+  position.value.y = ev.pageY - startY.value
+}
+
+function dragEnd() {
+  dragFlag.value = false
+}
 </script>
 
 <template>
   <Teleport to="body">
     <Transition name="dialog">
-      <div class="lv-dialog" :class="componentClass" v-if="modelValue" @click="close">
-        <div class="lv-dialog__window" @click.stop>
-          <div class="lv-dialog__head">
+      <div
+        class="lv-dialog"
+        :class="componentClass"
+        v-if="modelValue"
+        @click="close"
+        @mousemove="dragging"
+        @mouseup="dragEnd"
+      >
+        <div class="lv-dialog__window" :style="windowStyle" @click.stop>
+          <div class="lv-dialog__head" @mousedown="dragStart">
             <div class="title-text">{{ title }}</div>
             <div class="lv-dialog__close" @click="close">
               <LvIcon icon="close" :size="18" />

@@ -12,7 +12,6 @@ const props = defineProps&lt;{
   size?: string | number
   cursor?: boolean
 }&gt;()
-defineEmits(['click'])
       </code></pre>
     </div>
 
