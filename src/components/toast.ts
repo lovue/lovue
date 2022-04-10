@@ -2,7 +2,7 @@ import { render, h } from 'vue'
 import LvToast, { Props, NoTypeProps } from './LvToast.vue'
 
 function Toast (options: Props) {
-  const toast = h(LvToast, {
+  const toastNode = h(LvToast, {
     ...options,
     onClose () {
       render(null, elem)
@@ -10,7 +10,7 @@ function Toast (options: Props) {
   })
   const elem = document.createElement('div')
 
-  render(toast, elem)
+  render(toastNode, elem)
 }
 
 Toast.success = function (options: NoTypeProps) {

@@ -2,12 +2,12 @@ import { render, h } from 'vue'
 import LvDialog, { Props } from './LvDialog.vue'
 
 export default function (options: Props) {
-  const dialog = h(LvDialog, {
+  const dialogNode = h(LvDialog, {
     ...options,
     modelValue: false,
     'onUpdate:modelValue' () {
-      if (dialog.component) {
-        dialog.component.props.modelValue = false
+      if (dialogNode.component) {
+        dialogNode.component.props.modelValue = false
 
         setTimeout(() => {
           render(null, elem)
@@ -17,9 +17,9 @@ export default function (options: Props) {
   })
   const elem = document.createElement('div')
 
-  render(dialog, elem)
+  render(dialogNode, elem)
 
-  if (dialog.component) {
-    dialog.component.props.modelValue = true
+  if (dialogNode.component) {
+    dialogNode.component.props.modelValue = true
   }
 }

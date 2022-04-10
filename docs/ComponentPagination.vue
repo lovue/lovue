@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import ComponentDemo from './ComponentDemo.vue'
+import { Pagination } from '../src/components/LvPagination.vue'
 
-function update (info) {
+function update (info: Pagination) {
   console.log(info)
 }
 </script>

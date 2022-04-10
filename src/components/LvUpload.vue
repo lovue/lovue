@@ -35,7 +35,7 @@ const thumbnailStyle = computed(() => {
   }
 })
 
-function selectFiles (ev: InputEvent) {
+function selectFiles (ev: Event) {
   if (props.shape === 'button') {
     files.value = []
     thumbnails.value = []

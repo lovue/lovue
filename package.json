@@ -17,9 +17,10 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build && vue-docgen-web-types",
+    "build": "vite build && vue-docgen-web-types",
     "preview": "vite preview",
     "web-types": "vue-docgen-web-types",
+    "tsc": "vue-tsc --noEmit",
     "lint-css": "stylelint '**/*.vue'"
   },
   "author": "loliconer",
@@ -46,6 +47,7 @@
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vue-docgen-web-types": "^0.1.7",
+    "vue-eslint-parser": "^8.3.0",
     "vue-tsc": "^0.33.2-patch.1"
   },
   "web-types": "./dist/web-types.json"
