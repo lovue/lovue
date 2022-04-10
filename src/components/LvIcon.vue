@@ -5,6 +5,7 @@ const props = defineProps<{
   icon: string
   size?: string | number
   cursor?: boolean
+  prefix?: string
 }>()
 
 const styles = computed(() => {
@@ -18,11 +19,16 @@ const styles = computed(() => {
 
   return _styles
 })
+const iconHref = computed(() => {
+  if (!props.prefix) return `#icon-${props.icon}`
+
+  return `#${props.prefix}-icon-${props.icon}`
+})
 </script>
 
 <template>
   <svg :class="`lv-icon lv-icon-${icon}`" :style="styles" :width="size || 20" :height="size || 20">
-    <use :href="`#icon-${icon}`" />
+    <use :href="iconHref" />
   </svg>
 </template>
 
