@@ -11,6 +11,7 @@ const props = defineProps&lt;{
   icon: string
   size?: string | number
   cursor?: boolean
+  prefix?: string
 }&gt;()
       </code></pre>
     </div>
