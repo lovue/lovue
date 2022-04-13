@@ -19,6 +19,11 @@ const styles = computed(() => {
 
   return _styles
 })
+const componentClass = computed(() => {
+  if (!props.prefix) return `lv-icon-${props.icon}`
+
+  return `lv-${props.prefix}-icon-${props.icon}`
+})
 const iconHref = computed(() => {
   if (!props.prefix) return `#icon-${props.icon}`
 
@@ -27,7 +32,7 @@ const iconHref = computed(() => {
 </script>
 
 <template>
-  <svg :class="`lv-icon lv-icon-${icon}`" :style="styles" :width="size || 20" :height="size || 20">
+  <svg class="lv-icon" :class="componentClass" :style="styles" :width="size || 20" :height="size || 20">
     <use :href="iconHref" />
   </svg>
 </template>
