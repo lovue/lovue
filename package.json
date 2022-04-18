@@ -1,6 +1,6 @@
 {
   "name": "lovue",
-  "version": "4.0.0-rc.5",
+  "version": "4.0.0",
   "description": "Love Vue: UI components for Vue",
   "types": "src/index.d.ts",
   "module": "src/index.ts",
