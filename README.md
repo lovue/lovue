@@ -7,10 +7,7 @@
     <img src="https://img.badgesize.io/https://unpkg.com/lovue/dist/style.css?compression=gzip&style=flat-square&label=CSS%20gzip%20size" alt="CSS Gzip Size" />
 </p>
 
-- 每个组件都是一个.vue格式的单文件，并且尽量减少代码量，结构简单，方便阅读和理解以及自行修改源码
-- 尽量使用最新的技术实现
-
-### 开发
+### Develop
 
 ```
 pnpm install
@@ -18,35 +15,9 @@ pnpm run dev
 pnpm run build
 ```
 
-访问：http://localhost:3000
+### Usage
 
-### 使用方法
-
-- 第一种：引入已编译的js文件，这样可以使用所有的组件
-
-```
-<head>
-<link href="path/to/style.css" rel="stylesheet">
-<script src="https://unpkg.com/vue@3"></script>
-<script src="path/to/lovue.umd.js" defer>
-</head>
-<body>
-<div id="app">
-  <LvInput />
-</div>
-<script>
-  Vue.createApp({
-    data() {
-      return {
-        message: 'Hello Vue!'
-      }
-    }
-  }).mount('#app')
-</script>
-</body>
-```
-
-- 第二种：通过import导入
+- import from npm to use all components directly.
 
 ```
 npm install -D lovue
@@ -66,7 +37,7 @@ app.use(lovue)
 app.mount('#app')
 ```
 
-- 第三种：在js文件中导入单个vue文件，可以按需引用
+- import single component on-demand.
 
 ```
 import { LvTable } from 'lovue'
@@ -81,3 +52,5 @@ const app = createApp({
 app.component('LvTable', LvTable)
 app.mount('#app')
 ```
+
+- some components must be imported
