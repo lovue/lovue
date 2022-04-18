@@ -54,3 +54,7 @@ app.mount('#app')
 ```
 
 - some components must be imported
+
+```js
+import { Indicator, Dialog, Toast } from 'lovue'
+```
