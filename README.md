@@ -11,7 +11,7 @@ For Vue 2, please install lovue@^3.0.0
 
 ### Develop
 
-```
+```shell
 pnpm install
 pnpm run dev
 pnpm run build
@@ -23,7 +23,9 @@ pnpm run build
 
 ```
 npm install -D lovue
+```
 
+```js
 //main.js
 import lovue from 'lovue'
 import { createApp } from 'vue'
@@ -41,7 +43,7 @@ app.mount('#app')
 
 - import single component on-demand.
 
-```
+```js
 import { LvTable } from 'lovue'
 
 const app = createApp({
