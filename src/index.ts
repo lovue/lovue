@@ -36,6 +36,7 @@ export { default as Dialog } from './components/dialog'
 export { default as Toast } from './components/toast'
 
 export { default as LvMenu } from './extension/LvMenu.vue'
+export { default as LvBadge } from './extension/LvBadge.vue'
 
 export default function (app: App) {
   app.component('LvIcon', LvIcon)

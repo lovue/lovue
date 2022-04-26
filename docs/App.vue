@@ -16,6 +16,7 @@ import ComponentPagination from './ComponentPagination.vue'
 import ComponentTable from './ComponentTable.vue'
 import ComponentGlobals from './ComponentGlobals.vue'
 import ComponentMenu from "./ComponentMenu.vue";
+import ComponentBadge from './ComponentBadge.vue'
 
 onMounted(() => {
   setTimeout(() => {
@@ -104,6 +105,7 @@ function updateLinks(links: NodeListOf<Element>) {
       <ComponentTable />
       <ComponentGlobals />
       <ComponentMenu />
+      <ComponentBadge />
     </div>
   </div>
 </template>
