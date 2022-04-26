@@ -26,7 +26,7 @@ export interface DropdownItem {
 }
 
 defineProps&lt;{
-  title: string
+  title?: string
   icon?: string
   align?: 'right' | 'bottom' | 'bottom-right' | undefined
   items: DropdownItem[]

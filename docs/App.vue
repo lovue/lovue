@@ -15,6 +15,7 @@ import ComponentTooltip from './ComponentTooltip.vue'
 import ComponentPagination from './ComponentPagination.vue'
 import ComponentTable from './ComponentTable.vue'
 import ComponentGlobals from './ComponentGlobals.vue'
+import ComponentMenu from "./ComponentMenu.vue";
 
 onMounted(() => {
   setTimeout(() => {
@@ -102,6 +103,7 @@ function updateLinks(links: NodeListOf<Element>) {
       <ComponentPagination />
       <ComponentTable />
       <ComponentGlobals />
+      <ComponentMenu />
     </div>
   </div>
 </template>

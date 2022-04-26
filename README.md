@@ -3,9 +3,11 @@
 <p style="text-align: center;">
     <img src="https://img.shields.io/npm/dt/lovue.svg?style=flat-square" alt="downloads" />
     <img src="https://img.shields.io/npm/dm/lovue.svg?style=flat-square" alt="downloads" />
-    <img src="https://img.badgesize.io/https://unpkg.com/lovue/dist/lovue.umd.js?compression=gzip&style=flat-square&label=JS%20gzip%20size" alt="JS Gzip Size" />
-    <img src="https://img.badgesize.io/https://unpkg.com/lovue/dist/style.css?compression=gzip&style=flat-square&label=CSS%20gzip%20size" alt="CSS Gzip Size" />
 </p>
+
+### Note
+
+For Vue 2, please install lovue@^3.0.0
 
 ### Develop
 

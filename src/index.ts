@@ -35,6 +35,8 @@ export { default as Indicator } from './components/indicator'
 export { default as Dialog } from './components/dialog'
 export { default as Toast } from './components/toast'
 
+export { default as LvMenu } from './extension/LvMenu.vue'
+
 export default function (app: App) {
   app.component('LvIcon', LvIcon)
   app.component('LvButton', LvButton)

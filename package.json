@@ -13,12 +13,13 @@
   },
   "files": [
     "src",
-    "dist"
+    "dist",
+    "web-types.json"
   ],
   "scripts": {
     "dev": "vite",
     "preview": "vite preview",
-    "build": "vue-docgen-web-types",
+    "build": "vue-docgen-web-types --configFile web-types.config.ts",
     "tsc": "vue-tsc --noEmit",
     "lint-css": "stylelint '**/*.vue'"
   },
@@ -49,5 +50,5 @@
     "vue-eslint-parser": "^8.3.0",
     "vue-tsc": "^0.33.2-patch.1"
   },
-  "web-types": "./dist/web-types.json"
+  "web-types": "./web-types.json"
 }

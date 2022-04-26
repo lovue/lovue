@@ -10,7 +10,7 @@ const emit = defineEmits([])
 </script>
 
 <template>
-  <div class="lv-input">
+  <div class="lv-${name.toLowerCase()}">
   </div>
 </template>
 
@@ -39,5 +39,5 @@ const emit = defineEmits([])
 </template>
 `
 
-fs.writeFileSync(`src/components/Lv${name}.vue`, componentTemplate)
+fs.writeFileSync(`src/extension/Lv${name}.vue`, componentTemplate)
 fs.writeFileSync(`docs/Component${name}.vue`, demoTemplate)
