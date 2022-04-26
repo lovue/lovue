@@ -260,7 +260,7 @@ function nextMonth () {
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
-  z-index: 100;
+  z-index: 5;
 
   &.status--top {
     bottom: calc(100% + 4px);

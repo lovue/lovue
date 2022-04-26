@@ -9,7 +9,7 @@ export interface DropdownItem {
 }
 
 defineProps<{
-  title: string
+  title?: string
   icon?: string
   align?: 'right' | 'bottom' | 'bottom-right' | undefined
   items: DropdownItem[]
@@ -30,14 +30,14 @@ function clickItem (item: DropdownItem) {
   <div class="lv-dropdown">
     <div class="lv-dropdown__trigger">
       <LvIcon :icon="icon" v-if="icon" />
-      <span>{{ title }}</span>
+      <span v-if="title">{{ title }}</span>
     </div>
     <div class="lv-dropdown__items" :class="align ? `align-${align}` : ''">
       <template v-for="(item, i) of items">
         <div class="lv-dropdown__divider" :key="`item${i}`" v-if="item.type === 'divider'" />
         <div class="lv-dropdown__item" :key="`item${i}`" v-else @click="clickItem(item)">
           <LvIcon :icon="item.icon" v-if="item.icon" />
-          <span>{{ item.text }}</span>
+          <span v-if="item.text">{{ item.text }}</span>
         </div>
       </template>
     </div>
@@ -74,6 +74,7 @@ function clickItem (item: DropdownItem) {
     visibility: hidden;
     transition: all 0.3s;
     position: absolute;
+    z-index: 5;
 
     &.align-right {
       left: auto;
