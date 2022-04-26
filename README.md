@@ -59,4 +59,6 @@ app.mount('#app')
 
 ```js
 import { Indicator, Dialog, Toast } from 'lovue'
+// extension components
+import { LvBadge, LvMenu, LvSteps } from 'lovue'
 ```
