@@ -5,7 +5,7 @@
     <img src="https://img.shields.io/npm/dm/lovue.svg?style=flat-square" alt="downloads" />
 </p>
 
-[Docs](lovue.vercel.app)
+[Docs](https://lovue.vercel.app/)
 
 ### Note
 
