@@ -5,6 +5,8 @@
     <img src="https://img.shields.io/npm/dm/lovue.svg?style=flat-square" alt="downloads" />
 </p>
 
+[Docs](lovue.vercel.app)
+
 ### Note
 
 For Vue 2, please install lovue@^3.0.0
