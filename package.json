@@ -13,12 +13,11 @@
   },
   "files": [
     "src",
-    "dist",
     "web-types.json"
   ],
   "scripts": {
     "dev": "vite",
-    "preview": "vite preview",
+    "docs": "vite build",
     "build": "vue-docgen-web-types --configFile web-types.config.ts",
     "tsc": "vue-tsc --noEmit",
     "lint-css": "stylelint '**/*.vue'"
