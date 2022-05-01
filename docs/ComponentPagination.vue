@@ -11,8 +11,23 @@ function update (info: Pagination) {
   <ComponentDemo id="toPagination" title="LvPagination">
     <div class="usage">
       <pre><code>// types
-const props = defineProps&lt;{}&gt;()
-const emit = defineEmits([])
+export interface Pagination {
+  index: number
+  pageSize: number
+}
+
+const props = withDefaults(defineProps&lt;{
+  total: number
+  pageSize?: number
+  sizeOptions?: number[]
+  simple?: boolean
+  theme?: 'ghost' | 'text'
+}&gt;(), {
+  pageSize: 10,
+  sizeOptions: () => [10, 20, 50],
+  theme: 'ghost'
+})
+const emit = defineEmits(['update'])
       </code></pre>
     </div>
 

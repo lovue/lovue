@@ -6,8 +6,8 @@ type ButtonType = 'button' | 'submit' | 'reset' | undefined
 
 const props = defineProps<{
   type?: ButtonType
-  theme?: string
-  size?: string
+  theme?: 'primary' | 'danger' | 'ghost' | 'text'
+  size?: 'lg' | 'sm'
   disabled?: boolean
   icon?: string
   loading?: boolean

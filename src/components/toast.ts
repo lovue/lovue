@@ -1,5 +1,7 @@
 import { render, h } from 'vue'
-import LvToast, { Props, NoTypeProps } from './LvToast.vue'
+import LvToast, { Props } from './LvToast.vue'
+
+type NoTypeProps = Omit<Props, 'type'>
 
 function Toast (options: Props) {
   const toastNode = h(LvToast, {

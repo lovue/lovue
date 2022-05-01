@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<{
   pageSize?: number
   sizeOptions?: number[]
   simple?: boolean
-  theme?: 'ghost' | 'text' | undefined
+  theme?: 'ghost' | 'text'
 }>(), {
   pageSize: 10,
   sizeOptions: () => [10, 20, 50],

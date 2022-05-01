@@ -4,12 +4,6 @@ import LvIcon from './LvIcon.vue'
 
 export type ToastType = 'info' | 'success' | 'error' | 'warn'
 
-export interface NoTypeProps {
-  text: string
-  showClose?: boolean
-  duration?: number
-}
-
 export interface Props {
   text: string
   showClose?: boolean

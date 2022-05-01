@@ -4,7 +4,7 @@ import { ref, nextTick, computed, onMounted, watch } from 'vue'
 const props = defineProps<{
   modelValue: string | number | null
   label?: string
-  type?: string
+  type?: 'text' | 'number' | 'email' | 'password' | 'search' | 'tel' | 'url'
   name?: string
   placeholder?: string
   pattern?: string
