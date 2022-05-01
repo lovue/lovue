@@ -5,11 +5,11 @@
   "types": "src/index.d.ts",
   "module": "src/index.ts",
   "repository": {
-    "url": "https://github.com/loliconer/lovue.git",
+    "url": "https://github.com/lovue/lovue.git",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/loliconer/lovue/issues"
+    "url": "https://github.com/lovue/lovue/issues"
   },
   "files": [
     "src",
@@ -18,11 +18,11 @@
   "scripts": {
     "dev": "vite",
     "docs": "vite build",
-    "build": "vue-docgen-web-types --configFile web-types.config.ts",
+    "types": "vue-docgen-web-types --configFile web-types.config.ts",
     "tsc": "vue-tsc --noEmit",
     "lint-css": "stylelint '**/*.vue'"
   },
-  "author": "loliconer",
+  "author": "lovue",
   "license": "MIT",
   "dependencies": {
     "vue": "^3.2.25"
