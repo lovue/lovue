@@ -31,6 +31,7 @@ const position = ref({
 const startX = ref(0)
 const startY = ref(0)
 const dragFlag = ref(false)
+const isComponentClicked = ref(false)
 
 const componentClass = computed(() => {
   const _class = []
@@ -60,6 +61,11 @@ const windowStyle = computed(() => {
 })
 
 function close () {
+  if (isComponentClicked.value) {
+    isComponentClicked.value = false
+    return
+  }
+
   emit('update:modelValue', false)
 }
 
@@ -106,7 +112,7 @@ function dragEnd() {
         @mousemove="dragging"
         @mouseup="dragEnd"
       >
-        <div class="lv-dialog__window" :style="windowStyle" @click.stop>
+        <div class="lv-dialog__window" :style="windowStyle" @click="isComponentClicked = true">
           <div class="lv-dialog__head" @mousedown="dragStart">
             <div class="title-text">{{ title }}</div>
             <div class="lv-dialog__close" @click="close">
