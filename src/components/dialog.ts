@@ -1,5 +1,6 @@
 import { render, h } from 'vue'
-import LvDialog, { Props } from './LvDialog.vue'
+import LvDialog from './LvDialog.vue'
+import type { Props } from './LvDialog.vue'
 
 export default function (options: Props) {
   const dialogNode = h(LvDialog, {

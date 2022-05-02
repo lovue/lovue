@@ -60,6 +60,8 @@ export interface Props {
   noFooter?: boolean
   simple?: boolean
   fixed?: boolean
+  visible?: boolean
+  class?: string
   confirm?: () => Promise&lt;boolean&gt;
 }
 const props = withDefaults(defineProps&lt;Props&gt;(), {
@@ -74,7 +76,7 @@ const emit = defineEmits(['update:modelValue'])
       <LvButton @click="model1 = true">Open</LvButton>
       <LvButton @click="model2 = true">Open</LvButton>
 
-      <LvDialog v-model="model1" title="Test" :confirm="confirmDialog">
+      <LvDialog v-model="model1" title="Test" :confirm="confirmDialog" class="custom-class">
         <p>Hello world</p>
       </LvDialog>
 

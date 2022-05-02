@@ -13,6 +13,7 @@ export interface Props {
   simple?: boolean
   fixed?: boolean
   visible?: boolean
+  class?: string
   confirm?: () => Promise<boolean>
 }
 
@@ -44,6 +45,10 @@ const componentClass = computed(() => {
 
   if (props.visible) {
     _class.push('status--visible')
+  }
+
+  if (props.class) {
+    _class.push(props.class)
   }
 
   return _class
