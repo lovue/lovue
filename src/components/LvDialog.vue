@@ -12,6 +12,7 @@ export interface Props {
   noFooter?: boolean
   simple?: boolean
   fixed?: boolean
+  visible?: boolean
   confirm?: () => Promise<boolean>
 }
 
@@ -39,6 +40,10 @@ const componentClass = computed(() => {
 
   if (props.fixed) {
     _class.push('status--fixed')
+  }
+
+  if (props.visible) {
+    _class.push('status--visible')
   }
 
   return _class
@@ -127,7 +132,7 @@ function dragEnd() {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1000;
+  z-index: 100;
   background-color: rgb(0 0 0 / 25%);
   display: flex;
   align-items: center;
@@ -154,6 +159,12 @@ function dragEnd() {
 
     .lv-dialog__window {
       margin-top: 100px;
+    }
+  }
+
+  &.status--visible {
+    .lv-dialog__body {
+      overflow-y: visible;
     }
   }
 }
@@ -193,7 +204,7 @@ function dragEnd() {
   max-width: 80vw;
   min-width: 520px;
   padding: var(--unit) var(--2unit);
-  overflow-y: visible;
+  overflow-y: auto;
 
   @media (max-height: 800px) {
     max-height: calc(95vh - 2 * var(--bar-height));

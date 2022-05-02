@@ -78,7 +78,7 @@ const emit = defineEmits(['update:modelValue'])
         <p>Hello world</p>
       </LvDialog>
 
-      <LvDialog v-model="model2" title="Test" no-footer>
+      <LvDialog v-model="model2" title="Test" no-footer visible>
         <p>Hello world</p>
         <LvSelect v-model="model3" :items="cars" />
       </LvDialog>
