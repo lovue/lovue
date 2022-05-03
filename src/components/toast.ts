@@ -1,8 +1,6 @@
 import { render, h } from 'vue'
 import LvToast, { Props } from './LvToast.vue'
 
-type NoTypeProps = Omit<Props, 'type'>
-
 function Toast (options: Props) {
   const toastNode = h(LvToast, {
     ...options,
@@ -15,28 +13,28 @@ function Toast (options: Props) {
   render(toastNode, elem)
 }
 
-Toast.success = function (options: NoTypeProps) {
+Toast.success = function (options: Props) {
   Toast({
     ...options,
     type: 'success'
   })
 }
 
-Toast.info = function (options: NoTypeProps) {
+Toast.info = function (options: Props) {
   Toast({
     ...options,
     type: 'info'
   })
 }
 
-Toast.warn = function (options: NoTypeProps) {
+Toast.warn = function (options: Props) {
   Toast({
     ...options,
     type: 'warn'
   })
 }
 
-Toast.error = function (options: NoTypeProps) {
+Toast.error = function (options: Props) {
   Toast({
     ...options,
     type: 'error'
