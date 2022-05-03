@@ -28,7 +28,7 @@ export interface DropdownItem {
 defineProps&lt;{
   title?: string
   icon?: string
-  align?: 'right' | 'bottom' | 'bottom-right' | undefined
+  align?: 'right' | 'bottom' | 'bottom-right'
   items: DropdownItem[]
 }&gt;()
 const emit = defineEmits(['clickItem'])

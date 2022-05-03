@@ -10,7 +10,7 @@ const loading2 = ref(false)
   <ComponentDemo id="toButton" title="LvButton">
     <div class="usage">
       <pre><code>// types
-type ButtonType = 'button' | 'submit' | 'reset' | undefined
+type ButtonType = 'button' | 'submit' | 'reset'
 
 const props = defineProps&lt;{
   type?: ButtonType

@@ -12,7 +12,7 @@ const model1 = ref(null)
 const props = defineProps&lt;{
   text: string
   width?: string | number
-  position?: 'left' | 'right' | 'bottom' | undefined
+  position?: 'left' | 'right' | 'bottom'
 }&gt;()
       </code></pre>
     </div>

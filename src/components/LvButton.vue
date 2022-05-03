@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import LvIcon from './LvIcon.vue'
 
-type ButtonType = 'button' | 'submit' | 'reset' | undefined
+type ButtonType = 'button' | 'submit' | 'reset'
 
 const props = defineProps<{
   type?: ButtonType

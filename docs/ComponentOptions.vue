@@ -50,7 +50,7 @@ const props = defineProps&lt;{
   name?: string,
   reverse?: boolean
   vertical?: boolean
-  shape?: 'button' | undefined
+  shape?: 'button'
 }&gt;()
 const emit = defineEmits(['update:modelValue'])
       </code></pre>

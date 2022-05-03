@@ -4,7 +4,7 @@ import { ref, computed, onMounted } from 'vue'
 const props = defineProps<{
   text: string
   width?: string | number
-  position?: 'left' | 'right' | 'bottom' | undefined
+  position?: 'left' | 'right' | 'bottom'
 }>()
 
 const rootElem = ref<HTMLDivElement | null>(null)

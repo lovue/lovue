@@ -14,7 +14,7 @@ const props = defineProps<{
   name?: string,
   reverse?: boolean
   vertical?: boolean
-  shape?: 'button' | undefined
+  shape?: 'button'
 }>()
 const emit = defineEmits(['update:modelValue'])
 
