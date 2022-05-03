@@ -1,5 +1,5 @@
 import { render, h } from 'vue'
-import LvToast, { Props } from './LvToast.vue'
+import LvToast, { Props, ToastType } from './LvToast.vue'
 
 function Toast (options: Props) {
   const toastNode = h(LvToast, {
@@ -13,32 +13,19 @@ function Toast (options: Props) {
   render(toastNode, elem)
 }
 
-Toast.success = function (options: Props) {
-  Toast({
-    ...options,
-    type: 'success'
-  })
+function getHandlerByType (type: ToastType) {
+  return function (options: string | { text: string } | Props) {
+    if (typeof options === 'string') options = { text: options }
+    Toast({
+      ...options,
+      type
+    })
+  }
 }
 
-Toast.info = function (options: Props) {
-  Toast({
-    ...options,
-    type: 'info'
-  })
-}
-
-Toast.warn = function (options: Props) {
-  Toast({
-    ...options,
-    type: 'warn'
-  })
-}
-
-Toast.error = function (options: Props) {
-  Toast({
-    ...options,
-    type: 'error'
-  })
-}
+Toast.success = getHandlerByType('success')
+Toast.info = getHandlerByType('info')
+Toast.warn = getHandlerByType('warn')
+Toast.error = getHandlerByType('error')
 
 export default Toast
