@@ -2,7 +2,7 @@
 import { ref, nextTick, computed, onMounted, watch } from 'vue'
 
 const props = defineProps<{
-  modelValue: string | number | null
+  modelValue: string | number | null | undefined
   label?: string
   type?: 'text' | 'number' | 'email' | 'password' | 'search' | 'tel' | 'url'
   name?: string
@@ -25,7 +25,7 @@ const emit = defineEmits(['update:modelValue', 'enter', 'blur'])
 const hiddenValueElem = ref<HTMLDivElement | null>(null)
 const inputElem = ref<HTMLInputElement | null>(null)
 const width = ref(0)
-const innerValue = ref<string | number | null>(props.modelValue)
+const innerValue = ref<string | number | null | undefined>(props.modelValue)
 
 const componentClass = computed(() => {
   if (props.vertical) return 'lv-input--vertical'

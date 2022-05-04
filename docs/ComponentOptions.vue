@@ -44,7 +44,7 @@ export interface OptionItem {
 }
 
 const props = defineProps&lt;{
-  type: 'radio' | 'checkbox'
+  type: 'radio' | 'checkbox' | 'switch'
   modelValue: number | string | boolean | []
   items: OptionItem[]
   name?: string,
