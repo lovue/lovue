@@ -2,7 +2,7 @@
 import { ref, nextTick, computed, onMounted, watch } from 'vue'
 
 const props = defineProps<{
-  modelValue: string | number | null | undefined
+  modelValue?: string | number | null
   label?: string
   type?: 'text' | 'number' | 'email' | 'password' | 'search' | 'tel' | 'url'
   name?: string

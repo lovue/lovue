@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import ComponentDemo from './ComponentDemo.vue'
 
-const bindValue1 = ref('')
+const bindValue1 = ref()
 const bindValue2 = ref(100)
 const bindValue3 = ref('')
 
@@ -16,7 +16,7 @@ function enter (value: string | number) {
     <div class="usage">
       <pre><code>// types
 const props = defineProps&lt;{
-  modelValue: string | number | null
+  modelValue?: string | number | null
   label?: string
   type?: 'text' | 'number' | 'email' | 'password' | 'search' | 'tel' | 'url'
   name?: string
