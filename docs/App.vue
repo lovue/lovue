@@ -57,9 +57,7 @@ function createMenu() {
     const a = document.createElement('a')
     a.href = `#${panel.id}`
 
-    if (panel.firstElementChild !== null) {
-      a.innerHTML = panel.firstElementChild.innerHTML
-    }
+    a.innerHTML = panel.firstElementChild?.innerHTML || ''
 
     li.appendChild(a)
     frag.appendChild(li)

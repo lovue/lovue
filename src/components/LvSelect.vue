@@ -130,10 +130,8 @@ function updateSelected (outerValue: modelValueType) {
 function updateScrollbar () {
   if (!rootElem.value) return
 
-  const optionsElem = rootElem.value.querySelector('.lv-select__options')
-  if (!(optionsElem instanceof HTMLUListElement)) return
-  const focusElem = rootElem.value.querySelector('.lv-select__option.status--focus')
-  if (!(focusElem instanceof HTMLDivElement)) return
+  const optionsElem = rootElem.value.querySelector('.lv-select__options') as HTMLUListElement
+  const focusElem = rootElem.value.querySelector('.lv-select__option.status--focus') as HTMLDivElement
 
   const y = focusElem.offsetTop - optionsElem.offsetHeight / 2
   optionsElem.scrollTop = Math.max(y, 0)
@@ -143,8 +141,7 @@ function calculateDropdownPosition () {
   if (!rootElem.value) return
 
   const bottomSpace = window.innerHeight - rootElem.value.getBoundingClientRect().bottom
-  const dropdownElem = rootElem.value.querySelector('.lv-select__dropdown')
-  if (!(dropdownElem instanceof HTMLDivElement)) return
+  const dropdownElem = rootElem.value.querySelector('.lv-select__dropdown') as HTMLDivElement
 
   const newPosition = bottomSpace < dropdownElem.offsetHeight ? 'top' : 'bottom'
   const positionChanged = newPosition !== position.value

@@ -118,8 +118,7 @@ function calculateContainerPosition () {
   if (!rootElem.value) return
 
   const bottomSpace = window.innerHeight - rootElem.value.getBoundingClientRect().bottom
-  const containerElem = rootElem.value.querySelector('.lv-date-picker__container')
-  if (!(containerElem instanceof HTMLDivElement)) return
+  const containerElem = rootElem.value.querySelector('.lv-date-picker__container') as HTMLDivElement
 
   const newPosition = bottomSpace < containerElem.offsetHeight ? 'top' : 'bottom'
   const positionChanged = newPosition !== position.value
