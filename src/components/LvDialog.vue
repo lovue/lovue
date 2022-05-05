@@ -14,7 +14,7 @@ export interface Props {
   fixed?: boolean
   visible?: boolean
   class?: string
-  confirm?: () => Promise<boolean>
+  confirm?: () => unknown
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -73,12 +73,19 @@ async function clickOK () {
     return
   }
 
-  if (loading.value) return
-  loading.value = true
+  if (props.confirm.constructor.name === 'AsyncFunction') {
+    if (loading.value) return
+    loading.value = true
 
-  const result = await props.confirm()
-  loading.value = false
-  if (result) close()
+    const result = await (props.confirm() as Promise<unknown>).finally(() => {
+      loading.value = false
+    })
+    if (result !== false) close()
+    return
+  }
+
+  const result = props.confirm()
+  if (result !== false) close()
 }
 
 function dragStart (ev: MouseEvent) {
