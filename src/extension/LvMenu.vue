@@ -53,7 +53,7 @@ function toggleMenu (menu: Menu) {
 }
 
 function clearStatus () {
-  props.items.forEach((_item: Menu) => {
+  menus.value.forEach((_item: Menu) => {
     _item._focus = false;
 
     (_item?.children || []).forEach((_child: Menu) => {

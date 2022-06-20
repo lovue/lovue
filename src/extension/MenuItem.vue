@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import LvIcon from '../components/LvIcon.vue'
-import type { MenuMode } from './LvMenu.vue'
+import type { MenuMode, Menu } from './LvMenu.vue'
 
 const props = defineProps<{
   mode?: MenuMode
-  menu: Record<string, string>
+  menu: Menu
 }>()
 
 const emit = defineEmits(['click-item'])

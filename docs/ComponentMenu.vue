@@ -21,9 +21,9 @@ const menus = [
     title: 'TA管理',
     icon: 'setting',
     children: [
-      { title: '申购赎回管理', url: '/otc/purchase.html', mode: 'nonLink' },
-      { title: '客户信息管理', url: '/otc/information.html', mode: 'SPA' },
-      { title: '客户持仓管理', url: '/otc/customer-position.html', mode: 'link' },
+      { title: '申购赎回管理', url: '/otc/purchase.html' },
+      { title: '客户信息管理', url: '/otc/information.html' },
+      { title: '客户持仓管理', url: '/otc/customer-position.html' },
       { title: '基金返账管理', url: '/otc/vi-settlement.html' }
     ]
   }
@@ -65,6 +65,10 @@ const emit = defineEmits(['click-item'])
 
     <div class="controls">
       <LvMenu :items="menus" vertical @click-item="clickItem" />
+    </div>
+
+    <div class="controls">
+      <LvMenu :items="menus" vertical mode="nonLink" @click-item="clickItem" />
     </div>
   </ComponentDemo>
 </template>
