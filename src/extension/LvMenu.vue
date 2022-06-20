@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import LvIcon from '../components/LvIcon.vue'
 import MenuItem from './MenuItem.vue'
 
@@ -30,6 +30,8 @@ const componentClass = computed(() => {
 
   return 'status--vertical'
 })
+
+watch(() => props.items, value => menus.value = value)
 
 function openMenu (menu: Menu) {
   menu._height = (menu.children?.length || 0) * 48
@@ -97,7 +99,7 @@ function clickItem (menu: Menu, parent: Menu) {
           <div class="lv-menu__dropdown__trigger" :class="{ 'status--focus': menu._focus }">
             <LvIcon :icon="menu.icon" :size="16" v-if="menu.icon" />
             <span v-if="menu.title">{{ menu.title }}</span>
-            <LvIcon icon="down-wide" :class="{ 'status--up': menu._openIcon }" />
+            <LvIcon icon="down-wide" />
           </div>
           <div class="lv-menu__dropdown__items">
             <MenuItem

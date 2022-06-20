@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ComponentDemo from './ComponentDemo.vue'
 import { LvMenu } from '../src/index'
 import type { Menu } from '../src/extension/LvMenu.vue'
@@ -8,8 +9,6 @@ const menus = [
     title: '交易流水',
     icon: 'setting',
     _focus: true,
-    _open: false,
-    _openIcon: false,
     _height: 0,
     children: [
       { title: 'OTC商品期权', url: '/otc/options.html', _focus: true },
@@ -28,6 +27,12 @@ const menus = [
     ]
   }
 ]
+
+const menus2 = ref([])
+
+setTimeout(() => {
+  menus2.value = JSON.parse(JSON.stringify(menus))
+}, 1000)
 
 function clickItem (value: Menu) {
   console.log(value)
@@ -68,7 +73,7 @@ const emit = defineEmits(['click-item'])
     </div>
 
     <div class="controls">
-      <LvMenu :items="menus" vertical mode="nonLink" @click-item="clickItem" />
+      <LvMenu :items="menus2" vertical mode="nonLink" @click-item="clickItem" />
     </div>
   </ComponentDemo>
 </template>
