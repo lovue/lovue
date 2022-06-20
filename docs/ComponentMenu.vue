@@ -38,10 +38,12 @@ function clickItem (value: Menu) {
   <ComponentDemo id="toMenu" title="LvMenu">
     <div class="usage">
       <pre><code>// types
+export type MenuMode = 'SPA' | 'link' | 'nonLink'
 export interface Menu {
   title?: string
   icon?: string
   url?: string
+  mode?: MenuMode
   children?: Menu[]
   _focus?: boolean
   _open?: boolean
@@ -51,7 +53,7 @@ export interface Menu {
 const props = defineProps&lt;{
   items: Menu[]
   vertical?: boolean
-  mode?: 'SPA' | 'link' | 'nonLink'
+  mode?: MenuMode
 }&gt;()
 const emit = defineEmits(['click-item'])
       </code></pre>
