@@ -1,36 +1,45 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import LvIcon from '../components/LvIcon.vue'
+import type { MenuMode } from './LvMenu.vue'
 
 const props = defineProps<{
-  mode?: string
+  mode?: MenuMode
   menu: Record<string, string>
 }>()
 
-defineEmits(['click-item'])
+const emit = defineEmits(['click-item'])
+
+const mode = computed(() => {
+  return props.menu.mode || props.mode
+})
 
 const isType = computed(() => {
-  if (props.mode === 'SPA') return 'router-link'
+  if (mode.value === 'SPA') return 'router-link'
   return 'a'
 })
 
 const attrs = computed(() => {
-  if (props.mode === 'SPA') return {
+  if (mode.value === 'SPA') return {
     to: props.menu.url
   }
 
-  if (props.mode === 'link' || props.mode === undefined) return {
+  if (mode.value === 'link' || mode.value === undefined) return {
     class: { 'status--focus': props.menu._focus },
     href: props.menu.url,
     target: '_blank'
   }
 
-  if (props.mode === 'nonLink') return {
+  if (mode.value === 'nonLink') return {
     class: { 'status--focus': props.menu._focus },
   }
 
   return {}
 })
+
+function clickItem () {
+  if (mode.value === 'nonLink') emit('click-item', props.menu)
+}
 </script>
 
 <template>
@@ -38,6 +47,7 @@ const attrs = computed(() => {
     class="lv-menu-item__link"
     :is="isType"
     v-bind="attrs"
+    @click="clickItem"
   >
     <LvIcon :icon="menu.icon" :size="16" v-if="menu.icon" />
     <span v-if="menu.title">{{ menu.title }}</span>

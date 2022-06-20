@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ComponentDemo from './ComponentDemo.vue'
 import { LvMenu } from '../src/index'
+import type { Menu } from '../src/extension/LvMenu.vue'
 
 const menus = [
   {
@@ -20,13 +21,17 @@ const menus = [
     title: 'TA管理',
     icon: 'setting',
     children: [
-      { title: '申购赎回管理', url: '/otc/purchase.html' },
-      { title: '客户信息管理', url: '/otc/information.html' },
-      { title: '客户持仓管理', url: '/otc/customer-position.html' },
+      { title: '申购赎回管理', url: '/otc/purchase.html', mode: 'nonLink' },
+      { title: '客户信息管理', url: '/otc/information.html', mode: 'SPA' },
+      { title: '客户持仓管理', url: '/otc/customer-position.html', mode: 'link' },
       { title: '基金返账管理', url: '/otc/vi-settlement.html' }
     ]
   }
 ]
+
+function clickItem (value: Menu) {
+  console.log(value)
+}
 </script>
 
 <template>
@@ -46,7 +51,7 @@ export interface Menu {
 const props = defineProps&lt;{
   items: Menu[]
   vertical?: boolean
-  mode?: string
+  mode?: 'SPA' | 'link' | 'nonLink'
 }&gt;()
 const emit = defineEmits(['click-item'])
       </code></pre>
@@ -56,8 +61,8 @@ const emit = defineEmits(['click-item'])
       <LvMenu :items="menus" />
     </div>
 
-    <div class="controls" @click="add">
-      <LvMenu :items="menus" vertical />
+    <div class="controls">
+      <LvMenu :items="menus" vertical @click-item="clickItem" />
     </div>
   </ComponentDemo>
 </template>

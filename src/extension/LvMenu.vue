@@ -3,10 +3,13 @@ import { ref, computed } from 'vue'
 import LvIcon from '../components/LvIcon.vue'
 import MenuItem from './MenuItem.vue'
 
+export type MenuMode = 'SPA' | 'link' | 'nonLink'
+
 export interface Menu {
   title?: string
   icon?: string
   url?: string
+  mode?: MenuMode
   children?: Menu[]
   _focus?: boolean
   _height?: number
@@ -15,7 +18,7 @@ export interface Menu {
 const props = defineProps<{
   items: Menu[]
   vertical?: boolean
-  mode?: string
+  mode?: MenuMode
 }>()
 const emit = defineEmits(['click-item'])
 
