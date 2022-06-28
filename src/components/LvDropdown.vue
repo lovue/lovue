@@ -6,6 +6,7 @@ export interface DropdownItem {
   icon?: string
   text?: string
   url?: string
+  value?: string
 }
 
 defineProps<{
@@ -14,7 +15,7 @@ defineProps<{
   align?: 'right' | 'bottom' | 'bottom-right'
   items: DropdownItem[]
 }>()
-const emit = defineEmits(['clickItem'])
+const emit = defineEmits(['click-item'])
 
 function clickItem (item: DropdownItem) {
   if (item.type === 'link') {
@@ -22,7 +23,7 @@ function clickItem (item: DropdownItem) {
     return
   }
 
-  emit('clickItem', item)
+  emit('click-item', item)
 }
 </script>
 
