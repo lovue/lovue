@@ -30,8 +30,10 @@ function clickItem (item: DropdownItem) {
 <template>
   <div class="lv-dropdown">
     <div class="lv-dropdown__trigger">
-      <LvIcon :icon="icon" v-if="icon" />
-      <span v-if="title">{{ title }}</span>
+      <slot>
+        <LvIcon :icon="icon" v-if="icon" />
+        <span v-if="title">{{ title }}</span>
+      </slot>
     </div>
     <div class="lv-dropdown__items" :class="align ? `align-${align}` : ''">
       <template v-for="(item, i) of items">
