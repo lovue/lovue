@@ -2,7 +2,7 @@
   "name": "lovue",
   "version": "4.1.8",
   "description": "Love Vue: UI components for Vue",
-  "types": "src/index.d.ts",
+  "types": "src",
   "module": "src/index.ts",
   "repository": {
     "url": "https://github.com/lovue/lovue.git",
