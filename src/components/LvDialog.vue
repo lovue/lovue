@@ -31,6 +31,7 @@ const position = ref({
 const startX = ref(0)
 const startY = ref(0)
 const dragFlag = ref(false)
+const isStartClickInDialog = ref(false)
 
 const componentClass = computed(() => {
   const _class = []
@@ -64,6 +65,7 @@ function close () {
 }
 
 function clickDialog () {
+  isStartClickInDialog.value = false
   document.documentElement.click()
 }
 
@@ -104,6 +106,18 @@ function dragging(ev: MouseEvent) {
 function dragEnd() {
   dragFlag.value = false
 }
+
+function startClickInDialog () {
+  isStartClickInDialog.value = true
+}
+
+function clickOutside () {
+  if (isStartClickInDialog.value) {
+    isStartClickInDialog.value = false
+    return
+  }
+  close()
+}
 </script>
 
 <template>
@@ -113,11 +127,11 @@ function dragEnd() {
         class="lv-dialog"
         :class="componentClass"
         v-if="modelValue"
-        @click="close"
+        @click="clickOutside"
         @mousemove="dragging"
         @mouseup="dragEnd"
       >
-        <div class="lv-dialog__window" :style="windowStyle" @click.stop="clickDialog">
+        <div class="lv-dialog__window" :style="windowStyle" @click.stop="clickDialog" @mousedown="startClickInDialog">
           <div class="lv-dialog__head" @mousedown="dragStart">
             <div class="title-text">{{ title }}</div>
             <div class="lv-dialog__close" @click="close">
