@@ -316,7 +316,6 @@ function cloneItems (items: OptionItem[]) {
 .lv-select__selected {
   .flex-between;
 
-  position: relative;
   padding: 0 4px;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
@@ -324,7 +323,6 @@ function cloneItems (items: OptionItem[]) {
   min-height: 32px;
   transition: border-color 0.2s;
   cursor: pointer;
-  z-index: 2;
 
   &:hover {
     border-color: var(--blue-color);
