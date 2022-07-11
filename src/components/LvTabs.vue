@@ -2,16 +2,16 @@
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import LvIcon from './LvIcon.vue'
 
-export interface TabItem {
+interface IconItem {
   text?: string
   icon?: string
 }
 
-type ItemType = TabItem | string | number
+export type TabItem = IconItem | string | number
 
 const props = defineProps<{
   modelValue: number
-  items: ItemType[]
+  items: TabItem[]
   locked?: boolean
 }>()
 const emit = defineEmits(['update:modelValue'])

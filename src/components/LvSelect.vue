@@ -7,17 +7,17 @@ import { useClickOutside } from '../hooks/useClickOutside'
 type valueType = string | number | null
 type modelValueType = valueType | valueType[]
 
-export interface OptionItem {
+export interface SelectItem {
   text: string
   value: valueType
   disabled?: boolean
-  children?: OptionItem[]
+  children?: SelectItem[]
   _selected?: boolean
 }
 
 const props = withDefaults(defineProps<{
   modelValue: modelValueType
-  items: OptionItem[]
+  items: SelectItem[]
   name?: string
   disabled?: boolean
   searchable?: boolean
@@ -34,11 +34,11 @@ const emit = defineEmits(['update:modelValue', 'selected-items'])
 
 const { isComponentClicked } = useClickOutside(hideDropdown)
 
-const selected = ref<OptionItem[] | OptionItem | null>(null)
+const selected = ref<SelectItem[] | SelectItem | null>(null)
 const searchKeywords = ref('')
 const position = ref('bottom')
 const isShowDropdown = ref(false)
-const originalOptions = ref<OptionItem[]>([])
+const originalOptions = ref<SelectItem[]>([])
 const rootElem = ref<HTMLDivElement | null>(null)
 const innerUpdate = ref(false)
 
@@ -175,7 +175,7 @@ function hideDropdown () {
   searchKeywords.value = ''
 }
 
-function removeSelected (option: OptionItem, index: number) {
+function removeSelected (option: SelectItem, index: number) {
   if (!Array.isArray(selected.value)) return
 
   selected.value.splice(index, 1)
@@ -192,7 +192,7 @@ function clearSelected () {
   emit('selected-items', null)
 }
 
-function clickOption (option: OptionItem) {
+function clickOption (option: SelectItem) {
   if (isMultiple.value) {
     toggleOption(option)
   } else {
@@ -200,7 +200,7 @@ function clickOption (option: OptionItem) {
   }
 }
 
-function selectOption (option: OptionItem) {
+function selectOption (option: SelectItem) {
   if (Array.isArray(selected.value)) return
 
   if (selected.value !== null) selected.value._selected = false
@@ -214,7 +214,7 @@ function selectOption (option: OptionItem) {
   emit('selected-items', selected.value)
 }
 
-function toggleOption (option: OptionItem) {
+function toggleOption (option: SelectItem) {
   if (!Array.isArray(selected.value)) return
 
   option._selected = !option._selected
@@ -236,9 +236,9 @@ function toggleOption (option: OptionItem) {
   emit('selected-items', selected.value)
 }
 
-function cloneItems (items: OptionItem[]) {
+function cloneItems (items: SelectItem[]) {
   return items.map(item => {
-    const option: OptionItem = {
+    const option: SelectItem = {
       text: item.text,
       value: item.value,
       disabled: item.disabled

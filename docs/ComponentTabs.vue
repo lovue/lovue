@@ -16,16 +16,16 @@ const currentIndex = ref(1)
   <ComponentDemo id="toTabs" title="LvTabs">
     <div class="usage">
       <pre><code>// types
-export interface TabItem {
+export interface IconItem {
   text?: string
   icon?: string
 }
 
-type ItemType = TabItem | string | number
+type TabItem = IconItem | string | number
 
 const props = defineProps&lt;{
   modelValue: number
-  items: ItemType[]
+  items: TabItem[]
   locked?: boolean
 }&gt;()
 const emit = defineEmits(['update:modelValue'])

@@ -5,7 +5,7 @@ import LvSearch from './LvSearch.vue'
 import LvOptions from './LvOptions.vue'
 import LvPagination, { Pagination } from './LvPagination.vue'
 
-interface Column {
+export interface Column {
   title?: string
   prop?: string
   sortable?: boolean
