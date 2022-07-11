@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ComponentDemo from './ComponentDemo.vue'
 
 const rows = [
@@ -30,8 +31,17 @@ const columns = [
   { title: '是否选中', prop: 'checked', formatter: (value: number) => Boolean(value) }
 ]
 
+const loading = ref(false)
+
 function showSelected (_rows: []) {
   console.log(_rows)
+}
+
+function startLoading () {
+  loading.value = true
+  setTimeout(() => {
+    loading.value = false
+  }, 2000)
 }
 </script>
 
@@ -63,14 +73,16 @@ const emit = defineEmits(['click-row', 'checked'])
       </code></pre>
     </div>
 
+    <LvButton @click="startLoading">Start Loading</LvButton>
+
     <div>
-      <LvTable :rows="rows" :columns="columns" checkbox @checked="showSelected" />
+      <LvTable :rows="rows" :columns="columns" :loading="loading" checkbox @checked="showSelected" />
     </div>
     <div style="margin-top: 32px;">
-      <LvTable :rows="rows" :columns="columns" simple fixed-head />
+      <LvTable :rows="rows" :columns="columns" :loading="loading" simple fixed-head />
     </div>
     <div style="margin-top: 32px;">
-      <LvTable :rows="rows" :columns="columns" simple checkbox />
+      <LvTable :rows="rows" :columns="columns" :loading="loading" simple checkbox />
     </div>
   </ComponentDemo>
 </template>

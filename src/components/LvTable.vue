@@ -22,6 +22,7 @@ const props = withDefaults(defineProps<{
   checkbox?: boolean
   emptyText?: string
   total?: number
+  loading?: boolean
 }>(), {
   emptyText: '暂无数据'
 })
@@ -198,11 +199,19 @@ function processCell (_row: any, _column: Column) {
     <div class="lv-table__footer" v-if="!simple && rows.length">
       <LvPagination :total="totalRows" :simple="simplePagination" @update="flipOver" />
     </div>
+
+    <div class="lv-table__loading" v-if="loading">
+      <LvIcon icon="refresh" :class="{loading: loading}" />
+    </div>
   </div>
 </template>
 
 <style lang="less">
 @import (reference) "../Mixins";
+
+.lv-table {
+  position: relative;
+}
 
 .lv-table__tools {
   .flex-between;
@@ -376,5 +385,21 @@ function processCell (_row: any, _column: Column) {
 
 .lv-table__footer {
   margin-top: var(--unit);
+}
+
+.lv-table__loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light-white);
+
+  .lv-icon-refresh {
+    color: var(--blue-color);
+  }
 }
 </style>
