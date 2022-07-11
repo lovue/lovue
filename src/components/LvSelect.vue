@@ -154,7 +154,14 @@ function showDropdown () {
   isComponentClicked.value = true
 
   const positionChanged = calculateDropdownPosition()
-  updateScrollbar()
+
+  if (Array.isArray(selected.value)) {
+    if (selected.value.length) {
+      updateScrollbar()
+    }
+  } else if (selected.value !== null) {
+    updateScrollbar()
+  }
 
   if (positionChanged) {
     setTimeout(() => isShowDropdown.value = true, 100)
