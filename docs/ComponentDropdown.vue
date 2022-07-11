@@ -3,7 +3,7 @@ import ComponentDemo from './ComponentDemo.vue'
 import { DropdownItem } from '../src/components/LvDropdown.vue'
 
 const items = [
-  { text: '个人中心', icon: 'home' },
+  { type: 'SPA', url: '/home', text: '个人中心', icon: 'home' },
   { type: 'link', url: 'https://www.baidu.com', text: '修改密码', icon: 'guard' },
   { type: 'divider' },
   { text: '退出登录', icon: 'logout' }
@@ -40,6 +40,14 @@ const emit = defineEmits(['clickItem'])
       <LvDropdown style="margin-left: 100px;" title="右对齐" align="right" :items="items" />
       <LvDropdown style="margin-left: 100px;" title="底部对齐" align="bottom" :items="items" />
       <LvDropdown style="margin-left: 100px;" title="底部右对齐" align="bottom-right" :items="items" />
+    </div>
+
+    <div class="controls">
+      <LvDropdown :items="items" align="right">
+        <template #default>
+          <div class="custom-trigger" style="padding: 16px 24px;">Custom Trigger</div>
+        </template>
+      </LvDropdown>
     </div>
   </ComponentDemo>
 </template>
