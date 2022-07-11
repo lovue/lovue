@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ComponentDemo from './ComponentDemo.vue'
-import { DropdownItem } from '../src/components/LvDropdown.vue'
+import { DropdownItem } from '../src/index'
 
 const items = [
   { type: 'SPA', url: '/home', text: '个人中心', icon: 'home' },
