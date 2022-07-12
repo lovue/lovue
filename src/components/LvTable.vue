@@ -59,6 +59,7 @@ const filteredRows = computed(() => {
 
   return _rows.filter((_row: any) => props.columns.some(_column => {
     if (!_column.prop) return false
+    if (!_row[_column.prop]) return false
 
     const cellValue = _row[_column.prop].toString().toLowerCase()
     const keywords = searchKeywords.value.toLowerCase()
