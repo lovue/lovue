@@ -5,6 +5,10 @@
     <img src="https://img.shields.io/npm/dm/lovue.svg?style=flat-square" alt="downloads" />
 </p>
 
+- Each component is just a single `.vue` file.
+- Implemented by modern syntax and features.
+- Better performance with nearly 60 FPS.
+
 [Docs](https://lovue.vercel.app/)
 
 ### Note
@@ -47,19 +51,9 @@ app.mount('#app')
 
 ```js
 import { LvTable } from 'lovue'
-
-const app = createApp({
-  data() {
-    return {
-      count: 0
-    }
-  }
-})
-app.component('LvTable', LvTable)
-app.mount('#app')
 ```
 
-- some components must be imported
+- some components must be imported explicitly.
 
 ```js
 import { Indicator, Dialog, Toast } from 'lovue'

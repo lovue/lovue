@@ -33,7 +33,7 @@ export { default as LvDialog } from './components/LvDialog.vue'
 export { default as LvDatePicker } from './components/LvDatePicker.vue'
 export { default as LvTooltip } from './components/LvTooltip.vue'
 export { default as LvPagination } from './components/LvPagination.vue'
-export type {Pagination } from './components/LvPagination.vue'
+export type { Pagination } from './components/LvPagination.vue'
 export { default as LvTable } from './components/LvTable.vue'
 export type { Column } from './components/LvTable.vue'
 
