@@ -1,6 +1,6 @@
-<h1 style="text-align: center; margin: 30px 0 35px;">Lovue</h1>
+<h1 align="center" style="margin: 30px 0 35px;">Lovue</h1>
 
-<p style="text-align: center;">
+<p align="center">
     <img src="https://img.shields.io/npm/dt/lovue.svg?style=flat-square" alt="downloads" />
     <img src="https://img.shields.io/npm/dm/lovue.svg?style=flat-square" alt="downloads" />
 </p>
