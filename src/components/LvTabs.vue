@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import LvIcon from './LvIcon.vue'
-
-interface IconItem {
-  text?: string
-  icon?: string
-}
-
-export type TabItem = IconItem | string | number
+import type { TabItem } from '../types'
 
 const props = defineProps<{
   modelValue: number

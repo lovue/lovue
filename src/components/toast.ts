@@ -1,7 +1,8 @@
 import { render, h } from 'vue'
-import LvToast, { Props, ToastType } from './LvToast.vue'
+import LvToast from './LvToast.vue'
+import type { ToastType, ToastProps } from '../types'
 
-function Toast (options: Props) {
+function Toast (options: ToastProps) {
   const toastNode = h(LvToast, {
     ...options,
     onClose () {
@@ -14,7 +15,7 @@ function Toast (options: Props) {
 }
 
 function getHandlerByType (type: ToastType) {
-  return function (options: string | { text: string } | Props) {
+  return function (options: string | { text: string } | ToastProps) {
     if (typeof options === 'string') options = { text: options }
     Toast({
       ...options,

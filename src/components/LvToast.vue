@@ -1,17 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import LvIcon from './LvIcon.vue'
+import type { ToastProps } from '../types'
 
-export type ToastType = 'info' | 'success' | 'error' | 'warn'
-
-export interface Props {
-  text: string
-  showClose?: boolean
-  duration?: number
-  type: ToastType
-}
-
-const props = defineProps<Props>()
+const props = defineProps<ToastProps>()
 const emit = defineEmits(['close'])
 
 const visible = ref(false)

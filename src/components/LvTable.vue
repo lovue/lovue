@@ -3,15 +3,8 @@ import { ref, watch, computed } from 'vue'
 import LvIcon from './LvIcon.vue'
 import LvSearch from './LvSearch.vue'
 import LvOptions from './LvOptions.vue'
-import LvPagination, { Pagination } from './LvPagination.vue'
-
-export interface Column {
-  title?: string
-  prop?: string
-  sortable?: boolean
-  cssClass?: string
-  formatter?: 'thousands' | 'numberToBoolean' | (<T>(x: T) => T)
-}
+import LvPagination from './LvPagination.vue'
+import type { Column, Pagination } from '../types'
 
 const props = withDefaults(defineProps<{
   rows: []

@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-
-export interface OptionItem {
-  text: string
-  value: number | string | null
-  disabled?: boolean
-}
+import type { OptionItem } from '../types'
 
 const props = defineProps<{
   type: 'radio' | 'checkbox' | 'switch'

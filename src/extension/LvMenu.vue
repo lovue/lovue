@@ -2,18 +2,7 @@
 import { ref, computed, watch } from 'vue'
 import LvIcon from '../components/LvIcon.vue'
 import MenuItem from './MenuItem.vue'
-
-export type MenuMode = 'SPA' | 'link' | 'nonLink'
-
-export interface Menu {
-  title?: string
-  icon?: string
-  url?: string
-  mode?: MenuMode
-  children?: Menu[]
-  _focus?: boolean
-  _height?: number
-}
+import type { Menu, MenuMode } from '../types'
 
 const props = defineProps<{
   items: Menu[]

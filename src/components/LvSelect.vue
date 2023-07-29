@@ -3,17 +3,9 @@ import { ref, watch, onMounted, computed } from 'vue'
 import LvIcon from './LvIcon.vue'
 import LvSearch from './LvSearch.vue'
 import { useClickOutside } from '../hooks/useClickOutside'
+import type { SelectItem, SelectValueType } from '../types'
 
-type valueType = string | number | null
-type modelValueType = valueType | valueType[]
-
-export interface SelectItem {
-  text: string
-  value: valueType
-  disabled?: boolean
-  children?: SelectItem[]
-  _selected?: boolean
-}
+type modelValueType = SelectValueType | SelectValueType[]
 
 const props = withDefaults(defineProps<{
   modelValue: modelValueType

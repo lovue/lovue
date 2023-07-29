@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import LvIcon from '../components/LvIcon.vue'
-
-export interface StepItem {
-  text?: string
-  icon?: string
-}
+import type { StepItem } from '../types'
 
 const props = defineProps<{
   items: StepItem[]

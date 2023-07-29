@@ -3,11 +3,7 @@ import { ref, computed, watch, watchEffect } from 'vue'
 import LvInput from './LvInput.vue'
 import LvButton from './LvButton.vue'
 import LvSelect from './LvSelect.vue'
-
-export interface Pagination {
-  index: number
-  pageSize: number
-}
+import type { Pagination } from '../types'
 
 const props = withDefaults(defineProps<{
   total: number

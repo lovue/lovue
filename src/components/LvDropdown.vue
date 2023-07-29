@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import LvIcon from './LvIcon.vue'
-
-export interface DropdownItem {
-  type?: 'link' | 'divider' | 'SPA'
-  icon?: string
-  text?: string
-  url?: string
-  value?: string
-}
+import type { DropdownItem } from '../types'
 
 defineProps<{
   title?: string

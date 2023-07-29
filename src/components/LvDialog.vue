@@ -2,22 +2,9 @@
 import { ref, computed } from 'vue'
 import LvButton from './LvButton.vue'
 import LvIcon from './LvIcon.vue'
+import type { DialogProps } from '../types'
 
-export interface Props {
-  modelValue?: boolean
-  title?: string
-  body?: string
-  okText?: string
-  cancelText?: string
-  noFooter?: boolean
-  simple?: boolean
-  fixed?: boolean
-  visible?: boolean
-  class?: string
-  confirm?: () => unknown
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<DialogProps>(), {
   okText: '确认',
   cancelText: '取消'
 })
